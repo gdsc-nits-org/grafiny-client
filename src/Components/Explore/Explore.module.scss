@@ -1,0 +1,91 @@
+.explorecontainer{
+    background-color:#F3F7FF;
+    height:550px;
+    box-sizing: border-box;
+    .upperhalf{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height:50%;
+        .exploretext{
+            font-size: 64px;
+            font-weight:400;
+            font-family: 'Poppins';
+            font-style: normal;
+            color: #404040;
+            line-height: 96px;
+        }
+        .collegetext{
+            font-size: 64px;
+            font-weight:400;
+            font-family: 'Poppins';
+            font-style: normal;
+            color: #404040;
+            line-height: 96px;
+            color: #EA4335;
+        }        
+    }
+    .bottomhalf{
+        display: flex;
+        height: 50%;
+        justify-content: center;
+        flex-direction: column;
+        box-sizing: border-box;
+        .searchcontainer{
+            height:30%;
+            width: 70%;
+            margin: auto;
+            position: relative;
+            .search{
+                width:100%;
+                display: flex;
+                margin: auto;
+                height:100%;
+                display: flex;
+                justify-content: center;
+                position:absolute;
+                top:0;
+                input{
+                   width: 100%; 
+                   display: flex;
+                   flex-direction: row;
+                   justify-content: center;
+                   align-items: center;
+                   padding: 10px 0px;
+                   margin: auto;
+                   background: #FFFFFF;
+                   border: 1px solid #7A7A7A;
+                   border-radius: 10px;
+                   text-align: center;
+                   height:55px;
+                   position: absolute;
+                   bottom: 0;
+                }
+            }
+            .img{
+                height:70px;
+                position: absolute;
+                top:-30px;
+                img{
+                    height:70px;
+                    transform: translateX(40px);
+                }
+            }
+        }
+        .searchbutton{
+            width:25%;
+            margin:auto;
+            text-align: center;
+            padding: 7px;
+            background: #466EB6;
+            border-radius: 10px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 36px;
+            color: #FFFFFF;
+            transform: translateY(-35px);
+        }
+    }
+}

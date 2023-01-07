@@ -1,4 +1,5 @@
 import { Button } from "../../Components";
+import Explore from "../../Components/Explore/Explore";
 
 import style from "./Home.module.scss";
 
@@ -7,6 +8,9 @@ const Home = () => {
     <main className={style.home}>
       <h1>Home Page</h1>
       <Button type="button" />
+      <div>
+        <Explore/>
+      </div>
     </main>
   );
 };
