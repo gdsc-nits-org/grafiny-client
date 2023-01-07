@@ -8,7 +8,7 @@
         align-items: center;
         height:50%;
         .exploretext{
-            font-size: 64px;
+            font-size: 60px;
             font-weight:400;
             font-family: 'Poppins';
             font-style: normal;
@@ -16,7 +16,7 @@
             line-height: 96px;
         }
         .collegetext{
-            font-size: 64px;
+            font-size: 60px;
             font-weight:400;
             font-family: 'Poppins';
             font-style: normal;
@@ -51,7 +51,7 @@
                    flex-direction: row;
                    justify-content: center;
                    align-items: center;
-                   padding: 10px 0px;
+                   padding: 10px 10px;
                    margin: auto;
                    background: #FFFFFF;
                    border: 1px solid #7A7A7A;
@@ -60,6 +60,11 @@
                    height:55px;
                    position: absolute;
                    bottom: 0;
+                   letter-spacing: 0.03em;
+                   font-family: 'Roboto';
+                   font-style: normal;
+                   font-size: 20px;
+                   color: #7A7A7A;
                 }
             }
             .img{
@@ -73,7 +78,7 @@
             }
         }
         .searchbutton{
-            width:25%;
+            width:300px;
             margin:auto;
             text-align: center;
             padding: 7px;
@@ -86,6 +91,99 @@
             line-height: 36px;
             color: #FFFFFF;
             transform: translateY(-35px);
+        }
+    }
+}
+
+@media (max-width:800px) {
+    .explorecontainer{
+        .bottomhalf{
+            .searchcontainer{
+                .searchbutton{
+                    width:275px;
+                }
+            }
+        }
+    }
+}
+@media (max-width:700px) {
+    .explorecontainer{
+        .bottomhalf{
+            .searchcontainer{
+                .searchbutton{
+                    width:265px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:680px) {
+    .explorecontainer{
+        .upperhalf{
+            .exploretext{
+                font-size: 54px;
+            }
+            .collegetext{
+                font-size: 54px;
+            }
+        }
+        .bottomhalf{
+            .searchbutton{
+                width: 200px;
+            }
+        }
+    }
+}
+
+@media (max-width:550px) {
+    .explorecontainer{
+        .upperhalf{
+            .exploretext{
+                font-size: 34px;
+            }
+            .collegetext{
+                font-size: 34px;
+            }
+        }
+        .bottomhalf{
+            .searchcontainer{
+                width: 85%;
+                .img{
+                    border-color: #466EB6;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    img{
+                        transform: translateX(0);
+                    }
+                }
+            }
+            
+            .searchbutton{
+                width:200px;
+            }
+        }
+    }
+}
+
+@media (max-width:380px) {
+    .explorecontainer{
+        .upperhalf{
+            .exploretext{
+                font-size: 30px;
+            }
+            .collegetext{
+                font-size: 30px;
+            }
+        }
+        .bottomhalf{
+            .searchbutton{
+                width: 180px;
+            }
+            .searchcontainer{
+                width: 90%;
+            }
         }
     }
 }

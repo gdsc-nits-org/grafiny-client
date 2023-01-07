@@ -1,6 +1,6 @@
-import React from 'react'
-import style from './Explore.module.scss'
-import image from './exploreimg.png'
+import React from 'react';
+import style from './Explore.module.scss';
+import image from './exploreimg.png';
 
 export default function Explore() {
   return (
