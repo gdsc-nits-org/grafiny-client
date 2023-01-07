@@ -10,7 +10,7 @@ export default function Explore() {
           Explore |
         </span>
         <span className={style.collegetext}>
-          &nbsp;Colleges
+          &nbsp;<span>Subjects</span>
         </span>
       </div>
       <div className={style.bottomhalf}>

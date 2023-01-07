@@ -20,9 +20,39 @@
             font-weight:400;
             font-family: 'Poppins';
             font-style: normal;
-            color: #404040;
             line-height: 96px;
             color: #EA4335;
+            position: relative;
+            visibility: hidden;
+        }
+        .collegetext::before{
+            content:'';
+            animation-name: animate;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-direction: linear;
+            animation-timing-function: ease;
+            position: absolute;
+            left:10px;
+            visibility: visible;
+        }
+        @keyframes animate {
+            0%{
+                content: 'Colleges';
+                color:#EA4335;
+            }
+            40%{
+                content: 'Courses';
+                color: #FBBC04;
+            }
+            80%{
+                content: 'Subjects';
+                color:#0F9D58; 
+            }
+            100%{
+                content: 'Colleges';
+                color:#EA4335;
+            }
         }        
     }
     .bottomhalf{
@@ -90,6 +120,7 @@
             font-size: 20px;
             line-height: 36px;
             color: #FFFFFF;
+            cursor: pointer;
             transform: translateY(-35px);
         }
     }
