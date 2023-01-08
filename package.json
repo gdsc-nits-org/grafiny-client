@@ -15,7 +15,8 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .jsx --ext .js --fix",
     "pretty": "prettier --write .",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "prepare": "pnpm simple-git-hooks"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^2.2.0",
