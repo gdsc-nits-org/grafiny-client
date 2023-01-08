@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./Explore.module.scss";
-import image from "./exploreimg.png";
 
 const Explore = () => {
   return (
@@ -14,7 +13,7 @@ const Explore = () => {
       <div className={style.bottomhalf}>
         <div className={style.searchcontainer}>
           <div className={style.img}>
-            <img src={image} alt="exploreimg" />
+            <img src="/assets/exploreimg.png" alt="exploreimg" />
           </div>
           <div className={style.search}>
             <input type="text" placeholder="What are you looking for ?" />
