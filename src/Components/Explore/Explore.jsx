@@ -2,7 +2,7 @@ import React from 'react';
 import style from './Explore.module.scss';
 import image from './exploreimg.png';
 
-export default function Explore() {
+const Explore = ()=> {
   return (
     <div className={style.explorecontainer}>
       <div className={style.upperhalf}>
@@ -16,7 +16,7 @@ export default function Explore() {
       <div className={style.bottomhalf}>
         <div className={style.searchcontainer}>
         <div className={style.img}>
-           <img src={image} alt="" />
+           <img src={image} alt="exploreimg" />
         </div>
       <div className={style.search}>
         <input type="text" placeholder='What are you looking for ?' />
@@ -29,3 +29,5 @@ export default function Explore() {
     </div>
   )
 }
+
+export default Explore;
