@@ -12,7 +12,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --ext .jsx --ext .js --fix",
+    "pretty": "prettier --write .",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^2.2.0",
@@ -33,9 +36,21 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "lint-staged": "^13.0.3",
+    "lint-staged": "^13.0.4",
     "prettier": "^2.7.1",
     "sass": "^1.56.1",
     "simple-git-hooks": "^2.8.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm precommit"
+  },
+  "lint-staged": {
+    "*.(jsx|js)": [
+      "pnpm lint",
+      "pnpm pretty"
+    ],
+    "*.scss": [
+      "pnpm pretty"
+    ]
   }
 }
