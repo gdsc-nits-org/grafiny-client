@@ -16,7 +16,7 @@ const Explore = ()=> {
       <div className={style.bottomhalf}>
         <div className={style.searchcontainer}>
         <div className={style.img}>
-           <img src={image} alt="exploreimg" />
+           <img src={image}  alt="exploreimg" />
         </div>
       <div className={style.search}>
         <input type="text" placeholder='What are you looking for ?' />
