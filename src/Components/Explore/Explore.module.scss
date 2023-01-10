@@ -1,0 +1,224 @@
+.explorecontainer {
+  background-color: var(--gdsc-bg-3-100);
+  height: 37em;
+  box-sizing: border-box;
+  .upperhalf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    .exploretext {
+      font-size: 4em;
+      font-weight: 400;
+      color: var(--gdsc-content-1-100);
+      line-height: 6em;
+    }
+    .collegetext {
+      font-size: 4em;
+      font-weight: 400;
+      line-height: 6em;
+      position: relative;
+      visibility: hidden;
+    }
+    .collegetext::before {
+      content: "";
+      animation-name: animate;
+      animation-duration: 6s;
+      animation-iteration-count: infinite;
+      animation-direction: linear;
+      animation-timing-function: ease;
+      position: absolute;
+      left: 0.3em;
+      visibility: visible;
+    }
+    @keyframes animate {
+      0% {
+        content: "Colleges";
+        color: var(--gdsc-red-1-100);
+      }
+      40% {
+        content: "Courses";
+        color: var(--gdsc-yellow-1-100);
+      }
+      75% {
+        content: "Subjects";
+        color: var(--gdsc-green-1-100);
+      }
+      100% {
+        content: "Colleges";
+        color: var(--gdsc-red-1-100);
+      }
+    }
+  }
+  .bottomhalf {
+    display: flex;
+    height: 50%;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    .searchcontainer {
+      height: 30%;
+      width: 70%;
+      margin: auto;
+      position: relative;
+      .search {
+        width: 100%;
+        display: flex;
+        margin: auto;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        input {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 1.56em 0.63em;
+          margin: auto;
+          background: var(--gdsc-bg-2-100);
+          border: 0.07em solid var(--gdsc-grayish-2-100);
+          border-radius: 0.7em;
+          text-align: center;
+          height: 3em;
+          position: absolute;
+          bottom: 0;
+          letter-spacing: 0.03em;
+          font-family: var(--gdsc-font-2);
+          font-size: 1.25em;
+          color: var(--gdsc-grayish-2-100);
+        }
+      }
+      .img {
+        height: 4.38em;
+        position: absolute;
+        top: -2.15em;
+        img {
+          height: 4.38em;
+          transform: translateX(4em);
+        }
+      }
+    }
+    .searchbutton {
+      width: 15em;
+      margin: auto;
+      text-align: center;
+      padding: 0.3em 0.4em;
+      background: var(--gdsc-blue-3-100);
+      border-radius: 0.55em;
+      font-weight: 500;
+      font-size: 1.25em;
+      line-height: 2.25em;
+      color: var(--gdsc-bg-2-100);
+      cursor: pointer;
+      transform: translateY(-2.05em);
+    }
+  }
+}
+
+@media (max-width: 50em) {
+  .explorecontainer {
+    .bottomhalf {
+      .searchcontainer {
+        .searchbutton {
+          width: 17.2em;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 43.75em) {
+  .explorecontainer {
+    .bottomhalf {
+      .searchcontainer {
+        .searchbutton {
+          width: 17em;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 42.5em) {
+  .explorecontainer {
+    .upperhalf {
+      .exploretext {
+        font-size: 3.4em;
+      }
+      .collegetext {
+        font-size: 3.4em;
+      }
+    }
+    .bottomhalf {
+      .searchbutton {
+        width: 13em;
+      }
+    }
+  }
+}
+
+@media (max-width: 34.38em) {
+  .explorecontainer {
+    box-sizing: content-box;
+    padding-bottom: 5em;
+    .upperhalf {
+      height: 50%;
+      .exploretext {
+        font-size: 2.4em;
+      }
+      .collegetext {
+        font-size: 2.4em;
+      }
+    }
+    .bottomhalf {
+      height: 50%;
+      .searchcontainer {
+        width: 85%;
+        .img {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          img {
+            transform: translateX(0);
+          }
+        }
+      }
+      .searchbutton {
+        width: 12.4em;
+      }
+    }
+  }
+}
+
+@media (max-width: 25.88em) {
+  .explorecontainer {
+    .bottomhalf {
+      .searchbutton {
+        width: 12em;
+      }
+    }
+  }
+}
+
+@media (max-width: 23.75em) {
+  .explorecontainer {
+    .upperhalf {
+      .exploretext {
+        font-size: 2em;
+      }
+      .collegetext {
+        font-size: 2em;
+      }
+    }
+    .bottomhalf {
+      .searchbutton {
+        width: 10em;
+      }
+      .searchcontainer {
+        width: 90%;
+      }
+    }
+  }
+}
