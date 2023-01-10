@@ -1,4 +1,4 @@
-import { Button, Explore, Footer } from "../../Components";
+import { Button, Explore } from "../../Components";
 import style from "./Home.module.scss";
 
 const Home = () => {
@@ -9,7 +9,6 @@ const Home = () => {
       <div>
         <Explore />
       </div>
-      <Footer />
     </main>
   );
 };
