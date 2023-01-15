@@ -8,10 +8,10 @@
 
   .footer-content {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 
     .footer-left {
-      position: absolute;
+      // position: absolute;
       left: 10vw;
 
       h3 {
@@ -70,7 +70,7 @@
     }
 
     .footer-right {
-      position: absolute;
+      // position: absolute;
       right: 10vw;
 
       p {
