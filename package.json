@@ -19,6 +19,7 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
+    "@iconify/react": "^4.0.1",
     "@vitejs/plugin-react": "^2.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
