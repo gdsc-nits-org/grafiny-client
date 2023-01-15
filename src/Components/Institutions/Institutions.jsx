@@ -1,5 +1,5 @@
 import React from "react";
-import "./a.scss";
+import "./Institutions.scss";
 import dp from "../../Assets/Images/nitsLogo.png";
 
 const dummyData = [
