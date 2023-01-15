@@ -3,12 +3,11 @@
   justify-content: space-between;
   align-items: center;
   height: 4rem;
-  box-shadow: 0px 4px 12px 0px var(--gdsc-shadow-1-100);
+  box-shadow: 0 0.4rem 0.8rem 0 var(--gdsc-shadow-1-100);
   position: fixed;
   top: 0;
   width: 100%;
   transition: all 0.3s ease-out;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 .large {
@@ -18,9 +17,11 @@
 
 .logopart {
   margin-left: 30px;
+
   img {
     width: 4.5rem;
   }
+
   .logo2 {
     height: 2.5rem;
     width: 7rem;
