@@ -1,10 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 :root {
   --gdsc-font-1: "Poppins", sans-serif;
+  --gdsc-font-2: "Roboto", sans-serif;
 
   --gdsc-blue-1-100: #4885ed;
   --gdsc-blue-2-100: #4285f4;
+  --gdsc-blue-3-100: #466eb6;
 
   --gdsc-green-1-100: #3cba54;
 
@@ -16,8 +19,11 @@
   --gdsc-dark-1-100: #1d192b;
   --gdsc-content-1-100: #313033;
   --gdsc-grayish-1-100: #49454f;
+  --gdsc-grayish-2-100: #7a7a7a;
   --gdsc-line-1-100: #c5c5c5;
   --gdsc-bg-1-100: #dbdbdb;
+  --gdsc-bg-2-100: #ffffff;
+  --gdsc-bg-3-100: #f3f7ff;
   --gdsc-neutral-1-100: #605d62;
 }
 

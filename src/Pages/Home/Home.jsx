@@ -1,11 +1,16 @@
-import {Landing }  from "../../Components";
-
+import { Button, Explore, Landing } from "../../Components";
 import style from "./Home.module.scss";
 
 const Home = () => {
   return (
     <main className={style.home}>
-      <Landing/>
+      <div>
+        <Landing />
+      </div>
+      <Button type="button" />
+      <div>
+        <Explore />
+      </div>
     </main>
   );
 };
