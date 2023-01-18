@@ -10,7 +10,7 @@
 .header {
   display: flex;
   flex-direction: row;
-  height: 80%;
+  height: 100%;
 
   .title {
     width: 60%;
@@ -19,10 +19,11 @@
       // position: absolute;
       letter-spacing: 0.04em;
       margin-left: 10%;
+      margin-top: 9rem;
       width: 90%;
       height: 5%;
       left: 9%;
-      top: 12rem;
+      // top: 12rem;
 
       /* Upperbound(desktop) */
 
@@ -80,7 +81,7 @@
   .imageLand {
     width: 26%;
     img {
-      margin-top: 6.5rem;
+      margin-top: 8.5rem;
       font-size: 1.5rem;
       height: auto;
       max-width: 100%;
@@ -93,18 +94,20 @@
 
   cursor: pointer;
   color: white;
-  // position: absolute;
 
   padding: 1.3rem;
   gap: 1.5rem;
-  margin-left: 26rem;
+  margin-left: 38rem;
+  margin-top: 6rem;
 
-  width: 25%;
+  width: 20%;
   height: 3rem;
   font-size: 1.1rem;
 
   background: var(--gdsc-blue-3-100);
-  border-radius: 0.2em;
+
+  border: solid 0.1em rgba(#000, 0.1);
+  border-radius: 0.8em;
 
   transition: 0.4s ease-in-out 0s;
 }
