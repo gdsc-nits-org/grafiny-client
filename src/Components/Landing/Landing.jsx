@@ -1,7 +1,3 @@
-/* eslint-disable import/no-absolute-path */
-import React from "react";
-// eslint-disable-next-line import/no-unresolved
-import HeroBanner from "./Group.png";
 import Landingstyle from "./Landing.module.scss";
 
 const Landing = () => {
@@ -23,13 +19,13 @@ const Landing = () => {
         </div>
 
         <div className={Landingstyle.imageLand}>
-          <img src={HeroBanner} alt="img" />
+          <img src="/assets/Group.png" alt="Grafiny Landing" />
         </div>
       </div>
 
-      {/* <div className={Landingstyle.button}> */}
-      <button className={Landingstyle.btn}>Get started</button>
-      {/* </div> */}
+      <div className={Landingstyle.buttonLand}>
+        <button className={Landingstyle.btn}>Get started</button>
+      </div>
     </>
   );
 };
