@@ -1,40 +1,44 @@
 import React from "react";
 import { FaInstagram, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import styles from "./Footer.module.scss";
-
 const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles["footer-centre"]}>
         <h3>Questions?</h3>
         <p>Contact us through our social media accounts</p>
-        <a
+        <Link
           href="https://www.facebok.com/gdscnits/"
           className={styles["social-media-icons"]}
+          target="_blank"
         >
           <FaFacebook className={styles["social-media-icons"]} />
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://github.com/gdsc-nits-org"
           className={styles["social-media-icons"]}
+          target="_blank"
         >
           <FaGithub className={styles["social-media-icons"]} />
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://www.linkedin.com/company/gdscnits/mycompany/"
           className={styles["social-media-icons"]}
+          target="_blank"
         >
           <FaLinkedin className={styles["social-media-icons"]} />
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://www.instagram.com/gdsc_nits/"
           className={styles["social-media-icons"]}
+          target="_blank"
         >
           <FaInstagram className={styles["social-media-icons"]} />
-        </a>
+        </Link>
         <br />
         <span>or email us at </span>
-        <a href="mailto:gdsc@nits.ac.in">gdsc@nits.ac.in</a>
+        <Link href="mailto:gdsc@nits.ac.in">gdsc@nits.ac.in</Link>
       </div>
       <div className={styles["footer-content"]}>
         <div className={styles["footer-left"]}>
@@ -44,17 +48,17 @@ const Footer = () => {
             <ul className={styles["f-listitem"]}>
               <li>
                 {" "}
-                <a href="/">Vision</a>
+                <Link href="/">Vision</Link>
               </li>
               <li>
                 {" "}
-                <a href="/">Mission</a>
+                <Link href="/">Mission</Link>
               </li>
               <li>
-                <a href="/"> Types of Events</a>
+                <Link href="/"> Types of Events</Link>
               </li>
               <li>
-                <a href="/"> Google Technologies</a>
+                <Link href="/"> Google Technologies</Link>
               </li>
             </ul>
           </div>
@@ -65,15 +69,15 @@ const Footer = () => {
           <ul className={styles["f-listitem"]}>
             <li>
               {" "}
-              <a href="/">Executive Board</a>
+              <Link href="/">Executive Board</Link>
             </li>
             <li>
               {" "}
-              <a href="/">Departments</a>
+              <Link href="/">Departments</Link>
             </li>
             <li>
               {" "}
-              <a href="/">Join Us</a>
+              <Link href="/">Join Us</Link>
             </li>
           </ul>
         </div>
