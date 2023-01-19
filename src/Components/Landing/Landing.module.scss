@@ -1,0 +1,198 @@
+@mixin flexDisplay($position, $direction) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: $position;
+}
+
+//Main style file starts here
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+
+  .title {
+    width: 60%;
+
+    h1 {
+      // position: absolute;
+      letter-spacing: 0.04em;
+      margin-left: 10%;
+      margin-top: 9rem;
+      width: 90%;
+      height: 5%;
+      left: 9%;
+      // top: 12rem;
+
+      /* Upperbound(desktop) */
+
+      font-family: var(--gdsc-font-1);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 7rem;
+      line-height: 12rem;
+
+      color: #000000;
+    }
+
+    h3 {
+      // position: absolute;
+      margin-left: 10%;
+      width: 90%;
+      height: 2%;
+      left: 7%;
+      top: 23rem;
+
+      /* heading4(desktop) */
+
+      font-family: var(--gdsc-font-1);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 37px;
+      line-height: 48px;
+      /* identical to box height */
+
+      color: var(--title-color);
+    }
+
+    p {
+      // position: absolute;
+      margin-top: 1.8em;
+      margin-left: 10%;
+      width: 80%;
+      height: 3%;
+      left: 7%;
+      top: 28rem;
+
+      /* text(desktop) */
+
+      font-family: var(--gdsc-font-2);
+      font-style: normal;
+      font-weight: 300;
+      font-size: 24px;
+      line-height: 28px;
+      letter-spacing: 0.03em;
+
+      color: var(--title-color);
+    }
+  }
+
+  .imageLand {
+    width: 26%;
+    img {
+      margin-top: 8.5rem;
+      font-size: 1.5rem;
+      height: auto;
+      max-width: 100%;
+    }
+  }
+}
+
+.btn {
+  @include flexDisplay(center, row);
+
+  cursor: pointer;
+  color: white;
+
+  padding: 1.3rem;
+  gap: 1.5rem;
+  margin-left: 38rem;
+  margin-top: 6rem;
+
+  width: 20%;
+  height: 3rem;
+  font-size: 1.1rem;
+
+  background: var(--gdsc-blue-3-100);
+
+  border: solid 0.1em rgba(#000, 0.1);
+  border-radius: 0.8em;
+
+  transition: 0.4s ease-in-out 0s;
+}
+
+.btn:hover {
+  transform: scale(1.009);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  border: 2px solid #00ced1;
+}
+
+// Responsiveness designing starts here
+
+@media only screen and (max-width: 1190px) {
+  .header {
+    @include flexDisplay(center, column);
+
+    .title h1 {
+      top: 10%;
+      left: 30%;
+
+      width: 70%;
+      height: 7%;
+      font-weight: 400;
+      font-size: 2.6rem;
+      line-height: 60px;
+      text-align: center;
+    }
+
+    .title h3 {
+      margin-left: 1em;
+
+      width: 85%;
+      height: 3.2%;
+      font-size: 0.6rem;
+      line-height: 21px;
+      text-align: center;
+    }
+
+    .title p {
+      left: 16%;
+      top: 27%;
+
+      width: 95%;
+      margin-left: 0em;
+
+      height: 13%;
+      font-weight: 300;
+      font-size: 0.7rem;
+      line-height: 14px;
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+
+    .imageLand {
+      // height: auto;
+      // max-width: 85%;
+      width: 80%;
+
+      img {
+        width: 56%;
+        height: 67%;
+        margin-left: 4rem;
+        margin-top: 2em;
+
+        left: 23.61%;
+        right: 24.19%;
+        top: 49.22%;
+        bottom: 19.11%;
+      }
+    }
+  }
+
+  .buttonLand {
+    .btn {
+      margin: auto;
+      height: 0.4em;
+      max-width: 100%;
+
+      text-align: center;
+      width: 12em;
+
+      font-size: 0.9rem;
+      border-radius: 0.2em;
+    }
+  }
+}
