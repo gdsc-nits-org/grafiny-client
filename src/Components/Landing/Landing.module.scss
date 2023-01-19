@@ -7,12 +7,14 @@
 
 //Main style file starts here
 
+.main {
+  height: 100vh;
+}
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  height: 100%;
 
   .title {
     width: 60%;
@@ -20,7 +22,6 @@
     h1 {
       // position: absolute;
       letter-spacing: 0.04em;
-      margin-left: 10%;
       margin-top: 9rem;
       width: 90%;
       height: 5%;
@@ -40,7 +41,6 @@
 
     h3 {
       // position: absolute;
-      margin-left: 10%;
       width: 90%;
       height: 2%;
       left: 7%;
@@ -61,7 +61,6 @@
     p {
       // position: absolute;
       margin-top: 1.8em;
-      margin-left: 10%;
       width: 80%;
       height: 3%;
       left: 7%;
