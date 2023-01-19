@@ -9,6 +9,8 @@
 
 .header {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
   height: 100%;
 
@@ -30,7 +32,7 @@
       font-family: var(--gdsc-font-1);
       font-style: normal;
       font-weight: 400;
-      font-size: 6.5rem;
+      font-size: 7rem;
       line-height: 12rem;
 
       color: #000000;
@@ -49,7 +51,7 @@
       font-family: var(--gdsc-font-1);
       font-style: normal;
       font-weight: 400;
-      font-size: 32px;
+      font-size: 37px;
       line-height: 48px;
       /* identical to box height */
 
@@ -70,8 +72,8 @@
       font-family: var(--gdsc-font-2);
       font-style: normal;
       font-weight: 300;
-      font-size: 20px;
-      line-height: 23px;
+      font-size: 24px;
+      line-height: 28px;
       letter-spacing: 0.03em;
 
       color: var(--title-color);
