@@ -1,4 +1,4 @@
-import { Button, Explore, Landing } from "../../Components";
+import { Explore, Landing } from "../../Components";
 import style from "./Home.module.scss";
 
 const Home = () => {
@@ -7,7 +7,6 @@ const Home = () => {
       <div>
         <Landing />
       </div>
-      <Button type="button" />
       <div>
         <Explore />
       </div>
