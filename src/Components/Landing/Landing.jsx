@@ -2,7 +2,7 @@ import Landingstyle from "./Landing.module.scss";
 
 const Landing = () => {
   return (
-    <section className={Landingstyle.main}>
+    <>
       <div className={Landingstyle.header}>
         <div className={Landingstyle.title}>
           <div className={Landingstyle.text}>
@@ -26,7 +26,7 @@ const Landing = () => {
       <div className={Landingstyle.buttonLand}>
         <button className={Landingstyle.btn}>Get started</button>
       </div>
-    </section>
+    </>
   );
 };
 
