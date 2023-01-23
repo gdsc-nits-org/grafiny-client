@@ -27,7 +27,7 @@
         .f-listitem * {
           list-style: none;
 
-          font-size: 1.2em;
+          font-size: 1.1em;
           cursor: pointer;
 
           text-decoration: none !important;
@@ -54,7 +54,7 @@
 
       .f-listitem * {
         text-decoration: none;
-        font-size: 1.2em;
+        font-size: 1.1em;
         list-style-type: none;
         cursor: pointer;
         color: var(--gdsc-content-2-100);
@@ -112,6 +112,7 @@
       font-size: 1.3em;
       color: var(--gdsc-content-2-100);
       margin-left: 0.3em;
+      cursor: pointer;
       margin-top: 0.3em;
 
       :hover {
@@ -149,7 +150,7 @@
   .footer {
     .footer-end {
       position: relative;
-      top: 5vh;
+      top: -0.8em;
 
       h5 {
         font-size: 1.2em;
@@ -162,7 +163,7 @@
       }
 
       img {
-        margin: 1.2em 0;
+        margin: 4em 0 0.5em 0;
       }
     }
 
@@ -172,7 +173,7 @@
       flex-direction: column;
       gap: 0;
       position: relative;
-      top: -28vh;
+      top: -15vh;
 
       .footer-left {
         position: relative;
@@ -204,7 +205,8 @@
 
     .footer-centre {
       position: relative;
-      top: -25vh;
+      top: -15vh;
+
       h3 {
         font-size: 1.2em;
       }
