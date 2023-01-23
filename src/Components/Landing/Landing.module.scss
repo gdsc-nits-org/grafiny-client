@@ -20,13 +20,10 @@
     width: 60%;
 
     h1 {
-      // position: absolute;
       letter-spacing: 0.04em;
+      margin: auto;
       margin-top: 9rem;
       width: 90%;
-      height: 5%;
-      left: 9%;
-      // top: 12rem;
 
       /* Upperbound(desktop) */
 
@@ -43,8 +40,6 @@
       // position: absolute;
       width: 90%;
       height: 2%;
-      left: 7%;
-      top: 23rem;
 
       /* heading4(desktop) */
 
@@ -63,8 +58,6 @@
       margin-top: 1.8em;
       width: 80%;
       height: 3%;
-      left: 7%;
-      top: 28rem;
 
       /* text(desktop) */
 
@@ -98,8 +91,9 @@
 
   padding: 1.3rem;
   gap: 1.5rem;
-  margin-left: 38rem;
-  margin-top: 6rem;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 
   width: 20%;
   height: 3rem;
@@ -126,8 +120,7 @@
     @include flexDisplay(center, column);
 
     .title h1 {
-      top: 10%;
-      left: 30%;
+      margin-top: 3rem;
 
       width: 70%;
       height: 7%;
@@ -148,9 +141,6 @@
     }
 
     .title p {
-      left: 16%;
-      top: 27%;
-
       width: 95%;
       margin-left: 0em;
 
@@ -163,20 +153,15 @@
     }
 
     .imageLand {
-      // height: auto;
-      // max-width: 85%;
       width: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       img {
         width: 56%;
         height: 67%;
-        margin-left: 4rem;
         margin-top: 2em;
-
-        left: 23.61%;
-        right: 24.19%;
-        top: 49.22%;
-        bottom: 19.11%;
       }
     }
   }
@@ -184,14 +169,16 @@
   .buttonLand {
     .btn {
       margin: auto;
-      height: 0.4em;
+      height: 0.7em;
       max-width: 100%;
 
       text-align: center;
       width: 12em;
 
       font-size: 0.9rem;
-      border-radius: 0.2em;
+      border-radius: 0.7em;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
     }
   }
 }
