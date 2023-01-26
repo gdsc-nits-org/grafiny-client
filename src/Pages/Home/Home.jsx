@@ -1,5 +1,4 @@
-import { Explore, Landing } from "../../Components";
-import Institutions from "../../Components/Institutions/Institutions";
+import { Explore, Landing, Institutions } from "../../Components";
 import style from "./Home.module.scss";
 
 const Home = () => {
