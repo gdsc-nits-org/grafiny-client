@@ -85,3 +85,20 @@
     }
   }
 }
+
+@media (max-width: 350px) {
+  .itemcontainer {
+    .leftpart {
+      .booktitlecontainer {
+        .title {
+          font-size: 0.9em;
+        }
+      }
+    }
+    .rightpart {
+      .leftitem {
+        font-size: 0.9em;
+      }
+    }
+  }
+}
