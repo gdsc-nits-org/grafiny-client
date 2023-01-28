@@ -1,5 +1,5 @@
 import style from "./searchresults.module.scss";
-import { SearchResultsItem } from "../index";
+import { SearchResultsItem } from "../../Components";
 
 const SearchResults = () => {
   return (

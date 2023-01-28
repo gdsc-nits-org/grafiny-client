@@ -1,4 +1,4 @@
 import Home from "./Home/Home";
-import SearchResults from "../Components/SearchResults/Searchresults";
+import SearchResults from "./SearchResults/Searchresults";
 
 export { Home, SearchResults };
