@@ -1,4 +1,5 @@
 import style from "./searchresults.module.scss";
+import { SearchResultsItem } from "../index";
 
 const SearchResults = () => {
   return (
@@ -19,6 +20,21 @@ const SearchResults = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className={style.columnheadingcontainer}>
+        <div className={style.leftcolumn}>Name &uarr;</div>
+        <div className={style.rightcolumn}>
+          <div className={style.leftitem}>Last Modified</div>
+          <div className={style.rightitem}>Likes</div>
+        </div>
+      </div>
+      <div className={style.searchitemscontainer}>
+        <SearchResultsItem />
+        <SearchResultsItem />
+        <SearchResultsItem />
+        <SearchResultsItem />
+        <SearchResultsItem />
+        <SearchResultsItem />
       </div>
     </div>
   );
