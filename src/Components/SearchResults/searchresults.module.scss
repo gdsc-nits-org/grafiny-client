@@ -225,3 +225,18 @@
     }
   }
 }
+
+@media (max-width: 350px) {
+  .searchresultscontainer {
+    .columnheadingcontainer {
+      .leftcolumn {
+        font-size: 0.9em;
+      }
+      .rightcolumn {
+        .leftitem {
+          font-size: 0.9em;
+        }
+      }
+    }
+  }
+}

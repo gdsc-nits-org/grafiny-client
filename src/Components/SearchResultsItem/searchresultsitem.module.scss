@@ -54,3 +54,34 @@
     }
   }
 }
+
+@media (max-width: 500px) {
+  .itemcontainer {
+    .rightpart {
+      .leftitem {
+        width: 100%;
+      }
+      .rightitem {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .itemcontainer {
+    .leftpart {
+      .bookiconcontainer {
+        height: 2.5em;
+      }
+      .booktitlecontainer {
+        .title {
+          font-size: 1em;
+        }
+        .subtitle {
+          font-size: 0.6em;
+        }
+      }
+    }
+  }
+}
