@@ -241,6 +241,7 @@
 
 @media (max-width: 680px) {
   .explorecontainer {
+    box-sizing: content-box;
     .upperhalf {
       .exploretext {
         font-size: 3.4em;
@@ -340,6 +341,18 @@
       }
       .searchbuttoncontainer {
         width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-height: 360px) {
+  .explorecontainer {
+    .bottomhalf {
+      .searchbuttoncontainer {
+        .button {
+          top: 25%;
+        }
       }
     }
   }
