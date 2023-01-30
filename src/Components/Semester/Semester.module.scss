@@ -1,0 +1,227 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+
+  .arrow {
+    cursor: pointer;
+    position: absolute;
+    width: 9%;
+    height: 0;
+    left: 7%;
+    top: 16%;
+
+    .arrowicon {
+      font-size: 3rem;
+    }
+  }
+
+  .title {
+    width: 27%;
+    height: 23%;
+    margin: auto;
+    margin-top: 0.5em;
+
+    font-family: var(--gdsc-font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 4.5rem;
+    line-height: 96px;
+    text-align: center;
+
+    /* grey 2 */
+
+    color: var(--gdsc-dark-1-100);
+  }
+
+  .sembox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    // align-items: flex-start;
+    gap: 13rem;
+    margin: auto;
+    margin-top: 2.8rem;
+
+    width: 71rem;
+    height: 384px;
+
+    .boxleft {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0px;
+      gap: 40px;
+
+      width: 34.7rem;
+      height: 384px;
+
+      /* Inside auto layout */
+
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+
+      .boxes {
+        cursor: pointer;
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0.6em;
+        gap: 10px;
+
+        width: 34.7rem;
+        height: 78px;
+        background: var(--gdsc-blue-3-100);
+
+        /* card drop shadow */
+
+        border-radius: 1em;
+
+        font-family: var(--gdsc-font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.4em;
+        line-height: 36px;
+        /* identical to box height */
+
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        /* grey 1 */
+
+        color: white;
+        border: none;
+      }
+
+      .boxes:hover {
+        background: var(--semester-hover);
+      }
+    }
+
+    .boxright {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0;
+      gap: 40px;
+
+      width: 34.8rem;
+      height: 384px;
+
+      /* Inside auto layout */
+
+      flex: none;
+      order: 1;
+      flex-grow: 0;
+
+      .boxes {
+        cursor: pointer;
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0.6em;
+        gap: 10px;
+
+        width: 34.8rem;
+        height: 78px;
+
+        background: var(--gdsc-blue-3-100);
+        border-radius: 1em;
+
+        font-family: var(--gdsc-font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 36px;
+        /* identical to box height */
+
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        /* grey 1 */
+
+        color: white;
+        border: none;
+      }
+
+      .boxes:hover {
+        background: var(--semester-hover);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .arrow {
+      position: absolute;
+      width: 22px;
+      height: 0px;
+      left: 9%;
+      top: 1.9rem;
+
+      .arrowicon {
+        font-size: 2rem;
+      }
+    }
+
+    .title {
+      margin: auto;
+      width: 100vw;
+      height: 6%;
+
+      font-weight: 400;
+      font-size: 2.2rem;
+      line-height: 39px;
+      text-align: center;
+    }
+
+    .sembox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      margin-top: 2.8rem;
+
+      width: 20rem;
+      height: 68rem;
+
+      .boxleft {
+        width: 100%;
+        height: 34rem;
+        margin-top: -10rem;
+
+        .boxes {
+          width: 20rem;
+          margin: auto;
+          margin-bottom: 1.3rem;
+        }
+      }
+
+      .boxright {
+        width: 100%;
+        height: 16rem;
+        margin-top: -10.5rem;
+
+        .boxes {
+          width: 20rem;
+          margin: auto;
+          margin-bottom: 1.3rem;
+        }
+      }
+    }
+  }
+}
