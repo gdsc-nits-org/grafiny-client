@@ -19,6 +19,10 @@ const dummyData = [
     insti: "Indian Institute of Technology, Bombay",
     pfp: dp,
   },
+  {
+    insti: "Indian Institute of Technology, Bombay",
+    pfp: dp,
+  },
 ];
 
 const Institutions = () => {
