@@ -8,28 +8,31 @@
   top: 0;
   width: 100%;
   transition: all 0.3s ease-out;
-  z-index: 1000;
 }
-
 .large {
   background-color: #fff;
   box-shadow: 0px 4px 12px 0px var(--gdsc-shadow-1-100);
 }
-
+.leftSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .logopart {
-  margin-left: 30px;
-
-  img {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .logo1 {
+    height: 2rem;
     width: 4.5rem;
+    margin-left: 0.5rem;
   }
-
   .logo2 {
-    height: 2.5rem;
-    width: 7rem;
+    height: 2rem;
+    width: 6rem;
     margin-left: 0.5rem;
   }
 }
-
 .menupart {
   display: flex;
   justify-content: space-around;
@@ -40,13 +43,11 @@
 .navProfile {
   visibility: hidden;
 }
-
 .links {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .navlinks {
   color: rgb(116, 114, 114);
   font-weight: 500;
@@ -56,7 +57,6 @@
   text-decoration: none;
   position: relative;
   transition: all 0.15s ease-in-out;
-
   &::before {
     content: "";
     position: absolute;
@@ -73,37 +73,30 @@
     transition: all 0.3s ease-in-out 0s;
   }
 }
-
 .active {
   color: black;
-
   &::before {
     visibility: visible;
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
   }
 }
-
 .profile {
   margin-left: 15%;
 }
-
 .switchIcon {
   display: none;
   background-color: #fff;
   border: none;
 }
-
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   .navbar {
     transition: 0.5s all ease-in-out;
     position: relative;
   }
-
   .navbar.large {
     height: 50vh;
   }
-
   .navbar.large .links {
     display: flex;
     flex-direction: column;
@@ -115,29 +108,43 @@
     width: 100%;
     opacity: 1;
   }
-
   .navbar.large .links a {
     margin: 0.9375rem 0;
     font-size: 1.5rem;
   }
-
+  .leftSection {
+    margin-left: 8rem;
+  }
   .switchIcon {
     display: block;
     position: absolute;
     top: 0.8rem;
+    left: 0.5rem;
     margin-right: 0.2rem;
   }
-
   .logopart {
+    display: inline-block;
     position: absolute;
-    top: 0.7rem;
-    left: 1rem;
+    top: 0.5rem;
+    left: 1.4rem;
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+    .logo1 {
+      height: 2rem;
+      width: 4rem;
+      margin-left: 0.25rem;
+    }
+    .logo2 {
+      height: 2rem;
+      width: 4.5rem;
+      margin-left: 0.1rem;
+    }
   }
   .navProfile {
     visibility: visible;
     position: absolute;
     top: 0.7rem;
-    right: 2.5rem;
+    right: 1rem;
   }
   .links {
     display: flex;
@@ -151,12 +158,10 @@
     opacity: 0;
     transition: all 0.5s ease-in-out;
   }
-
   .links a {
     margin: 0.9rem 0;
     font-size: 1.5rem;
   }
-
   .profile {
     margin: 0;
   }
