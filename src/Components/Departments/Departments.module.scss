@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   .dhead {
     font-family: "Poppins";
     font-style: normal;
@@ -9,6 +10,8 @@
     font-size: 2.7em;
     color: var(--gdsc-grayish-1-100);
     margin: 10vh auto 0 auto;
+    position: relative;
+    right: 0.7em;
   }
 
   .dleftarrow {
@@ -72,14 +75,21 @@
     }
   }
 }
+
 @media screen and (max-width: 900px) {
   .dcontainer {
     .dleftarrow {
       position: relative;
-      left: 1em;
-      // top: 10em;
+      left: 0.1em;
+      top: 0.7em;
       cursor: pointer;
       font-size: 60px;
+    }
+
+    .dhead {
+      font-size: 1.5em;
+      position: relative;
+      right: 1em;
     }
   }
 }
