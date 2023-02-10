@@ -1,0 +1,141 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', serif;
+    overflow: hidden;
+  }
+
+  #wrapper{
+    flex-shrink: 0;
+    max-width: 370px;
+    padding: 2rem 2rem;
+    margin: 7% auto;
+    border-radius: 30px;
+    /* text-align: center; */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  h2{
+    text-align: center;
+    font-size: 1.5rem;
+    color:#7A7A7A;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    margin-bottom: 1.4rem;
+  }
+  
+  form input{
+    width:92%;
+    outline:none;
+    border:1px solid #B5B5B5;
+    padding:0.7rem 0.8rem;
+    border-radius: 1em;
+    color:#7A7A7A;
+  }
+
+  .email{
+    margin-bottom: 7%;
+  }
+
+  .password{
+    margin-bottom: 1%;
+  }
+
+  .forgot a{
+    padding-left: 0.3rem;
+    justify-content: left;
+    text-align: left;
+    font-size: 0.7rem;
+    color:#466EB6;
+    text-decoration:none;
+ }
+ 
+
+button{
+width:92%;
+justify-content: center;
+align-items: center;
+outline:none;
+padding: 10px;
+gap: 10px;
+border:1px solid #466EB6;
+background: #466EB6;
+border-radius: 15px;
+color:#fff;
+margin-top:7%
+}
+
+.Signup{
+  text-align: center;
+  font-size:0.9rem;
+  margin-top:2rem;
+  color:#7A7A7A;
+  margin-bottom: 2%;
+}
+
+.Signup a{
+  text-align: center;
+  color:#466EB6;
+  text-decoration:none;
+}
+
+
+hr{
+  text-align: center;
+  margin-top: 5%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  color:#7A7A7A;
+  opacity: 69%;
+}
+
+.Options{
+  text-align: center;
+  font-size:0.9rem;
+  margin-top: 5%;
+  color:#7a7a7a;
+  margin-bottom: 5%;
+}
+
+.imgs{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap:1.5em;
+}
+
+.img{
+ height:2.1em;
+ width:2.1em;
+}
+
+@media (max-width: 500px) {
+  #wrapper {
+    border-radius: 0%;
+    box-shadow: none;
+    width: 330px;
+  }
+
+  input[type="password"],
+  input[type="email"] {
+    font-size: 12px;
+  }
+
+  button[type="submit"] {
+    font-size: 12px;
+  }
+  .Login,.Options,.forgot{
+    font-size: 12px;
+  }
+  button,form input
+  {
+    padding: 10px 25px 10px;
+  }
+  h2
+  {
+    font-size: 20px;
+  }
+}
