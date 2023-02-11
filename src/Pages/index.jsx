@@ -1,3 +1,4 @@
 import Home from "./Home/Home";
+import MaterialSection from "./MaterialSection/MaterialSection";
 
-export { Home };
+export { Home, MaterialSection };
