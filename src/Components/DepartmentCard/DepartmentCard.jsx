@@ -4,7 +4,7 @@ import style from "./Departments.module.scss";
 const DepartmentCard = () => {
   const [deptData, setDeptData] = useState([]);
   useEffect(() => {
-    fetch("/public/db/department.json")
+    fetch("/db/department.json")
       .then((res) => res.json())
       .then((data) => {
         setDeptData(data);
