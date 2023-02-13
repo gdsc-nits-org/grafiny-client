@@ -1,6 +1,6 @@
 import React from "react";
 import "./Institutions.scss";
-import dp from "../../Assets/Images/nitsLogo.png";
+import dp from "../../../public/images/nitsLogo.png";
 
 const dummyData = [
   {

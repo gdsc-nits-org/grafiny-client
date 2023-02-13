@@ -1,5 +1,11 @@
+import { DepartmentCard } from "../../Components";
 import style from "./Departments.module.scss";
 const Departments = () => {
-  return <main className={style.departments}></main>;
+  return (
+    <div className={style.departments}>
+      <DepartmentCard />
+    </div>
+  );
 };
+
 export default Departments;

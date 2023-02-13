@@ -9,7 +9,7 @@
     font-weight: 400;
     font-size: 2.7em;
     color: var(--gdsc-grayish-1-100);
-    margin: 10vh auto 0 auto;
+    margin: 1vh auto 0 auto;
     position: relative;
     right: 0.7em;
   }
@@ -17,7 +17,7 @@
   .dleftarrow {
     position: relative;
     left: 3em;
-    top: 1em;
+    top: 0.33em;
     cursor: pointer;
     font-size: 60px;
   }
@@ -81,13 +81,13 @@
     .dleftarrow {
       position: relative;
       left: 0.1em;
-      top: 0.7em;
+      top: 0.25em;
       cursor: pointer;
       font-size: 60px;
     }
 
     .dhead {
-      font-size: 1.5em;
+      font-size: 1.8em;
       position: relative;
       right: 1em;
     }

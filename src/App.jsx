@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import { Footer, Navbar } from "./Components";
-import { Home } from "./Pages";
-import Departments from "./Components/Departments/Departments";
+import { Home, Departments } from "./Pages";
 
 const App = () => {
   return (
