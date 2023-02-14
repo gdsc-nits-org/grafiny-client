@@ -1,26 +1,26 @@
 [
   {
     "dept": "Civil Department",
-    "dlogo": "/public/assets/departments/CivilDept.png"
+    "dlogo": "/assets/departments/CivilDept.png"
   },
   {
     "dept": "Mechanical Department",
-    "dlogo": "/public/assets/departments/MechDept.png"
+    "dlogo": "/assets/departments/MechDept.png"
   },
   {
     "dept": "EIE Department",
-    "dlogo": "/public/assets/departments/EIEdept.png"
+    "dlogo": "/assets/departments/EIEdept.png"
   },
   {
     "dept": "EE Department",
-    "dlogo": "/public/assets/departments/EEdept.png"
+    "dlogo": "/assets/departments/EEdept.png"
   },
   {
     "dept": "ECE Department",
-    "dlogo":"/public/assets/departments/ECEdept.png"
+    "dlogo": "/assets/departments/ECEdept.png"
   },
   {
     "dept": "CSE Department",
-    "dlogo": "/public/assets/departments/CSEdept.png"
+    "dlogo": "/assets/departments/CSEdept.png"
   }
 ]
