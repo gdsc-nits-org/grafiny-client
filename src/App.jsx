@@ -2,9 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { Footer, Navbar } from "./Components";
 
-import Courses from "./Components/Courses/Courses";
-
-import { Home } from "./Pages";
+import { Home, Courses } from "./Pages";
 
 const App = () => {
   return (
