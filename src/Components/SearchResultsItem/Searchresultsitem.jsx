@@ -1,6 +1,6 @@
 import style from "./searchresultsitem.module.scss";
 
-const SearchResultsItem = () => {
+const SearchResultsItem = ({ item }) => {
   return (
     <div className={style.itemcontainer}>
       <div className={style.leftpart}>
@@ -8,17 +8,19 @@ const SearchResultsItem = () => {
           <img className={style.bookicon} src="/assets/bookicon.png" alt="bookicon" />
         </div>
         <div className={style.booktitlecontainer}>
-          <div className={style.title}>Course/Subject</div>
-          <div className={style.subtitle}>College,Department</div>
+          <div className={style.title}>{item.name}</div>
+          <div className={style.subtitle}>
+            {item.college},{item.department}
+          </div>
         </div>
       </div>
       <div className={style.rightpart}>
-        <div className={style.leftitem}>00/00/0000</div>
+        <div className={style.leftitem}>{item.lastModified}</div>
         <div className={style.rightitem}>
           <div className={style.heartcontainer}>
             <img className={style.heartimg} src="/assets/heart.png" alt="hearticon" />
           </div>
-          <div className={style.likenumber}>0</div>
+          <div className={style.likenumber}>{item.likes}</div>
         </div>
       </div>
     </div>
