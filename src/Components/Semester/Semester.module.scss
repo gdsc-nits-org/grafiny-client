@@ -19,7 +19,7 @@
     width: 27%;
     height: 23%;
     margin: auto;
-    margin-top: 0.5em;
+    margin-top: 2em;
 
     font-family: var(--gdsc-font-1);
     font-style: normal;
@@ -164,13 +164,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: scroll;
 
     .arrow {
       position: absolute;
       width: 22px;
       height: 0px;
       left: 9%;
-      top: 1.9rem;
+      top: 8.9rem;
 
       .arrowicon {
         font-size: 2rem;
@@ -179,6 +180,7 @@
 
     .title {
       margin: auto;
+      margin-top: 2.5rem;
       width: 100vw;
       height: 6%;
 

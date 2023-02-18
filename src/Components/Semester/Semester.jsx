@@ -18,14 +18,14 @@ const Semester = () => {
       <div className={semstyle.sembox}>
         <div className={semstyle.boxleft}>
           <button className={semstyle.boxes}>First</button>
+          <button className={semstyle.boxes}>Second</button>
           <button className={semstyle.boxes}>Third</button>
-          <button className={semstyle.boxes}>Fifth</button>
-          <button className={semstyle.boxes}>Seventh</button>
+          <button className={semstyle.boxes}>Fourth</button>
         </div>
         <div className={semstyle.boxright}>
-          <button className={semstyle.boxes}>Second</button>
-          <button className={semstyle.boxes}>Fourth</button>
+          <button className={semstyle.boxes}>Fifth</button>
           <button className={semstyle.boxes}>Sixth</button>
+          <button className={semstyle.boxes}>Seventh</button>
           <button className={semstyle.boxes}>Eight</button>
         </div>
       </div>
