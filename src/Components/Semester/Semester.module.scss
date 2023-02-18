@@ -164,7 +164,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: scroll;
+    overflow-x: hidden;
+    height: auto;
 
     .arrow {
       position: absolute;
@@ -180,7 +181,7 @@
 
     .title {
       margin: auto;
-      margin-top: 2.5rem;
+      margin-top: 7rem;
       width: 100vw;
       height: 6%;
 
@@ -196,7 +197,7 @@
       justify-content: center;
       align-items: center;
       margin: auto;
-      margin-top: 2.8rem;
+      margin-top: 3.8rem;
 
       width: 20rem;
       height: 68rem;
