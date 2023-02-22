@@ -1,12 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", serif;
-  overflow: hidden;
-}
-
-#wrapper {
+.wrapper {
   flex-shrink: 0;
   max-width: 370px;
   padding: 2rem 2rem;
@@ -21,7 +13,7 @@ h2 {
   color: #7a7a7a;
   font-weight: 600;
   letter-spacing: 0.1rem;
-  margin-bottom: 1.4rem;
+  margin-bottom: 3rem;
 }
 
 form input {
@@ -48,67 +40,37 @@ button {
   margin-top: 2%;
 }
 
-.Login {
+.otp {
   font-size: 0.9rem;
   margin-top: 2rem;
   color: #7a7a7a;
+  margin-bottom: 30%;
+  margin-top: 20%;
 }
 
-.Login a {
+.otp a {
   color: #466eb6;
   text-decoration: none;
 }
 
-hr {
-  margin-top: 5%;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  color: #7a7a7a;
-  opacity: 69%;
-}
-
-.Options {
-  font-size: 0.9rem;
-  margin-top: 5%;
-  color: #7a7a7a;
-  margin-bottom: 5%;
-}
-
-.imgs {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 1.5em;
-}
-
-.img {
-  height: 2.1em;
-  width: 2.1em;
-}
-
 @media (max-width: 500px) {
-  #wrapper {
+  .wrapper {
     border-radius: 0%;
     box-shadow: none;
     width: 330px;
   }
 
-  input[type="password"],
-  input[type="email"] {
+  input[type="number"] {
     font-size: 12px;
   }
 
   button[type="submit"] {
     font-size: 12px;
   }
-  .Login,
-  .Options {
+  .otp {
     font-size: 12px;
   }
-  button,
-  form input {
+  button {
     padding: 10px 25px 10px;
   }
   h2 {
