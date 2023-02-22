@@ -15,7 +15,7 @@ const SearchResults = () => {
       const requiredCourses = rData.filter((item) =>
         item.name.toLowerCase().includes(course)
       );
-      setCourses(() => requiredCourses);
+      setCourses(requiredCourses);
     }
   };
 
