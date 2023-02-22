@@ -1,6 +1,6 @@
 .container {
   height: 100vh;
-  width: 100vw;
+  width: 98vw;
 
   .arrow {
     cursor: pointer;
@@ -43,7 +43,7 @@
     margin: auto;
     margin-top: 2.8rem;
 
-    width: 71rem;
+    width: 71vw;
     height: 384px;
 
     .boxleft {
@@ -160,7 +160,8 @@
 
 @media only screen and (max-width: 1200px) {
   .container {
-    width: 100%;
+    width: 100vw;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -199,7 +200,7 @@
       margin: auto;
       margin-top: 3.8rem;
 
-      width: 20rem;
+      width: 80vw;
       height: 68rem;
 
       .boxleft {

@@ -1,5 +1,6 @@
 .container {
   height: 100vh;
+  width: 98vw;
 
   .arrow {
     cursor: pointer;
@@ -149,11 +150,11 @@
 
 @media only screen and (max-width: 1200px) {
   .container {
-    width: 100%;
+    width: 100vw;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-x: hidden;
+
     height: auto;
 
     .arrow {
