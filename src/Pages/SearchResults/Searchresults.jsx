@@ -1,19 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "./searchresults.module.scss";
 import { SearchResultsItem } from "../../Components";
 
 const SearchResults = () => {
-  const [courses, setCourses] = useState(() => []);
-  const [course, setCourse] = useState(() => "");
+  const [courses, setCourses] = useState([]);
+  const [course, setCourse] = useState("");
 
   const fetchCourses = async () => {
     const data = await fetch("/db/courses.json");
     const rData = await data.json();
-    const regularExp = new RegExp(`${course}`);
-    const requiredCourses = rData.filter((item) =>
-      regularExp.test(item.name.toLowerCase())
-    );
-    setCourses(() => requiredCourses);
+    if (course === "") {
+      setCourses(() => rData);
+    } else {
+      const requiredCourses = rData.filter((item) =>
+        item.name.toLowerCase().includes(course)
+      );
+      setCourses(() => requiredCourses);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -21,6 +24,10 @@ const SearchResults = () => {
       fetchCourses();
     }
   };
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
 
   return (
     <div className={style.searchresultscontainer}>
