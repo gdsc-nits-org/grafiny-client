@@ -2,15 +2,16 @@ import { Route, Routes } from "react-router-dom";
 
 import { Footer, Navbar } from "./Components";
 
-import { Home, Courses } from "./Pages";
+import { Home, Courses, Error } from "./Pages";
 
 const App = () => {
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/courses" element={<Courses />}></Route>
+        <Route path="*" element={<Error />} />
+        <Route path="/" exact element={<Home />} />
+        <Route path="/courses" element={<Courses />} />
       </Routes>
       <Footer />
     </>

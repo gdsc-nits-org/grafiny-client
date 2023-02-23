@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import CoursesCard from "./CoursesCard";
 import styles from "./Courses.module.scss";
+
 // import book from "/images/book.png";
 // import bookmark from "/images/bookmark.png";
 // import bookmarkA from "/images/bmActive.png";
@@ -8,7 +10,7 @@ import styles from "./Courses.module.scss";
 
 const Courses = () => {
   const [coursesData, setCoursesData] = useState([]);
-  const [BM, setBM] = useState(false);
+  // const [BM, setBM] = useState(false);
 
   const fetchData = () => {
     fetch("/db/courses.json")
@@ -32,19 +34,8 @@ const Courses = () => {
       </div>
       <div className={styles.coursesCardContainer}>
         {coursesData.map((data) => {
-          return (
-            <div className={styles.coursesCard}>
-              <button onClick={() => setBM(!BM)} onKeyDown={() => setBM(!BM)}>
-                <img
-                  src={BM ? "/images/bmActive.png" : "/images/bookmark.png"}
-                  alt="bookmark"
-                  className={styles.coursesCardBm}
-                />
-              </button>
-              <div className={styles.coursesCardSubject}>{data?.subjectName}</div>
-              <img src="/images/book.png" alt="book" className={styles.coursesCardImg} />
-            </div>
-          );
+          console.log(data);
+          return <CoursesCard data={data} />;
         })}
       </div>
     </div>
