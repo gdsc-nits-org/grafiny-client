@@ -1,0 +1,29 @@
+@mixin flexDisplay($position, $direction) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: $position;
+}
+
+.errorHero {
+  @include flexDisplay(center, row);
+  height: 100vh;
+  width: 100vw;
+  // overflow: none;
+
+  .errorImg {
+    width: 33%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .errorHero {
+    // @include flexDisplay(center, row);
+    // height: 100vh;
+    // width: 100vw;
+
+    .errorImg {
+      width: 50%;
+    }
+  }
+}

@@ -1,49 +1,44 @@
-import React from "react";
-import "./Institutions.scss";
-import dp from "../../../public/images/nitsLogo.png";
-
-const dummyData = [
-  {
-    insti: "National Institute of Technology, Silchar",
-    pfp: dp,
-  },
-  {
-    insti: "National Institute of Technology, Warangal",
-    pfp: dp,
-  },
-  {
-    insti: "Indian Institute of Technology, Delhi",
-    pfp: dp,
-  },
-  {
-    insti: "Indian Institute of Technology, Bombay",
-    pfp: dp,
-  },
-];
+import React, { useEffect, useState } from "react";
+import styles from "./Institutions.module.scss";
 
 const Institutions = () => {
+  const [dummyData, setDummyData] = useState([]);
+
+  const getData = () => {
+    fetch("/db/institutions.json")
+      .then((response) => response.json())
+      .then((res) => {
+        // console.log(res);
+        setDummyData(res);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div className="insti-main">
-      <div className="insti-title-container">
-        <div className="insti-title">Institutions</div>
-        <div className="title-search-box">
+    <div className={styles.instiMain}>
+      <div className={styles.instiTitleContainer}>
+        <div className={styles.instiTitle}>Institutions</div>
+        <div className={styles.titleSearchBox}>
           <form>
             <input
               type="text"
               placeholder="Search Institutions"
-              className="title-search-box-search"
+              className={styles.titleSearchBoxSearch}
             />
-            <button type="submit" className="title-search-box-button">
+            <button type="submit" className={styles.titleSearchBoxButton}>
               <i className="fa fa-search" />
             </button>
           </form>
         </div>
       </div>
-      <div className="insti-card-container">
+      <div className={styles.instiCardContainer}>
         {dummyData.map((data) => {
           return (
-            <div className="insti-card">
-              <img src={data?.pfp} alt="institute logo" className="insti-card-img" />
+            <div className={styles.instiCard}>
+              <img src={data?.pfp} alt="institute logo" className={styles.instiCardImg} />
             </div>
           );
         })}
