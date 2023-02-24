@@ -26,7 +26,7 @@ const Courses = () => {
     <div className={styles.coursesHero}>
       <div className={styles.coursesTitle}>
         <div className={styles.coursesTitleHeading}>
-          <Link to="/">
+          <Link to="/departments">
             <img src="/images/arrow.png" alt="left arrow" className={styles.coursesFa} />
           </Link>
           <div className={styles.coursesTitleText}>Courses</div>

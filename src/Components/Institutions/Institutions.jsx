@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Institutions.module.scss";
 
 const Institutions = () => {
@@ -37,9 +38,15 @@ const Institutions = () => {
       <div className={styles.instiCardContainer}>
         {dummyData.map((data) => {
           return (
-            <div className={styles.instiCard}>
-              <img src={data?.pfp} alt="institute logo" className={styles.instiCardImg} />
-            </div>
+            <Link to="/departments">
+              <div className={styles.instiCard}>
+                <img
+                  src={data?.pfp}
+                  alt="institute logo"
+                  className={styles.instiCardImg}
+                />
+              </div>
+            </Link>
           );
         })}
       </div>
