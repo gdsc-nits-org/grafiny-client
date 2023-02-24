@@ -2,16 +2,17 @@ import { Route, Routes } from "react-router-dom";
 
 import { Footer, Navbar } from "./Components";
 
-import { Home, Courses, Error } from "./Pages";
+import { Home, Courses, Error, SearchResults } from "./Pages";
 
 const App = () => {
   return (
     <>
       <Navbar />
       <Routes>
+        <Route path="*" element={<Error />} />
         <Route path="/" exact element={<Home />} />
         <Route path="/courses" element={<Courses />} />
-        <Route path="*" element={<Error />} />
+        <Route path="/searchresults" element={<SearchResults />} />
       </Routes>
       <Footer />
     </>

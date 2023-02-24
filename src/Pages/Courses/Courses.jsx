@@ -13,7 +13,7 @@ const Courses = () => {
   // const [BM, setBM] = useState(false);
 
   const fetchData = () => {
-    fetch("/db/courses.json")
+    fetch("/db/coursesRayyan.json")
       .then((res) => res.json())
       .then((resp) => setCoursesData(resp));
   };
