@@ -12,7 +12,7 @@ const App = () => {
         <Route path="/" exact element={<Home />} />
         <Route path="/departments/:department/courses" element={<Courses />} />
         <Route path="/searchresults" element={<SearchResults />} />
-        <Route path="/departments" element={<Departments />} />
+        <Route path="/:insti/departments" element={<Departments />} />
       </Routes>
       <Footer />
     </>

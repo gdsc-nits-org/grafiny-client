@@ -38,7 +38,7 @@ const Institutions = () => {
       <div className={styles.instiCardContainer}>
         {dummyData.map((data) => {
           return (
-            <Link to="/departments">
+            <Link to={`/${data.insti}/departments`}>
               <div className={styles.instiCard}>
                 <img
                   src={data?.pfp}
