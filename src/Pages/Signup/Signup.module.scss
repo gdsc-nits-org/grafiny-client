@@ -80,6 +80,28 @@ hr {
   width: 2.1em;
 }
 
+.passwordWrapper {
+  position: relative;
+}
+
+input[type="password"] {
+  padding-right: 40px; /* add space for the eye icon */
+}
+
+.passwordToggle {
+  color: #7a7a7a;
+  position: absolute;
+  top: 34%;
+  right: 20px; /* adjust the right position as needed */
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
 @media (max-width: 500px) {
   #wrapper {
     border-radius: 0%;
