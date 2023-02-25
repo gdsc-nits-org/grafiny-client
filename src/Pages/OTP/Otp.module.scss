@@ -53,6 +53,12 @@ button {
   text-decoration: none;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @media (max-width: 500px) {
   .wrapper {
     border-radius: 0%;
