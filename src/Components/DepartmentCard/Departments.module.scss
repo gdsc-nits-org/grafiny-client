@@ -94,4 +94,11 @@
       right: 1em;
     }
   }
+  .dcard-container {
+    .dcard {
+      .dname {
+        display: flex;
+      }
+    }
+  }
 }

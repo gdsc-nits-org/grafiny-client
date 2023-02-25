@@ -24,7 +24,7 @@ const DepartmentCard = () => {
       <div className={style["dcard-container"]}>
         {deptData.map((data) => {
           return (
-            <Link to="/departments/courses">
+            <Link to={`/departments/${data.dept}/courses`}>
               <div className={style.dcard}>
                 <p className={style.dname}>{data?.dept}</p>
                 <img src={data?.dlogo} alt="department" className={style["dcard-img"]} />
