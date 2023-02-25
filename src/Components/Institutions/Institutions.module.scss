@@ -1,0 +1,181 @@
+.instiMain {
+  // position: relative;
+  min-height: 100vh;
+  // height: fit-content;
+  width: 100%;
+  overflow: auto;
+  padding: 10vh 0 0 0;
+  margin-bottom: 5vh;
+
+  .instiTitleContainer {
+    width: 100%;
+    padding: 0 10%;
+    // margin: 10vh 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .instiTitle {
+      font-size: 3em;
+    }
+
+    .titleSearchBox {
+      position: relative;
+      height: 100%;
+      width: 34%;
+
+      .titleSearchBoxSearch {
+        height: 3.4em;
+        width: 100%;
+        padding: 0.5em;
+        border-radius: 0.3em;
+      }
+
+      .titleSearchBoxButton {
+        position: absolute;
+        color: white;
+        background-color: var(--gdsc-blue-2-100);
+        border: none;
+        border-radius: 0.2em;
+        top: 0.45em;
+        right: 0.45em;
+        height: 2.5em;
+        width: 3em;
+      }
+    }
+  }
+
+  .instiCardContainer {
+    width: 75%;
+    height: 50vh;
+    margin: 10vh auto 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: scroll !important;
+    // flex-wrap: wrap;
+    // height: fit-content;
+
+    .instiCard {
+      // display: inline-block;
+      // min-width: 40vh;
+      height: 85%;
+      aspect-ratio: 1;
+      margin: 2%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 3%;
+      box-shadow: 0px 0px 0.5em 0px rgb(161, 161, 161);
+
+      .instiCardImg {
+        width: 55%;
+      }
+    }
+  }
+}
+
+// .insti-card-img {
+//   width: 55%;
+//   height: auto;
+// }
+
+@media only screen and (max-width: 600px) {
+  .instiMain {
+    .instiTitleContainer {
+      width: 100%;
+      padding: 0 5%;
+      margin: 5vh 0 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .instiTitle {
+        font-size: 2.3em;
+      }
+      .titleSearchBox {
+        width: 90%;
+        margin: 3% 0 0 0;
+      }
+    }
+
+    .instiCardContainer {
+      width: 90%;
+      min-height: 55vh;
+      aspect-ratio: 1 !important;
+      margin: 7vh auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+      overflow-x: scroll;
+      // flex-wrap: wrap;
+      // height: fit-content;
+
+      .instiCard {
+        // min-width: 20vh;
+        // width: 42%;
+        height: 40%;
+        aspect-ratio: 1;
+        padding: 2%;
+        margin: 4% 4%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px 0px 0.5em 0px rgb(138, 138, 138);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .instiMain {
+    margin-bottom: 0 !important;
+
+    .instiTitleContainer {
+      width: 100%;
+      padding: 0 5%;
+      margin: 6vh 0 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .instiTitle {
+        font-size: 2.3em;
+      }
+      .titleSearchBox {
+        width: 90%;
+        margin: 3% 0 0 0;
+      }
+    }
+
+    .instiCardContainer {
+      width: 90%;
+      min-height: 45vh;
+      aspect-ratio: 1 !important;
+      margin: 7vh auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+      overflow-x: scroll;
+      // flex-wrap: wrap;
+      // height: fit-content;
+
+      .instiCard {
+        // min-width: 20vh;
+        // width: 42%;
+        height: 40%;
+        aspect-ratio: 1;
+        padding: 2%;
+        margin: 4% 4%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px 0px 0.5em 0px rgb(138, 138, 138);
+      }
+    }
+  }
+}

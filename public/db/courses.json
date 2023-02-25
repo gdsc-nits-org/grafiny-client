@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1",
+    "name": "Data Structures and Algorithms",
+    "likes": "20",
+    "lastModified": "25/01/2023",
+    "college": "NIT Silchar",
+    "department": "CSE"
+  },
+  {
+    "id": "2",
+    "name": "Data structures and algorithms",
+    "likes": "25",
+    "lastModified": "27/01/2023",
+    "college": "NIT Vegas",
+    "department": "CSE"
+  },
+  {
+    "id": "3",
+    "name": "Data Structures",
+    "likes": "20",
+    "lastModified": "15/01/2023",
+    "college": "NIT Silchar",
+    "department": "ECE"
+  },
+  {
+    "id": "4",
+    "name": "Deep Learning",
+    "likes": "35",
+    "lastModified": "29/01/2023",
+    "college": "NIT Paris",
+    "department": "CSE"
+  },
+  {
+    "id": "5",
+    "name": "Tensorflow Deep Learning",
+    "likes": "26",
+    "lastModified": "25/01/2023",
+    "college": "NIT Berlin",
+    "department": "CSE"
+  },
+  {
+    "id": "6",
+    "name": "Computer Networks",
+    "likes": "20",
+    "lastModified": "25/01/2023",
+    "college": "NIT London",
+    "department": "CSE"
+  },
+  {
+    "id": "7",
+    "name": "computer network",
+    "likes": "35",
+    "lastModified": "25/01/2023",
+    "college": "NIT Los Angeles",
+    "department": "CSE"
+  }
+]
