@@ -1,4 +1,4 @@
-gnode_modules
+node_modules
 dist
 *.md
 *.yaml
