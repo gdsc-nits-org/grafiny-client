@@ -1,0 +1,26 @@
+[
+  {
+    "dept": "Civil Department",
+    "dlogo": "/assets/departments/CivilDept.png"
+  },
+  {
+    "dept": "Mechanical Department",
+    "dlogo": "/assets/departments/MechDept.png"
+  },
+  {
+    "dept": "EIE Department",
+    "dlogo": "/assets/departments/EIEdept.png"
+  },
+  {
+    "dept": "EE Department",
+    "dlogo": "/assets/departments/EEdept.png"
+  },
+  {
+    "dept": "ECE Department",
+    "dlogo": "/assets/departments/ECEdept.png"
+  },
+  {
+    "dept": "CSE Department",
+    "dlogo": "/assets/departments/CSEdept.png"
+  }
+]
