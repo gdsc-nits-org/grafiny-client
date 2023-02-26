@@ -4,5 +4,6 @@ import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 import Landing from "./Landing/Landing";
 import Institutions from "./Institutions/Institutions";
+import SearchResultsItem from "./SearchResultsItem/Searchresultsitem";
 
-export { Button, Navbar, Explore, Footer, Landing, Institutions };
+export { Button, Navbar, Explore, Footer, Landing, Institutions, SearchResultsItem };
