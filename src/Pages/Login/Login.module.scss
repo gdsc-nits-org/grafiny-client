@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+#wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 23.125em;
+  padding: 2.5%;
+  margin: 7% auto;
+  border-radius: 2.5rem;
+  box-shadow: 0 0 0.625em rgba(0, 0, 0, 0.15);
+}
+
+form {
+  width: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #7a7a7a;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  margin-bottom: 1.4em;
+}
+
+form input {
+  font-size: 0.9em;
+  width: 100%;
+  outline: none;
+  padding: 0.7em 0.8em;
+  color: #7a7a7a;
+  border: none;
+}
+
+.email {
+  margin-bottom: 7%;
+  margin-bottom: 1.5em;
+}
+
+.password {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1%;
+}
+
+.password {
+  position: relative;
+}
+
+.password input[type="password"] {
+  padding-right: 30px;
+  -webkit-text-security: disc;
+  text-security: disc;
+  background-image: url('eye.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.password input[type="password"]::-ms-reveal,
+.password input[type="password"]::-ms-clear {
+  display: none;
+}
+
+.password input[type="password"]:focus {
+  outline: none;
+  -webkit-text-security: none;
+  text-security: none;
+  background-image: url('eye-slash.svg');
+}
+.email,
+.password {
+  padding: 0.2em;
+  width: 100%;
+  border: 0.0625em solid #b5b5b5;
+  border-radius: 1em;
+  justify-content: center;
+}
+
+.passwordToggle {
+  padding: 0.3125em 0.9375em 0;
+  color: #7a7a7a;
+}
+
+.forgot {
+  width: 92%;
+}
+
+.forgot a {
+  width: 100%;
+  padding-left: 0.1875em;
+  justify-content: left;
+  text-align: left;
+  font-size: 0.8rem;
+  color: #466eb6;
+  text-decoration: none;
+}
+
+.loginButton {
+  font-size: 0.9em;
+  width: 92%;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  padding: 0.73em;
+  border-radius: 1em;
+  border-color: transparent;
+  background: #466eb6;
+  color: #fff;
+  margin-top: 7%;
+}
+button{
+  border: none;
+  background: none;
+}
+
+.Signup {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+  color: #7a7a7a;
+  margin-bottom: 2%;
+}
+
+.Signup a {
+  text-align: center;
+  color: #466eb6;
+  text-decoration: none;
+}
+
+hr {
+  text-align: center;
+  margin-top: 5%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #7a7a7a;
+  opacity: 69%;
+}
+
+.Options{
+  text-align: center;
+  font-size:0.9rem;
+  margin-top: 5%;
+  color:#7a7a7a;
+  margin-bottom: 5%;
+}
+
+.imgs{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap:1.5em;
+}
+
+.img{
+ height:2.2em;
+ width:2.2em;
+}
+
+@media (max-width: 500px) {
+  #wrapper {
+    padding: 5%;
+    border-radius: 0%;
+    box-shadow: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  input[type="password"],
+  input[type="email"] {
+    font-size: 0.8em;
+  }
+
+  button[type="submit"] {
+    font-size: 0.8em;
+  }
+  .Signup,.Options,.forgot a{
+    font-size: 0.75em;
+  }
+  button,form input
+  {
+    padding: 1em 2.5em 1em;
+  }
+  h2
+  {
+    font-size: 1.75em;
+  }
+}
