@@ -1,61 +1,66 @@
 import React, { useState } from "react";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
-import GoogleLogo from "./Google.png";
-import FacebookLogo from "./Facebook.png";
-import Styles from "./Login.module.scss";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import styles from "./Login.module.scss";
 
-function Login() {
-  const [passwordVisible, setPasswordVisible] = useState(false);
+const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
 
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
+  const handlePasswordToggle = () => {
+    setShowPassword(!showPassword);
   };
+
   return (
-    <div id={Styles.wrapper}>
-      <h2>LOGIN</h2>
-      <form action="#">
-        <div className={Styles.email}>
-          <input type="email" placeholder="E-mail" required />
-        </div>
-        <div className={Styles.password}>
-          <input
-            type={passwordVisible ? "text" : "password"}
+    <div className={styles.wrapper}>
+      <h2 className={styles.heading}>LOGIN</h2>
+      <form>
+        <input type="email" placeholder="E-mail" required />
+        <div className={styles.passwordWrapper}>
+            <input
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             required
           />
-          <button
-            className={Styles.passwordToggle}
-            onClick={togglePasswordVisibility}
-            role="button"
+          <a className={styles.forgotpw} href="#">Forgot Password</a>
+          <div
+            className={styles.passwordToggle}
+            onClick={handlePasswordToggle}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                handlePasswordToggle();
+              }
+            }}
             tabIndex={0}
+            role="button"
+            aria-label={showPassword ? "Hide password" : "Show password"}
           >
-            {passwordVisible ? <Visibility /> : <VisibilityOff />}
-          </button>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </div>
         </div>
+        <div className={styles.gap}>
+        </div>
+        <button type="submit" className={styles.button}>
+          Login
+        </button>
       </form>
-      <div className={Styles.forgot}>
-        <a href="#">Forgot Password?</a>
+      <div className={styles.login}>
+        Need an account? <a href="/">Sign Up</a>
       </div>
-      <button className={Styles.loginButton} type="submit">Login</button>
-      <div className={Styles.Signup}>
-        Need an account? <a href="#">Sign Up</a>
-      </div>
-      <hr width />
-      <div className={Styles.Options}>Login Using</div>
-      <div className={Styles.imgs}>
+      <hr />
+      <div className={styles.options}>Login Using</div>
+      <div className={styles.imgs}>
         <div>
-          <a href="#">
-            <img src={GoogleLogo} alt="Google" className={Styles.img} />
+          <a href="/">
+            <img src="/assets/Google.png" alt="logo" className={styles.img} />
           </a>
         </div>
         <div>
-          <a href="#">
-            <img src={FacebookLogo} alt="Facebook" className={Styles.img} />
+          <a href="/">
+            <img src="/assets/Facebook.png" alt="logo" className={styles.img} />
           </a>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Login;
