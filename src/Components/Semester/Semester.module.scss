@@ -17,7 +17,6 @@
   }
 
   .title {
-    width: 27%;
     height: 23%;
     margin: auto;
     margin-top: 2em;
@@ -37,136 +36,56 @@
   .sembox {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    // align-items: flex-start;
-    gap: 13rem;
+    flex-wrap: wrap;
+    width: 97vw;
     margin: auto;
-    margin-top: 2.8rem;
 
-    width: 71vw;
-    height: 384px;
+    button {
+      width: 45%;
+      cursor: pointer;
+      margin-bottom: 1em;
 
-    .boxleft {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 0px;
-      gap: 40px;
+      flex-basis: 50%;
+
+      padding: 0.6em;
+      max-width: 35%;
 
       width: 34.7rem;
-      height: 384px;
+      height: 4.1rem;
+      background: var(--gdsc-blue-3-100);
 
-      /* Inside auto layout */
+      /* card drop shadow */
 
-      flex: none;
-      order: 0;
-      flex-grow: 0;
+      border-radius: 1em;
 
-      .boxes {
-        cursor: pointer;
-        margin-bottom: 1em;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 0.6em;
-        gap: 10px;
+      font-family: var(--gdsc-font-1);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1.4em;
+      line-height: 36px;
+      /* identical to box height */
 
-        width: 34.7rem;
-        height: 78px;
-        background: var(--gdsc-blue-3-100);
+      /* grey 1 */
 
-        /* card drop shadow */
-
-        border-radius: 1em;
-
-        font-family: var(--gdsc-font-1);
-        font-style: normal;
-        font-weight: 400;
-        font-size: 1.4em;
-        line-height: 36px;
-        /* identical to box height */
-
-        display: flex;
-        align-items: center;
-        text-align: center;
-
-        /* grey 1 */
-
-        color: white;
-        border: none;
-      }
-
-      .boxes:hover {
-        background: var(--semester-hover);
-      }
+      color: white;
+      border: none;
     }
 
-    .boxright {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 0;
-      gap: 40px;
-
-      width: 34.8rem;
-      height: 384px;
-
-      /* Inside auto layout */
-
-      flex: none;
-      order: 1;
-      flex-grow: 0;
-
-      .boxes {
-        cursor: pointer;
-        margin-bottom: 1em;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 0.6em;
-        gap: 10px;
-
-        width: 34.8rem;
-        height: 78px;
-
-        background: var(--gdsc-blue-3-100);
-        border-radius: 1em;
-
-        font-family: var(--gdsc-font-1);
-        font-style: normal;
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 36px;
-        /* identical to box height */
-
-        display: flex;
-        align-items: center;
-        text-align: center;
-
-        /* grey 1 */
-
-        color: white;
-        border: none;
-      }
-
-      .boxes:hover {
-        background: var(--semester-hover);
-      }
+    button:hover {
+      background: var(--semester-hover);
     }
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 900px) {
   .container {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-x: hidden;
     height: auto;
 
     .arrow {
@@ -184,8 +103,6 @@
     .title {
       margin: auto;
       margin-top: 7rem;
-      width: 100vw;
-      height: 6%;
 
       font-weight: 400;
       font-size: 2.2rem;
@@ -194,38 +111,15 @@
     }
 
     .sembox {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       margin: auto;
       margin-top: 3.8rem;
+      overflow-y: auto;
 
-      width: 80%;
-      height: 68rem;
+      height: auto;
 
-      .boxleft {
-        width: 100%;
-        height: 34rem;
-        margin-top: -10rem;
-
-        .boxes {
-          width: 20rem;
-          margin: auto;
-          margin-bottom: 1.3rem;
-        }
-      }
-
-      .boxright {
-        width: 100%;
-        height: 16rem;
-        margin-top: -10.5rem;
-
-        .boxes {
-          width: 20rem;
-          margin: auto;
-          margin-bottom: 1.3rem;
-        }
+      button {
+        max-width: 80%;
+        flex-basis: 100%;
       }
     }
   }

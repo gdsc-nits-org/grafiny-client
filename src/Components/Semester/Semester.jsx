@@ -16,18 +16,15 @@ const Semester = () => {
       </div>
       <div className={semstyle.title}>Semester</div>
       <div className={semstyle.sembox}>
-        <div className={semstyle.boxleft}>
-          <button className={semstyle.boxes}>First</button>
-          <button className={semstyle.boxes}>Second</button>
-          <button className={semstyle.boxes}>Third</button>
-          <button className={semstyle.boxes}>Fourth</button>
-        </div>
-        <div className={semstyle.boxright}>
-          <button className={semstyle.boxes}>Fifth</button>
-          <button className={semstyle.boxes}>Sixth</button>
-          <button className={semstyle.boxes}>Seventh</button>
-          <button className={semstyle.boxes}>Eight</button>
-        </div>
+        <button>First</button>
+        <button>Second</button>
+        <button>Third</button>
+        <button>Fourth</button>
+
+        <button>Fifth</button>
+        <button>Sixth</button>
+        <button>Seventh</button>
+        <button>Eight</button>
       </div>
     </div>
   );

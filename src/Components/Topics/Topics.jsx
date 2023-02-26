@@ -16,20 +16,17 @@ const Topics = () => {
       </div>
       <div className={topicstyle.title}>Topics</div>
       <div className={topicstyle.topicbox}>
-        <div className={topicstyle.boxleft}>
-          <button className={topicstyle.boxes}>Topic abc</button>
-          <button className={topicstyle.boxes}>Topic abc</button>
-          <button className={topicstyle.boxes}>Topic abc</button>
-          <button className={topicstyle.boxes}>Topic abc</button>
-          <button className={topicstyle.boxes}>Topic abc</button>
-        </div>
-        <div className={topicstyle.boxright}>
-          <button className={topicstyle.boxes}>Topic abc</button>
-          <button className={topicstyle.boxes}>Topic abc</button>
-          <button className={topicstyle.boxes}>Topic abc</button>
-          <button className={topicstyle.boxes}>Topic abc</button>
-          <button className={topicstyle.boxes}>Topic abc</button>
-        </div>
+        <button className={topicstyle.boxes}>Topic abc</button>
+        <button className={topicstyle.boxes}>Topic abc</button>
+        <button className={topicstyle.boxes}>Topic abc</button>
+        <button className={topicstyle.boxes}>Topic abc</button>
+        <button className={topicstyle.boxes}>Topic abc</button>
+
+        <button className={topicstyle.boxes}>Topic abc</button>
+        <button className={topicstyle.boxes}>Topic abc</button>
+        <button className={topicstyle.boxes}>Topic abc</button>
+        <button className={topicstyle.boxes}>Topic abc</button>
+        <button className={topicstyle.boxes}>Topic abc</button>
       </div>
     </div>
   );
