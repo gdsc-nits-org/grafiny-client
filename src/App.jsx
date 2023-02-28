@@ -9,6 +9,7 @@ import {
   Error,
   SearchResults,
   Departments,
+  UploadingPage,
 } from "./Pages";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/searchresults" element={<SearchResults />} />
         <Route path="*" element={<Error />} />
         <Route path="/:insti/departments" element={<Departments />} />
+        <Route path="/upload" element={<UploadingPage />} />
       </Routes>
       <Footer />
     </>

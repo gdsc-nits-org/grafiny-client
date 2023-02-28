@@ -1,0 +1,217 @@
+.uploading-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  h1 {
+    font-weight: 500;
+  }
+  .file-upload {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .file-upload-input {
+      display: none;
+    }
+
+    .upload-box {
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 100%;
+      background: rgba(161, 194, 250, 0.1);
+      border: 2px dashed #ccc;
+      border-radius: 4px;
+
+      .upload-icon {
+        font-size: 6em;
+      }
+
+      .upload-text {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1.3rem;
+        line-height: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: var(--gdsc-dark-1-100);
+        flex-grow: 0;
+        gap: 1em;
+
+        p {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 0.8em;
+          line-height: 18px;
+          display: flex;
+          align-items: center;
+          text-align: center;
+          color: var(--gdsc-grayish-2-100);
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+        }
+      }
+    }
+
+    :hover {
+      border-color: #111;
+    }
+  }
+  .uploadStatusHide {
+    display: none;
+  }
+  .uploadStatus {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.4em;
+    color: var(--gdsc-grayish-2-100);
+    margin-top: 1em;
+  }
+  .file-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+
+    .file-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+      background-color: #f0f0f0;
+      margin-bottom: 10px;
+      border-radius: 5px;
+
+      .file-details {
+        display: flex;
+        flex-direction: column;
+
+        .file-name {
+          font-size: 16px;
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        .file-progress-bar {
+          height: 4px;
+          background-color: #1e90ff;
+          border-radius: 5px;
+          color: #0f0f0f;
+          width: 19.4em;
+          margin: auto;
+        }
+      }
+    }
+  }
+
+  .uploaded-files {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 27.15em;
+
+    .uploaded-file {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+      background-color: #f0f0f0;
+      margin-bottom: 10px;
+      border-radius: 5px;
+
+      .file-name {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .button-delete {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .upload-button {
+    color: var(--gdsc-bg-2-100);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 2.2em;
+    width: 19.4em;
+    background-color: var(--gdsc-blue-1-100);
+    border-radius: 4px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.4em;
+    margin: 1.2em;
+  }
+
+  .upload-button:hover {
+    background-color: var(--gdsc-blue-3-100);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .uploading-page {
+    .file-upload {
+      margin-top: 1em;
+      .upload-box {
+        padding: 2em;
+        width: 17.15em;
+        .upload-icon {
+          font-size: 3em;
+        }
+
+        .upload-text {
+          font-size: 1em;
+        }
+      }
+    }
+    .upload-status-hide {
+      display: none;
+    }
+    .upload-status {
+      font-size: 1.2em;
+    }
+    .file-list {
+      .file-item {
+        .file-details {
+          .file-name {
+            font-size: 1em;
+          }
+
+          .file-progress-bar {
+            height: 4px;
+            background-color: #1e90ff;
+            border-radius: 5px;
+            color: #0f0f0f;
+            width: 10em;
+          }
+        }
+      }
+    }
+    .uploaded-files {
+      width: 17.15em;
+    }
+    .upload-button {
+      width: 12.25em;
+    }
+  }
+}
