@@ -1,5 +1,5 @@
 .container {
-  height: 100vh;
+  height: 100%;
   width: 100%;
 
   .arrow {
@@ -41,7 +41,7 @@
     width: 97vw;
     margin: auto;
     padding-top: 3.8rem;
-    overflow-y: auto;
+    // overflow-y: auto;
     height: auto;
 
     .boxes {
