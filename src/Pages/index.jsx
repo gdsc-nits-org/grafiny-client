@@ -6,7 +6,7 @@ import Courses from "./Courses/Courses";
 import Error from "./Error/Error";
 import SignupForm from "./Signup/Signup";
 import Otp from "./OTP/Otp";
-import UploadingPage from "./UploadingPage/UploadingPage";
+import UploadingPage from "./Upload/Upload";
 import Departments from "./Departments/Departments";
 
 export {
