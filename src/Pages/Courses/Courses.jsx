@@ -35,7 +35,6 @@ const Courses = () => {
       </div>
       <div className={styles.coursesCardContainer}>
         {coursesData.map((data) => {
-          console.log(data);
           return <CoursesCard data={data} />;
         })}
       </div>
