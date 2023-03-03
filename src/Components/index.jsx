@@ -6,6 +6,7 @@ import Landing from "./Landing/Landing";
 import Institutions from "./Institutions/Institutions";
 import SearchResultsItem from "./SearchResultsItem/Searchresultsitem";
 import DepartmentCard from "./DepartmentCard/DepartmentCard";
+import OurTeam from "./OurTeam/OurTeam";
 export {
   Button,
   Navbar,
@@ -15,4 +16,5 @@ export {
   Institutions,
   SearchResultsItem,
   DepartmentCard,
+  OurTeam,
 };

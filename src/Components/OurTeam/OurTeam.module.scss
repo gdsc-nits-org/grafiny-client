@@ -1,0 +1,90 @@
+.our-team {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .member-cards {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90vw;
+    gap: 8em;
+
+    .member-card {
+      width: 16em;
+      height: 21.5em;
+      border-radius: 6%;
+      transition: transform 0.1s ease-in-out;
+      overflow: hidden;
+      box-shadow: 10px rgba(0, 0, 0, 0.25);
+
+      .img {
+        width: 16em;
+        height: 21.5em;
+      }
+
+      .member-info {
+        background: url("/assets/membercard-bottom.png");
+        position: relative;
+        top: 70.78%;
+        width: 97%;
+        left: 4%;
+
+        h2 {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 1.3em;
+          text-align: center;
+          color: var(--gdsc-dark-1-100);
+          position: relative;
+          top: 2em;
+          letter-spacing: 0;
+        }
+
+        h3 {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 1em;
+          position: relative;
+          top: -0.4em;
+          text-align: center;
+          color: var(--gdsc-grayish-2-100);
+        }
+      }
+
+      .member-social {
+        display: none;
+      }
+    }
+
+    // :hover .member-social{
+    //   background-color: var(--gdsc-member-card-hover);
+    //   height: 100%;
+    //   z-index: -1;
+    // }
+
+    :hover .member-social {
+      transition: all 0.3s ease-in-out;
+      font-size: 2em;
+      display: flex;
+      flex-direction: column;
+    }
+
+    :hover .member-social * {
+      display: flex;
+      justify-content: center;
+      height: 1.5em;
+      position: relative;
+      top: 250%;
+    }
+
+    :hover .member-info {
+      display: none;
+    }
+  }
+}

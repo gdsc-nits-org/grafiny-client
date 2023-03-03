@@ -1,0 +1,20 @@
+.our-team {
+  padding: 10vh 2vh;
+
+  .team-heading {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 3em;
+      text-align: center;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gdsc-grayish-3-100);
+    }
+  }
+}

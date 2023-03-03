@@ -7,7 +7,7 @@ import Error from "./Error/Error";
 import SignupForm from "./Signup/Signup";
 import Otp from "./OTP/Otp";
 import Departments from "./Departments/Departments";
-
+import OurTeamPage from "./OurTeamPage/OurTeamPage";
 export {
   Home,
   Topic,
@@ -18,4 +18,5 @@ export {
   SignupForm,
   Otp,
   Departments,
+  OurTeamPage,
 };
