@@ -108,24 +108,39 @@ const UploadingPage = () => {
         />
       </div>
       <h1 className={` ${selected ? styles.uploadStatus : styles.uploadStatusHide}`}>
-        UPLOADING
+        Uploading-n/n files
       </h1>
 
       <div className={styles["uploaded-files"]}>
         {files.map((file) => (
-          <div className={styles["uploaded-file"]}>
-            <div className={styles["file-name"]}>{file.name}</div>
+          <div>
+            <div className={styles["uploaded-file"]}>
+              <div className={styles["file-name"]}>{file.name}</div>
+              <Icon
+                className={styles["button-delete"]}
+                {...{ style: { color: "var(--gdsc-grayish-2-100)" } }}
+                icon="entypo:circle-with-cross"
+              />
+            </div>
+            <div
+              className={styles["file-progress-bar"]}
+              {...{ style: { width: `${file.progress}%` } }}
+            ></div>
+
             {/* <div className={styles["file-size"]}>{Math.round(file.size / 1024)} KB</div> */}
           </div>
         ))}
       </div>
 
       <h1 className={` ${uploaded ? styles.uploadStatus : styles.uploadStatusHide}`}>
-        UPLOADED
+        Uploaded
       </h1>
       <div className={styles["uploaded-files"]}>
         {uploadedFiles.map((file) => (
-          <div className={styles["uploaded-file"]}>
+          <div
+            className={styles["uploaded-file"]}
+            {...{ style: { marginBottom: "0.8em" } }}
+          >
             <div className={styles["file-name"]}>{file.name}</div>
             <Icon
               className={styles["button-delete"]}
@@ -137,7 +152,7 @@ const UploadingPage = () => {
       </div>
       <div className={styles["upload-button-container"]}>
         <button className={styles["upload-button"]} onClick={handleUpload}>
-          Upload
+          UPLOAD FILES
         </button>
       </div>
     </div>
