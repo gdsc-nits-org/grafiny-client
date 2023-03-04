@@ -18,3 +18,13 @@
     }
   }
 }
+
+@media screen and (max-width: 708px) {
+  .our-team {
+    .team-heading {
+      h2 {
+        font-size: 2em;
+      }
+    }
+  }
+}

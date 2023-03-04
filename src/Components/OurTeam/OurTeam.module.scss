@@ -14,24 +14,23 @@
     gap: 8em;
 
     .member-card {
+      height: 21em;
       width: 16em;
-      height: 21.5em;
       border-radius: 6%;
+      background-size: cover;
       transition: transform 0.1s ease-in-out;
       overflow: hidden;
       box-shadow: 10px rgba(0, 0, 0, 0.25);
 
-      .img {
-        width: 16em;
-        height: 21.5em;
-      }
-
       .member-info {
         background: url("/assets/membercard-bottom.png");
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         position: relative;
-        top: 70.78%;
-        width: 97%;
-        left: 4%;
+        top: 70%;
+        left: 3%;
+        height: 30%;
 
         h2 {
           font-family: "Poppins";
@@ -61,26 +60,22 @@
         display: none;
       }
     }
-
-    // :hover .member-social{
-    //   background-color: var(--gdsc-member-card-hover);
-    //   height: 100%;
-    //   z-index: -1;
-    // }
-
     :hover .member-social {
       transition: all 0.3s ease-in-out;
-      font-size: 2em;
       display: flex;
       flex-direction: column;
+      background-color: var(--gdsc-member-card-hover);
+      height: 100%;
+      width: 100%;
     }
 
     :hover .member-social * {
-      display: flex;
-      justify-content: center;
-      height: 1.5em;
-      position: relative;
-      top: 250%;
+      margin: auto;
+      height: 2em;
+      width: 2em;
+      border-radius: 50%;
+      background-color: var(--gdsc-bg-2-100);
+      color: var(--gdsc-dark-1-100);
     }
 
     :hover .member-info {
