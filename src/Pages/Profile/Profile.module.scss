@@ -1,0 +1,99 @@
+.container {
+  width: 100%;
+  height: 120vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  .upperpart {
+    height: 50%;
+    width: 90%;
+    display: flex;
+    border-bottom: 1px solid var(--gdsc-grayish-2-100);
+    .upperleft {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      .avatarbox {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        height: 80%;
+        .imgbox {
+          height: 12em;
+          width: 12em;
+          border-radius: 50% 50%;
+          background-color: gold;
+          .profileimg {
+            width: 100%;
+            height: 100%;
+            border-radius: 50% 50%;
+          }
+        }
+        .namebox {
+          display: flex;
+          margin-top: 0.8em;
+          width: 13em;
+          min-height: 2em;
+          justify-content: center;
+          align-items: flex-end;
+          border-bottom: 1px solid var(--gdsc-grayish-2-100);
+          position: relative;
+          .name {
+            font-size: 1.05em;
+            padding: 0em 0.5em 0 0.5em;
+            text-align: center;
+          }
+          .icon {
+            position: absolute;
+            right: -10%;
+            bottom: -20%;
+            font-size: 1.5em;
+            color: var(--gdsc-grayish-2-100);
+          }
+        }
+      }
+    }
+    .upperright {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .collegecontainer {
+        width: 60%;
+        text-align: center;
+        border-bottom: 1px solid var(--gdsc-grayish-2-100);
+        padding-bottom: 0.5em;
+      }
+      .detailcontainer {
+        display: flex;
+        width: 60%;
+        justify-content: space-between;
+        margin-top: 1em;
+        .degree {
+          width: 25%;
+          border-bottom: 1px solid var(--gdsc-grayish-2-100);
+          text-align: center;
+          padding: 0.7em 0 0.5em 0;
+        }
+        .year {
+          width: 35%;
+          border-bottom: 1px solid var(--gdsc-grayish-2-100);
+          text-align: center;
+          padding: 0.7em 0 0.5em 0;
+        }
+        .branch {
+          width: 25%;
+          border-bottom: 1px solid var(--gdsc-grayish-2-100);
+          text-align: center;
+          padding: 0.7em 0 0.5em 0;
+        }
+      }
+    }
+  }
+  .lowerpart {
+    height: 50%;
+  }
+}
