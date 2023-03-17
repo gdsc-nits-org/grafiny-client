@@ -1,5 +1,6 @@
 import { BiPencil } from "react-icons/bi";
 import style from "./Profile.module.scss";
+import { UploadedItem } from "../../Components";
 
 const Profile = () => {
   return (
@@ -33,7 +34,26 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className={style.lowerpart}>lower</div>
+      <div className={style.lowerpart}>
+        <div className={style.lowerleft}>
+          <img className={style.uploadimg} src="/assets/uploadimg.png" alt="uploadimg" />
+        </div>
+        <div className={style.lowerright}>
+          <div className={style.columnheading}>
+            <div className={style.headingone}>Files Uploaded</div>
+            <div className={style.heading2}>Date</div>
+          </div>
+          <div className={style.uploadeditems}>
+            <UploadedItem item={1} />
+            <UploadedItem item={1} />
+            <UploadedItem item={1} />
+            <UploadedItem item={1} />
+            <UploadedItem item={1} />
+            <UploadedItem item={1} />
+            <UploadedItem item={1} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

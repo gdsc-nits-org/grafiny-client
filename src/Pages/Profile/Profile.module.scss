@@ -25,7 +25,6 @@
           height: 12em;
           width: 12em;
           border-radius: 50% 50%;
-          background-color: gold;
           .profileimg {
             width: 100%;
             height: 100%;
@@ -95,5 +94,126 @@
   }
   .lowerpart {
     height: 50%;
+    width: 90%;
+    display: flex;
+    .lowerleft {
+      width: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 21em;
+      .uploadimg {
+        width: 12em;
+        height: 13em;
+      }
+    }
+    .lowerright {
+      margin-left: auto;
+      width: 60%;
+      height: 100%;
+      flex-wrap: wrap;
+      .columnheading {
+        width: 87%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1em;
+        color: var(--gdsc-grayish-1-100);
+        height: 10%;
+        font-size: 1.05em;
+        .heading1 {
+          width: 65%;
+        }
+        .heading2 {
+          width: 35%;
+        }
+      }
+      .uploadeditems {
+        width: 87%;
+        height: 80%;
+        overflow-y: auto;
+      }
+      .uploadeditems::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    .upperpart {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .upperleft {
+        width: 90%;
+        .avatarbox {
+          width: 100%;
+          height: 90%;
+          .namebox {
+            width: 15em;
+          }
+        }
+      }
+      .upperright {
+        width: 100%;
+        margin-top: 5em;
+        align-items: center;
+      }
+    }
+  }
+}
+
+@media (max-height: 850px) {
+  .container {
+    .upperpart {
+      .upperright {
+        margin-top: 3em;
+      }
+    }
+    .lowerpart {
+      align-items: center;
+    }
+  }
+}
+
+@media (max-height: 700px) {
+  .container {
+    .upperpart {
+      height: 50%;
+      .upperright {
+        margin-top: 1.5em;
+      }
+    }
+    .lowerpart {
+      height: 50%;
+      .lowerleft {
+        margin-top: 1em;
+      }
+    }
+  }
+}
+@media (max-width: 440px) {
+  .container {
+    overflow-y: auto;
+    .lowerpart {
+      flex-direction: column;
+      .lowerleft {
+        width: 90%;
+        .uploadimg {
+          width: 8em;
+          height: 8em;
+        }
+      }
+      .lowerright {
+        width: 90%;
+        .columnheading {
+          width: 95%;
+        }
+        .uploadeditems {
+          width: 95%;
+        }
+      }
+    }
   }
 }
