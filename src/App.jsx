@@ -28,9 +28,9 @@ const App = () => {
         <Route path="/otp" element={<Otp />} />
         <Route path="/departments/:department/courses" element={<Courses />} />
         <Route path="/searchresults" element={<SearchResults />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Error />} />
         <Route path="/:insti/departments" element={<Departments />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </>

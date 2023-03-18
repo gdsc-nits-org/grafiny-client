@@ -50,7 +50,6 @@ const Profile = () => {
             <UploadedItem item={1} />
             <UploadedItem item={1} />
             <UploadedItem item={1} />
-            <UploadedItem item={1} />
           </div>
         </div>
       </div>
