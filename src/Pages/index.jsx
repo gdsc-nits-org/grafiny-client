@@ -7,6 +7,7 @@ import Error from "./Error/Error";
 import SignupForm from "./Signup/Signup";
 import Otp from "./OTP/Otp";
 import Departments from "./Departments/Departments";
+import Profile from "./Profile/Profile";
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   SignupForm,
   Otp,
   Departments,
+  Profile,
 };
