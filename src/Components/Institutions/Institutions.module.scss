@@ -58,7 +58,7 @@
 
     .instiCard {
       // display: inline-block;
-      // min-width: 40vh;
+      min-width: 40vh;
       height: 85%;
       aspect-ratio: 1;
       margin: 2%;
@@ -66,6 +66,7 @@
       justify-content: center;
       align-items: center;
       border-radius: 3%;
+      margin-right: 5vw;
       box-shadow: 0px 0px 0.5em 0px rgb(161, 161, 161);
 
       .instiCardImg {
@@ -114,9 +115,9 @@
       // height: fit-content;
 
       .instiCard {
-        // min-width: 20vh;
+        min-width: 25vh;
         // width: 42%;
-        height: 40%;
+        // height: 40%;
         aspect-ratio: 1;
         padding: 2%;
         margin: 4% 4%;
@@ -165,9 +166,9 @@
       // height: fit-content;
 
       .instiCard {
-        // min-width: 20vh;
+        min-width: 20vh;
         // width: 42%;
-        height: 40%;
+        // height: 40%;
         aspect-ratio: 1;
         padding: 2%;
         margin: 4% 4%;

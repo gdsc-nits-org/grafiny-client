@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CoursesCard from "./CoursesCard";
 import styles from "./Courses.module.scss";
 
@@ -21,20 +21,20 @@ const Courses = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  const navigate = useNavigate();
   return (
     <div className={styles.coursesHero}>
       <div className={styles.coursesTitle}>
         <div className={styles.coursesTitleHeading}>
-          <Link to="/">
+          <button onClick={() => navigate(-1)}>
             <img src="/images/arrow.png" alt="left arrow" className={styles.coursesFa} />
-          </Link>
+          </button>
+
           <div className={styles.coursesTitleText}>Courses</div>
         </div>
       </div>
       <div className={styles.coursesCardContainer}>
         {coursesData.map((data) => {
-          console.log(data);
           return <CoursesCard data={data} />;
         })}
       </div>

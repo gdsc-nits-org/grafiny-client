@@ -14,9 +14,10 @@
       .coursesFa {
         scale: 0.75;
         position: absolute;
-        top: 35%;
+        top: 65%;
         left: 1%;
         display: inline-block;
+        cursor: pointer;
       }
       .coursesTitleText {
         color: #404040;
@@ -90,7 +91,7 @@
       .coursesTitleHeading {
         font-size: 2em;
         .coursesFa {
-          top: 20%;
+          top: 60%;
         }
         .coursesTitleText {
           font-size: 1em;

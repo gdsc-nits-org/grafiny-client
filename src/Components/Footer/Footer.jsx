@@ -8,37 +8,33 @@ const Footer = () => {
       <div className={styles["footer-centre"]}>
         <h3>Questions?</h3>
         <p>Contact us through our social media accounts</p>
-        <Link
+        <a
           href="https://www.facebok.com/gdscnits/"
           className={styles["social-media-icons"]}
-          target="_blank"
         >
           <FaFacebook className={styles["social-media-icons"]} />
-        </Link>
-        <Link
+        </a>
+        <a
           href="https://github.com/gdsc-nits-org"
           className={styles["social-media-icons"]}
-          target="_blank"
         >
           <FaGithub className={styles["social-media-icons"]} />
-        </Link>
-        <Link
+        </a>
+        <a
           href="https://www.linkedin.com/company/gdscnits/mycompany/"
           className={styles["social-media-icons"]}
-          target="_blank"
         >
           <FaLinkedin className={styles["social-media-icons"]} />
-        </Link>
-        <Link
+        </a>
+        <a
           href="https://www.instagram.com/gdsc_nits/"
           className={styles["social-media-icons"]}
-          target="_blank"
         >
           <FaInstagram className={styles["social-media-icons"]} />
-        </Link>
+        </a>
         <br />
         <span>or email us at </span>
-        <Link href="mailto:gdsc@nits.ac.in">gdsc@nits.ac.in</Link>
+        <a href="mailto:gdsc@nits.ac.in">gdsc@nits.ac.in</a>
       </div>
       <div className={styles["footer-content"]}>
         <div className={styles["footer-left"]}>
@@ -48,17 +44,17 @@ const Footer = () => {
             <ul className={styles["f-listitem"]}>
               <li>
                 {" "}
-                <Link href="/">Vision</Link>
+                <Link to="/">Vision</Link>
               </li>
               <li>
                 {" "}
-                <Link href="/">Mission</Link>
+                <Link to="/">Mission</Link>
               </li>
               <li>
-                <Link href="/"> Types of Events</Link>
+                <Link to="/"> Types of Events</Link>
               </li>
               <li>
-                <Link href="/"> Google Technologies</Link>
+                <Link to="/"> Google Technologies</Link>
               </li>
             </ul>
           </div>
@@ -69,15 +65,15 @@ const Footer = () => {
           <ul className={styles["f-listitem"]}>
             <li>
               {" "}
-              <Link href="/">Executive Board</Link>
+              <Link to="/">Executive Board</Link>
             </li>
             <li>
               {" "}
-              <Link href="/">Departments</Link>
+              <Link to="/departments">Departments</Link>
             </li>
             <li>
               {" "}
-              <Link href="/">Join Us</Link>
+              <Link to="/">Join Us</Link>
             </li>
           </ul>
         </div>

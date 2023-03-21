@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import { Footer, Navbar } from "./Components";
 
 import {
+  Topic,
+  SemesterPage,
   Home,
   SignupForm,
   Otp,
@@ -13,6 +15,8 @@ import {
   RecoveryMail,
   ResetPassword,
   SearchResults,
+  Departments,
+  Profile,
 } from "./Pages";
 
 const App = () => {
@@ -25,11 +29,16 @@ const App = () => {
         <Route path="/forgotpassword" element={<RecoveryMail />} />
         <Route path="sendotp" element={<RecoveryCode />} />
         <Route path="verified" element={<ResetPassword />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/topics" element={<Topic />} />
+        <Route path="/semester" element={<SemesterPage />} />
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/otp" element={<Otp />} />
-        <Route path="/courses" element={<Courses />} />
+        <Route path="/departments/:department/courses" element={<Courses />} />
         <Route path="/searchresults" element={<SearchResults />} />
         <Route path="*" element={<Error />} />
+        <Route path="/:insti/departments" element={<Departments />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </>
