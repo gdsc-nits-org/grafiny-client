@@ -3,24 +3,42 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "./Login.module.scss";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Email:", email);
+    console.log("Password:", password);
+  };
+
   return (
     <div className={styles.wrapper}>
       <h2 className={styles.heading}>LOGIN</h2>
-      <form>
-        <input type="email" placeholder="E-mail" required />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="E-mail"
+          required
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        />
         <div className={styles.passwordWrapper}>
-            <input
+          <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             required
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
           />
-          <a className={styles.forgotpw} href="#">Forgot Password</a>
+          <a className={styles.forgotpw} href="/forgotpassword">
+            Forgot Password
+          </a>
           <div
             className={styles.passwordToggle}
             onClick={handlePasswordToggle}
@@ -36,8 +54,7 @@ const Login = () => {
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </div>
         </div>
-        <div className={styles.gap}>
-        </div>
+        <div className={styles.gap}></div>
         <button type="submit" className={styles.button}>
           Login
         </button>

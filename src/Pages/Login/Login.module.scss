@@ -1,6 +1,7 @@
 .wrapper {
   flex-shrink: 0;
-  max-width: 370px;
+  width: 370px;
+  height: 492px;
   padding: 2rem 2rem;
   margin: 7% auto;
   border-radius: 1.875em;
@@ -31,6 +32,7 @@ button {
   justify-content: center;
   align-items: center;
   outline: none;
+  cursor: pointer;
   padding: 0.625rem;
   gap: 0.625rem;
   border: 1px solid #466eb6;
@@ -39,7 +41,7 @@ button {
   color: #fff;
   margin-top: 2%;
 }
-.gap{
+.gap {
   height: 0.7rem;
 }
 .login {
@@ -102,7 +104,7 @@ input[type="password"] {
   width: 1.875rem;
   height: 1.875rem;
 }
-.forgotpw{
+.forgotpw {
   width: 100%;
   top: 75%;
   left: 6%;
@@ -115,7 +117,7 @@ input[type="password"] {
 
 @media (max-width: 500px) {
   #wrapper {
-    border-radius: 0%;
+    border-radius: none;
     box-shadow: none;
     width: 330px;
   }
