@@ -10,7 +10,6 @@ const RecoveryMail = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Email:", email);
   };
 
   return (

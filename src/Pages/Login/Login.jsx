@@ -13,8 +13,6 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
   };
 
   return (

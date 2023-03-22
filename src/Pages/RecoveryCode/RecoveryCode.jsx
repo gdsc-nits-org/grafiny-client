@@ -1,12 +1,8 @@
 import { useState, useRef } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 import styles from "./RecoveryCode.module.scss";
 
 const RecoveryCode = () => {
-  const inputIds = Array(6)
-    .fill()
-    .map(() => uuidv4());
-
   const [otp, setOtp] = useState(Array(6).fill(""));
 
   const refs = useRef([]);
@@ -43,7 +39,7 @@ const RecoveryCode = () => {
               className={styles.otp}
               type="text"
               maxLength="1"
-              key={inputIds.index}
+              key={`otp-input-${index}`}
               data-index={index}
               value={data}
               onChange={(e) => handleChange(e, index)}
@@ -53,9 +49,9 @@ const RecoveryCode = () => {
               }}
             />
           ))}
-          <a className={styles.resendotp} href="/">
+          <Link to="/" className={styles.resendotp}>
             Resend OTP
-          </a>
+          </Link>
           <div className={styles.gap}></div>
         </div>
         <button type="submit" className={styles.button}>
