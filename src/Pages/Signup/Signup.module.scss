@@ -1,0 +1,131 @@
+.wrapper {
+  flex-shrink: 0;
+  max-width: 370px;
+  padding: 2rem 2rem;
+  margin: 7% auto;
+  border-radius: 1.875em;
+  text-align: center;
+  box-shadow: 0rem 0rem 1.25rem #26262626;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #7a7a7a;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  margin-bottom: 1.4rem;
+}
+
+form input {
+  width: 92%;
+  outline: none;
+  border: 0.0625rem solid #b5b5b5;
+  padding: 0.7rem 0.8rem;
+  margin-bottom: 7%;
+  border-radius: 1em;
+  color: #7a7a7a;
+}
+
+button {
+  width: 92%;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  padding: 0.625rem;
+  gap: 0.625rem;
+  border: 1px solid #466eb6;
+  background: #466eb6;
+  border-radius: 0.9375rem;
+  color: #fff;
+  margin-top: 2%;
+}
+
+.login {
+  font-size: 0.9rem;
+  margin-top: 2rem;
+  color: #7a7a7a;
+}
+
+.login a {
+  color: #466eb6;
+  text-decoration: none;
+}
+
+hr {
+  margin-top: 5%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #7a7a7a;
+  opacity: 69%;
+}
+
+.options {
+  font-size: 0.9rem;
+  margin-top: 5%;
+  color: #7a7a7a;
+  margin-bottom: 5%;
+}
+
+.imgs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1.5em;
+}
+
+.img {
+  height: 2.1em;
+  width: 2.1em;
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+input[type="password"] {
+  padding-right: 2.5rem;
+}
+
+.passwordToggle {
+  color: #7a7a7a;
+  position: absolute;
+  top: 34%;
+  right: 1.25rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.875rem;
+  height: 1.875rem;
+}
+
+@media (max-width: 500px) {
+  #wrapper {
+    border-radius: 0%;
+    box-shadow: none;
+    width: 330px;
+  }
+
+  input[type="password"],
+  input[type="email"] {
+    font-size: 0.75rem;
+  }
+
+  button[type="submit"] {
+    font-size: 0.75rem;
+  }
+  .Login,
+  .Options {
+    font-size: 0.75rem;
+  }
+  button,
+  form input {
+    padding: 0.625rem 1.5625rem 0.625rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+}

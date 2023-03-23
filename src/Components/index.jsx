@@ -4,5 +4,17 @@ import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 import Landing from "./Landing/Landing";
 import Institutions from "./Institutions/Institutions";
-
-export { Button, Navbar, Explore, Footer, Landing, Institutions };
+import SearchResultsItem from "./SearchResultsItem/Searchresultsitem";
+import DepartmentCard from "./DepartmentCard/DepartmentCard";
+import UploadedItem from "./UploadedItems/UploadedItems";
+export {
+  Button,
+  Navbar,
+  Explore,
+  Footer,
+  Landing,
+  Institutions,
+  SearchResultsItem,
+  DepartmentCard,
+  UploadedItem,
+};

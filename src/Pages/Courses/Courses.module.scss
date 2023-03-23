@@ -1,0 +1,125 @@
+.coursesHero {
+  min-height: 100vh;
+  padding-top: 15vh;
+
+  .coursesTitle {
+    position: relative;
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+
+    .coursesTitleHeading {
+      font-size: 4em;
+
+      .coursesFa {
+        scale: 0.75;
+        position: absolute;
+        top: 65%;
+        left: 1%;
+        display: inline-block;
+        cursor: pointer;
+      }
+      .coursesTitleText {
+        color: #404040;
+      }
+    }
+  }
+  .coursesCardContainer {
+    width: 85%;
+    margin: 7% auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+
+    .coursesCard {
+      // display: inline-block;
+      position: relative;
+      width: 28%;
+      aspect-ratio: 1;
+      // min-width: 20vw !important;
+      // max-width: 20vw;
+      // min-height: 20vw !important;
+      // max-height: 20vw;
+      margin: 3% 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 3%;
+      box-shadow: 0px 0px 0.5em 0px rgb(161, 161, 161);
+      transition: 0.75s;
+
+      &:hover {
+        box-shadow: 0px 0px 1.1em 0px rgb(181, 181, 181);
+
+        .coursesCardImg {
+          scale: 1.15;
+        }
+        .coursesCardSubject {
+          transform: translateY(-7%);
+          color: rgb(20, 20, 20);
+        }
+      }
+
+      .coursesCardBm {
+        position: absolute;
+        scale: 0.7;
+        top: 5%;
+        right: 5%;
+      }
+      .coursesCardSubject {
+        color: #7a7a7a;
+        font-size: 1.75em;
+        margin: 6% auto;
+        transition: 0.75s;
+      }
+      .coursesCardImg {
+        width: 70%;
+        height: auto;
+        transition: 0.75s;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .coursesHero {
+    padding-top: 5vh;
+
+    .coursesTitle {
+      .coursesTitleHeading {
+        font-size: 2em;
+        .coursesFa {
+          top: 60%;
+        }
+        .coursesTitleText {
+          font-size: 1em;
+        }
+      }
+    }
+    .coursesCardContainer {
+      width: 100%;
+
+      .coursesCard {
+        // max-width: 38vw !important;
+        // min-height: 38vw !important;
+        width: 38% !important;
+        aspect-ratio: 1;
+        padding: 2%;
+        margin: 4% 4%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px 0px 0.5em 0px rgb(138, 138, 138);
+
+        .coursesCardSubject {
+          font-size: 1em !important;
+        }
+        .coursesCardBm {
+          scale: 0.6;
+        }
+      }
+    }
+  }
+}
