@@ -23,7 +23,7 @@ specifiers:
   react-social-icons: ^5.15.0
   sass: ^1.56.1
   simple-git-hooks: ^2.8.1
-  vite: ^3.2.3
+  vite: ^3.2.4
 
 dependencies:
   '@iconify/react': 4.1.0_react@18.2.0

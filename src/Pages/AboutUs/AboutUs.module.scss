@@ -1,0 +1,134 @@
+.background{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    .header{
+        position: absolute;
+        top: 10%;
+        font-size: 7vmin;
+        z-index: 1;
+        font-family: "Poppins";
+        letter-spacing: 20px;
+        font-weight: 600;
+        color: var(--gdsc-grayish-1-100);
+        margin: 1vh auto 0 auto;
+        user-select: none;
+        .us{
+            color: white;
+        }
+    }
+    .ImgContainer{
+        height: 20%;
+        display: flex;  
+        align-items: center;
+        justify-content: center;
+    }
+    .LeftBox{
+        background-color: #F6F5F5;
+        width: 50%;
+        height: 100vh;
+        padding: 4% 9% 4% 4%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .LeftImg{
+            width: 300px;
+            height: 130px;
+            background-image: url("../assets/gdscNits.png");
+            background-size: 100%;
+        }
+        .LeftContent{
+            text-align: justify;
+        }
+    }
+    .middleBox{
+        position: absolute;
+        width: 12vw;
+        display: flex;
+        flex-direction: row;
+        .middleBoxLeft{
+            background-color: #E9E8E8;
+            width: 50%;
+            height: 100vh;
+        }
+        .middleBoxRight{
+            background-color: #A6B4CD;
+            width: 50%;
+            height: 100vh;
+        }
+    }
+    .RightBox{
+        background-color: #466EB6;
+        width: 50%;
+        height: 100vh;
+        padding: 4% 4% 4% 9%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .RightImg{
+            width: 220px;
+            height: 85px;
+            background-image: url("../assets/grafinyLogoLight.png");
+            background-size: 100%;
+        }
+        .RightContent{
+            color: white;
+            text-align: justify;
+        }
+    }
+}
+@media only screen and (max-width: 900px){
+    .background{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        .header{
+            width: 100%;
+            top: 5%;
+            text-align: center;
+            font-size: 9vmin;
+            z-index: 1;
+            font-family: "Poppins";
+            letter-spacing: 10px;
+            font-weight: 600;
+            color: var(--gdsc-grayish-1-100);
+            margin: 1vh auto 0 auto;
+            user-select: none;
+            .us{
+                color: var(--gdsc-grayish-1-100);
+            }
+        }
+        .LeftBox{
+            width: 100%;
+            padding: 10%;
+        }
+        .RightBox{
+            width: 100%;
+            padding: 10%;
+        }
+        .middleBox{
+            position: absolute;
+            width: 100%;
+            height: 12vh;
+            display: flex;
+            flex-direction: column;
+            .middleBoxLeft{
+                width: 100%;
+                height: 50%;
+            }
+            .middleBoxRight{
+                width: 100%;
+                height: 50%;
+            }
+        }
+    }
+}
+// @include flexDisplay(center, column);
