@@ -18,9 +18,10 @@
       width: 16em;
       border-radius: 6%;
       background-size: cover;
-      transition: transform 0.1s ease-in-out;
       overflow: hidden;
-      box-shadow: 10px rgba(0, 0, 0, 0.25);
+      box-shadow: 1em rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      position: relative;
 
       .member-info {
         background: url("/assets/membercard-bottom.png");
@@ -57,25 +58,37 @@
       }
 
       .member-social {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--gdsc-member-card-hover);
+        height: 0;
+        margin: 0.45em;
+        border-radius: 7%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        transition: height 0.3s ease-in-out;
+      }
+      .member-social * {
+        margin: auto;
+        height: 2em;
+        width: 2em;
+        border-radius: 50%;
+        background-color: var(--gdsc-bg-2-100);
+        color: var(--gdsc-dark-1-100);
+        transform: translateY(100%);
+        transition: transform 0.3s ease-in-out;
       }
     }
+
     :hover .member-social {
-      transition: all 0.3s ease-in-out;
-      display: flex;
-      flex-direction: column;
-      background-color: var(--gdsc-member-card-hover);
-      height: 100%;
-      width: 100%;
+      height: 95%;
     }
 
     :hover .member-social * {
-      margin: auto;
-      height: 2em;
-      width: 2em;
-      border-radius: 50%;
-      background-color: var(--gdsc-bg-2-100);
-      color: var(--gdsc-dark-1-100);
+      transform: translateY(0);
     }
 
     :hover .member-info {
