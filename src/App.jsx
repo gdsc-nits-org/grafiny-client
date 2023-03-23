@@ -10,8 +10,13 @@ import {
   Otp,
   Courses,
   Error,
+  Login,
+  RecoveryCode,
+  RecoveryMail,
+  ResetPassword,
   SearchResults,
   Departments,
+  Profile,
   OurTeamPage,
 } from "./Pages";
 
@@ -21,6 +26,10 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgotpassword" element={<RecoveryMail />} />
+        <Route path="sendotp" element={<RecoveryCode />} />
+        <Route path="verified" element={<ResetPassword />} />
         <Route path="/home" element={<Home />} />
         <Route path="/topics" element={<Topic />} />
         <Route path="/semester" element={<SemesterPage />} />
@@ -30,6 +39,7 @@ const App = () => {
         <Route path="/searchresults" element={<SearchResults />} />
         <Route path="*" element={<Error />} />
         <Route path="/:insti/departments" element={<Departments />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/team" element={<OurTeamPage />} />
       </Routes>
       <Footer />
