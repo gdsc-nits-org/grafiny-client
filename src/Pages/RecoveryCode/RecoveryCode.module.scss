@@ -22,9 +22,9 @@
   }
 
   .otp {
-    width: 2.5rem;
-    height: 2.8rem;
-    margin: 3.5px;
+    width: 15%;
+    height: 20%;
+    margin: 2px;
     outline: none;
     text-align: center;
     border: 0.0625rem solid #b5b5b5;
@@ -34,6 +34,10 @@
   }
   .otpfield {
     position: relative;
+    .otpboxwrap {
+      display: flex;
+      flex-direction: row;
+    }
     .resendotp {
       width: 100%;
       top: 65%;

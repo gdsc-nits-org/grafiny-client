@@ -34,21 +34,23 @@ const RecoveryCode = () => {
       <p className={styles.recoverymessage}>Enter the OTP.</p>
       <form>
         <div className={styles.otpfield}>
-          {otp.map((data, index) => (
-            <input
-              className={styles.otp}
-              type="text"
-              maxLength="1"
-              key={`otp-input-${index}`}
-              data-index={index}
-              value={data}
-              onChange={(e) => handleChange(e, index)}
-              onKeyUp={(e) => handleKeyUp(e, index)}
-              ref={(ref) => {
-                refs.current[index] = ref;
-              }}
-            />
-          ))}
+          <div className={styles.otpboxwrap}>
+            {otp.map((data, index) => (
+              <input
+                className={styles.otp}
+                type="text"
+                maxLength="1"
+                key={`otp-input-${index}`}
+                data-index={index}
+                value={data}
+                onChange={(e) => handleChange(e, index)}
+                onKeyUp={(e) => handleKeyUp(e, index)}
+                ref={(ref) => {
+                  refs.current[index] = ref;
+                }}
+              />
+            ))}
+          </div>
           <Link to="/" className={styles.resendotp}>
             Resend OTP
           </Link>
