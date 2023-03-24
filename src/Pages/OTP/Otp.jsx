@@ -6,12 +6,9 @@ const Otp = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`OTP: ${otp}`);
   };
 
-  const handleResendClick = () => {
-    console.log("Resending OTP...");
-  };
+  const handleResendClick = () => {};
 
   return (
     <div className={styles.wrapper}>

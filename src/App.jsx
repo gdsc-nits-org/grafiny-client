@@ -10,6 +10,10 @@ import {
   Otp,
   Courses,
   Error,
+  Login,
+  RecoveryCode,
+  RecoveryMail,
+  ResetPassword,
   SearchResults,
   Departments,
   Profile,
@@ -22,6 +26,10 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgotpassword" element={<RecoveryMail />} />
+        <Route path="sendotp" element={<RecoveryCode />} />
+        <Route path="verified" element={<ResetPassword />} />
         <Route path="/home" element={<Home />} />
         <Route path="/topics" element={<Topic />} />
         <Route path="/semester" element={<SemesterPage />} />
