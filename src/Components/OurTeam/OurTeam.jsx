@@ -24,14 +24,23 @@ const OurTeam = () => {
               <h3>{member.position}</h3>
             </div>
             <div className={styles["member-social"]}>
-              <a href={`https://www.linkedin.com/in/${member.linkedin}`}>
-                <Icon icon="mdi:linkedin" />
+              <a
+                href={`https://www.linkedin.com/in/${member.linkedin}`}
+                className={`${styles["social-icons"]} ${styles.linkedin}`}
+              >
+                <Icon icon="mdi:linkedin" className={`${styles.linkedin}`} />
               </a>
-              <a href={`https://github.com/${member.github}`}>
-                <Icon icon="mdi:github" />
+              <a
+                href={`https://github.com/${member.github}`}
+                className={`${styles["social-icons"]} ${styles.github}`}
+              >
+                <Icon icon="mdi:github" className={` ${styles.github}`} />
               </a>
-              <a href={`https://github.com/${member.facebook}`}>
-                <Icon icon="ic:baseline-facebook" />
+              <a
+                href={`https://github.com/${member.facebook}`}
+                className={`${styles["social-icons"]} ${styles.facebook}`}
+              >
+                <Icon icon="ic:baseline-facebook" className={`${styles.facebook}`} />
               </a>
             </div>
           </div>
