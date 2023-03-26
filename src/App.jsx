@@ -17,6 +17,7 @@ import {
   SearchResults,
   Departments,
   Profile,
+  AboutUs
 } from "./Pages";
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="*" element={<Error />} />
         <Route path="/:insti/departments" element={<Departments />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/aboutus" element={<AboutUs />} />
       </Routes>
       <Footer />
     </>
