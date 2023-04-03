@@ -1,18 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.scss";
+import UserContext from "../../Global/Auth/authContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate();
+  const context = useContext(UserContext);
+
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const data = { email, password };
+
+    const response = await fetch(import.meta.env.VITE_LOGIN_URL, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+
+      body: JSON.stringify(data),
+    });
+
+    const parsedResponse = await response.json();
+    console.log(parsedResponse);
+    if (parsedResponse.errorMessage) {
+      alert("Something Went Wrong!!!");
+    } else {
+      context.setUser(parsedResponse.msg);
+      localStorage.setItem("user", JSON.stringify(parsedResponse.msg));
+      navigate("/");
+    }
   };
 
   return (
