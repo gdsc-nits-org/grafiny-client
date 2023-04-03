@@ -17,7 +17,7 @@ import {
   SearchResults,
   Departments,
   Profile,
-  AboutUs
+  AboutUs,
 } from "./Pages";
 
 const App = () => {
