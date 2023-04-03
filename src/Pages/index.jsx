@@ -29,5 +29,5 @@ export {
   ResetPassword,
   Departments,
   Profile,
-  AboutUs
+  AboutUs,
 };
