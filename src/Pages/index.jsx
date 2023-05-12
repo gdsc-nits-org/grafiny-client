@@ -12,6 +12,7 @@ import SignupForm from "./Signup/Signup";
 import Otp from "./OTP/Otp";
 import Departments from "./Departments/Departments";
 import Profile from "./Profile/Profile";
+import AboutUs from "./AboutUs/AboutUs";
 import OurTeamPage from "./OurTeamPage/OurTeamPage";
 export {
   Home,
@@ -28,5 +29,6 @@ export {
   ResetPassword,
   Departments,
   Profile,
+  AboutUs,
   OurTeamPage,
 };
