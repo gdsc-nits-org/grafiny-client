@@ -52,36 +52,61 @@ const UploadingPage = () => {
     const newFiles = [...files];
     let uploadedFileCount = 0;
     newFiles.forEach((file) => {
-      // Temporary: XML HTTP Request
-
-      const xhr = new XMLHttpRequest();
-      xhr.open("POST", "/iuuji");
       const formData = new FormData();
       formData.append("file", file);
-      xhr.upload.addEventListener("progress", (e) => {
-        if (e.lengthComputable) {
-          file.progress = Math.round((e.loaded / e.total) * 100);
-          setFiles([...newFiles]);
-        }
-      });
-      xhr.onload = () => {
-        file.progress = 100;
-        setUploadedFiles((prevUploadedFiles) => [...prevUploadedFiles, file]);
-        uploadedFileCount += 1;
-        if (uploadedFileCount === newFiles.length) {
-          // console.log('All files uploaded successfully');
-          setFiles([]);
-          setSelected(false);
-        }
-      };
-      xhr.onerror = () => {
-        // console.error(`Error uploading file ${file.name}`);
-      };
-      xhr.send(formData);
 
-      // end of temporary code
+      // const xhr = new XMLHttpRequest();
+      // xhr.open("POST", "/iuuji");
+      // const formData = new FormData();
+      // formData.append("file", file);
+      // xhr.upload.addEventListener("progress", (e) => {
+      //   if (e.lengthComputable) {
+      //     file.progress = Math.round((e.loaded / e.total) * 100);
+      //     setFiles([...newFiles]);
+      //   }
+      // });
+      // xhr.onload = () => {
+      //   file.progress = 100;
+      //   setUploadedFiles((prevUploadedFiles) => [...prevUploadedFiles, file]);
+      //   uploadedFileCount += 1;
+      //   if (uploadedFileCount === newFiles.length) {
+      //     // console.log('All files uploaded successfully');
+      //     setFiles([]);
+      //     setSelected(false);
+      //   }
+      // };
+      // xhr.onerror = () => {
+      //   // console.error(`Error uploading file ${file.name}`);
+      // };
+      // xhr.send(formData);
+      fetch("/iuuji", {
+        method: "POST",
+        body: formData,
+        // Progress tracking with Fetch API
+        onUploadProgress: (e) => {
+          if (e.lengthComputable) {
+            file.progress = Math.round((e.loaded / e.total) * 100);
+            setFiles([...newFiles]);
+          }
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            file.progress = 100;
+            setUploadedFiles((prevUploadedFiles) => [...prevUploadedFiles, file]);
+            uploadedFileCount += 1;
+            if (uploadedFileCount === newFiles.length) {
+              setFiles([]);
+              setSelected(false);
+            }
+          } else {
+            // handle error
+          }
+        })
+        .catch(() => {
+          // handle error
+        });
     });
-
     setUploaded(true);
   };
 
