@@ -52,6 +52,8 @@ const UploadingPage = () => {
     const newFiles = [...files];
     let uploadedFileCount = 0;
     newFiles.forEach((file) => {
+      // Temporary: XML HTTP Request
+
       const xhr = new XMLHttpRequest();
       xhr.open("POST", "/iuuji");
       const formData = new FormData();
@@ -76,7 +78,10 @@ const UploadingPage = () => {
         // console.error(`Error uploading file ${file.name}`);
       };
       xhr.send(formData);
+
+      // end of temporary code
     });
+
     setUploaded(true);
   };
 
