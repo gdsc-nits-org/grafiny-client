@@ -14,7 +14,7 @@ import UploadingPage from "./Upload/Upload";
 import Departments from "./Departments/Departments";
 import Profile from "./Profile/Profile";
 import AboutUs from "./AboutUs/AboutUs";
-
+import OurTeamPage from "./OurTeamPage/OurTeamPage";
 export {
   Home,
   Topic,
@@ -31,5 +31,6 @@ export {
   Departments,
   Profile,
   AboutUs,
+  OurTeamPage,
   UploadingPage,
 };

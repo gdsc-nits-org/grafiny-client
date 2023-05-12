@@ -18,6 +18,7 @@ import {
   Departments,
   Profile,
   AboutUs,
+  OurTeamPage,
   UploadingPage,
 } from "./Pages";
 
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/:insti/departments" element={<Departments />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/team" element={<OurTeamPage />} />
         <Route path="/upload" element={<UploadingPage />} />
       </Routes>
       <Footer />
