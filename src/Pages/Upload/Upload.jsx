@@ -13,7 +13,8 @@ const UploadingPage = () => {
     const newFiles = [...files];
     const droppedFiles = Array.from(e.dataTransfer.files);
     droppedFiles.forEach((file) => {
-      file.progress = 0;
+      const isExisting = newFiles.some((existingFile) => existingFile.name === file.name);
+      if (!isExisting) file.progress = 0;
       newFiles.push(file);
     });
     setFiles(newFiles);
@@ -22,7 +23,8 @@ const UploadingPage = () => {
     const newFiles = [...files];
     const selectedFiles = Array.from(e.target.files);
     selectedFiles.forEach((file) => {
-      file.progress = 0;
+      const isExisting = newFiles.some((existingFile) => existingFile.name === file.name);
+      if (!isExisting) file.progress = 0;
       newFiles.push(file);
     });
     setFiles(newFiles);
@@ -125,7 +127,7 @@ const UploadingPage = () => {
             </div>
             <div className={styles["upload-text"]}>
               Drag & drop files or click to browse
-              <p>Supported formats are: JPEG, PDF ,Word , PPT</p>
+              <p>Supported formats are: JPEG,PDF,Word,PPT</p>
             </div>
           </div>
         </label>
