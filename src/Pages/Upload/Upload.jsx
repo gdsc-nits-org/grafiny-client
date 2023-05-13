@@ -29,13 +29,7 @@ const UploadingPage = () => {
     setSelected(true);
   };
 
-  // const handleDelete = (fileIndex) => {
-  //   const newFiles = [...files];
-  //   newFiles.splice(fileIndex, 1);
-  //   setFiles(newFiles);
-  // };
-
-  const handleDelete = async (fileName) => {
+  const handleDeleteUploaded = async (fileName) => {
     try {
       await fetch(`/api/deleteFile?fileName=${fileName}`, {
         method: "DELETE",
@@ -48,64 +42,70 @@ const UploadingPage = () => {
     }
   };
 
+  const handleDelete = (file) => {
+    const newFiles = files.filter((f) => f.name !== file.name);
+    setFiles(newFiles);
+  };
+
   const handleUpload = () => {
     const newFiles = [...files];
     let uploadedFileCount = 0;
     newFiles.forEach((file) => {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      // const xhr = new XMLHttpRequest();
-      // xhr.open("POST", "/iuuji");
       // const formData = new FormData();
       // formData.append("file", file);
-      // xhr.upload.addEventListener("progress", (e) => {
-      //   if (e.lengthComputable) {
-      //     file.progress = Math.round((e.loaded / e.total) * 100);
-      //     setFiles([...newFiles]);
-      //   }
-      // });
-      // xhr.onload = () => {
-      //   file.progress = 100;
-      //   setUploadedFiles((prevUploadedFiles) => [...prevUploadedFiles, file]);
-      //   uploadedFileCount += 1;
-      //   if (uploadedFileCount === newFiles.length) {
-      //     // console.log('All files uploaded successfully');
-      //     setFiles([]);
-      //     setSelected(false);
-      //   }
-      // };
-      // xhr.onerror = () => {
-      //   // console.error(`Error uploading file ${file.name}`);
-      // };
-      // xhr.send(formData);
-      fetch("/iuuji", {
-        method: "POST",
-        body: formData,
-        // Progress tracking with Fetch API
-        onUploadProgress: (e) => {
-          if (e.lengthComputable) {
-            file.progress = Math.round((e.loaded / e.total) * 100);
-            setFiles([...newFiles]);
-          }
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            file.progress = 100;
-            setUploadedFiles((prevUploadedFiles) => [...prevUploadedFiles, file]);
-            uploadedFileCount += 1;
-            if (uploadedFileCount === newFiles.length) {
-              setFiles([]);
-              setSelected(false);
-            }
-          } else {
-            // handle error
-          }
-        })
-        .catch(() => {
-          // handle error
-        });
+
+      // Temporary: XML HTTP Request
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "/iuuji");
+      const formData = new FormData();
+      formData.append("file", file);
+      xhr.upload.addEventListener("progress", (e) => {
+        if (e.lengthComputable) {
+          file.progress = Math.round((e.loaded / e.total) * 100);
+          setFiles([...newFiles]);
+        }
+      });
+      xhr.onload = () => {
+        file.progress = 100;
+        setUploadedFiles((prevUploadedFiles) => [...prevUploadedFiles, file]);
+        uploadedFileCount += 1;
+        if (uploadedFileCount === newFiles.length) {
+          setFiles([]);
+          setSelected(false);
+        }
+      };
+      xhr.onerror = () => {};
+      xhr.send(formData);
+      // end of temporary code
+
+      // Using fetch api
+      // fetch("/iuuji", {
+      //   method: "POST",
+      //   body: formData,
+      //   // Progress tracking with Fetch API
+      //   onUploadProgress: (e) => {
+      //     if (e.lengthComputable) {
+      //       file.progress = Math.round((e.loaded / e.total) * 100);
+      //       setFiles([...newFiles]);
+      //     }
+      //   },
+      // })
+      //   .then((response) => {
+      //     if (response.ok) {
+      //       file.progress = 100;
+      //       setUploadedFiles((prevUploadedFiles) => [...prevUploadedFiles, file]);
+      //       uploadedFileCount += 1;
+      //       if (uploadedFileCount === newFiles.length) {
+      //         setFiles([]);
+      //         setSelected(false);
+      //       }
+      //     } else {
+      //       // handle error
+      //     }
+      //   })
+      //   .catch(() => {
+      //     // handle error
+      //   });
     });
     setUploaded(true);
   };
@@ -137,7 +137,11 @@ const UploadingPage = () => {
           onChange={handleBrowse}
         />
       </div>
-      <h1 className={` ${selected ? styles.uploadStatus : styles.uploadStatusHide}`}>
+      <h1
+        className={` ${
+          selected && files.length > 0 ? styles.uploadStatus : styles.uploadStatusHide
+        }`}
+      >
         Uploading-n/n files
       </h1>
 
@@ -150,6 +154,7 @@ const UploadingPage = () => {
                 className={styles["button-delete"]}
                 {...{ style: { color: "var(--gdsc-grayish-2-100)" } }}
                 icon="entypo:circle-with-cross"
+                onClick={() => handleDelete(file)}
               />
             </div>
             <div
@@ -162,7 +167,13 @@ const UploadingPage = () => {
         ))}
       </div>
 
-      <h1 className={` ${uploaded ? styles.uploadStatus : styles.uploadStatusHide}`}>
+      <h1
+        className={` ${
+          uploadedFiles.length > 0 && uploaded
+            ? styles.uploadStatus
+            : styles.uploadStatusHide
+        }`}
+      >
         Uploaded
       </h1>
       <div className={styles["uploaded-files"]}>
@@ -175,7 +186,7 @@ const UploadingPage = () => {
             <Icon
               className={styles["button-delete"]}
               icon="material-symbols:delete"
-              onClick={() => handleDelete(file.name)}
+              onClick={() => handleDeleteUploaded(file.name)}
             />
           </div>
         ))}
