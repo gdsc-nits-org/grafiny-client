@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import styles from "./Signup.module.scss";
+import UserContext from "../../Global/Auth/authContext";
 
 const SignupForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
-  const navigate = useNavigate();
 
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
@@ -25,31 +23,12 @@ const SignupForm = () => {
     }
   };
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
-    const data = { name, email, password };
-
-    const response = await fetch(import.meta.env.VITE_SIGNUP_URL, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-
-      body: JSON.stringify(data),
-    });
-
-    const parsedResponse = await response.json();
-    if (parsedResponse.errorMessage) {
-      alert("Something Went Wrong!!!");
-    } else {
-      navigate("/login");
-    }
-  };
+  const context = useContext(UserContext);
 
   return (
     <div className={styles.wrapper}>
       <h2 className={styles.heading}>SIGN UP</h2>
-      <form>
+      <div className={styles.form}>
         <input
           type="text"
           placeholder="Name"
@@ -90,10 +69,16 @@ const SignupForm = () => {
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </div>
         </div>
-        <button type="submit" className={styles.button} onClick={handleSignup}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={() => {
+            context.handleSignup(name, email, password);
+          }}
+        >
           Sign Up
         </button>
-      </form>
+      </div>
       <div className={styles.login}>
         Already a User? <a href="/">Login</a>
       </div>

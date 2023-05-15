@@ -6,7 +6,6 @@ import UserContext from "../../Global/Auth/authContext";
 
 const Profile = () => {
   const context = useContext(UserContext);
-  console.log(context);
   const username = context.user.name;
 
   return (
