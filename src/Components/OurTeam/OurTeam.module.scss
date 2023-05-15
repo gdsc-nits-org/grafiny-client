@@ -1,0 +1,147 @@
+.our-team {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .member-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90vw;
+    gap: 8em;
+    transition: 0.25s;
+  }
+
+  .member-card {
+    height: 21em;
+    width: 16em;
+    border-radius: 6%;
+    background-size: cover;
+    overflow: hidden;
+    box-shadow: 1em rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+
+    .member-info {
+      background: url("/assets/membercard-bottom.png");
+      transition: 0.25s;
+
+      h2 {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 1.3em;
+        text-align: center;
+        color: var(--gdsc-dark-1-100);
+        position: relative;
+        top: 2em;
+        letter-spacing: 0;
+      }
+
+      h3 {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1em;
+        position: relative;
+        top: -0.4em;
+        text-align: center;
+        color: var(--gdsc-grayish-2-100);
+      }
+    }
+
+    .member-social {
+      width: 100%;
+      z-index: -2;
+      position: absolute;
+      transition: 0.25s;
+      background: transparent;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .social-icons {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 80%;
+        margin: auto;
+        font-size: 2rem;
+        color: black;
+        background-color: white;
+        width: fit-content;
+        aspect-ratio: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        padding: 0.2rem;
+        box-sizing: content-box;
+        opacity: 0;
+        transition: 0.25s;
+      }
+    }
+  }
+
+  .member-card:hover .member-info {
+    opacity: 0;
+  }
+
+  .member-card:hover {
+    .member-social {
+      z-index: 1;
+      background: var(--gdsc-member-card-hover);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .social-icons {
+        opacity: 1;
+        margin: auto;
+        font-size: 2rem;
+        color: var(--gdsc-grayish-1-100);
+        background-color: white;
+        width: fit-content;
+        aspect-ratio: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        padding: 0.25em;
+        box-sizing: content-box;
+        transition: 0.2s color;
+      }
+
+      .linkedin {
+        top: 22%;
+
+        &:hover {
+          color: var(--linkedin-color);
+          transition: 0.2s color;
+        }
+      }
+
+      .github {
+        top: 44%;
+
+        &:hover {
+          color: var(--github-color);
+          transition: 0.2s color;
+        }
+      }
+
+      .facebook {
+        top: 66%;
+
+        :hover {
+          color: var(--facebook-color);
+          transition: 0.2s color;
+        }
+      }
+    }
+  }
+}
