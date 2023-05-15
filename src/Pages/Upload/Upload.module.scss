@@ -4,6 +4,7 @@
   align-items: center;
   padding: 1em;
   font-family: Arial, sans-serif;
+  min-height: calc(100vh - 4rem);
 
   h1 {
     font-weight: 500;
@@ -70,6 +71,10 @@
     }
   }
 
+  .file-uploaded {
+    display: none;
+  }
+
   .uploadStatusHide {
     display: none;
   }
@@ -118,19 +123,28 @@
     }
   }
 
-  .upload-button {
+  .upload-button,
+  .disabled-upload-button {
     color: var(--gdsc-bg-2-100);
     border: none;
     width: 45vw;
-    cursor: pointer;
     transition: background-color 0.3s;
-    background-color: var(--gdsc-blue-1-100);
     border-radius: 4px;
     font-family: "Poppins";
     font-style: normal;
     font-weight: 700;
     font-size: 1.2em;
     margin-bottom: 1em;
+  }
+
+  .upload-button {
+    background-color: var(--gdsc-blue-1-100);
+    cursor: pointer;
+  }
+
+  .disabled-upload-button {
+    background-color: var(--gdsc-grayish-2-100);
+    cursor: no-drop;
   }
 
   .upload-button:hover {
