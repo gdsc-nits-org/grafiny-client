@@ -6,20 +6,44 @@ import styles from "./Upload.module.scss";
 
 const UploadingPage = () => {
   const [files, setFiles] = useState([]);
-  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [selected, setSelected] = useState(false);
-  const [buttonstate, setbuttonState] = useState(false);
   const [selectedCourse, setSelctedCourse] = useState("");
+  const [selectedDept, setSelctedDept] = useState("");
+  const [selectedSem, setSelctedSem] = useState("");
   // const [topics, setTopics] = useState([]);
+  // const [uploadedFiles, setUploadedFiles] = useState([]);
+  // const [uploaded, setUploaded] = useState(false);
   const [dragBox, setdragBox] = useState(false);
-  const [uploaded, setUploaded] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState("");
+  const [advice, setAdvice] = useState("");
+
   const courseOptions = [
     { name: "Mathematics", id: 1 },
     { name: "Theory of Computation", id: 2 },
     { name: "Computer Architecture and Organization", id: 3 },
   ];
 
+  const yearofPassing = [
+    { year: "2024", id: 1 },
+    { year: "2025", id: 2 },
+    { year: "2026", id: 3 },
+  ];
+  const semesters = [
+    { sems: "1st", id: 1 },
+    { sems: "2nd", id: 2 },
+    { sems: "3rd", id: 3 },
+    { sems: "4th", id: 4 },
+    { sems: "5th", id: 5 },
+    { sems: "6th", id: 6 },
+  ];
+  const departments = [
+    { deps: "CSE", id: 1 },
+    { deps: "ECE", id: 2 },
+    { deps: "EE", id: 3 },
+    { deps: "EIE", id: 4 },
+    { deps: "ME", id: 5 },
+    { deps: "CE", id: 6 },
+  ];
   const topicOptions = [
     { name: "Random Variables", id: 1, courseId: 1 },
     { name: "Finite Automata", id: 2, courseId: 2 },
@@ -40,7 +64,6 @@ const UploadingPage = () => {
     setdragBox(false);
     setFiles(newFiles);
     setSelected(true);
-    setbuttonState(true);
   };
   const handleBrowse = (e) => {
     const newFiles = [...files];
@@ -51,20 +74,7 @@ const UploadingPage = () => {
     });
     setFiles(newFiles);
     setSelected(true);
-    setbuttonState(true);
-  };
-
-  const handleDeleteUploaded = async (fileName) => {
-    // try {
-    //   await fetch(`/api/deleteFile?fileName=${fileName}`, {
-    //     method: "DELETE",
-    //   });
-    setUploadedFiles((prevSelectedFiles) =>
-      prevSelectedFiles.filter((file) => file.name !== fileName)
-    );
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    setdragBox(false);
   };
   const navigate = useNavigate();
   const handleDelete = (file) => {
@@ -91,7 +101,7 @@ const UploadingPage = () => {
       });
       xhr.onload = () => {
         file.progress = 100;
-        setUploadedFiles((prevUploadedFiles) => [...prevUploadedFiles, file]);
+        // setUploadedFiles((prevUploadedFiles) => [...prevUploadedFiles, file]);
         uploadedFileCount += 1;
         if (uploadedFileCount === newFiles.length) {
           setFiles([]);
@@ -102,42 +112,41 @@ const UploadingPage = () => {
       xhr.onerror = () => {};
       xhr.send(formData);
     });
-    setUploaded(true);
-    // end of temporary code
-
-    // Using fetch api
-    // fetch("/iuuji", {
-    //   method: "POST",
-    //   body: formData,
-    //   // Progress tracking with Fetch API
-    //   onUploadProgress: (e) => {
-    //     if (e.lengthComputable) {
-    //       file.progress = Math.round((e.loaded / e.total) * 100);
-    //       setFiles([...newFiles]);
-    //     }
-    //   },
-    // })
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       file.progress = 100;
-    //       setUploadedFiles((prevUploadedFiles) => [...prevUploadedFiles, file]);
-    //       uploadedFileCount += 1;
-    //       if (uploadedFileCount === newFiles.length) {
-    //         setFiles([]);
-    //         setSelected(false);
-    //       }
-    //     } else {
-    //       // handle error
-    //     }
-    //   })
-    //   .catch(() => {
-    //     // handle error
-    //   });
+    // setUploaded(true);
   };
+  // end of temporary code
+
+  // Using fetch api
+  // fetch("/iuuji", {
+  //   method: "POST",
+  //   body: formData,
+  //   onUploadProgress: (e) => {
+  //     if (e.lengthComputable) {
+  //       file.progress = Math.round((e.loaded / e.total) * 100);
+  //       setFiles([...newFiles]);
+  //     }
+  //   },
+  // })
+  //   .then((response) => {
+  //     if (response.ok) {
+  //       file.progress = 100;
+  //       setUploadedFiles((prevUploadedFiles) => [...prevUploadedFiles, file]);
+  //       uploadedFileCount += 1;
+  //       if (uploadedFileCount === newFiles.length) {
+  //         setFiles([]);
+  //         setSelected(false);
+  //       }
+  //     } else {
+  //       // handle error
+  //     }
+  //   })
+  //   .catch(() => {
+  //     // handle error
+  //   });
   const handleCourseChange = (e) => {
     const courseId = e.target.value;
     setSelctedCourse(courseId);
-    setbuttonState(false);
+    // setbuttonState(false);
     // fetch(`/api/topics?courseId=${courseId}`)
     //   .then((response) => response.json())
     //   .then((data) => setTopics(data));
@@ -150,146 +159,180 @@ const UploadingPage = () => {
 
   return (
     <div className={styles["main-upload-page"]}>
+      <h1>Upload</h1>
+
       <div
         className={styles["uploading-page"]}
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
       >
-        <h1>Upload</h1>
-
-        <div className={styles["dropdown-container"]}>
-          <label htmlFor="course">Select Course</label>
-          <select
-            id="course"
-            value={selectedCourse}
-            onChange={handleCourseChange}
-            disabled={files.length}
-          >
-            <option value=" ">--SELECT COURSE--</option>
-            {courseOptions.map((course) => (
-              <option key={course.id} value={course.id}>
-                {course.name}
-              </option>
-            ))}
-            ;
-          </select>
-        </div>
-
-        <div className={styles["dropdown-container"]}>
-          <label htmlFor="topic">Select Topic</label>
-          <select
-            id="topic"
-            value={selectedTopic}
-            onChange={handleTopicChange}
-            disabled={!selectedCourse || selected}
-          >
-            <option value=" ">--SELECT TOPIC--</option>
-            {topicOptions.map(
-              (topic) =>
-                Number(topic.courseId) === Number(selectedCourse) && (
-                  <option key={topic.id} value={topic.id}>
-                    {topic.name}
-                  </option>
-                )
-            )}
-          </select>
-        </div>
-
-        <div
-          className={`${
-            files.length > 0 || uploaded ? styles["file-uploaded"] : styles["file-upload"]
-          }`}
-        >
-          <label htmlFor="file-upload-input">
-            <div className={styles["upload-box"]}>
-              <div className={styles["upload-icon"]}>
-                <Icon icon="material-symbols:cloud-upload" />
-              </div>
-              <div className={styles["upload-text"]}>
-                Drag & drop files or click to browse
-                <p>Supported formats are: JPEG, PDF, Word, PPT</p>
-              </div>
-            </div>
-          </label>
-          <input
-            id="file-upload-input"
-            className={styles["file-upload-input"]}
-            type="file"
-            multiple
-            onChange={handleBrowse}
-            disabled={!selectedCourse || !selectedTopic}
-          />
-        </div>
-
-        <h1
-          className={` ${
-            selected && files.length > 0 ? styles.uploadStatus : styles.uploadStatusHide
-          }`}
-        >
-          Uploading-{uploadedFileCount}/{files.length} files
-        </h1>
-
-        <div className={styles["uploaded-files"]}>
-          {files.map((file) => (
-            <div>
-              <div className={styles["uploaded-file"]}>
-                <div className={styles["file-name"]}>{file.name}</div>
-                <Icon
-                  className={styles["button-delete"]}
-                  {...{ style: { color: "var(--gdsc-grayish-2-100)" } }}
-                  icon="entypo:circle-with-cross"
-                  onClick={() => handleDelete(file)}
-                />
-              </div>
-              <div
-                className={styles["file-progress-bar"]}
-                {...{ style: { width: `${file.progress}%` } }}
-              ></div>
-
-              {/* <div className={styles["file-size"]}>{Math.round(file.size / 1024)} KB</div> */}
-            </div>
-          ))}
-        </div>
-
-        <h1
-          className={` ${
-            uploadedFiles.length > 0 && uploaded
-              ? styles.uploadStatus
-              : styles.uploadStatusHide
-          }`}
-        >
-          Uploaded
-        </h1>
-        <div className={styles["uploaded-files"]}>
-          {uploadedFiles.map((file) => (
-            <div
-              className={styles["uploaded-file"]}
-              {...{ style: { marginBottom: "0.8em" } }}
+        <div className={styles["dropdown-containers"]}>
+          <div className={styles["dropdown-container"]}>
+            <label htmlFor="course">Select Department</label>
+            <select
+              id="course"
+              value={selectedDept}
+              onChange={(e) => {
+                setSelctedDept(e.target.value);
+              }}
+              disabled={files.length}
+              className={styles["dropdown-content"]}
             >
-              <div className={styles["file-name"]}>{file.name}</div>
-              <Icon
-                className={styles["button-delete"]}
-                icon="material-symbols:delete"
-                onClick={() => handleDeleteUploaded(file.name)}
-              />
-            </div>
-          ))}
+              <option value=" ">--SELECT Department--</option>
+              {departments.map((dept) => (
+                <option key={dept.id} value={dept.id}>
+                  {dept.deps}
+                </option>
+              ))}
+              ;
+            </select>
+          </div>
+
+          <div className={styles["dropdown-container"]}>
+            <label htmlFor="course">Select Semester</label>
+            <select
+              id="course"
+              value={selectedSem}
+              onChange={(e) => {
+                setSelctedSem(e.target.value);
+              }}
+              disabled={files.length}
+              className={styles["dropdown-content"]}
+            >
+              <option value=" ">--SELECT SEMESTER--</option>
+              {semesters.map((sem) => (
+                <option key={sem.id} value={sem.id}>
+                  {sem.sems}
+                </option>
+              ))}
+              ;
+            </select>
+          </div>
+
+          <div className={styles["dropdown-container"]}>
+            <label htmlFor="course">Select Year</label>
+            <select
+              id="course"
+              value={selectedCourse}
+              onChange={handleCourseChange}
+              disabled={files.length}
+              className={styles["dropdown-content"]}
+            >
+              <option value=" ">--SELECT YEAR--</option>
+              {yearofPassing.map((year) => (
+                <option key={year.id} value={year.id}>
+                  {year.year}
+                </option>
+              ))}
+              ;
+            </select>
+          </div>
+
+          <div className={styles["dropdown-container"]}>
+            <label htmlFor="course">Select Course</label>
+            <select
+              id="course"
+              value={selectedCourse}
+              onChange={handleCourseChange}
+              disabled={files.length}
+              className={styles["dropdown-content"]}
+            >
+              <option value=" ">--SELECT COURSE--</option>
+              {courseOptions.map((course) => (
+                <option key={course.id} value={course.id}>
+                  {course.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles["dropdown-container"]}>
+            <label htmlFor="topic">Select Topic</label>
+            <select
+              id="topic"
+              value={selectedTopic}
+              onChange={handleTopicChange}
+              disabled={!selectedCourse || selected}
+              className={styles["dropdown-content"]}
+            >
+              <option value=" ">--SELECT TOPIC--</option>
+              {topicOptions.map(
+                (topic) =>
+                  Number(topic.courseId) === Number(selectedCourse) && (
+                    <option key={topic.id} value={topic.id}>
+                      {topic.name}
+                    </option>
+                  )
+              )}
+            </select>
+          </div>
         </div>
-        <div className={styles["upload-button-container"]}>
-          <button
-            className={`{ ${
-              !buttonstate || uploaded
-                ? styles["disabled-upload-button"]
-                : styles["upload-button"]
-            }`}
-            onClick={handleUpload}
-          >
-            UPLOAD
-          </button>
+
+        <div className={styles["right-upload"]}>
+          <div className={styles["advice-box"]}>
+            <h3>Advice/Note</h3>
+            <textarea
+              type="text"
+              placeholder="How do you want users to approach the resource you provided"
+              value={advice}
+              rows={8}
+              cols={7}
+              onChange={(e) => setAdvice(e.target.value)}
+              className={styles["text-area"]}
+            />
+          </div>
+
+          <div className={styles["upload-box"]}>
+            <div className={styles["upload-icon"]}>
+              <Icon icon="material-symbols:cloud-upload" />
+            </div>
+            <div className={styles["upload-text"]}>
+              Drag & drop files or &nbsp;
+              <input
+                id="file-upload-input"
+                className={styles["file-upload-input"]}
+                type="file"
+                multiple
+                onChange={handleBrowse}
+                disabled={!selectedCourse || !selectedTopic}
+              />
+              <label htmlFor="file-upload-input" className={styles["browse-button"]}>
+                Browse
+              </label>
+              <p>Supported formats are: JPEG, PDF, Word, PPT</p>
+            </div>
+
+            <div className={styles["uploaded-files"]}>
+              {files.map((file) => (
+                <div>
+                  <div className={styles["uploaded-file"]}>
+                    <div className={styles["file-name"]}>{file.name}</div>
+                    <Icon
+                      className={styles["button-delete"]}
+                      {...{ style: { color: "var(--gdsc-grayish-2-100)" } }}
+                      icon="entypo:circle-with-cross"
+                      onClick={() => handleDelete(file)}
+                    />
+                  </div>
+                  <div
+                    className={styles["file-progress-bar"]}
+                    {...{
+                      style: { width: `${file.progress}%` },
+                    }}
+                  ></div>
+
+                  {/* <div className={styles["file-size"]}>{Math.round(file.size / 1024)} KB</div> */}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
+
+      <button className={styles["upload-button"]} onClick={handleUpload}>
+        UPLOAD FILES
+      </button>
     </div>
   );
 };
-
 export default UploadingPage;

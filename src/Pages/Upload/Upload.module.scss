@@ -3,64 +3,96 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
+  h1 {
+    font-weight: 500;
+    color: var(--gdsc-grayish-2-100);
+  }
 
   .uploading-page {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1em;
-    font-family: Arial, sans-serif;
-    width: 28rem;
-    margin: auto;
-    height: 30rem;
-    overflow: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 2rem;
 
-    h1 {
-      font-weight: 500;
-      color: var(--gdsc-grayish-2-100);
-    }
-
-    .file-upload {
-      margin-top: 1.5em;
+    .dropdown-containers {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 1.2rem;
+      font-size: 1em;
+      font-family: var(--gdsc-font-1);
+      font-weight: 500;
+      color: var(--gdsc-grayish-2-100);
 
-      .file-upload-input {
-        display: none;
+      .dropdown-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.2rem;
+        width: 30rem;
+
+        .dropdown-content {
+          padding: 0.6em 1em;
+          border-radius: 1em;
+          border: 1px solid var(--gdsc-line-1-100);
+          background: transparent;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .right-upload {
+      .advice-box {
+        h3 {
+          font-family: var(--gdsc-font-1);
+          font-size: 1em;
+          font-weight: 500;
+          color: var(--gdsc-grayish-2-100);
+        }
+
+        :placeholder-shown {
+          font-weight: 400;
+          font-family: var(--gdsc-font-1);
+          color: var(--gdsc-grayish-2-100);
+        }
+
+        .text-area {
+          resize: none;
+          width: 100%;
+          height: 100%;
+        }
       }
 
       .upload-box {
-        padding: 1em;
+        margin-top: 1.5em;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        background: rgba(161, 194, 250, 0.1);
+        background: rgba(161, 194, 250, 0.3);
         border: 2px dashed #ccc;
         border-radius: 4px;
-        width: 25rem;
+        width: 29.8rem;
+        height: 12rem;
+        overflow: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        .file-upload-input {
+          display: none;
+        }
 
         .upload-icon {
-          font-size: 6em;
+          font-size: 4em;
         }
 
         .upload-text {
-          font-family: "Poppins";
+          font-family: var(--gdsc-font-1);
           font-style: normal;
           font-weight: 700;
           font-size: 1.2rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
           text-align: center;
           color: var(--gdsc-dark-1-100);
-          flex-grow: 0;
-          gap: 1em;
 
           p {
             font-family: "Poppins";
@@ -70,130 +102,73 @@
             color: var(--gdsc-grayish-2-100);
           }
         }
+
+        .browse-button {
+          text-decoration: underline;
+          color: var(--gdsc-blue-3-100);
+        }
+
+        .uploaded-files {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-top: 1em;
+
+          .uploaded-file {
+            display: flex;
+            flex-basis: calc(50% - 0.25rem);
+            justify-content: space-between;
+            align-items: center;
+            width: 14rem;
+            padding: 0.4em 1em;
+            border-radius: 1em;
+            background: var(--gdsc-bg-2-100);
+            border: 1px solid var(--gdsc-line-1-100);
+
+            .file-name {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              font-size: 0.8em;
+            }
+          }
+        }
+
+        .file-progress-bar {
+          height: 0.15em;
+          background-color: #1e90ff;
+          border-radius: 5px;
+          max-width: 12.8rem;
+          margin-left: 0.7em;
+        }
       }
 
       :hover {
         border-color: var(--gdsc-blue-3-100);
       }
     }
+  }
 
-    .file-uploaded {
-      display: none;
-    }
+  .upload-button {
+    background-color: var(--gdsc-blue-2-100);
+    border: none;
+    width: 25rem;
+    transition: background-color 0.3s;
+    border-radius: 4rem;
+    font-family: var(--gdsc-font-1);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.2em;
+    cursor: pointer;
 
-    .uploadStatusHide {
-      display: none;
-    }
-
-    .uploadStatus {
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 700;
-      font-size: 1.4em;
-      color: var(--gdsc-grayish-2-100);
-      margin: 1em 0 0.5em 0;
-      width: 25rem;
-    }
-
-    .file-progress-bar {
-      height: 0.2em;
-      background-color: #1e90ff;
-      border-radius: 5px;
-    }
-
-    .uploaded-files {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .uploaded-file {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 25rem;
-        padding: 0.7em;
-        border-radius: 1em;
-        border: 1px solid var(--gdsc-dark-1-100);
-
-        .file-name {
-          font-size: 1em;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-
-        .button-delete {
-          cursor: pointer;
-          color: var(--gdsc-red-2-100);
-        }
-      }
-    }
-
-    .upload-button,
-    .disabled-upload-button {
-      color: var(--gdsc-bg-2-100);
-      border: none;
-      width: 25rem;
-      transition: background-color 0.3s;
-      border-radius: 4px;
-      font-family: var(--gdsc-font-1);
-      font-style: normal;
-      font-weight: 700;
-      font-size: 1.2em;
-      margin-bottom: 1em;
-    }
-
-    .upload-button {
-      background-color: var(--gdsc-blue-1-100);
-      cursor: pointer;
-    }
-
-    .disabled-upload-button {
-      background-color: var(--gdsc-grayish-2-100);
-      cursor: no-drop;
-    }
-
-    .upload-button:hover {
+    &:hover {
       background-color: var(--gdsc-blue-3-100);
     }
   }
 
   ::-webkit-scrollbar {
     display: none;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .main-upload-page {
-    .uploading-page {
-      width: 22rem;
-      .file-upload {
-        .upload-box {
-          padding-bottom: 0.4em;
-          width: 20rem;
-
-          .upload-text {
-            font-size: 0.9em;
-          }
-        }
-      }
-
-      .uploadStatus {
-        font-size: 1em;
-        margin: 1em 0 0.5em 0;
-        width: 20rem;
-      }
-
-      .uploaded-files {
-        .uploaded-file {
-          width: 20rem;
-        }
-      }
-
-      .upload-button,
-      .disabled-upload-button {
-        width: 20rem;
-      }
-    }
   }
 }
