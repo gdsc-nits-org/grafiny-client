@@ -145,136 +145,143 @@ const UploadingPage = () => {
   };
 
   return (
-    <div
-      className={styles["uploading-page"]}
-      onDrop={handleDrop}
-      onDragOver={(e) => e.preventDefault()}
-    >
-      <h1>Upload</h1>
-
-      <div className={styles["dropdown-container"]}>
-        <label htmlFor="course">Select Course</label>
-        <select id="course" value={selectedCourse} onChange={handleCourseChange}>
-          <option value=" ">--SELECT COURSE--</option>
-          {courseOptions.map((course) => (
-            <option key={course.id} value={course.id}>
-              {course.name}
-            </option>
-          ))}
-          ;
-        </select>
-      </div>
-
-      <div className={styles["dropdown-container"]}>
-        <label htmlFor="topic">Select Topic</label>
-        <select
-          id="topic"
-          value={selectedTopic}
-          onChange={handleTopicChange}
-          disabled={!selectedCourse}
-        >
-          <option value=" ">--SELECT TOPIC--</option>
-          {topicOptions.map(
-            (topic) =>
-              Number(topic.courseId) === Number(selectedCourse) && (
-                <option key={topic.id} value={topic.id}>
-                  {topic.name}
-                </option>
-              )
-          )}
-        </select>
-      </div>
-
+    <div className={styles["main-upload-page"]}>
       <div
-        className={`${
-          files.length > 0 || uploaded ? styles["file-uploaded"] : styles["file-upload"]
-        }`}
+        className={styles["uploading-page"]}
+        onDrop={handleDrop}
+        onDragOver={(e) => e.preventDefault()}
       >
-        <label htmlFor="file-upload-input">
-          <div className={styles["upload-box"]}>
-            <div className={styles["upload-icon"]}>
-              <Icon icon="material-symbols:cloud-upload" />
-            </div>
-            <div className={styles["upload-text"]}>
-              Drag & drop files or click to browse
-              <p>Supported formats are: JPEG,PDF,Word,PPT</p>
-            </div>
-          </div>
-        </label>
-        <input
-          id="file-upload-input"
-          className={styles["file-upload-input"]}
-          type="file"
-          multiple
-          onChange={handleBrowse}
-        />
-      </div>
+        <h1>Upload</h1>
 
-      <h1
-        className={` ${
-          selected && files.length > 0 ? styles.uploadStatus : styles.uploadStatusHide
-        }`}
-      >
-        Uploading-{uploadedFileCount}/{files.length} files
-      </h1>
+        <div className={styles["dropdown-container"]}>
+          <label htmlFor="course">Select Course</label>
+          <select
+            id="course"
+            value={selectedCourse}
+            onChange={handleCourseChange}
+            disabled={files.length}
+          >
+            <option value=" ">--SELECT COURSE--</option>
+            {courseOptions.map((course) => (
+              <option key={course.id} value={course.id}>
+                {course.name}
+              </option>
+            ))}
+            ;
+          </select>
+        </div>
 
-      <div className={styles["uploaded-files"]}>
-        {files.map((file) => (
-          <div>
-            <div className={styles["uploaded-file"]}>
+        <div className={styles["dropdown-container"]}>
+          <label htmlFor="topic">Select Topic</label>
+          <select
+            id="topic"
+            value={selectedTopic}
+            onChange={handleTopicChange}
+            disabled={!selectedCourse || selected}
+          >
+            <option value=" ">--SELECT TOPIC--</option>
+            {topicOptions.map(
+              (topic) =>
+                Number(topic.courseId) === Number(selectedCourse) && (
+                  <option key={topic.id} value={topic.id}>
+                    {topic.name}
+                  </option>
+                )
+            )}
+          </select>
+        </div>
+
+        <div
+          className={`${
+            files.length > 0 || uploaded ? styles["file-uploaded"] : styles["file-upload"]
+          }`}
+        >
+          <label htmlFor="file-upload-input">
+            <div className={styles["upload-box"]}>
+              <div className={styles["upload-icon"]}>
+                <Icon icon="material-symbols:cloud-upload" />
+              </div>
+              <div className={styles["upload-text"]}>
+                Drag & drop files or click to browse
+                <p>Supported formats are: JPEG, PDF, Word, PPT</p>
+              </div>
+            </div>
+          </label>
+          <input
+            id="file-upload-input"
+            className={styles["file-upload-input"]}
+            type="file"
+            multiple
+            onChange={handleBrowse}
+          />
+        </div>
+
+        <h1
+          className={` ${
+            selected && files.length > 0 ? styles.uploadStatus : styles.uploadStatusHide
+          }`}
+        >
+          Uploading-{uploadedFileCount}/{files.length} files
+        </h1>
+
+        <div className={styles["uploaded-files"]}>
+          {files.map((file) => (
+            <div>
+              <div className={styles["uploaded-file"]}>
+                <div className={styles["file-name"]}>{file.name}</div>
+                <Icon
+                  className={styles["button-delete"]}
+                  {...{ style: { color: "var(--gdsc-grayish-2-100)" } }}
+                  icon="entypo:circle-with-cross"
+                  onClick={() => handleDelete(file)}
+                />
+              </div>
+              <div
+                className={styles["file-progress-bar"]}
+                {...{ style: { width: `${file.progress}%` } }}
+              ></div>
+
+              {/* <div className={styles["file-size"]}>{Math.round(file.size / 1024)} KB</div> */}
+            </div>
+          ))}
+        </div>
+
+        <h1
+          className={` ${
+            uploadedFiles.length > 0 && uploaded
+              ? styles.uploadStatus
+              : styles.uploadStatusHide
+          }`}
+        >
+          Uploaded
+        </h1>
+        <div className={styles["uploaded-files"]}>
+          {uploadedFiles.map((file) => (
+            <div
+              className={styles["uploaded-file"]}
+              {...{ style: { marginBottom: "0.8em" } }}
+            >
               <div className={styles["file-name"]}>{file.name}</div>
               <Icon
                 className={styles["button-delete"]}
-                {...{ style: { color: "var(--gdsc-grayish-2-100)" } }}
-                icon="entypo:circle-with-cross"
-                onClick={() => handleDelete(file)}
+                icon="material-symbols:delete"
+                onClick={() => handleDeleteUploaded(file.name)}
               />
             </div>
-            <div
-              className={styles["file-progress-bar"]}
-              {...{ style: { width: `${file.progress}%` } }}
-            ></div>
-
-            {/* <div className={styles["file-size"]}>{Math.round(file.size / 1024)} KB</div> */}
-          </div>
-        ))}
-      </div>
-
-      <h1
-        className={` ${
-          uploadedFiles.length > 0 && uploaded
-            ? styles.uploadStatus
-            : styles.uploadStatusHide
-        }`}
-      >
-        Uploaded
-      </h1>
-      <div className={styles["uploaded-files"]}>
-        {uploadedFiles.map((file) => (
-          <div
-            className={styles["uploaded-file"]}
-            {...{ style: { marginBottom: "0.8em" } }}
+          ))}
+        </div>
+        <div className={styles["upload-button-container"]}>
+          <button
+            className={`{ ${
+              !buttonstate || uploaded
+                ? styles["disabled-upload-button"]
+                : styles["upload-button"]
+            }`}
+            onClick={handleUpload}
           >
-            <div className={styles["file-name"]}>{file.name}</div>
-            <Icon
-              className={styles["button-delete"]}
-              icon="material-symbols:delete"
-              onClick={() => handleDeleteUploaded(file.name)}
-            />
-          </div>
-        ))}
-      </div>
-      <div className={styles["upload-button-container"]}>
-        <button
-          className={`{ ${
-            !buttonstate || uploaded
-              ? styles["disabled-upload-button"]
-              : styles["upload-button"]
-          }`}
-          onClick={handleUpload}
-        >
-          UPLOAD FILES
-        </button>
+            UPLOAD
+          </button>
+        </div>
       </div>
     </div>
   );
