@@ -11,6 +11,7 @@ const UploadingPage = () => {
   const [buttonstate, setbuttonState] = useState(false);
   const [selectedCourse, setSelctedCourse] = useState("");
   // const [topics, setTopics] = useState([]);
+  const [dragBox, setdragBox] = useState(false);
   const [uploaded, setUploaded] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState("");
   const courseOptions = [
@@ -28,21 +29,24 @@ const UploadingPage = () => {
   ];
   const handleDrop = (e) => {
     e.preventDefault();
+    if (!dragBox) return;
     const newFiles = [...files];
     const droppedFiles = Array.from(e.dataTransfer.files);
     droppedFiles.forEach((file) => {
-      const isExisting = newFiles.some((existingFile) => existingFile.name === file.name);
-      if (!isExisting) file.progress = 0;
+      file.progress = 0;
       newFiles.push(file);
     });
+
+    setdragBox(false);
     setFiles(newFiles);
+    setSelected(true);
+    setbuttonState(true);
   };
   const handleBrowse = (e) => {
     const newFiles = [...files];
     const selectedFiles = Array.from(e.target.files);
     selectedFiles.forEach((file) => {
-      const isExisting = newFiles.some((existingFile) => existingFile.name === file.name);
-      if (!isExisting) file.progress = 0;
+      file.progress = 0;
       newFiles.push(file);
     });
     setFiles(newFiles);
@@ -59,7 +63,7 @@ const UploadingPage = () => {
       prevSelectedFiles.filter((file) => file.name !== fileName)
     );
     // } catch (error) {
-    //   // console.error(error);
+    //   console.error(error);
     // }
   };
   const navigate = useNavigate();
@@ -70,7 +74,6 @@ const UploadingPage = () => {
   let uploadedFileCount = 0;
   const handleUpload = () => {
     const newFiles = [...files];
-
     newFiles.forEach((file) => {
       // const formData = new FormData();
       // formData.append("file", file);
@@ -142,6 +145,7 @@ const UploadingPage = () => {
   const handleTopicChange = (e) => {
     const topicId = e.target.value;
     setSelectedTopic(topicId);
+    setdragBox(true);
   };
 
   return (
@@ -213,6 +217,7 @@ const UploadingPage = () => {
             type="file"
             multiple
             onChange={handleBrowse}
+            disabled={!selectedCourse || !selectedTopic}
           />
         </div>
 
