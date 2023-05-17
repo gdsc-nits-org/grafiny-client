@@ -54,25 +54,34 @@ const UploadingPage = () => {
   const handleAdviceChange = (e) => {
     setAdvice(e.target.value);
   };
+
   const handleDrop = (e) => {
     e.preventDefault();
     if (!dragBox) return;
     const newFiles = [...files];
     const droppedFiles = Array.from(e.dataTransfer.files);
+
     droppedFiles.forEach((file) => {
-      file.progress = 0;
-      newFiles.push(file);
+      if (!newFiles.some((f) => f.name === file.name && f.size === file.size)) {
+        file.progress = 0;
+        newFiles.push(file);
+      }
     });
+
     setFiles(newFiles);
   };
 
   const handleBrowse = (e) => {
     const newFiles = [...files];
     const selectedFiles = Array.from(e.target.files);
+
     selectedFiles.forEach((file) => {
-      file.progress = 0;
-      newFiles.push(file);
+      if (!newFiles.some((f) => f.name === file.name && f.size === file.size)) {
+        file.progress = 0;
+        newFiles.push(file);
+      }
     });
+
     setFiles(newFiles);
   };
 
@@ -152,6 +161,7 @@ const UploadingPage = () => {
             }}
             options={Topics}
             disabled={!selectedCourse}
+            selectedCourse={selectedCourse}
           />
         </div>
         <div className={styles["right-upload"]}>
@@ -173,7 +183,6 @@ const UploadingPage = () => {
           />
         </div>
       </div>
-
       <button className={styles["upload-button"]} onClick={handleUpload}>
         UPLOAD FILES
       </button>

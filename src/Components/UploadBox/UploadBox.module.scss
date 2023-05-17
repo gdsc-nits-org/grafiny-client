@@ -8,10 +8,15 @@
   border-radius: 4px;
   width: 29.8rem;
   height: 12rem;
-  overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
+  overflow-y: auto !important;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gdsc-blue-2-100) transparent;
+  &::-webkit-scrollbar {
+    width: 0.1em;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--gdsc-blue-2-100);
+  }
   .file-upload-input {
     display: none;
   }
@@ -84,6 +89,14 @@
   }
 }
 
+// ::-webkit-scrollbar {
+//   width: 0.2em;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//   background-color: var(--gdsc-blue-1-100);
+// }
+
 .no-dropdowns-selected {
   cursor: not-allowed;
 
@@ -107,6 +120,7 @@
     .upload-text {
       font-size: 1rem;
     }
+
     .uploaded-files {
       .uploaded-file {
         width: 9rem;
@@ -118,6 +132,7 @@
     }
   }
 }
+
 @media screen and (max-width: 700px) {
   .upload-box {
     .uploaded-files {
@@ -125,6 +140,7 @@
         width: 14rem;
       }
     }
+
     .file-progress-bar {
       max-width: 12.4rem;
     }

@@ -4,6 +4,9 @@
   flex-direction: column;
   gap: 0.2rem;
   width: 30rem;
+  .compulsory-field {
+    color: var(--gdsc-red-1-100);
+  }
 
   .dropdown-content {
     padding: 0.6em 1em;
