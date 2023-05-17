@@ -16,5 +16,16 @@
     resize: none;
     width: 100%;
     height: 100%;
+    padding: 1em;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gdsc-grayish-3-100) transparent;
+
+    &::-webkit-scrollbar {
+      width: 0.2em;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--gdsc-grayish-3-100);
+    }
   }
 }

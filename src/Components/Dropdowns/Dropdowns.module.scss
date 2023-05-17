@@ -8,6 +8,23 @@
     color: var(--gdsc-red-1-100);
   }
 
+  select {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    outline: none;
+    padding: 0.5em;
+    border-radius: 2em;
+
+    &:focus {
+      border-color: var(--gdsc-grayish-2-100);
+    }
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
   .dropdown-content {
     padding: 0.6em 1em;
     border-radius: 1em;
