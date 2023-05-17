@@ -1,0 +1,132 @@
+.upload-box {
+  margin-top: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(161, 194, 250, 0.3);
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  width: 29.8rem;
+  height: 12rem;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  .file-upload-input {
+    display: none;
+  }
+
+  .upload-icon {
+    font-size: 3rem;
+  }
+
+  .upload-text {
+    font-family: var(--gdsc-font-1);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--gdsc-dark-1-100);
+
+    p {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 0.8em;
+      color: var(--gdsc-grayish-2-100);
+    }
+
+    .browse-button {
+      text-decoration: underline;
+      color: var(--gdsc-blue-3-100);
+      user-select: none;
+    }
+  }
+
+  .uploaded-files {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1em;
+
+    .uploaded-file {
+      display: flex;
+      flex-basis: calc(50% - 0.25rem);
+      justify-content: space-between;
+      align-items: center;
+      width: 14rem;
+      padding: 0.4em 1em;
+      border-radius: 2rem;
+      background: var(--gdsc-bg-2-100);
+      border: 1px solid var(--gdsc-line-1-100);
+
+      .file-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 0.8em;
+      }
+
+      .button-delete {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .file-progress-bar {
+    height: 0.15em;
+    background-color: var(--gdsc-blue-1-100);
+    border-radius: 5px;
+    max-width: 12.4rem;
+    margin-left: 0.82em;
+  }
+}
+
+.no-dropdowns-selected {
+  cursor: not-allowed;
+
+  .upload-text {
+    .browse-button {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.dropdowns-selected {
+  &:hover {
+    border-color: var(--gdsc-blue-3-100);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .upload-box {
+    width: 18rem;
+
+    .upload-text {
+      font-size: 1rem;
+    }
+    .uploaded-files {
+      .uploaded-file {
+        width: 9rem;
+      }
+    }
+
+    .file-progress-bar {
+      max-width: 8rem;
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .upload-box {
+    .uploaded-files {
+      .uploaded-file {
+        width: 14rem;
+      }
+    }
+    .file-progress-bar {
+      max-width: 12.4rem;
+    }
+  }
+}

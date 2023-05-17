@@ -1,0 +1,20 @@
+.dropdown-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 30rem;
+
+  .dropdown-content {
+    padding: 0.6em 1em;
+    border-radius: 1em;
+    border: 1px solid var(--gdsc-line-1-100);
+    background: transparent;
+    cursor: pointer;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .dropdown-container {
+    width: 18rem;
+  }
+}

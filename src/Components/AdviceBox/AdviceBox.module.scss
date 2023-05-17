@@ -1,0 +1,20 @@
+.advice-box {
+  h3 {
+    font-family: var(--gdsc-font-1);
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--gdsc-grayish-2-100);
+  }
+
+  ::placeholder {
+    font-weight: 400;
+    font-family: var(--gdsc-font-1);
+    color: var(--gdsc-grayish-2-100);
+  }
+
+  .text-area {
+    resize: none;
+    width: 100%;
+    height: 100%;
+  }
+}
