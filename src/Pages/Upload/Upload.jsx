@@ -91,11 +91,7 @@ const UploadingPage = () => {
       formData.append("file", file);
       xhr.upload.addEventListener("progress", (e) => {
         if (e.lengthComputable) {
-          const updatedFile = {
-            ...file,
-            progress: Math.round((e.loaded / e.total) * 100),
-          };
-          newFiles[index] = updatedFile;
+          file.progress = Math.round((e.loaded / e.total) * 100);
           setFiles([...newFiles]);
         }
       });
