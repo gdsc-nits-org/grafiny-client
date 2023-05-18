@@ -173,12 +173,11 @@
       flex-direction: column;
       gap: 0;
       position: relative;
-      top: -15vh;
-
       .footer-left {
         position: relative;
         left: 0;
         transform: translateY(110%);
+        top: -15vh;
 
         h3 {
           font-size: 1.2em;
@@ -191,7 +190,7 @@
 
       .footer-right {
         position: relative;
-        transform: translateY(140%);
+        transform: translateY(60%);
 
         h3 {
           font-size: 1.2em;
@@ -213,6 +212,9 @@
 
       p {
         font-size: 1em;
+      }
+      .social-media-icons {
+        cursor: pointer;
       }
     }
   }

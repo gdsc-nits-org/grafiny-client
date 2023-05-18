@@ -1,8 +1,8 @@
 import { Materials } from "../../Components";
 
-import style from "./MaterialSection.module.scss";
+import style from "./Material.module.scss";
 
-const MatetialSection = () => {
+const Matetial = () => {
   return (
     <section className={style.material}>
       <Materials />
@@ -10,4 +10,4 @@ const MatetialSection = () => {
   );
 };
 
-export default MatetialSection;
+export default Matetial;

@@ -1,46 +1,37 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import style from "./Materials.module.scss";
-import folderpic from "../../Assets/Images/folder.png";
 
 const record = [
   {
     caption: "Material 123",
-    image: folderpic,
   },
 
   {
     caption: "Material 123",
-    image: folderpic,
   },
 
   {
     caption: "Material 123",
-    image: folderpic,
   },
   {
     caption: "Material 123",
-    image: folderpic,
   },
 
   {
     caption: "Material 123",
-    image: folderpic,
   },
 
   {
     caption: "Material 123",
-    image: folderpic,
   },
 
   {
     caption: "Material 123",
-    image: folderpic,
   },
 
   {
     caption: "mMaterial 123",
-    image: folderpic,
   },
 ];
 
@@ -57,10 +48,10 @@ const Materials = () => {
         {record.map((data) => {
           return (
             <div className={style.foldersbox}>
-              <img src={data?.image} alt="" className="" />
+              <img src="./images/folder.png" alt="" className="" />
               <div>
                 {" "}
-                <span>{data.caption}</span>
+                <p className={style.materialtitle}> {data.caption}</p>
               </div>
             </div>
           );
