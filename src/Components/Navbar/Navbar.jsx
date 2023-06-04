@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import styles from "./Navbar.module.scss";
+
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const handleSwitch = () => {
     setToggle((prevToggleValue) => !prevToggleValue);
   };
+
   const changeSwitch = () => {
     if (window.scrollY >= 90 && window.innerWidth > 1000) {
       setToggle(true);
@@ -14,9 +16,11 @@ const Navbar = () => {
       setToggle(false);
     }
   };
+
   window.addEventListener("scroll", changeSwitch);
+
   return (
-    <nav className={toggle ? `${styles.navbar} ${styles.large}` : styles.navbar}>
+    <nav className={`${styles.navbar} ${toggle ? styles.large : ""}`}>
       <div className={styles.leftSection}>
         <button className={styles.switchIcon} onClick={handleSwitch}>
           {toggle ? (
@@ -32,7 +36,7 @@ const Navbar = () => {
               width="35"
               height="35"
               color="rgb(116, 114, 114)"
-            ></Icon>
+            />
           )}
         </button>
         <Link className={styles.logopart} to="/">
@@ -40,8 +44,16 @@ const Navbar = () => {
           <img className={styles.logo2} src="/images/grafinyicon.png" alt="logo" />
         </Link>
       </div>
+      <Link className={styles.navProfile2} to="/">
+        <Icon
+          icon="healthicons:ui-user-profile-outline"
+          width="37"
+          height="37"
+          color="rgb(116, 114, 114)"
+        />
+      </Link>
       <div className={styles.right}>
-        <div className={styles.links}>
+        <div className={`${styles.links} ${toggle ? "showDropdown" : ""}`}>
           <NavLink
             className={({ isActive }) =>
               isActive ? `${styles.navlinks} ${styles.active}` : styles.navlinks
@@ -87,4 +99,5 @@ const Navbar = () => {
     </nav>
   );
 };
+
 export default Navbar;
