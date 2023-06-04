@@ -16,6 +16,7 @@
   transition: all 0.3s ease-out;
   z-index: 1000;
   padding: 0 1rem;
+  position: sticky;
 }
 
 .large {
@@ -46,6 +47,7 @@
     margin-left: 0.5rem;
   }
 }
+
 .right {
   @include flexDisplay(space-around, row);
   width: 30%;
@@ -95,6 +97,7 @@
   margin-left: 15%;
   display: none;
 }
+
 .switchIcon {
   display: none;
   background: none;
@@ -169,7 +172,25 @@
     margin: 0;
     display: block;
     position: absolute;
-    top: -5rem;
+    top: -10rem;
     right: 0.9rem;
+  }
+}
+.navProfile2 {
+  display: none;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: 900px) {
+    display: block;
+    margin-left: 94%;
+
+    img {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+    }
   }
 }
