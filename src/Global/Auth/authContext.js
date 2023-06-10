@@ -7,6 +7,7 @@ const UserContext = createContext({
   degree: "",
   year: "",
   branch: "",
+  filesUploaded: [],
 });
 
 export default UserContext;
