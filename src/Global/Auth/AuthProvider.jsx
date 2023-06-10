@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
       return;
     }
 
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/auth/adminSignup`, {
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/auth/signup`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
