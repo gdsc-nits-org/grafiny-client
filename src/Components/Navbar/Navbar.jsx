@@ -86,14 +86,6 @@ const Navbar = () => {
           >
             Team
           </NavLink>
-          <Link className={styles.navProfile} to="/">
-            <Icon
-              icon="healthicons:ui-user-profile-outline"
-              width="37"
-              height="37"
-              color="rgb(116, 114, 114)"
-            />
-          </Link>
         </div>
       </div>
     </nav>
