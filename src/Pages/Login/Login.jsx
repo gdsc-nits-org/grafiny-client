@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "./Login.module.scss";
+import UserContext from "../../Global/Auth/authContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const context = useContext(UserContext);
+  console.log(context);
+
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
   };
 
   return (
     <div className={styles.wrapper}>
       <h2 className={styles.heading}>LOGIN</h2>
-      <form onSubmit={handleSubmit}>
+      <div className={styles.form}>
         <input
           type="email"
           placeholder="E-mail"
@@ -53,10 +53,16 @@ const Login = () => {
           </div>
         </div>
         <div className={styles.gap}></div>
-        <button type="submit" className={styles.button}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={() => {
+            context.handleLogin(email, password);
+          }}
+        >
           Login
         </button>
-      </form>
+      </div>
       <div className={styles.login}>
         Need an account? <a href="/">Sign Up</a>
       </div>
