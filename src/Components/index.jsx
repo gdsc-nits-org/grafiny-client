@@ -8,6 +8,7 @@ import SearchResultsItem from "./SearchResultsItem/Searchresultsitem";
 import DepartmentCard from "./DepartmentCard/DepartmentCard";
 import UploadedItem from "./UploadedItems/UploadedItems";
 import OurTeam from "./OurTeam/OurTeam";
+import Materials from "./Material/Materials";
 export {
   Button,
   Navbar,
@@ -19,4 +20,5 @@ export {
   DepartmentCard,
   UploadedItem,
   OurTeam,
+  Materials,
 };

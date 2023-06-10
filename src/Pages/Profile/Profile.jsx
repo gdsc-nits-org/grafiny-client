@@ -1,8 +1,13 @@
 import { BiPencil } from "react-icons/bi";
+import { useContext } from "react";
 import style from "./Profile.module.scss";
 import { UploadedItem } from "../../Components";
+import UserContext from "../../Global/Auth/authContext";
 
 const Profile = () => {
+  const context = useContext(UserContext);
+  const username = context.user.name;
+
   return (
     <div className={style.container}>
       <div className={style.upperpart}>
@@ -16,7 +21,7 @@ const Profile = () => {
               />
             </div>
             <div className={style.namebox}>
-              <div className={style.name}>Anubhav Chakraborty</div>
+              <div className={style.name}>{username || "Name"}</div>
               <div className={style.icon}>
                 <BiPencil />
               </div>

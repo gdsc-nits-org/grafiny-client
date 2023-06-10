@@ -1,0 +1,55 @@
+.materialcontainer {
+  font-family: var(--gdsc-font-1);
+  color: var(--gdsc-content-1-100);
+  font-size: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.materialcontainer p {
+  font-size: 3.5rem;
+}
+.iconarrow {
+  margin-left: 4%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.folders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0;
+  height: auto;
+}
+
+.foldersbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5%;
+  margin-bottom: -2%;
+}
+
+.foldersbox img {
+  width: 10rem;
+  height: 8rem;
+}
+.foldersbox :hover {
+  transform: scale(1.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.materialtitle {
+  color: grey;
+}
+@media (max-width: 900px) {
+  .iconarrow {
+    margin-top: -3rem;
+  }
+  .materialcontainer p {
+    font-size: 2.5rem;
+  }
+}

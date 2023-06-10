@@ -40,7 +40,7 @@ const Navbar = () => {
           )}
         </button>
         <Link className={styles.logopart} to="/">
-          <img className={styles.logo1} src="/images/gdsclogo.png" alt="logo" />
+          <img className={styles.logo1} src="/images/gdsc logo.png" alt="logo" />
           <img className={styles.logo2} src="/images/grafinyicon.png" alt="logo" />
         </Link>
       </div>

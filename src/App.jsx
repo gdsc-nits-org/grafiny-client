@@ -20,6 +20,7 @@ import {
   AboutUs,
   OurTeamPage,
   UploadingPage,
+  Material,
 } from "./Pages";
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/team" element={<OurTeamPage />} />
         <Route path="/upload" element={<UploadingPage />} />
+        <Route path="/material" element={<Material />} />
       </Routes>
       <Footer />
     </>
