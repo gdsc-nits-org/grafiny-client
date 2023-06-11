@@ -1,24 +1,36 @@
-.navbar {
+@mixin flexDisplay($position, $direction) {
   display: flex;
-  justify-content: space-between;
+  flex-direction: $direction;
   align-items: center;
+  justify-content: $position;
+}
+
+.navbar {
+  background-color: #fff;
+  @include flexDisplay(space-between, row);
   height: 4rem;
-  box-shadow: 0 0.8rem 1rem 0 var(--gdsc-bg-1-100);
-  position: sticky;
+  box-shadow: 0 0.25rem 0.75rem 0 var(--gdsc-grayish-2-100);
+  position: fixed;
   top: 0;
   width: 100%;
   transition: all 0.3s ease-out;
-  z-index: 3;
-  background-color: #fff;
+  z-index: 1000;
+  padding: 0rem 3rem 0rem 1rem;
+  position: sticky;
 }
+
 .large {
   background-color: #fff;
-  box-shadow: 0px 4px 12px 0px var(--gdsc-shadow-1-100);
+  box-shadow: 0 0.25rem 0.75rem 0 var(--gdsc-grayish-2-100);
+  position: fixed;
 }
 .leftSection {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexDisplay(center, row);
+  transition: all 0.3s ease-in-out;
+  img {
+    width: 4rem;
+    height: auto;
+  }
 }
 .logopart {
   display: flex;
@@ -35,36 +47,31 @@
     margin-left: 0.5rem;
   }
 }
-.menupart {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 30%;
+
+.right {
+  @include flexDisplay(space-around, row);
+  // width: 30%;
   margin-right: 3%;
 }
-.navProfile {
-  visibility: hidden;
-}
 .links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexDisplay(center, row);
 }
 .navlinks {
   color: rgb(116, 114, 114);
   font-weight: 500;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   margin-right: 20%;
   cursor: pointer;
   text-decoration: none;
   position: relative;
   transition: all 0.15s ease-in-out;
+
   &::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 0.25rem;
-    bottom: -0.125rem;
+    bottom: -0.25rem;
     left: 0;
     background-color: var(--gdsc-blue-3-100);
     border-radius: 20%;
@@ -75,84 +82,63 @@
     transition: all 0.3s ease-in-out 0s;
   }
 }
+
 .active {
   color: black;
+
   &::before {
     visibility: visible;
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
   }
 }
-.profile {
-  margin-left: 15%;
-}
 .switchIcon {
   display: none;
-  background-color: #fff;
+  background: none;
   border: none;
+  margin: 0;
+  padding: 0;
+}
+.navProfile2 {
+  display: none;
+  background: none;
 }
 @media (max-width: 900px) {
   .navbar {
     transition: 0.5s all ease-in-out;
     position: relative;
   }
+
   .navbar.large {
-    height: 50vh;
+    height: 60vh;
   }
+
   .navbar.large .links {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flexDisplay(center, column);
     position: absolute;
-    top: 7.5rem;
+    top: 4.5rem;
     left: 0;
     width: 100%;
     opacity: 1;
   }
+
   .navbar.large .links a {
-    margin: 0.9375rem 0;
-    font-size: 1.5rem;
+    margin: 0.95rem 0;
+    font-size: 1.25rem;
   }
-  .leftSection {
-    margin-left: 8rem;
-  }
+
   .switchIcon {
-    display: block;
-    position: absolute;
-    top: 0.8rem;
-    left: 0.5rem;
-    margin-right: 0.2rem;
-  }
-  .logopart {
-    display: inline-block;
-    position: absolute;
-    top: 0.5rem;
-    left: 1.4rem;
-    margin-left: 1.5rem;
-    margin-top: 0.5rem;
-    .logo1 {
-      height: 2rem;
-      width: 4rem;
-      margin-left: 0.25rem;
-    }
-    .logo2 {
-      height: 2rem;
-      width: 4.5rem;
-      margin-left: 0.1rem;
-    }
-  }
-  .navProfile {
-    visibility: visible;
-    position: absolute;
-    top: 0.7rem;
-    right: 1rem;
-  }
-  .links {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  }
+
+  .leftSection {
+    // display: flex;
+    position: absolute;
+    top: 0.9rem;
+  }
+
+  .links {
+    @include flexDisplay(center, column);
     position: absolute;
     top: -18.75rem;
     left: 0;
@@ -160,11 +146,19 @@
     opacity: 0;
     transition: all 0.5s ease-in-out;
   }
+
   .links a {
     margin: 0.9rem 0;
     font-size: 1.5rem;
   }
-  .profile {
+
+  .navProfile2 {
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    top: 0.9rem;
+    right: 1rem;
   }
 }
