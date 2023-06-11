@@ -8,21 +8,25 @@
 //Main style file starts here
 
 .main {
-  height: 100vh;
+  height: 90vh;
+  margin-top: 0;
+  margin-bottom: 5rem;
 }
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  margin-top: 0;
 
   .title {
     width: 60%;
+    margin-top: 0;
 
     h1 {
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       margin: auto;
-      margin-top: 9rem;
+      margin-top: 2rem;
       width: 90%;
 
       /* Upperbound(desktop) */
@@ -30,8 +34,8 @@
       font-family: var(--gdsc-font-1);
       font-style: normal;
       font-weight: 400;
-      font-size: 7rem;
-      line-height: 12rem;
+      font-size: 6rem;
+      line-height: 10rem;
 
       color: #000000;
     }
@@ -46,8 +50,8 @@
       font-family: var(--gdsc-font-1);
       font-style: normal;
       font-weight: 400;
-      font-size: 37px;
-      line-height: 48px;
+      font-size: 2rem;
+      line-height: 1.5rem;
       /* identical to box height */
 
       color: var(--title-color);
@@ -74,8 +78,9 @@
 
   .imageLand {
     width: 26%;
+
     img {
-      margin-top: 8.5rem;
+      margin-top: 7rem;
       font-size: 1.5rem;
       height: auto;
       max-width: 100%;
@@ -116,18 +121,21 @@
 // Responsiveness designing starts here
 
 @media only screen and (max-width: 1190px) {
+  .main {
+    margin-top: 0;
+    padding-bottom: 0;
+  }
   .header {
     @include flexDisplay(center, column);
-
+    margin-top: 0rem;
     .title h1 {
-      margin-top: 3rem;
-
       width: 70%;
       height: 7%;
       font-weight: 400;
       font-size: 2.6rem;
       line-height: 60px;
       text-align: center;
+      margin-top: 0%;
     }
 
     .title h3 {
@@ -159,9 +167,9 @@
       align-items: center;
 
       img {
-        width: 56%;
-        height: 67%;
-        margin-top: 2em;
+        width: 46%;
+        height: 57%;
+        margin-top: 1em;
       }
     }
   }
