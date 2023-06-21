@@ -24,12 +24,10 @@
   align-items: center;
   .logo1 {
     height: 2rem;
-    width: 4.5rem;
     margin-left: 0.5rem;
   }
   .logo2 {
     height: 2rem;
-    width: 6rem;
     margin-left: 0.5rem;
   }
 }
@@ -129,6 +127,13 @@
     left: 1.4rem;
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+    .logo1 {
+      height: 2rem;
+      margin-left: 0.25rem;
+    }
+    .logo2 {
+      height: 2rem;
+    }
   }
   .navProfile {
     visibility: visible;
