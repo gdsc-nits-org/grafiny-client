@@ -21,6 +21,7 @@ import {
   OurTeamPage,
   UploadingPage,
   Material,
+  CreateProfile,
 } from "./Pages";
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
         <Route path="/team" element={<OurTeamPage />} />
         <Route path="/upload" element={<UploadingPage />} />
         <Route path="/material" element={<Material />} />
+        <Route path="/profilecreate" element={<CreateProfile />} />
       </Routes>
       <Footer />
     </>

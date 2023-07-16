@@ -1,0 +1,69 @@
+.create-profile {
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  justify-content: center;
+}
+
+.profile-form {
+  width: 23rem;
+  height: 30rem;
+  margin: auto;
+  box-shadow: 0 0 0.4rem var(--gdsc-grayish-2-100);
+  display: flex;
+  flex-direction: column;
+  border-radius: 2rem;
+  padding: 2rem;
+
+  h3 {
+    font-size: 1.5rem;
+    color: var(--gdsc-grayish-2-100);
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .profile-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    .select-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+
+      select {
+        background-color: transparent;
+        width: 100%;
+        outline: none;
+        border-radius: 2em;
+        cursor: pointer;
+        padding: 0.5rem;
+        color: var(--gdsc-grayish-2-100);
+        border: 1px solid var(--gdsc-grayish-2-100);
+      }
+
+      input {
+        width: 100%;
+        border-radius: 5rem;
+        padding: 0.5rem;
+        border: 1px solid var(--gdsc-grayish-2-100);
+        color: var(--gdsc-grayish-2-100);
+        outline: none;
+      }
+
+      h4 {
+        font-family: var(--gdsc-font-1);
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--gdsc-grayish-2-100);
+        line-height: 1.5rem;
+      }
+    }
+  }
+  .continue-button {
+    margin: auto;
+  }
+}
