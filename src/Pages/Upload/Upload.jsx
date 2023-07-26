@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 import styles from "./Upload.module.scss";
 import Dropdown from "../../Components/Dropdowns/Dropdowns";
 import AdviceBox from "../../Components/AdviceBox/AdviceBox";
@@ -15,6 +16,7 @@ const UploadingPage = () => {
   const [advice, setAdvice] = useState("");
   const [files, setFiles] = useState([]);
   const [dragBox, setdragBox] = useState(false);
+  const [showcustomField, setShowcustomField] = useState(false);
 
   const navigate = useNavigate();
   const Semesters = [
@@ -51,6 +53,9 @@ const UploadingPage = () => {
     { name: "2026", id: 3 },
   ];
 
+  const handleAddCustomTopic = () => {
+    setShowcustomField(true);
+  };
   const handleAdviceChange = (e) => {
     setAdvice(e.target.value);
   };
@@ -163,6 +168,35 @@ const UploadingPage = () => {
             disabled={!selectedCourse}
             selectedCourse={selectedCourse}
           />
+          <div className={styles["custom-topic"]}>
+            <p>Topic does not exist? Add custom topic here</p>
+            <Icon
+              className={styles["add-icon"]}
+              onClick={handleAddCustomTopic}
+              icon="zondicons:add-outline"
+            />
+          </div>
+
+          {showcustomField && (
+            <>
+              <input
+                type="text"
+                placeholder="Enter Course Name"
+                onChange={(e) => {
+                  setSelectedCourse(e.target.value);
+                }}
+                className={styles["custom-topic-input"]}
+              />
+              <input
+                type="text"
+                placeholder="Enter custom topic"
+                onChange={(e) => {
+                  setSelectedTopic(e.target.value);
+                }}
+                className={styles["custom-topic-input"]}
+              />
+            </>
+          )}
         </div>
         <div className={styles["right-upload"]}>
           <AdviceBox

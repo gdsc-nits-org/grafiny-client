@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     gap: 4rem;
-    align-items: center;
+    // align-items: center;
 
     .dropdown-containers {
       display: flex;
@@ -24,6 +24,17 @@
       font-family: var(--gdsc-font-1);
       font-weight: 500;
       color: var(--gdsc-grayish-2-100);
+      .custom-topic {
+        display: flex;
+        gap: 0.2rem;
+        align-items: center;
+        .add-icon {
+          cursor: pointer;
+        }
+      }
+      .custom-topic-input {
+        padding: 0.4rem;
+      }
     }
   }
 }
@@ -39,7 +50,7 @@
   font-weight: 700;
   font-size: 1.2em;
   cursor: pointer;
-  margin-top: 2em;
+  margin: 2em;
 
   &:hover {
     background-color: var(--gdsc-blue-3-100);
