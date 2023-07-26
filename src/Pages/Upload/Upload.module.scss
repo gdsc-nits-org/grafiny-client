@@ -14,19 +14,26 @@
     display: flex;
     justify-content: center;
     gap: 4rem;
-    // align-items: center;
 
     .dropdown-containers {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1rem;
       font-size: 1em;
       font-family: var(--gdsc-font-1);
       font-weight: 500;
       color: var(--gdsc-grayish-2-100);
+      input {
+        background-color: transparent;
+        width: 100%;
+        outline: none;
+        border-radius: 0.8rem;
+        border: 0.01rem solid var(--gdsc-line-1-100);
+      }
+
       .custom-topic {
         display: flex;
-        gap: 0.2rem;
+        gap: 6.5rem;
         align-items: center;
         .add-icon {
           cursor: pointer;
@@ -50,7 +57,7 @@
   font-weight: 700;
   font-size: 1.2em;
   cursor: pointer;
-  margin: 2em;
+  margin-bottom: 2rem;
 
   &:hover {
     background-color: var(--gdsc-blue-3-100);
@@ -65,6 +72,19 @@
       .dropdown-containers {
         gap: 1.2rem;
         font-size: 1em;
+        width: 18rem;
+        .custom-topic {
+          p {
+            font-size: 0.8rem;
+          }
+          .add-icon {
+            cursor: pointer;
+            font-size: 2rem;
+          }
+        }
+        .custom-topic-input {
+          padding: 0.4rem;
+        }
       }
     }
   }

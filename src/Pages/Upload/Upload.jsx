@@ -54,7 +54,7 @@ const UploadingPage = () => {
   ];
 
   const handleAddCustomTopic = () => {
-    setShowcustomField(true);
+    setShowcustomField(!showcustomField);
   };
   const handleAdviceChange = (e) => {
     setAdvice(e.target.value);
@@ -173,29 +173,18 @@ const UploadingPage = () => {
             <Icon
               className={styles["add-icon"]}
               onClick={handleAddCustomTopic}
-              icon="zondicons:add-outline"
+              icon={showcustomField ? "akar-icons:cross" : "zondicons:add-outline"}
             />
           </div>
-
           {showcustomField && (
-            <>
-              <input
-                type="text"
-                placeholder="Enter Course Name"
-                onChange={(e) => {
-                  setSelectedCourse(e.target.value);
-                }}
-                className={styles["custom-topic-input"]}
-              />
-              <input
-                type="text"
-                placeholder="Enter custom topic"
-                onChange={(e) => {
-                  setSelectedTopic(e.target.value);
-                }}
-                className={styles["custom-topic-input"]}
-              />
-            </>
+            <input
+              type="text"
+              placeholder="Enter custom topic"
+              onChange={(e) => {
+                setSelectedTopic(e.target.value);
+              }}
+              className={styles["custom-topic-input"]}
+            />
           )}
         </div>
         <div className={styles["right-upload"]}>
