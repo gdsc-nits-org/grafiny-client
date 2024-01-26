@@ -10,24 +10,28 @@ const Footer = () => {
         <p>Contact us through our social media accounts</p>
         <a
           href="https://www.facebok.com/gdscnits/"
+          aria-label="fb"
           className={styles["social-media-icons"]}
         >
           <FaFacebook className={styles["social-media-icons"]} />
         </a>
         <a
           href="https://github.com/gdsc-nits-org"
+          aria-label="github"
           className={styles["social-media-icons"]}
         >
           <FaGithub className={styles["social-media-icons"]} />
         </a>
         <a
           href="https://www.linkedin.com/company/gdscnits/mycompany/"
+          aria-label="linkedin"
           className={styles["social-media-icons"]}
         >
           <FaLinkedin className={styles["social-media-icons"]} />
         </a>
         <a
           href="https://www.instagram.com/gdsc_nits/"
+          aria-label="insta"
           className={styles["social-media-icons"]}
         >
           <FaInstagram className={styles["social-media-icons"]} />

@@ -8,7 +8,6 @@ import Login from "./Login/Login";
 import RecoveryMail from "./RecoveryMail/RecoveryMail";
 import RecoveryCode from "./RecoveryCode/RecoveryCode";
 import ResetPassword from "./ResetPassword/ResetPassword";
-import SignupForm from "./Signup/Signup";
 import Otp from "./OTP/Otp";
 import UploadingPage from "./Upload/Upload";
 import Departments from "./Departments/Departments";
@@ -24,7 +23,6 @@ export {
   SearchResults,
   Courses,
   Error,
-  SignupForm,
   Otp,
   Login,
   RecoveryMail,

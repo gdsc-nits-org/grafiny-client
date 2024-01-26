@@ -29,7 +29,11 @@ const Institutions = () => {
               placeholder="Search Institutions"
               className={styles.titleSearchBoxSearch}
             />
-            <button type="submit" className={styles.titleSearchBoxButton}>
+            <button
+              type="submit"
+              className={styles.titleSearchBoxButton}
+              aria-label="search"
+            >
               <i className="fa fa-search" />
             </button>
           </form>

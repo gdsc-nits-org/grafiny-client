@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 
+import { ToastContainer } from "react-toastify";
 import { Footer, Navbar } from "./Components";
-
+import "react-toastify/dist/ReactToastify.css";
 import {
   Topic,
   SemesterPage,
   Home,
-  SignupForm,
   Otp,
   Courses,
   Error,
@@ -28,6 +28,7 @@ const App = () => {
   return (
     <>
       <Navbar />
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -37,7 +38,6 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/topics" element={<Topic />} />
         <Route path="/semester" element={<SemesterPage />} />
-        <Route path="/signup" element={<SignupForm />} />
         <Route path="/otp" element={<Otp />} />
         <Route path="/departments/:department/courses" element={<Courses />} />
         <Route path="/searchresults" element={<SearchResults />} />

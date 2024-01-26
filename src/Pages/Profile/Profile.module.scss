@@ -65,11 +65,17 @@
         border-bottom: 1px solid var(--gdsc-grayish-2-100);
         padding-bottom: 0.5em;
       }
+      .emailcontainer {
+        width: 60%;
+        text-align: center;
+        border-bottom: 1px solid var(--gdsc-grayish-2-100);
+        margin-top: 1em;
+        padding-bottom: 0.5em;
+      }
       .detailcontainer {
         display: flex;
         width: 60%;
         justify-content: space-between;
-        margin-top: 1em;
         .degree {
           width: 25%;
           border-bottom: 1px solid var(--gdsc-grayish-2-100);
@@ -144,6 +150,9 @@
         .collegecontainer {
           width: 70%;
         }
+        .emailcontainer {
+          width: 70%;
+        }
         .detailcontainer {
           width: 70%;
         }
@@ -215,6 +224,10 @@
       height: 45%;
       .upperright {
         .collegecontainer {
+          width: 75%;
+          font-size: 0.9em;
+        }
+        .emailcontainer {
           width: 75%;
           font-size: 0.9em;
         }

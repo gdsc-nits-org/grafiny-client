@@ -1,13 +1,12 @@
 import { createContext } from "react";
 
 const UserContext = createContext({
+  id: "",
   name: "",
   email: "",
-  college: "",
-  degree: "",
-  year: "",
-  branch: "",
-  filesUploaded: [],
+  authorisationLevel: "",
+  profilePic: "",
+  profile: {},
 });
 
 export default UserContext;

@@ -1,7 +1,24 @@
-import React from "react";
+import axios from "axios";
+import { useContext } from "react";
 import style from "./Explore.module.scss";
+import UserContext from "../../Global/Auth/authContext";
 
 const Explore = () => {
+  const context = useContext(UserContext);
+  const { token } = context;
+  const getI = async () => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}/institute/search?instituteName=IIT`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const parsedResponse = response.data;
+    console.log(parsedResponse);
+  };
   return (
     <div className={style.explorecontainer}>
       <div className={style.upperhalf}>
@@ -18,7 +35,9 @@ const Explore = () => {
           </div>
         </div>
         <div className={style.searchbuttoncontainer}>
-          <div className={style.button}>Search</div>
+          <button className={style.button} onClick={getI}>
+            Search
+          </button>
         </div>
       </div>
     </div>
