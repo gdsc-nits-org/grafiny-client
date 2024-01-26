@@ -14,10 +14,10 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const auth = getAuth();
 
-  const handleGoogleAdmin = async () => {
+  const handleGoogleAdmin = async (accessToken) => {
     const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/auth/login`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
     const { data } = response;
