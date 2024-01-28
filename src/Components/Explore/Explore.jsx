@@ -1,14 +1,29 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import style from "./Explore.module.scss";
 import UserContext from "../../Global/Auth/authContext";
+import Loading from "../Loading/Loading";
 
 const Explore = () => {
   const context = useContext(UserContext);
-  const { token } = context;
-  const getI = async () => {
+  const [value, setValue] = useState("");
+  const { token, user, loading, setLoading } = context;
+  const navigate = useNavigate();
+  const searchItems = async () => {
+    if (!user) {
+      return toast.error("Please Log In First", { autoClose: 1200 });
+    }
+    if (user.name === "") {
+      return toast.error("Please Log In First", { autoClose: 1200 });
+    }
+    if (!value) {
+      return toast.error("Search Field is Empty", { autoClose: 1200 });
+    }
+    setLoading(() => true);
     const response = await axios.get(
-      `${import.meta.env.VITE_BASE_URL}/institute/search?instituteName=IIT`,
+      `${import.meta.env.VITE_BASE_URL}/items/search?name=${value}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -16,30 +31,58 @@ const Explore = () => {
       }
     );
 
-    const parsedResponse = response.data;
-    console.log(parsedResponse);
+    const { data } = response;
+    setLoading(() => false);
+    if (data.status !== 200) {
+      return toast.error(data.msg, { autoClose: 1200 });
+    }
+    if (data.msg.items.length === 0) {
+      return toast.info("No Results Found", { autoClose: 1200 });
+    }
+    navigate("/searchresults", {
+      state: {
+        items: data.msg.items,
+      },
+    });
+
+    return null;
   };
   return (
-    <div className={style.explorecontainer}>
-      <div className={style.upperhalf}>
-        <span className={style.exploretext}>Explore |</span>
-        <span className={style.collegetext}>
-          &nbsp;<span>Subjects</span>
-        </span>
-      </div>
-      <div className={style.bottomhalf}>
-        <div className={style.searchcontainer}>
-          <div className={style.search}>
-            <img className={style.img} src="/assets/exploreimg.png" alt="exploreimg" />
-            <input type="text" placeholder="What are you looking for ?" />
+    <div>
+      {loading === false ? (
+        <div className={style.explorecontainer}>
+          <div className={style.upperhalf}>
+            <span className={style.exploretext}>Explore |</span>
+            <span className={style.collegetext}>
+              &nbsp;<span>Subjects</span>
+            </span>
+          </div>
+          <div className={style.bottomhalf}>
+            <div className={style.searchcontainer}>
+              <div className={style.search}>
+                <img
+                  className={style.img}
+                  src="/assets/exploreimg.png"
+                  alt="exploreimg"
+                />
+                <input
+                  type="text"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  placeholder="What are you looking for ?"
+                />
+              </div>
+            </div>
+            <div className={style.searchbuttoncontainer}>
+              <button className={style.button} onClick={searchItems}>
+                Search
+              </button>
+            </div>
           </div>
         </div>
-        <div className={style.searchbuttoncontainer}>
-          <button className={style.button} onClick={getI}>
-            Search
-          </button>
-        </div>
-      </div>
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };

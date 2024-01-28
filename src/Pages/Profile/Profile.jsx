@@ -1,6 +1,7 @@
 import { BiPencil } from "react-icons/bi";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import style from "./Profile.module.scss";
 import { UploadedItem } from "../../Components";
 import UserContext from "../../Global/Auth/authContext";
@@ -12,11 +13,14 @@ const Profile = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate("/login");
+      navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
     } else if (user.name === "") {
-      navigate("/login");
+      navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
     } else if (!user.profile) {
       navigate("/profilecreate");
+      toast.error("Please Create A Profile", { autoClose: 1200 });
     } else {
       console.log(user);
     }

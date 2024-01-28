@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import axios from "axios";
 import { toast } from "react-toastify";
 import UserContext from "./authContext";
@@ -11,6 +11,8 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(
     localStorage.getItem("token") ? localStorage.getItem("token") : ""
   );
+
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const auth = getAuth();
 
@@ -29,10 +31,9 @@ const AuthProvider = ({ children }) => {
         authorisationLevel: data.msg.msg.authorisationLeveL,
         profile: data.msg.msg.profile,
       };
-      console.log(userData);
-      window.localStorage.setItem("token", token);
+      window.localStorage.setItem("token", accessToken);
       window.localStorage.setItem("user", JSON.stringify(userData));
-      setToken(token);
+      setToken(accessToken);
       setUser(userData);
       navigate("/");
       return toast.success("Successfully Logged In", { autoClose: 1200 });
@@ -44,8 +45,23 @@ const AuthProvider = ({ children }) => {
   };
 
   const handleGoogleLogin = async () => {
+    setLoading(() => true);
     const result = await signInWithPopup(auth, new GoogleAuthProvider());
-    handleGoogleAdmin(result.user.accessToken);
+    await handleGoogleAdmin(result.user.accessToken);
+    setLoading(() => false);
+  };
+
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      localStorage.clear();
+      setUser("");
+      setToken("");
+      navigate("/");
+      return toast.success("Successfully Logged Out", { autoClose: 1200 });
+    } catch (err) {
+      return toast.error("Something Went Wrong...", { autoClose: 1200 });
+    }
   };
 
   const getAllInstitutes = async () => {
@@ -61,8 +77,17 @@ const AuthProvider = ({ children }) => {
     return data;
   };
   const userHandler = useMemo(() => {
-    return { user, setUser, handleGoogleLogin, token, getAllInstitutes };
-  }, [user, token]);
+    return {
+      user,
+      setUser,
+      handleGoogleLogin,
+      token,
+      getAllInstitutes,
+      logout,
+      loading,
+      setLoading,
+    };
+  }, [user, token, loading]);
 
   return <UserContext.Provider value={userHandler}>{children}</UserContext.Provider>;
 };

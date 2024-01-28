@@ -10,17 +10,18 @@ const SearchResultsItem = ({ item }) => {
         <div className={style.booktitlecontainer}>
           <div className={style.title}>{item.name}</div>
           <div className={style.subtitle}>
-            {item.college},{item.department}
+            {item.topic.course.semester.department.institution.name},{" "}
+            {item.topic.course.semester.department.name}
           </div>
         </div>
       </div>
       <div className={style.rightpart}>
-        <div className={style.leftitem}>{item.lastModified}</div>
+        <div className={style.leftitem}>{item.createdAt.split("T")[0]}</div>
         <div className={style.rightitem}>
           <div className={style.heartcontainer}>
             <img className={style.heartimg} src="/assets/heart.png" alt="hearticon" />
           </div>
-          <div className={style.likenumber}>{item.likes}</div>
+          <div className={style.likenumber}>{item.likedByIds.length}</div>
         </div>
       </div>
     </div>
