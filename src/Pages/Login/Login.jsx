@@ -9,7 +9,6 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const context = useContext(UserContext);
-  console.log(context);
 
   const handlePasswordToggle = () => {
     setShowPassword(!showPassword);
@@ -70,9 +69,14 @@ const Login = () => {
       <div className={styles.options}>Login Using</div>
       <div className={styles.imgs}>
         <div>
-          <a href="/">
+          <button
+            type="button"
+            onClick={() => {
+              context.handleGoogleLogin();
+            }}
+          >
             <img src="/assets/Google.png" alt="logo" className={styles.img} />
-          </a>
+          </button>
         </div>
         <div>
           <a href="/">

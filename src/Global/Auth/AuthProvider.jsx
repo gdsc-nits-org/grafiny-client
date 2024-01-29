@@ -1,69 +1,93 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import axios from "axios";
+import { toast } from "react-toastify";
 import UserContext from "./authContext";
-
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(
     localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : ""
   );
+  const [token, setToken] = useState(
+    localStorage.getItem("token") ? localStorage.getItem("token") : ""
+  );
 
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const auth = getAuth();
 
-  const handleSignup = async (name, email, password) => {
-    const data = { name, email, password };
-    if (!email || !password || !name) {
-      alert("Fill All The Values");
-      return;
-    }
-
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/auth/signup`, {
-      method: "POST",
+  const handleGoogleAdmin = async (accessToken) => {
+    const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/auth/login`, {
       headers: {
-        "Content-type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
-
-      body: JSON.stringify(data),
     });
-
-    const parsedResponse = await response.json();
-    console.log(parsedResponse);
-    if (parsedResponse.errorMessage) {
-      alert("Something Went Wrong!!!");
-    } else {
-      navigate("/login");
-    }
-  };
-
-  const handleLogin = async (email, password) => {
-    const data = { email, password };
-    if (!email || !password) {
-      alert("Fill All The Values");
-      return;
-    }
-
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(data),
-    });
-
-    const parsedResponse = await response.json();
-    console.log(parsedResponse);
-    if (parsedResponse.errorMessage) {
-      alert("Something Went Wrong!!!");
-    } else {
-      setUser(parsedResponse.msg);
-      localStorage.setItem("user", JSON.stringify(parsedResponse.msg));
+    const { data } = response;
+    if (data.status === 200) {
+      const userData = {
+        name: data.msg.msg.name,
+        email: data.msg.msg.email,
+        profilePic: data.msg.msg.profilePic,
+        authorisationLevel: data.msg.msg.authorisationLeveL,
+        profile: data.msg.msg.profile,
+      };
+      window.localStorage.setItem("token", accessToken);
+      window.localStorage.setItem("user", JSON.stringify(userData));
+      setToken(accessToken);
+      setUser(userData);
       navigate("/");
+      return toast.success("Successfully Logged In", { autoClose: 1200 });
+    }
+    localStorage.clear();
+    setUser("");
+    setToken("");
+    return toast.error("Something Went Wrong...", { autoClose: 1200 });
+  };
+
+  const handleGoogleLogin = async () => {
+    setLoading(() => true);
+    const result = await signInWithPopup(auth, new GoogleAuthProvider());
+    await handleGoogleAdmin(result.user.accessToken);
+    setLoading(() => false);
+  };
+
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      localStorage.clear();
+      setUser("");
+      setToken("");
+      navigate("/");
+      return toast.success("Successfully Logged Out", { autoClose: 1200 });
+    } catch (err) {
+      return toast.error("Something Went Wrong...", { autoClose: 1200 });
     }
   };
 
+  const getAllInstitutes = async () => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}/institute/getAll`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = response.data.msg.institutes;
+    return data;
+  };
   const userHandler = useMemo(() => {
-    return { user, setUser, handleSignup, handleLogin };
-  }, [user]);
+    return {
+      user,
+      setUser,
+      handleGoogleLogin,
+      token,
+      getAllInstitutes,
+      logout,
+      loading,
+      setLoading,
+    };
+  }, [user, token, loading]);
 
   return <UserContext.Provider value={userHandler}>{children}</UserContext.Provider>;
 };

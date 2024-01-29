@@ -1,12 +1,30 @@
 import { BiPencil } from "react-icons/bi";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import style from "./Profile.module.scss";
 import { UploadedItem } from "../../Components";
 import UserContext from "../../Global/Auth/authContext";
 
 const Profile = () => {
   const context = useContext(UserContext);
-  const username = context.user.name;
+  const { user } = context;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
+    } else if (user.name === "") {
+      navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
+    } else if (!user.profile) {
+      navigate("/profilecreate");
+      toast.error("Please Create A Profile", { autoClose: 1200 });
+    } else {
+      console.log(user);
+    }
+  }, []);
 
   return (
     <div className={style.container}>
@@ -21,7 +39,7 @@ const Profile = () => {
               />
             </div>
             <div className={style.namebox}>
-              <div className={style.name}>{username || "Name"}</div>
+              <div className={style.name}>{user?.name || "Name"}</div>
               <div className={style.icon}>
                 <BiPencil />
               </div>
@@ -29,14 +47,13 @@ const Profile = () => {
           </div>
         </div>
         <div className={style.upperright}>
-          <div className={style.collegecontainer}>
-            National Institute of Technology, Silchar
-          </div>
+          <div className={style.collegecontainer}>{user?.profile?.institution?.name}</div>
           <div className={style.detailcontainer}>
             <div className={style.degree}>B-Tech</div>
-            <div className={style.year}>Second Year</div>
-            <div className={style.branch}>CSE</div>
+            <div className={style.year}>{user?.profile?.year} year</div>
+            <div className={style.branch}>{user?.profile?.scholarId}</div>
           </div>
+          <div className={style.emailcontainer}>{user?.email}</div>
         </div>
       </div>
       <div className={style.lowerpart}>

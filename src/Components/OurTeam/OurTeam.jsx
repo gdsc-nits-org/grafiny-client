@@ -30,6 +30,7 @@ const OurTeam = () => {
               {member.linkedin && (
                 <a
                   href={`https://www.linkedin.com/in/${member.linkedin}`}
+                  aria-label="linkedin"
                   className={`${styles["social-icons"]} ${styles.linkedin}`}
                 >
                   <Icon icon="mdi:linkedin" className={`${styles.linkedin}`} />
@@ -38,6 +39,7 @@ const OurTeam = () => {
               {member.github && (
                 <a
                   href={`https://github.com/${member.github}`}
+                  aria-label="github"
                   className={`${styles["social-icons"]} ${styles.github}`}
                 >
                   <Icon icon="mdi:github" className={` ${styles.github}`} />
@@ -46,6 +48,7 @@ const OurTeam = () => {
               {member.facebook && (
                 <a
                   href={`https://github.com/${member.facebook}`}
+                  aria-label="fb"
                   className={`${styles["social-icons"]} ${styles.facebook}`}
                 >
                   <Icon icon="ic:baseline-facebook" className={`${styles.facebook}`} />

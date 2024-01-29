@@ -55,6 +55,31 @@
 }
 .links {
   @include flexDisplay(center, row);
+  .login {
+    width: fit-content;
+    display: flex;
+    color: var(--gdsc-bg-2-100);
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-right: 20%;
+    position: relative;
+    border: none;
+    .img {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+  .logout {
+    width: fit-content;
+    display: flex;
+    color: var(--gdsc-bg-2-100);
+    background-color: var((--gdsc-red-1-100));
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-right: 20%;
+    position: relative;
+    border: none;
+  }
 }
 .navlinks {
   color: rgb(116, 114, 114);
@@ -127,6 +152,14 @@
     font-size: 1.25rem;
   }
 
+  .links {
+    .login {
+      margin: auto;
+    }
+    .logout {
+      margin: auto;
+    }
+  }
   .switchIcon {
     display: flex;
   }
