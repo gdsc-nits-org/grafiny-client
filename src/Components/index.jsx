@@ -9,6 +9,7 @@ import DepartmentCard from "./DepartmentCard/DepartmentCard";
 import UploadedItem from "./UploadedItems/UploadedItems";
 import OurTeam from "./OurTeam/OurTeam";
 import Materials from "./Material/Materials";
+import Loading from "./Loading/Loading";
 export {
   Button,
   Navbar,
@@ -21,4 +22,5 @@ export {
   UploadedItem,
   OurTeam,
   Materials,
+  Loading,
 };

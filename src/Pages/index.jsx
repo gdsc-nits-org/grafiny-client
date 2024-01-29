@@ -8,7 +8,6 @@ import Login from "./Login/Login";
 import RecoveryMail from "./RecoveryMail/RecoveryMail";
 import RecoveryCode from "./RecoveryCode/RecoveryCode";
 import ResetPassword from "./ResetPassword/ResetPassword";
-import SignupForm from "./Signup/Signup";
 import Otp from "./OTP/Otp";
 import UploadingPage from "./Upload/Upload";
 import Departments from "./Departments/Departments";
@@ -16,6 +15,7 @@ import Profile from "./Profile/Profile";
 import AboutUs from "./AboutUs/AboutUs";
 import OurTeamPage from "./OurTeamPage/OurTeamPage";
 import Material from "./Material/Material";
+import CreateProfile from "./CreateProfile/CreateProfile";
 export {
   Home,
   Topic,
@@ -23,7 +23,6 @@ export {
   SearchResults,
   Courses,
   Error,
-  SignupForm,
   Otp,
   Login,
   RecoveryMail,
@@ -35,4 +34,5 @@ export {
   OurTeamPage,
   UploadingPage,
   Material,
+  CreateProfile,
 };
