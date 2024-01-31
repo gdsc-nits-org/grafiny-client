@@ -10,7 +10,6 @@ const Profile = () => {
   const context = useContext(UserContext);
   const { user } = context;
   const navigate = useNavigate();
-
   useEffect(() => {
     if (!user) {
       navigate("/");
@@ -21,8 +20,6 @@ const Profile = () => {
     } else if (!user.profile) {
       navigate("/profilecreate");
       toast.error("Please Create A Profile", { autoClose: 1200 });
-    } else {
-      console.log(user);
     }
   }, []);
 
@@ -32,11 +29,7 @@ const Profile = () => {
         <div className={style.upperleft}>
           <div className={style.avatarbox}>
             <div className={style.imgbox}>
-              <img
-                className={style.profileimg}
-                src="/assets/profileimg.png"
-                alt="profileimg"
-              />
+              <img className={style.profileimg} src={user?.profilePic} alt="profileimg" />
             </div>
             <div className={style.namebox}>
               <div className={style.name}>{user?.name || "Name"}</div>
