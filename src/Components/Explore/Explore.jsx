@@ -9,7 +9,7 @@ import Loading from "../Loading/Loading";
 const Explore = () => {
   const context = useContext(UserContext);
   const [value, setValue] = useState("");
-  const { token, user, loading, setLoading } = context;
+  const { user, loading, setLoading, auth } = context;
   const navigate = useNavigate();
   const searchItems = async () => {
     if (!user) {
@@ -22,6 +22,8 @@ const Explore = () => {
       return toast.error("Search Field is Empty", { autoClose: 1200 });
     }
     setLoading(() => true);
+
+    const token = await auth.currentUser.getIdToken(true);
     const response = await axios.get(
       `${import.meta.env.VITE_BASE_URL}/items/search?name=${value}`,
       {
