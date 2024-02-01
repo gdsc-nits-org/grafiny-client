@@ -14,7 +14,7 @@ const CreateProfile = () => {
   const [institutes, setInstitutes] = useState([]);
   const [loading, setLoading] = useState(false);
   const context = useContext(UserContext);
-  const { token } = context;
+  const { auth } = context;
 
   const navigate = useNavigate();
 
@@ -41,6 +41,8 @@ const CreateProfile = () => {
       instituteId: selectedInst,
       year: selectedYear,
     };
+
+    const token = auth.currentUser.getIdToken(true);
     const response = await axios.post(
       `${import.meta.env.VITE_BASE_URL}/profile/create`,
       profileData,
