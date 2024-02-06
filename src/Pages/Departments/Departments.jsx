@@ -1,18 +1,34 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import axios from "axios";
 import { DepartmentCard, CreateDepartment } from "../../Components";
 import style from "./Departments.module.scss";
 
 const Departments = () => {
   const [showPopup, setShowPopup] = useState(false);
   const { state } = useLocation();
-  console.log(state);
+
+  const navigate = useNavigate();
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
 
+  const handleSem = async (data) => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${data.id}`
+      );
+      navigate(`${data.name}/semesters`, {
+        state: {
+          semesters: response.data.msg.semesters,
+        },
+      });
+    } catch (error) {
+      // console.error(error);
+    }
+  };
   return (
     <div className={style.departments}>
       <div className={style.dcontainer}>
@@ -29,7 +45,13 @@ const Departments = () => {
         </button>
       </div>
       {showPopup && <CreateDepartment onClose={togglePopup} />}
-      <DepartmentCard />
+      <div className={style["dcard-container"]}>
+        {state.departments?.map((dept) => (
+          <div onClick={() => handleSem(dept)} onKeyDown={() => handleSem(dept)}>
+            <DepartmentCard data={dept} key={dept.dept} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
