@@ -1,29 +1,41 @@
 .coursesHero {
   min-height: 100vh;
-  padding-top: 15vh;
+  padding-top: 6vh;
 
   .coursesTitle {
     position: relative;
     margin: 0 auto;
-    width: 80%;
+    width: 98.1%;
     text-align: center;
 
     .coursesTitleHeading {
       font-size: 4em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      .coursesFa {
-        scale: 0.75;
-        position: absolute;
-        top: 65%;
-        left: 1%;
-        display: inline-block;
-        cursor: pointer;
-      }
       .coursesTitleText {
         color: #404040;
       }
+
+      .dleftarrow {
+        position: relative;
+        cursor: pointer;
+        font-size: 2.7rem;
+      }
+
+      .add-courses {
+        color: #fff;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+      }
     }
   }
+
   .coursesCardContainer {
     width: 85%;
     margin: 7% auto;
@@ -33,14 +45,9 @@
     align-items: flex-start;
 
     .coursesCard {
-      // display: inline-block;
       position: relative;
       width: 28%;
       aspect-ratio: 1;
-      // min-width: 20vw !important;
-      // max-width: 20vw;
-      // min-height: 20vw !important;
-      // max-height: 20vw;
       margin: 3% 0;
       display: flex;
       flex-direction: column;
@@ -56,6 +63,7 @@
         .coursesCardImg {
           scale: 1.15;
         }
+
         .coursesCardSubject {
           transform: translateY(-7%);
           color: rgb(20, 20, 20);
@@ -68,12 +76,14 @@
         top: 5%;
         right: 5%;
       }
+
       .coursesCardSubject {
         color: #7a7a7a;
         font-size: 1.75em;
         margin: 6% auto;
         transition: 0.75s;
       }
+
       .coursesCardImg {
         width: 70%;
         height: auto;
@@ -90,14 +100,17 @@
     .coursesTitle {
       .coursesTitleHeading {
         font-size: 2em;
+
         .coursesFa {
           top: 60%;
         }
+
         .coursesTitleText {
           font-size: 1em;
         }
       }
     }
+
     .coursesCardContainer {
       width: 100%;
 
@@ -116,6 +129,7 @@
         .coursesCardSubject {
           font-size: 1em !important;
         }
+
         .coursesCardBm {
           scale: 0.6;
         }
