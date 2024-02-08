@@ -5,12 +5,14 @@ import { toast } from "react-toastify";
 import styles from "./Institutions.module.scss";
 import UserContext from "../../Global/Auth/authContext";
 import Loading from "../Loading/Loading";
+
 const Institutions = () => {
   const [institutes, setInstitutes] = useState([]);
   const [value, setValue] = useState("");
   const navigate = useNavigate();
   const context = useContext(UserContext);
   const { user, loading, setLoading } = context;
+
   const searchInstitute = async () => {
     setLoading(() => true);
     if (value === "") {

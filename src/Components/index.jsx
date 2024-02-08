@@ -10,6 +10,8 @@ import UploadedItem from "./UploadedItems/UploadedItems";
 import OurTeam from "./OurTeam/OurTeam";
 import Materials from "./Material/Materials";
 import Loading from "./Loading/Loading";
+import CreateDepartment from "./CreateDepartment/CreateDepartment";
+import CreateCourse from "./CreateCourse/CreateCourse";
 export {
   Button,
   Navbar,
@@ -23,4 +25,6 @@ export {
   OurTeam,
   Materials,
   Loading,
+  CreateDepartment,
+  CreateCourse,
 };
