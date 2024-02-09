@@ -1,28 +1,3 @@
-.dcontainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .dhead {
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 2.7em;
-    color: var(--gdsc-grayish-1-100);
-    margin: 1vh auto 0 auto;
-    position: relative;
-    right: 0.7em;
-    user-select: none;
-  }
-  .dleftarrow {
-    position: relative;
-    left: 3em;
-    top: 0.31em;
-    cursor: pointer;
-    font-size: 60px;
-  }
-}
-
 .dcard-container {
   width: 70%;
   margin: 1vh auto 0 auto;
