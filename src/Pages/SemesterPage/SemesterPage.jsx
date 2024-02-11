@@ -35,13 +35,12 @@ const SemesterPage = () => {
 
   useEffect(() => {
     if (!user) {
-      return toast.error("Please Log In", { autoClose: 1200 });
+      toast.error("Please Log In", { autoClose: 1200 });
+    } else if (!state) {
+      navigate("/");
+    } else {
+      handleSem();
     }
-    if (!state) {
-      return navigate("/");
-    }
-    handleSem();
-    return null;
   }, []);
   return (
     <main className={style.SemesterPage}>

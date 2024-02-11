@@ -38,18 +38,19 @@ const Institutions = () => {
 
   const handleDepartmentRoute = (data) => {
     if (!user) {
-      return toast.error("Please Log In", { autoClose: 1200 });
+      navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
+    } else if (!user.name) {
+      navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
+    } else {
+      navigate(`/departments`, {
+        state: {
+          instituteId: data.id,
+          instituteName: data.name,
+        },
+      });
     }
-    if (!user.name) {
-      return toast.error("Please Log In", { autoClose: 1200 });
-    }
-    navigate(`/departments`, {
-      state: {
-        instituteId: data.id,
-        instituteName: data.name,
-      },
-    });
-    return null;
   };
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
