@@ -38,19 +38,25 @@ const AuthProvider = ({ children }) => {
       window.localStorage.setItem("user", JSON.stringify(userData));
       setUser(userData);
       navigate("/");
-      return toast.success("Successfully Logged In", { autoClose: 1200 });
+      toast.success("Successfully Logged In", { autoClose: 1200 });
+    } else {
+      localStorage.clear();
+      setUser("");
+      toast.error("Something Went Wrong...", { autoClose: 1200 });
     }
-    localStorage.clear();
-    setUser("");
-    return toast.error("Something Went Wrong...", { autoClose: 1200 });
   };
 
   const handleGoogleLogin = async () => {
-    setLoading(() => true);
-    await setPersistence(auth, browserLocalPersistence);
-    const result = await signInWithPopup(auth, new GoogleAuthProvider());
-    await handleGoogleAdmin(result.user.accessToken);
-    setLoading(() => false);
+    try {
+      setLoading(() => true);
+      await setPersistence(auth, browserLocalPersistence);
+      const result = await signInWithPopup(auth, new GoogleAuthProvider());
+      await handleGoogleAdmin(result.user.accessToken);
+      setLoading(() => false);
+    } catch (err) {
+      setLoading(() => false);
+      toast.error("Something Went Wrong...", { autoClose: 1200 });
+    }
   };
 
   const logout = async () => {
@@ -66,17 +72,21 @@ const AuthProvider = ({ children }) => {
   };
 
   const getAllInstitutes = async () => {
-    const token = auth.currentUser.getIdToken(true);
-    const response = await axios.get(
-      `${import.meta.env.VITE_BASE_URL}/institute/getAll`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    const data = response.data.msg.institutes;
-    return data;
+    try {
+      const token = auth.currentUser.getIdToken(true);
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/institute/getAll`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = response.data.msg.institutes;
+      return data;
+    } catch (err) {
+      return toast.error("Something Went Wrong...", { autoClose: 1200 });
+    }
   };
   const userHandler = useMemo(() => {
     return {

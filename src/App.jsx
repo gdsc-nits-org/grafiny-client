@@ -35,18 +35,12 @@ const App = () => {
         <Route path="verified" element={<ResetPassword />} />
         <Route path="/home" element={<Home />} />
         <Route path="/topics" element={<Topic />} />
-        <Route
-          path="/:insti/departments/:department/semesters"
-          element={<SemesterPage />}
-        />
+        <Route path="/semesters" element={<SemesterPage />} />
         <Route path="/otp" element={<Otp />} />
-        <Route
-          path="/:inst/departments/:department/semesters/:semester/courses"
-          element={<Courses />}
-        />
+        <Route path="/courses" element={<Courses />} />
         <Route path="/searchresults" element={<SearchResults />} />
         <Route path="*" element={<Error />} />
-        <Route path="/:insti/departments" element={<Departments />} />
+        <Route path="/departments" element={<Departments />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/team" element={<OurTeamPage />} />

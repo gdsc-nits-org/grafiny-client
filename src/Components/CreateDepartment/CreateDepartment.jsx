@@ -1,32 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import styles from "./CreateDepartment.module.scss";
-
-const CreateDepartment = () => {
+const CreateDepartment = ({ instituteName, departments, setDepartments, setLoading }) => {
   const [name, setName] = useState("");
-  const [instituteName, setInstituteName] = useState("");
-  const [error, setError] = useState("");
-  const [institutes, setInstitutes] = useState([]);
-
-  const fetchInstitutes = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/institute/getAll`
-      );
-      const { data } = response;
-      setInstitutes(() => data.msg.institutes);
-    } catch (err) {
-      console.error("Error fetching institutes:", err);
-    }
-  };
-
-  useEffect(() => {
-    fetchInstitutes();
-  }, []);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      if (!name || !instituteName) {
+        return toast.error("Please Fill Out The Required Fields", { autoClose: 1200 });
+      }
+      setLoading(() => true);
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/department/create`,
         {
@@ -34,12 +18,18 @@ const CreateDepartment = () => {
           instituteName,
         }
       );
-      console.log(response.data);
-      setName("");
-      setInstituteName("");
-      setError("");
+      const { data } = response;
+      if (data.status !== 200) {
+        setLoading(() => false);
+        return toast.error(data.msg, { autoClose: 1200 });
+      }
+      setDepartments([...departments, data.msg.department]);
+      setName(() => "");
+      setLoading(() => false);
+      return toast.error("Department Created Successfulyy", { autoClose: 1200 });
     } catch (err) {
-      setError(err.response.data.message);
+      setLoading(() => false);
+      return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
 
@@ -47,7 +37,6 @@ const CreateDepartment = () => {
     <div className={styles["main-container"]}>
       <div className={styles.container}>
         <h2>Create Department</h2>
-        {error && <p className={styles.error}>{error}</p>}
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
             <label htmlFor="name">Department Name:</label>
@@ -56,23 +45,12 @@ const CreateDepartment = () => {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required
             />
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="instituteName">Institute Name:</label>
-            <select
-              id="instituteName"
-              value={instituteName}
-              onChange={(e) => setInstituteName(e.target.value)}
-              required
-            >
-              <option value="">Select Institute</option>
-              {institutes.map((institute) => (
-                <option key={institute.id} value={institute.name}>
-                  {institute.name}
-                </option>
-              ))}
+            <select id="instituteName" disabled>
+              <option defaultValue={instituteName}>{instituteName}</option>
             </select>
           </div>
           <button type="submit" className={styles.submitBtn} onClick={handleSubmit}>

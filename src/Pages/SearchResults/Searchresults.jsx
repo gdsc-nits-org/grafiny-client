@@ -14,37 +14,44 @@ const SearchResults = () => {
   const navigate = useNavigate();
 
   const searchItems = async () => {
-    if (!user) {
-      return toast.error("Please Log In First", { autoClose: 1200 });
-    }
-    if (user.name === "") {
-      return toast.error("Please Log In First", { autoClose: 1200 });
-    }
-    if (!value) {
-      return toast.error("Search Field is Empty", { autoClose: 1200 });
-    }
-    setLoading(() => true);
-    const token = await auth.currentUser.getIdToken(true);
-    const response = await axios.get(
-      `${import.meta.env.VITE_BASE_URL}/items/search?name=${value}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    try {
+      if (!user) {
+        return toast.error("Please Log In First", { autoClose: 1200 });
       }
-    );
+      if (user.name === "") {
+        return toast.error("Please Log In First", { autoClose: 1200 });
+      }
+      if (!value) {
+        return toast.error("Search Field is Empty", { autoClose: 1200 });
+      }
+      setLoading(() => true);
+      const token = await auth.currentUser.getIdToken(true);
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/items/search?name=${value}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    const { data } = response;
+      const { data } = response;
 
-    if (data.status !== 200) {
-      return toast.error(data.msg, { autoClose: 1200 });
+      if (data.status !== 200) {
+        setLoading(() => false);
+        return toast.error(data.msg, { autoClose: 1200 });
+      }
+      if (data.msg.items.length === 0) {
+        setLoading(() => false);
+        return toast.info("No Results Found", { autoClose: 1200 });
+      }
+      setItems(() => data.msg.items);
+      setLoading(() => false);
+      return null;
+    } catch (err) {
+      setLoading(() => false);
+      return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
-    if (data.msg.items.length === 0) {
-      return toast.info("No Results Found", { autoClose: 1200 });
-    }
-    setItems(() => data.msg.items);
-    setLoading(() => false);
-    return null;
   };
 
   const handleKeyPress = (event) => {
