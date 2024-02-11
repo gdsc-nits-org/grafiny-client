@@ -1,6 +1,12 @@
+import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { useContext } from "react";
 import style from "./searchresultsitem.module.scss";
+import UserContext from "../../Global/Auth/authContext";
 
 const SearchResultsItem = ({ item }) => {
+  const context = useContext(UserContext);
+  const { user } = context;
+  console.log(item);
   return (
     <div className={style.itemcontainer}>
       <div className={style.leftpart}>
@@ -19,7 +25,11 @@ const SearchResultsItem = ({ item }) => {
         <div className={style.leftitem}>{item.createdAt.split("T")[0]}</div>
         <div className={style.rightitem}>
           <div className={style.heartcontainer}>
-            <img className={style.heartimg} src="/assets/heart.png" alt="hearticon" />
+            {(!user.profile || !item.likedByIds.includes(user.profile.id)) === true ? (
+              <FaRegHeart />
+            ) : (
+              <FaHeart />
+            )}
           </div>
           <div className={style.likenumber}>{item.likedByIds.length}</div>
         </div>

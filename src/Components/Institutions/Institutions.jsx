@@ -14,36 +14,43 @@ const Institutions = () => {
   const { user, loading, setLoading } = context;
 
   const searchInstitute = async () => {
-    setLoading(() => true);
-    if (value === "") {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/institute/getAll`
-      );
-      const { data } = response;
-      setInstitutes(() => data.msg.institutes);
-    } else {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/institute/search?instituteName=${value}`
-      );
-      const { data } = response;
-      setInstitutes(() => data.msg.institutes);
+    try {
+      setLoading(() => true);
+      if (value === "") {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/institute/getAll`
+        );
+        const { data } = response;
+        setInstitutes(() => data.msg.institutes);
+      } else {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/institute/search?instituteName=${value}`
+        );
+        const { data } = response;
+        setInstitutes(() => data.msg.institutes);
+      }
+      setLoading(() => false);
+      return null;
+    } catch (err) {
+      return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
-    setLoading(() => false);
   };
 
   const handleDepartmentRoute = (data) => {
     if (!user) {
-      return toast.error("Please Log In", { autoClose: 1200 });
+      navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
+    } else if (!user.name) {
+      navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
+    } else {
+      navigate(`/departments`, {
+        state: {
+          instituteId: data.id,
+          instituteName: data.name,
+        },
+      });
     }
-    if (!user.name) {
-      return toast.error("Please Log In", { autoClose: 1200 });
-    }
-    navigate(`${data.name}/departments`, {
-      state: {
-        departments: data.departments,
-      },
-    });
-    return null;
   };
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {

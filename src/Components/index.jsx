@@ -12,6 +12,7 @@ import Materials from "./Material/Materials";
 import Loading from "./Loading/Loading";
 import CreateDepartment from "./CreateDepartment/CreateDepartment";
 import CreateCourse from "./CreateCourse/CreateCourse";
+import Semester from "./Semester/Semester";
 export {
   Button,
   Navbar,
@@ -27,4 +28,5 @@ export {
   Loading,
   CreateDepartment,
   CreateCourse,
+  Semester,
 };
