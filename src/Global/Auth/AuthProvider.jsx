@@ -38,11 +38,12 @@ const AuthProvider = ({ children }) => {
       window.localStorage.setItem("user", JSON.stringify(userData));
       setUser(userData);
       navigate("/");
-      return toast.success("Successfully Logged In", { autoClose: 1200 });
+      toast.success("Successfully Logged In", { autoClose: 1200 });
+    } else {
+      localStorage.clear();
+      setUser("");
+      toast.error("Something Went Wrong...", { autoClose: 1200 });
     }
-    localStorage.clear();
-    setUser("");
-    return toast.error("Something Went Wrong...", { autoClose: 1200 });
   };
 
   const handleGoogleLogin = async () => {
@@ -52,10 +53,9 @@ const AuthProvider = ({ children }) => {
       const result = await signInWithPopup(auth, new GoogleAuthProvider());
       await handleGoogleAdmin(result.user.accessToken);
       setLoading(() => false);
-      return null;
     } catch (err) {
       setLoading(() => false);
-      return toast.error("Something Went Wrong...", { autoClose: 1200 });
+      toast.error("Something Went Wrong...", { autoClose: 1200 });
     }
   };
 
