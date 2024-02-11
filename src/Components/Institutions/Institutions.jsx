@@ -14,21 +14,26 @@ const Institutions = () => {
   const { user, loading, setLoading } = context;
 
   const searchInstitute = async () => {
-    setLoading(() => true);
-    if (value === "") {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/institute/getAll`
-      );
-      const { data } = response;
-      setInstitutes(() => data.msg.institutes);
-    } else {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/institute/search?instituteName=${value}`
-      );
-      const { data } = response;
-      setInstitutes(() => data.msg.institutes);
+    try {
+      setLoading(() => true);
+      if (value === "") {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/institute/getAll`
+        );
+        const { data } = response;
+        setInstitutes(() => data.msg.institutes);
+      } else {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/institute/search?instituteName=${value}`
+        );
+        const { data } = response;
+        setInstitutes(() => data.msg.institutes);
+      }
+      setLoading(() => false);
+      return null;
+    } catch (err) {
+      return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
-    setLoading(() => false);
   };
 
   const handleDepartmentRoute = (data) => {
@@ -38,9 +43,10 @@ const Institutions = () => {
     if (!user.name) {
       return toast.error("Please Log In", { autoClose: 1200 });
     }
-    navigate(`${data.name}/departments`, {
+    navigate(`/departments`, {
       state: {
-        departments: data.departments,
+        instituteId: data.id,
+        instituteName: data.name,
       },
     });
     return null;

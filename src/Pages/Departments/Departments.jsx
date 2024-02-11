@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { DepartmentCard, CreateDepartment } from "../../Components";
 import style from "./Departments.module.scss";
 
@@ -20,13 +21,15 @@ const Departments = () => {
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${data.id}`
       );
-      navigate(`${data.name}/semesters`, {
+      navigate(`/semesters`, {
         state: {
           semesters: response.data.msg.semesters,
         },
       });
+      return null;
     } catch (error) {
       // console.error(error);
+      return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
   return (
