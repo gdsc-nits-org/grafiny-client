@@ -13,6 +13,8 @@ import Loading from "./Loading/Loading";
 import CreateDepartment from "./CreateDepartment/CreateDepartment";
 import CreateCourse from "./CreateCourse/CreateCourse";
 import Semester from "./Semester/Semester";
+import CreateSemester from "./CreateSemester/CreateSemester";
+
 export {
   Button,
   Navbar,
@@ -29,4 +31,5 @@ export {
   CreateDepartment,
   CreateCourse,
   Semester,
+  CreateSemester,
 };
