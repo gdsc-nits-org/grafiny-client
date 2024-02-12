@@ -41,11 +41,13 @@ const Departments = () => {
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
+
   const handleSem = async (data) => {
     try {
       navigate(`/semesters`, {
         state: {
           departmentId: data.id,
+          departmentName: data.name,
         },
       });
       return null;
