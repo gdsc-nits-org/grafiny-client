@@ -1,7 +1,62 @@
-// This is a part of Template
 .semesterPage {
   min-height: 100vh;
+
   h1 {
-    font-weight: bold;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3em;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--gdsc-grayish-3-100);
+    padding-top: 3rem;
+  }
+
+  .arrow {
+    cursor: pointer;
+    position: absolute;
+    width: 9%;
+    height: 0;
+    left: 7%;
+    top: 16%;
+
+    .arrowicon {
+      font-size: 3rem;
+    }
+  }
+
+  .semBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+    padding-top: 2rem;
+    overflow-y: auto;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .semesterPage {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      font-size: 2em;
+    }
+
+    .arrow {
+      position: absolute;
+      width: 22px;
+      height: 0px;
+      left: 9%;
+      top: 7.5rem;
+
+      .arrowicon {
+        font-size: 2rem;
+      }
+    }
   }
 }

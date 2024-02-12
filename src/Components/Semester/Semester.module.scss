@@ -2,82 +2,27 @@
   height: 100%;
   width: 100%;
 
-  .arrow {
+  button {
+    display: flex;
     cursor: pointer;
-    position: absolute;
-    width: 9%;
-    height: 0;
-    left: 7%;
-    top: 16%;
-
-    .arrowicon {
-      font-size: 3rem;
-    }
-  }
-
-  .title {
-    height: 23%;
-    margin: auto;
-    margin-top: 2em;
-
+    margin-bottom: 1em;
+    flex-basis: 50%;
+    padding: 0.6em;
+    max-width: 35%;
+    background: var(--gdsc-blue-3-100);
+    border-radius: 1em;
     font-family: var(--gdsc-font-1);
     font-style: normal;
     font-weight: 400;
-    font-size: 4.5rem;
-    line-height: 96px;
-    text-align: center;
-
-    /* grey 2 */
-
-    color: var(--gdsc-dark-1-100);
+    font-size: 1.4em;
+    line-height: 36px;
+    color: white;
+    border: none;
+    margin: 0.8rem auto;
   }
 
-  .sembox {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 97vw;
-    margin: auto;
-    padding-top: 3.8rem;
-    overflow-y: auto;
-    height: auto;
-
-    button {
-      width: 45%;
-      cursor: pointer;
-      margin-bottom: 1em;
-
-      flex-basis: 50%;
-
-      padding: 0.6em;
-      max-width: 35%;
-
-      width: 34.7rem;
-      height: 4.1rem;
-      background: var(--gdsc-blue-3-100);
-
-      /* card drop shadow */
-
-      border-radius: 1em;
-
-      font-family: var(--gdsc-font-1);
-      font-style: normal;
-      font-weight: 400;
-      font-size: 1.4em;
-      line-height: 36px;
-      /* identical to box height */
-
-      /* grey 1 */
-
-      color: white;
-      border: none;
-    }
-
-    button:hover {
-      background: var(--semester-hover);
-    }
+  button:hover {
+    background: var(--semester-hover);
   }
 }
 
@@ -90,39 +35,9 @@
     align-items: center;
     height: auto;
 
-    .arrow {
-      position: absolute;
-      width: 22px;
-      height: 0px;
-      left: 9%;
-      top: 8.9rem;
-
-      .arrowicon {
-        font-size: 2rem;
-      }
-    }
-
-    .title {
-      margin: auto;
-      margin-top: 7rem;
-
-      font-weight: 400;
-      font-size: 2.2rem;
-      line-height: 39px;
-      text-align: center;
-    }
-
-    .sembox {
-      margin: auto;
-      margin-top: 3.8rem;
-      overflow-y: auto;
-
-      height: auto;
-
-      button {
-        max-width: 80%;
-        flex-basis: 100%;
-      }
+    button {
+      max-width: 100%;
+      flex-basis: 100%;
     }
   }
 }
