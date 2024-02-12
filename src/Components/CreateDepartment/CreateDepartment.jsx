@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import UserContext from "../../Global/Auth/authContext";
 import styles from "./CreateDepartment.module.scss";
+
 const CreateDepartment = ({ instituteName, departments, setDepartments, setLoading }) => {
+  const { auth } = useContext(UserContext);
   const [name, setName] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -11,13 +14,21 @@ const CreateDepartment = ({ instituteName, departments, setDepartments, setLoadi
         return toast.error("Please Fill Out The Required Fields", { autoClose: 1200 });
       }
       setLoading(() => true);
+
+      const token = await auth.currentUser.getIdToken(true);
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/department/create`,
         {
           name,
           instituteName,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
+
       const { data } = response;
       if (data.status !== 200) {
         setLoading(() => false);

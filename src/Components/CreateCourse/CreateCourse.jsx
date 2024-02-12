@@ -2,12 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import styles from "../CreateDepartment/CreateDepartment.module.scss";
 
-const CreateCourse = () => {
+const CreateCourse = (semesterId, setLoading, setCourse, courses, semNumber) => {
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
-
-  const semesterId = "65b60953f55c3c01dac7acb9";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +33,12 @@ const CreateCourse = () => {
         <h2>Create Course</h2>
         {error && <p className={styles.error}>{error}</p>}
         <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.inputGroup}>
+            <label htmlFor="name">
+              Semester:
+              <span> {semNumber}</span>
+            </label>
+          </div>
           <div className={styles.inputGroup}>
             <label htmlFor="name">Course Name:</label>
             <input

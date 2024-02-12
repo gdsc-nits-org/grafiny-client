@@ -34,17 +34,6 @@
       left: 7%;
     }
   }
-
-  .semBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 90%;
-    margin: auto;
-    padding-top: 2rem;
-    overflow-y: auto;
-  }
 }
 
 @media only screen and (max-width: 900px) {

@@ -31,7 +31,6 @@ const SemesterPage = () => {
         `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${state.departmentId}`
       );
       const { data } = response;
-      // console.log(data);
       if (data.status !== 200) {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
@@ -42,6 +41,20 @@ const SemesterPage = () => {
     } catch (error) {
       // console.error(error);
       setLoading(() => false);
+      return toast.error("Something Went Wrong", { autoClose: 1200 });
+    }
+  };
+
+  const handleCourse = async (data) => {
+    try {
+      navigate(`/courses`, {
+        state: {
+          semId: data.id,
+          semNumber: data.semNumber,
+        },
+      });
+      return null;
+    } catch (error) {
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
@@ -74,15 +87,22 @@ const SemesterPage = () => {
           {showPopup && (
             <CreateSemester
               onClose={togglePopup}
-              instituteName={state.instituteName}
-              departments={semesters}
-              setDepartments={setSemesters}
+              departmentId={state.departmentId}
+              departmentName={state.departmentName}
+              semesters={semesters}
+              setSemester={setSemesters}
               setLoading={setLoading}
             />
           )}
           <div className={style.semBox}>
             {semesters?.map((sem) => (
-              <Semester key={sem.id} semNumber={sem.semNumber} />
+              <div
+                onClick={() => handleCourse(sem)}
+                onKeyDown={() => handleCourse(sem)}
+                key={sem.id}
+              >
+                <Semester semNumber={sem.semNumber} />
+              </div>
             ))}
           </div>
         </div>
