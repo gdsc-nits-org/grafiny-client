@@ -7,12 +7,8 @@ import {
   Topic,
   SemesterPage,
   Home,
-  Otp,
   Courses,
   Error,
-  RecoveryCode,
-  RecoveryMail,
-  ResetPassword,
   SearchResults,
   Departments,
   Profile,
@@ -30,16 +26,11 @@ const App = () => {
       <ToastContainer className="toaststyle" />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/forgotpassword" element={<RecoveryMail />} />
-        <Route path="sendotp" element={<RecoveryCode />} />
-        <Route path="verified" element={<ResetPassword />} />
         <Route path="/home" element={<Home />} />
         <Route path="/topics" element={<Topic />} />
         <Route path="/semesters" element={<SemesterPage />} />
-        <Route path="/otp" element={<Otp />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/searchresults" element={<SearchResults />} />
-        <Route path="*" element={<Error />} />
         <Route path="/departments" element={<Departments />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/aboutus" element={<AboutUs />} />
@@ -47,6 +38,7 @@ const App = () => {
         <Route path="/upload" element={<UploadingPage />} />
         <Route path="/material" element={<Material />} />
         <Route path="/profilecreate" element={<CreateProfile />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </>

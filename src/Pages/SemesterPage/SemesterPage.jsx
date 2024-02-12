@@ -2,8 +2,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Icon } from "@iconify/react";
 import { BsArrowLeft } from "react-icons/bs";
-import { Semester, Loading } from "../../Components";
+import { Semester, Loading, CreateSemester } from "../../Components";
 import style from "./SemesterPage.module.scss";
 import UserContext from "../../Global/Auth/authContext";
 
@@ -13,9 +14,14 @@ const SemesterPage = () => {
   const [semesters, setSemesters] = useState([]);
   const { loading, setLoading, user } = context;
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
 
   const navigateTo = () => {
     navigate(-1);
+  };
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
   };
 
   const handleSem = async () => {
@@ -57,11 +63,24 @@ const SemesterPage = () => {
         <div>
           <div className={style.arrow}>
             <BsArrowLeft onClick={navigateTo} className={style.arrowicon} />
+            <button
+              className={style["add-sem"]}
+              onClick={togglePopup}
+              aria-label="Add Department"
+            >
+              {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
+            </button>
           </div>
+          {showPopup && (
+            <CreateSemester
+              onClose={togglePopup}
+              instituteName={state.instituteName}
+              departments={semesters}
+              setDepartments={setSemesters}
+              setLoading={setLoading}
+            />
+          )}
           <div className={style.semBox}>
-            {semesters?.map((sem) => (
-              <Semester key={sem.id} semNumber={sem.semNumber} />
-            ))}
             {semesters?.map((sem) => (
               <Semester key={sem.id} semNumber={sem.semNumber} />
             ))}
