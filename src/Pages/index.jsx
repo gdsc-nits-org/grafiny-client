@@ -12,6 +12,7 @@ import AboutUs from "./AboutUs/AboutUs";
 import OurTeamPage from "./OurTeamPage/OurTeamPage";
 import Material from "./Material/Material";
 import CreateProfile from "./CreateProfile/CreateProfile";
+
 export {
   Home,
   Topic,

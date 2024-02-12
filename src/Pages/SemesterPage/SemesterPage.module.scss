@@ -13,12 +13,9 @@
   }
 
   .arrow {
-    cursor: pointer;
-    position: absolute;
-    width: 9%;
-    height: 0;
-    left: 7%;
-    top: 16%;
+    display: flex;
+    justify-content: flex-end;
+    width: 97%;
 
     .add-sem {
       color: #fff;
@@ -32,6 +29,9 @@
 
     .arrowicon {
       font-size: 3rem;
+      cursor: pointer;
+      position: absolute;
+      left: 7%;
     }
   }
 
