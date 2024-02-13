@@ -1,57 +1,113 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import { CreateCourse } from "../../Components";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { CreateCourse, Loading } from "../../Components";
+import UserContext from "../../Global/Auth/authContext";
 import CoursesCard from "./CoursesCard";
 import styles from "./Courses.module.scss";
 
 const Courses = () => {
   const [coursesData, setCoursesData] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
-  // const [BM, setBM] = useState(false);
+  const context = useContext(UserContext);
+  const { loading, setLoading, user } = context;
 
   const { state } = useLocation();
-  console.log(state.courses);
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
-  const fetchData = () => {
-    fetch("/db/coursesRayyan.json")
-      .then((res) => res.json())
-      .then((resp) => setCoursesData(resp));
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
   const navigate = useNavigate();
+
+  const handleCourse = async () => {
+    try {
+      setLoading(() => true);
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/course/getAll?id=${state.semId}`
+      );
+      const { data } = response;
+      if (data.status !== 200) {
+        setLoading(() => false);
+        return toast.error(data.msg, { autoClose: 1200 });
+      }
+      setCoursesData(() => data.msg.courses);
+      setLoading(() => false);
+      return null;
+    } catch (error) {
+      console.error(error);
+      setLoading(() => false);
+      return toast.error("Something Went Wrong", { autoClose: 1200 });
+    }
+  };
+  const handleTopic = async (data) => {
+    try {
+      navigate(`/topics`, {
+        state: {
+          courseId: data.id,
+        },
+      });
+      return null;
+    } catch (error) {
+      return toast.error("Something Went Wrong", { autoClose: 1200 });
+    }
+  };
+  useEffect(() => {
+    if (!user) {
+      toast.error("Please Log In", { autoClose: 1200 });
+    } else if (!state) {
+      navigate("/");
+    } else {
+      handleCourse();
+    }
+  }, []);
+
   return (
     <div className={styles.coursesHero}>
-      <div className={styles.coursesTitle}>
-        <div className={styles.coursesTitleHeading}>
-          <Icon
-            icon="mdi:arrow-left"
-            color="rgb(116, 114, 114)"
-            className={styles.dleftarrow}
-            onClick={() => navigate(-1)}
-          />
-          <div className={styles.coursesTitleText}>Courses</div>
-          <button
-            className={styles["add-courses"]}
-            onClick={togglePopup}
-            aria-label="Add Department"
-          >
-            {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
-          </button>
+      {loading === false ? (
+        <div>
+          <div className={styles.coursesTitle}>
+            <div className={styles.coursesTitleHeading}>
+              <Icon
+                icon="mdi:arrow-left"
+                color="rgb(116, 114, 114)"
+                className={styles.dleftarrow}
+                onClick={() => navigate(-1)}
+              />
+              <div className={styles.coursesTitleText}>Courses</div>
+              <button
+                className={styles["add-courses"]}
+                onClick={togglePopup}
+                aria-label="Add Department"
+              >
+                {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
+              </button>
+            </div>
+            {showPopup && (
+              <CreateCourse
+                onClose={togglePopup}
+                semNumber={state.semNumber}
+                semId={state.semId}
+              />
+            )}
+          </div>
+          <div className={styles.coursesCardContainer}>
+            {coursesData?.map((data) => (
+              <div
+                onClick={() => handleTopic(data)}
+                onKeyDown={() => handleTopic(data)}
+                key={data.id}
+                className={styles.coursesCard}
+              >
+                <CoursesCard data={data} />;
+              </div>
+            ))}
+          </div>
         </div>
-        {showPopup && <CreateCourse onClose={togglePopup} />}
-      </div>
-      <div className={styles.coursesCardContainer}>
-        {coursesData.map((data) => {
-          return <CoursesCard data={data} />;
-        })}
-      </div>
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };

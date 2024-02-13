@@ -267,6 +267,14 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   isActive ? `${styles.navlinks} ${styles.active}` : styles.navlinks
                 }
+                to="/aboutus"
+              >
+                About
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `${styles.navlinks} ${styles.active}` : styles.navlinks
+                }
                 to="/profile"
               >
                 Profile

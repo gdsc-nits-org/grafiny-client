@@ -15,23 +15,6 @@
     }
   }
 
-  .title {
-    height: 23%;
-    margin: auto;
-    margin-top: 2em;
-
-    font-family: var(--gdsc-font-1);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 4.5rem;
-    line-height: 96px;
-    text-align: center;
-
-    /* grey 2 */
-
-    color: var(--gdsc-dark-1-100);
-  }
-
   .topicbox {
     display: flex;
     flex-direction: row;
