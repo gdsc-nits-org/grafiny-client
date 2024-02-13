@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import UserContext from "../../Global/Auth/authContext";
 import styles from "../CreateDepartment/CreateDepartment.module.scss";
 
-const CreateCourse = (semesterId, setLoading, setCourse, courses, semNumber) => {
+const CreateCourse = ({ semId, semNumber }) => {
+  const { auth } = useContext(UserContext);
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
@@ -10,12 +12,18 @@ const CreateCourse = (semesterId, setLoading, setCourse, courses, semNumber) => 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      const token = await auth.currentUser.getIdToken(true);
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/course/create`,
         {
           name,
           code,
-          id: semesterId,
+          id: semId,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
         }
       );
       console.log(response.data);

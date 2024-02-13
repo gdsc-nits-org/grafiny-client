@@ -7,17 +7,21 @@ const CoursesCard = ({ data }) => {
 
   return (
     <div className={styles.coursesCard}>
-      <button onClick={() => setBM(!BM)} onKeyDown={() => setBM(!BM)}>
+      <div onClick={() => setBM(!BM)} onKeyDown={() => setBM(!BM)}>
         <img
           src={BM ? "/images/bmActive.png" : "/images/bookmark.png"}
           alt="bookmark"
           className={styles.coursesCardBm}
         />
-      </button>
-      <Link to={`/topics/${data?.link}`} className={styles.coursesLink}>
-        <div className={styles.coursesCardSubject}>{data?.subjectName}</div>
+      </div>
+
+      <Link to={`/topics/${data.id}`} className={styles.coursesLink}>
+        <div className={styles.coursesCardContent}>
+          <div className={styles.coursesCardTitle}>{data.name}</div>
+          <div className={styles.coursesCardCode}>{data.code}</div>
+        </div>
+        <img src="/images/book.png" alt="book" className={styles.coursesCardImg} />
       </Link>
-      <img src="/images/book.png" alt="book" className={styles.coursesCardImg} />
     </div>
   );
 };

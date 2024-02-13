@@ -1,13 +1,4 @@
 .coursesCard {
-  // display: inline-block;
-  position: relative;
-  width: 28%;
-  aspect-ratio: 1;
-  // min-width: 20vw !important;
-  // max-width: 20vw;
-  // min-height: 20vw !important;
-  // max-height: 20vw;
-  margin: 3% 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,6 +6,9 @@
   border-radius: 3%;
   box-shadow: 0px 0px 0.5em 0px rgb(161, 161, 161);
   transition: 0.75s;
+  height: 13rem;
+  position: relative;
+  width: 16rem;
 
   &:hover {
     box-shadow: 0px 0px 1.1em 0px rgb(181, 181, 181);
@@ -22,51 +16,41 @@
     .coursesCardImg {
       scale: 1.15;
     }
-    .coursesCardSubject {
-      transform: translateY(-7%);
-      color: rgb(20, 20, 20);
-    }
   }
 
   .coursesLink {
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   .coursesCardBm {
     position: absolute;
-    scale: 0.7;
-    top: 5%;
+    top: 1%;
     right: 5%;
+    scale: 0.7;
+    cursor: pointer;
   }
-  .coursesCardSubject {
-    color: #7a7a7a;
-    font-size: 1.75em;
-    margin: 6% auto;
-    transition: 0.75s;
-  }
+
   .coursesCardImg {
-    width: 70%;
-    height: auto;
     transition: 0.75s;
+  }
+
+  .coursesCardContent {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    color: rgb(20, 20, 20);
   }
 }
 
 @media only screen and (max-width: 600px) {
   .coursesCard {
-    // max-width: 38vw !important;
-    // min-height: 38vw !important;
-    width: 38% !important;
-    aspect-ratio: 1;
-    padding: 2%;
-    margin: 4% 4%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 0px 0.5em 0px rgb(138, 138, 138);
-
     .coursesCardSubject {
       font-size: 1em !important;
     }
+
     .coursesCardBm {
       scale: 0.6;
     }
