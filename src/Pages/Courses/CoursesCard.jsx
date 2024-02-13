@@ -15,7 +15,7 @@ const CoursesCard = ({ data }) => {
         />
       </div>
 
-      <Link to={`/topics/${data.id}`} className={styles.coursesLink}>
+      <Link to="/topics" className={styles.coursesLink}>
         <div className={styles.coursesCardContent}>
           <div className={styles.coursesCardTitle}>{data.name}</div>
           <div className={styles.coursesCardCode}>{data.code}</div>

@@ -31,6 +31,16 @@
     }
   }
 
+  .dcard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 80%;
+    margin: auto;
+  }
+
   padding: 10vh 2vh;
   min-height: 100vh;
 }
