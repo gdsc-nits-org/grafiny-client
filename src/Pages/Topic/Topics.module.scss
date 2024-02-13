@@ -1,6 +1,20 @@
 // This is a part of Template
 .topic {
   min-height: 100vh;
+
+  .title {
+    height: 23%;
+    margin: auto;
+    margin-top: 2em;
+    font-family: var(--gdsc-font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 4.5rem;
+    line-height: 96px;
+    text-align: center;
+    color: var(--gdsc-dark-1-100);
+  }
+
   h1 {
     font-weight: bold;
   }
