@@ -42,7 +42,18 @@ const Courses = () => {
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
-
+  const handleTopic = async (data) => {
+    try {
+      navigate(`/topics`, {
+        state: {
+          courseId: data.id,
+        },
+      });
+      return null;
+    } catch (error) {
+      return toast.error("Something Went Wrong", { autoClose: 1200 });
+    }
+  };
   useEffect(() => {
     if (!user) {
       toast.error("Please Log In", { autoClose: 1200 });
@@ -83,9 +94,16 @@ const Courses = () => {
             )}
           </div>
           <div className={styles.coursesCardContainer}>
-            {coursesData.map((data, i) => {
-              return <CoursesCard key={i} data={data} />;
-            })}
+            {coursesData?.map((data) => (
+              <div
+                onClick={() => handleTopic(data)}
+                onKeyDown={() => handleTopic(data)}
+                key={data.id}
+                className={styles.coursesCard}
+              >
+                <CoursesCard data={data} />;
+              </div>
+            ))}
           </div>
         </div>
       ) : (

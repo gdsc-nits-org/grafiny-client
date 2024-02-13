@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styles from "./CoursesCard.module.scss";
 
 const CoursesCard = ({ data }) => {
@@ -14,14 +14,11 @@ const CoursesCard = ({ data }) => {
           className={styles.coursesCardBm}
         />
       </div>
-
-      <Link to="/topics" className={styles.coursesLink}>
-        <div className={styles.coursesCardContent}>
-          <div className={styles.coursesCardTitle}>{data.name}</div>
-          <div className={styles.coursesCardCode}>{data.code}</div>
-        </div>
-        <img src="/images/book.png" alt="book" className={styles.coursesCardImg} />
-      </Link>
+      <div className={styles.coursesCardContent}>
+        <div className={styles.coursesCardTitle}>{data.name}</div>
+        <div className={styles.coursesCardCode}>{data.code}</div>
+      </div>
+      <img src="/images/book.png" alt="book" className={styles.coursesCardImg} />
     </div>
   );
 };

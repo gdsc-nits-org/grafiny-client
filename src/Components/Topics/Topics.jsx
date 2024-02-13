@@ -5,8 +5,7 @@ import topicstyle from "./Topics.module.scss";
 const Topics = () => {
   const navigate = useNavigate();
   const navigateTo = () => {
-    const path = "../home";
-    navigate(path);
+    navigate(-1);
   };
 
   return (
