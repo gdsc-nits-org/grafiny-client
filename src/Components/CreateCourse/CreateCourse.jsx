@@ -13,7 +13,7 @@ const CreateCourse = ({ semId, semNumber }) => {
     event.preventDefault();
     try {
       const token = await auth.currentUser.getIdToken(true);
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_BASE_URL}/course/create`,
         {
           name,
@@ -26,7 +26,6 @@ const CreateCourse = ({ semId, semNumber }) => {
           },
         }
       );
-      console.log(response.data);
       setName("");
       setCode("");
       setError("");

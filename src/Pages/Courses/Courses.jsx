@@ -27,7 +27,6 @@ const Courses = () => {
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/course/getAll?id=${state.semId}`
       );
-      console.log(response);
       const { data } = response;
       if (data.status !== 200) {
         setLoading(() => false);
@@ -37,7 +36,7 @@ const Courses = () => {
       setLoading(() => false);
       return null;
     } catch (error) {
-      // console.error(error);
+      console.error(error);
       setLoading(() => false);
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }

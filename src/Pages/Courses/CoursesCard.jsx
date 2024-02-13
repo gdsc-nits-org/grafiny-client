@@ -15,8 +15,11 @@ const CoursesCard = ({ data }) => {
         />
       </div>
       <div className={styles.coursesCardContent}>
-        <div className={styles.coursesCardTitle}>{data.name}</div>
-        <div className={styles.coursesCardCode}>{data.code}</div>
+        <div>
+          {data.code}
+          <span> - </span>
+          {data.name}
+        </div>
       </div>
       <img src="/images/book.png" alt="book" className={styles.coursesCardImg} />
     </div>

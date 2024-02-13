@@ -10,7 +10,7 @@
   position: relative;
   width: 16rem;
   gap: 1rem;
-
+  text-align: center;
   &:hover {
     box-shadow: 0px 0px 1.1em 0px rgb(181, 181, 181);
 
@@ -33,7 +33,7 @@
 
   .coursesCardContent {
     display: flex;
-    gap: 0.5rem;
+    align-items: center;
     justify-content: center;
     color: rgb(20, 20, 20);
   }
