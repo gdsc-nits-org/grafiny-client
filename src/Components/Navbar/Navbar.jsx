@@ -85,14 +85,14 @@ const Navbar = () => {
               >
                 Profile
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 className={({ isActive }) =>
                   isActive ? `${styles.navlinks} ${styles.active}` : styles.navlinks
                 }
                 to="/team"
               >
                 Team
-              </NavLink>
+              </NavLink> */}
               {user !== "" ? (
                 <button className={styles.logout} onClick={() => logout()}>
                   Logout{" "}
