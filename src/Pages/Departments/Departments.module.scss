@@ -7,26 +7,23 @@
     align-items: center;
     height: 3rem;
 
-    .arrowContainer {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .dhead {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
       font-size: 2.7em;
+      color: var(--gdsc-grayish-1-100);
+      margin: 1vh auto;
+      text-align: center;
+    }
 
-      .arrow {
-        cursor: pointer;
-      }
-
-      .dhead {
-        font-family: "Poppins";
-        font-style: normal;
-        font-weight: 400;
-        color: var(--gdsc-grayish-1-100);
-        font-size: 3rem;
-        margin: auto;
-        text-align: center;
-      }
+    .dleftarrow {
+      position: relative;
+      cursor: pointer;
+      font-size: 2.7em;
+      left: 2rem;
+      top: 1rem;
+      color: #111;
     }
 
     .add-dept {

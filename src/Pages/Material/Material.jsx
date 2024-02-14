@@ -33,7 +33,7 @@ const Matetial = () => {
         `${import.meta.env.VITE_BASE_URL}/items/allitems?id=${state.topicId}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            authorization: `Bearer ${token}`,
           },
         }
       );
@@ -80,17 +80,16 @@ const Matetial = () => {
     <section className={style.material}>
       {loading === false ? (
         <div>
-          <div className={style.iconarrow}>
-            <Icon
-              icon="mdi:arrow-left"
-              width="37"
-              height="37"
-              color="rgb(116, 114, 114)"
-              onClick={navigateTo}
-            />
-          </div>
-          <div className={style.itemsTitle}>
-            <p>Materials</p>
+          <div className={style.arrowContainer}>
+            <Icon icon="mdi:arrow-left" onClick={navigateTo} className={style.arrow} />
+            <h2 className={style.dhead}>Materials</h2>
+            {/* <button
+              className={style["add-sem"]}
+              onClick={togglePopup}
+              aria-label="Add Department"
+            >
+              {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
+            </button> */}
           </div>
           <div className={style.itemsContainer}>
             {items?.map((item) => (
