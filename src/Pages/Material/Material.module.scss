@@ -1,7 +1,37 @@
 .material {
-  padding: 10vh 2vh;
+  // padding: 10vh 2vh;
   min-height: 100vh;
-  h1 {
-    font-weight: bold;
+
+  .iconarrow {
+    margin-left: 4%;
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+
+  .itemsTitle {
+    font-family: var(--gdsc-font-1);
+    color: var(--gdsc-content-1-100);
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      font-size: 3.5rem;
+    }
+  }
+
+  .itemsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .materialcontainer p {
+    font-size: 2.5rem;
   }
 }
