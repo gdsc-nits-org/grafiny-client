@@ -1,23 +1,32 @@
 .departments {
+  min-height: calc(100vh - 4rem);
+  padding-top: 3rem;
+
   .dcontainer {
     display: flex;
     align-items: center;
     height: 3rem;
 
-    .dhead {
-      font-family: "Poppins";
-      font-style: normal;
-      font-weight: 400;
-      font-size: 2.7em;
-      color: var(--gdsc-grayish-1-100);
-      margin: 1vh auto;
-      text-align: center;
-    }
-
-    .dleftarrow {
+    .arrowContainer {
       position: relative;
-      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-size: 2.7em;
+
+      .arrow {
+        cursor: pointer;
+      }
+
+      .dhead {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        color: var(--gdsc-grayish-1-100);
+        font-size: 3rem;
+        margin: auto;
+        text-align: center;
+      }
     }
 
     .add-dept {
@@ -40,7 +49,4 @@
     max-width: 80%;
     margin: auto;
   }
-
-  padding: 10vh 2vh;
-  min-height: 100vh;
 }

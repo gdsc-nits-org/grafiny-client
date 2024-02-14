@@ -1,6 +1,6 @@
 .coursesHero {
-  min-height: 100vh;
-  padding-top: 6vh;
+  min-height: calc(100vh - 4rem);
+  padding-top: 3rem;
 
   .coursesTitle {
     position: relative;
@@ -8,20 +8,26 @@
     width: 98.1%;
     text-align: center;
 
-    .coursesTitleHeading {
-      font-size: 4em;
+    .arrowContainer {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-size: 3rem;
+      margin: auto;
+      max-width: 96vw;
 
-      .coursesTitleText {
-        color: #404040;
+      .arrow {
+        cursor: pointer;
       }
 
-      .dleftarrow {
-        position: relative;
-        cursor: pointer;
-        font-size: 2.7rem;
+      .dhead {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        color: var(--gdsc-grayish-1-100);
+        font-size: 3rem;
+        margin: auto;
+        text-align: center;
       }
 
       .add-courses {

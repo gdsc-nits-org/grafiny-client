@@ -67,7 +67,7 @@ const Topic = () => {
   return (
     <main className={styles.topic}>
       {loading === false ? (
-        <div>
+        <>
           <div className={styles.title}>Topics</div>
           <div className={styles.topicBoxContainer}>
             {topic?.map((data) => (
@@ -77,11 +77,11 @@ const Topic = () => {
                 key={data.id}
                 className={styles.topicBox}
               >
-                <Topics tname={data.name} />;
+                <Topics tname={data.name} />
               </div>
             ))}
           </div>
-        </div>
+        </>
       ) : (
         <Loading />
       )}

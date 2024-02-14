@@ -54,9 +54,9 @@ const Footer = () => {
                 {" "}
                 <Link to="/">Mission</Link>
               </li>
-              <li>
-                <Link to="/"> Types of Events</Link>
-              </li>
+              {/* <li> */}
+              {/* <Link to="/"> Types of Events</Link> */}
+              {/* </li> */}
               <li>
                 <Link to="/"> Google Technologies</Link>
               </li>

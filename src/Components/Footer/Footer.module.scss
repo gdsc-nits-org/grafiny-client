@@ -8,7 +8,9 @@
 
   .footer-content {
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
+    gap: 55vw;
 
     .footer-left {
       h3 {
@@ -26,10 +28,8 @@
 
         .f-listitem * {
           list-style: none;
-
           font-size: 1.1em;
           cursor: pointer;
-
           text-decoration: none !important;
           color: var(--gdsc-content-2-100);
 
@@ -173,6 +173,7 @@
       flex-direction: column;
       gap: 0;
       position: relative;
+
       .footer-left {
         position: relative;
         left: 0;
@@ -213,6 +214,7 @@
       p {
         font-size: 1em;
       }
+
       .social-media-icons {
         cursor: pointer;
       }
