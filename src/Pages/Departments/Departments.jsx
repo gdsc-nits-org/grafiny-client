@@ -73,7 +73,7 @@ const Departments = () => {
         <div>
           <div className={style.dcontainer}>
             <Link to="/" className={style.dleftarrow}>
-              <Icon icon="mdi:arrow-left" color="rgb(116, 114, 114)" />
+              <Icon icon="mdi:arrow-left" />
             </Link>
             <h2 className={style.dhead}>Departments</h2>
             <button

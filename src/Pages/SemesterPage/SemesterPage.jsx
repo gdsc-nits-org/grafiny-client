@@ -3,7 +3,6 @@ import { useEffect, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Icon } from "@iconify/react";
-import { BsArrowLeft } from "react-icons/bs";
 import { Semester, Loading, CreateSemester } from "../../Components";
 import style from "./SemesterPage.module.scss";
 import UserContext from "../../Global/Auth/authContext";
@@ -72,11 +71,11 @@ const SemesterPage = () => {
 
   return (
     <main className={style.semesterPage}>
-      <h1>Semesters</h1>
       {loading === false ? (
         <div>
-          <div className={style.arrow}>
-            <BsArrowLeft onClick={navigateTo} className={style.arrowicon} />
+          <div className={style.arrowContainer}>
+            <Icon icon="mdi:arrow-left" onClick={navigateTo} className={style.arrow} />
+            <h2 className={style.dhead}>Semesters</h2>
             <button
               className={style["add-sem"]}
               onClick={togglePopup}

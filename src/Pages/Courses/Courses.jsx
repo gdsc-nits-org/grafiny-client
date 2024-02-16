@@ -68,14 +68,13 @@ const Courses = () => {
       {loading === false ? (
         <div>
           <div className={styles.coursesTitle}>
-            <div className={styles.coursesTitleHeading}>
+            <div className={styles.arrowContainer}>
               <Icon
                 icon="mdi:arrow-left"
-                color="rgb(116, 114, 114)"
-                className={styles.dleftarrow}
                 onClick={() => navigate(-1)}
+                className={styles.arrow}
               />
-              <div className={styles.coursesTitleText}>Courses</div>
+              <h2 className={styles.dhead}>Courses</h2>
               <button
                 className={styles["add-courses"]}
                 onClick={togglePopup}

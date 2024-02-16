@@ -20,25 +20,29 @@
     border-radius: 6%;
     background-size: cover;
     overflow: hidden;
-    box-shadow: 1em rgba(0, 0, 0, 0.25);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     position: relative;
 
+    img {
+      position: relative;
+      top: 24%;
+    }
+
     .member-info {
-      background: url("/assets/membercard-bottom.png");
       transition: 0.25s;
 
       h2 {
         font-family: "Poppins";
         font-style: normal;
         font-weight: 600;
-        font-size: 1.3em;
+        font-size: 1.2rem;
         text-align: center;
         color: var(--gdsc-dark-1-100);
         position: relative;
-        top: 2em;
+        top: 1rem;
         letter-spacing: 0;
       }
 
@@ -46,9 +50,9 @@
         font-family: "Poppins";
         font-style: normal;
         font-weight: 400;
-        font-size: 1em;
+        font-size: 1rem;
+        top: -0.5rem;
         position: relative;
-        top: -0.4em;
         text-align: center;
         color: var(--gdsc-grayish-2-100);
       }

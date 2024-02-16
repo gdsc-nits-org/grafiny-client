@@ -8,8 +8,11 @@
 //Main style file starts here
 
 .main {
-  height: 100vh;
+  height: calc(100vh - 4rem);
+  margin-top: 0;
+  margin-bottom: 5rem;
 }
+
 .header {
   display: flex;
   justify-content: center;
@@ -22,60 +25,48 @@
     h1 {
       letter-spacing: 0.04em;
       margin: auto;
-      margin-top: 9rem;
+      margin-top: 2rem;
       width: 90%;
-
       /* Upperbound(desktop) */
-
       font-family: var(--gdsc-font-1);
       font-style: normal;
       font-weight: 400;
       font-size: 7rem;
-      line-height: 12rem;
+      line-height: 10rem;
 
       color: #000000;
     }
 
     h3 {
-      // position: absolute;
       width: 90%;
       height: 2%;
-
-      /* heading4(desktop) */
-
       font-family: var(--gdsc-font-1);
       font-style: normal;
       font-weight: 400;
       font-size: 37px;
       line-height: 48px;
-      /* identical to box height */
-
       color: var(--title-color);
     }
 
     p {
-      // position: absolute;
       margin-top: 1.8em;
       width: 80%;
       height: 3%;
-
-      /* text(desktop) */
-
       font-family: var(--gdsc-font-2);
       font-style: normal;
       font-weight: 300;
       font-size: 24px;
       line-height: 28px;
       letter-spacing: 0.03em;
-
       color: var(--title-color);
     }
   }
 
   .imageLand {
     width: 26%;
+
     img {
-      margin-top: 8.5rem;
+      margin-top: 7rem;
       font-size: 1.5rem;
       height: auto;
       max-width: 100%;
@@ -85,25 +76,20 @@
 
 .btn {
   @include flexDisplay(center, row);
-
+  margin-top: 0rem;
   cursor: pointer;
   color: white;
-
   padding: 1.3rem;
   gap: 1.5rem;
   margin: auto;
   margin-top: 2rem;
   margin-bottom: 2rem;
-
   width: 20%;
   height: 3rem;
   font-size: 1.1rem;
-
   background: var(--gdsc-blue-3-100);
-
   border: solid 0.1em rgba(#000, 0.1);
   border-radius: 0.8em;
-
   transition: 0.4s ease-in-out 0s;
 }
 
