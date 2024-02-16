@@ -89,6 +89,9 @@ const Courses = () => {
                 onClose={togglePopup}
                 semNumber={state.semNumber}
                 semId={state.semId}
+                coursesData={coursesData}
+                setCoursesData={setCoursesData}
+                setLoading={setLoading}
               />
             )}
           </div>

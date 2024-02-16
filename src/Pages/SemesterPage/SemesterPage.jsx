@@ -31,6 +31,7 @@ const SemesterPage = () => {
         `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${state.departmentId}`
       );
       const { data } = response;
+      console.log(data);
       if (data.status !== 200) {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
@@ -99,9 +100,9 @@ const SemesterPage = () => {
               <div
                 onClick={() => handleCourse(sem)}
                 onKeyDown={() => handleCourse(sem)}
-                key={sem.id}
+                key={sem?.id}
               >
-                <Semester semNumber={sem.semNumber} />
+                <Semester semNumber={sem?.semNumber} />
               </div>
             ))}
           </div>
