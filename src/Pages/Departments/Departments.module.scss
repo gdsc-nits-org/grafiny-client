@@ -1,4 +1,7 @@
 .departments {
+  min-height: calc(100vh - 4rem);
+  padding-top: 3rem;
+
   .dcontainer {
     display: flex;
     align-items: center;
@@ -18,6 +21,9 @@
       position: relative;
       cursor: pointer;
       font-size: 2.7em;
+      left: 2rem;
+      top: 1rem;
+      color: #111;
     }
 
     .add-dept {
@@ -40,7 +46,4 @@
     max-width: 80%;
     margin: auto;
   }
-
-  padding: 10vh 2vh;
-  min-height: 100vh;
 }

@@ -17,46 +17,23 @@
 
   .topicbox {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
     align-items: center;
-    flex-wrap: wrap;
-    width: 97vw;
     margin: auto;
     padding-top: 3.8rem;
-    // overflow-y: auto;
     height: auto;
 
     .boxes {
-      width: 45%;
-      cursor: pointer;
-      margin-bottom: 1em;
-
-      flex-basis: 50%;
-
-      padding: 0.6em;
-      max-width: 35%;
-
-      width: 34.7rem;
-      height: 4.1rem;
       background: #fff;
-
-      /* card drop shadow */
-
+      width: fit-content;
+      width: 30rem;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
       border-radius: 10px;
-
       border-radius: 1em;
-
       font-family: var(--gdsc-font-1);
       font-style: normal;
       font-weight: 400;
       font-size: 1.4em;
       line-height: 36px;
-      /* identical to box height */
-
-      /* grey 1 */
-
       color: var(--gdsc-grayish-2-100);
       transition: all 0.4s ease-in-out;
       border: none;
@@ -70,43 +47,33 @@
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .container {
+    .topicbox {
+      .boxes {
+        width: 22rem;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 900px) {
   .container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-
     .arrow {
       position: absolute;
       width: 22px;
       height: 0px;
       left: 9%;
-      top: 8.9rem;
+      top: 7.5rem;
 
       .arrowicon {
         font-size: 2rem;
       }
     }
 
-    .title {
-      margin: auto;
-      margin-top: 7rem;
-
-      font-weight: 400;
-      font-size: 2.2rem;
-      line-height: 39px;
-      text-align: center;
-    }
-
     .topicbox {
       margin: auto;
-      margin-top: 3.8rem;
-      overflow-y: auto;
-
-      height: auto;
+      justify-content: center;
 
       .boxes {
         max-width: 80%;

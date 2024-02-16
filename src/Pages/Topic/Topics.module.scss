@@ -1,21 +1,38 @@
-// This is a part of Template
 .topic {
-  min-height: 100vh;
+  min-height: calc(100vh - 4rem);
+  padding-top: 3rem;
+
+  .topicBoxContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 80%;
+    flex-wrap: wrap;
+    margin: auto;
+  }
 
   .title {
-    height: 23%;
-    margin: auto;
-    margin-top: 2em;
-    font-family: var(--gdsc-font-1);
+    font-family: "Poppins";
     font-style: normal;
     font-weight: 400;
-    font-size: 4.5rem;
-    line-height: 96px;
+    color: var(--gdsc-grayish-1-100);
+    font-size: 3rem;
+    margin: auto;
     text-align: center;
-    color: var(--gdsc-dark-1-100);
   }
 
   h1 {
     font-weight: bold;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .topic {
+    .topicBoxContainer {
+      justify-content: center;
+    }
+    .title {
+      font-size: 2rem;
+    }
   }
 }

@@ -1,7 +1,54 @@
 .material {
-  padding: 10vh 2vh;
-  min-height: 100vh;
-  h1 {
-    font-weight: bold;
+  min-height: calc(100vh - 4rem);
+  padding-top: 3rem;
+
+  .arrowContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 3rem;
+    margin: auto;
+    max-width: 96vw;
+
+    .arrow {
+      cursor: pointer;
+    }
+
+    .dhead {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      color: var(--gdsc-grayish-1-100);
+      font-size: 3rem;
+      margin: auto;
+      text-align: center;
+    }
+  }
+
+  .itemsTitle {
+    font-family: var(--gdsc-font-1);
+    color: var(--gdsc-content-1-100);
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      font-size: 3.5rem;
+    }
+  }
+
+  .itemsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .materialcontainer p {
+    font-size: 2.5rem;
   }
 }
