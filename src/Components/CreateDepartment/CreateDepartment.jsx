@@ -37,7 +37,7 @@ const CreateDepartment = ({ instituteName, departments, setDepartments, setLoadi
       setDepartments([...departments, data.msg.department]);
       setName(() => "");
       setLoading(() => false);
-      return toast.error("Department Created Successfulyy", { autoClose: 1200 });
+      return toast.success("Department Created Successfulyy", { autoClose: 1200 });
     } catch (err) {
       setLoading(() => false);
       return toast.error("Something Went Wrong", { autoClose: 1200 });

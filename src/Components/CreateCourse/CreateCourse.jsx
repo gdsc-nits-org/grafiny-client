@@ -12,6 +12,7 @@ const CreateCourse = ({ semId, semNumber, coursesData, setCoursesData, setLoadin
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      setLoading(() => true);
       const token = await auth.currentUser.getIdToken(true);
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/course/create`,
