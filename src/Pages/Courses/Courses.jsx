@@ -55,9 +55,11 @@ const Courses = () => {
   };
   useEffect(() => {
     if (!user) {
+      navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else if (!state) {
       navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
     } else {
       handleCourse();
     }
@@ -88,6 +90,9 @@ const Courses = () => {
                 onClose={togglePopup}
                 semNumber={state.semNumber}
                 semId={state.semId}
+                coursesData={coursesData}
+                setCoursesData={setCoursesData}
+                setLoading={setLoading}
               />
             )}
           </div>

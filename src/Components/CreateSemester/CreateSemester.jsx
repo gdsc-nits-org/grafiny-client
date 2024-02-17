@@ -34,15 +34,15 @@ const CreateSemester = ({
       const { data } = response;
       if (data.status !== 200) {
         setLoading(() => false);
-        return toast.error(data.msg, { autoClose: 1200 });
+        toast.error(data.msg, { autoClose: 1200 });
+      } else {
+        setSemester(() => [...semesters, data.msg.semester]);
+        setLoading(() => false);
+        toast.success("Semester Created Successfulyy", { autoClose: 1200 });
       }
-      setSemester([...semesters, data.msg.semesters]);
-      setLoading(() => false);
-      toast.success("Semester Created Successfulyy", { autoClose: 1200 });
-      return window.location.reload();
     } catch (err) {
       setLoading(() => false);
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
+      toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
 
@@ -70,7 +70,7 @@ const CreateSemester = ({
               <option>FOURTH</option>
               <option>FIFTH</option>
               <option>SIXTH</option>
-              <option>SEVENT</option>
+              <option>SEVENTH</option>
               <option>EIGHTH</option>
               setSemNumber()
             </select>
