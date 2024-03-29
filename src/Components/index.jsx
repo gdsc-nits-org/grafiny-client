@@ -14,7 +14,7 @@ import CreateDepartment from "./CreateDepartment/CreateDepartment";
 import CreateCourse from "./CreateCourse/CreateCourse";
 import Semester from "./Semester/Semester";
 import CreateSemester from "./CreateSemester/CreateSemester";
-
+import Popup from "./Popup/popup";
 export {
   Button,
   Navbar,
@@ -32,4 +32,5 @@ export {
   CreateCourse,
   Semester,
   CreateSemester,
+  Popup
 };

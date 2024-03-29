@@ -1,5 +1,4 @@
 import Landingstyle from "./Landing.module.scss";
-
 const Landing = () => {
   return (
     <section className={Landingstyle.main}>
