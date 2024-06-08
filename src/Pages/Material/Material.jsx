@@ -4,26 +4,26 @@ import axios from "axios";
 import { Icon } from "@iconify/react";
 import { toast } from "react-toastify";
 import UserContext from "../../Global/Auth/authContext";
-import { Materials } from "../../Components";
+import { Materials, Popup } from "../../Components";
 import Loading from "../../Components/Loading/Loading";
 import style from "./Material.module.scss";
 
-const Matetial = () => {
+const Material = () => {
   const { auth } = useContext(UserContext);
   const { state } = useLocation();
   const context = useContext(UserContext);
   const [items, setItems] = useState([]);
   const { loading, setLoading, user } = context;
   const navigate = useNavigate();
-  // const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false); 
 
   const navigateTo = () => {
     navigate(-1);
   };
 
-  // const togglePopup = () => {
-  //   setShowPopup(!showPopup);
-  // };
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
 
   const handleItems = async () => {
     try {
@@ -46,25 +46,10 @@ const Matetial = () => {
       setLoading(() => false);
       return null;
     } catch (error) {
-      // console.error(error);
       setLoading(() => false);
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
-
-  // const handleFiles = async (data) => {
-  //   try {
-  //     navigate(`/`, {
-  //       state: {
-  //         fileId: data.id,
-  //         fileUrl: data.url,
-  //       },
-  //     });
-  //     return null;
-  //   } catch (error) {
-  //     return toast.error("Something Went Wrong", { autoClose: 1200 });
-  //   }
-  // };
 
   useEffect(() => {
     if (!user) {
@@ -85,7 +70,7 @@ const Matetial = () => {
             <h2 className={style.dhead}>Materials</h2>
             {/* <button
               className={style["add-sem"]}
-              onClick={togglePopup}
+              // onClick={navigateTo('/upload')}
               aria-label="Add Department"
             >
               {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
@@ -93,15 +78,14 @@ const Matetial = () => {
           </div>
           <div className={style.itemsContainer}>
             {items?.map((item) => (
-              <div
-                //  onClick={() => handleCourse(item)}
-                //  onKeyDown={() => handleCourse(item)}
-                key={item.id}
-              >
-                <Materials name={item.name} />
+              <div key={item.id}>
+                <button onClick={togglePopup} aria-label="test"  style={{background:"none", border:"none"}}>
+                  <Materials name={item.name} />
+                </button>
               </div>
             ))}
           </div>
+          {showPopup && <Popup />}
         </div>
       ) : (
         <Loading />
@@ -110,4 +94,4 @@ const Matetial = () => {
   );
 };
 
-export default Matetial;
+export default Material; // Corrected the component name
