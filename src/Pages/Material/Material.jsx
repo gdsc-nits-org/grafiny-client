@@ -15,14 +15,10 @@ const Material = () => {
   const [items, setItems] = useState([]);
   const { loading, setLoading, user } = context;
   const navigate = useNavigate();
-  const [showPopup, setShowPopup] = useState(false); 
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const navigateTo = () => {
     navigate(-1);
-  };
-
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
   };
 
   const handleItems = async () => {
@@ -61,6 +57,14 @@ const Material = () => {
     }
   }, []);
 
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedItem(null);
+  };
+
   return (
     <section className={style.material}>
       {loading === false ? (
@@ -68,24 +72,22 @@ const Material = () => {
           <div className={style.arrowContainer}>
             <Icon icon="mdi:arrow-left" onClick={navigateTo} className={style.arrow} />
             <h2 className={style.dhead}>Materials</h2>
-            {/* <button
-              className={style["add-sem"]}
-              // onClick={navigateTo('/upload')}
-              aria-label="Add Department"
-            >
-              {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
-            </button> */}
           </div>
+
           <div className={style.itemsContainer}>
             {items?.map((item) => (
               <div key={item.id}>
-                <button onClick={togglePopup} aria-label="test"  style={{background:"none", border:"none"}}>
+                <button
+                  onClick={() => handleItemClick(item)}
+                  aria-label="test"
+                  style={{ background: "none", border: "none" }}
+                >
                   <Materials name={item.name} />
                 </button>
               </div>
             ))}
           </div>
-          {showPopup && <Popup />}
+          {selectedItem && <Popup files={selectedItem.file} onClose={handleClosePopup} />}
         </div>
       ) : (
         <Loading />
@@ -94,4 +96,4 @@ const Material = () => {
   );
 };
 
-export default Material; // Corrected the component name
+export default Material;
