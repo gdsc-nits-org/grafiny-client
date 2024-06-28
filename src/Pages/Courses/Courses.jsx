@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import axios from "axios";
@@ -104,7 +104,7 @@ const Courses = () => {
                 key={data.id}
                 className={styles.coursesCard}
               >
-                <CoursesCard data={data} />;
+                <CoursesCard data={data} />
               </div>
             ))}
           </div>
