@@ -1,20 +1,20 @@
 /* eslint-disable no-param-reassign */
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Upload.module.scss";
 import Dropdown from "../../Components/Dropdowns/Dropdowns";
 import AdviceBox from "../../Components/AdviceBox/AdviceBox";
 import UploadBox from "../../Components/UploadBox/UploadBox";
 
-const UploadingPage = () => {
-  const [selectedCourse, setSelectedCourse] = useState("");
-  const [selectedTopic, setSelectedTopic] = useState("");
+const UploadingPage = ({ department, semester, course, topic, topics }) => {
+  const [selectedCourse, setSelectedCourse] = useState(course || "");
+  const [selectedTopic, setSelectedTopic] = useState(topic || "");
   const [selectedYear, setSelectedYear] = useState("");
-  const [selectedSem, setSelectedSem] = useState("");
-  const [selectedDept, setSelectedDept] = useState("");
+  const [selectedSem, setSelectedSem] = useState(semester || "");
+  const [selectedDept, setSelectedDept] = useState(department || "");
   const [advice, setAdvice] = useState("");
   const [files, setFiles] = useState([]);
-  const [dragBox, setdragBox] = useState(false);
+  const [dragBox, setDragBox] = useState(false);
 
   const navigate = useNavigate();
   const Semesters = [
@@ -33,22 +33,17 @@ const UploadingPage = () => {
     { name: "ME", id: 5 },
     { name: "CE", id: 6 },
   ];
-  const Topics = [
-    { name: "Random Variables", id: 1, courseId: 1 },
-    { name: "Finite Automata", id: 2, courseId: 2 },
-    { name: "Pumping Lemma", id: 3, courseId: 2 },
-    { name: "Paging and Segmentation", id: 4, courseId: 3 },
-    { name: "Random Process", id: 5, courseId: 1 },
-  ];
+
   const Courses = [
     { name: "Mathematics", id: 1 },
     { name: "Theory of Computation", id: 2 },
     { name: "Computer Architecture and Organization", id: 3 },
   ];
   const Years = [
-    { name: "2024", id: 1 },
-    { name: "2025", id: 2 },
-    { name: "2026", id: 3 },
+    { name: "2025", id: 1 },
+    { name: "2026", id: 2 },
+    { name: "2027", id: 3 },
+    { name: "2028", id: 4 },
   ];
 
   const handleAdviceChange = (e) => {
@@ -86,14 +81,14 @@ const UploadingPage = () => {
   };
 
   const handleDelete = (file) => {
-    setFiles((prevFiles) => prevFiles.filter((f) => f !== file));
+    const updatedFiles = files.filter((f) => f !== file);
+    setFiles(updatedFiles);
   };
 
   let uploadedFileCount = 0;
   const handleUpload = () => {
     const newFiles = [...files];
     newFiles.forEach((file, index) => {
-      // Temporary: XML HTTP Request
       const xhr = new XMLHttpRequest();
       xhr.open("POST", "/iuuji");
       const formData = new FormData();
@@ -128,40 +123,36 @@ const UploadingPage = () => {
             value={selectedDept}
             onChange={(e) => setSelectedDept(e.target.value)}
             options={Departments}
+            disabled={!!selectedDept}
           />
           <Dropdown
             label="Semester"
             value={selectedSem}
             onChange={(e) => setSelectedSem(e.target.value)}
             options={Semesters}
+            disabled={!!selectedSem}
           />
           <Dropdown
             label="Year"
             value={selectedYear}
-            onChange={(e) => {
-              setSelectedYear(e.target.value);
-            }}
+            onChange={(e) => setSelectedYear(e.target.value)}
             options={Years}
           />
           <Dropdown
             label="Course"
             value={selectedCourse}
-            onChange={(e) => {
-              setSelectedCourse(e.target.value);
-            }}
+            onChange={(e) => setSelectedCourse(e.target.value)}
             options={Courses}
-            disabled={!selectedDept || !selectedSem}
+            disabled={!!selectedCourse}
           />
           <Dropdown
             label="Topic"
             value={selectedTopic}
             onChange={(e) => {
               setSelectedTopic(e.target.value);
-              setdragBox(true);
+              setDragBox(true);
             }}
-            options={Topics}
-            disabled={!selectedCourse}
-            selectedCourse={selectedCourse}
+            options={topics}
           />
         </div>
         <div className={styles["right-upload"]}>

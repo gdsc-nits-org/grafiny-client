@@ -25,6 +25,16 @@
     }
   }
 
+  .add-items {
+    color: #fff;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
   .itemsTitle {
     font-family: var(--gdsc-font-1);
     color: var(--gdsc-content-1-100);

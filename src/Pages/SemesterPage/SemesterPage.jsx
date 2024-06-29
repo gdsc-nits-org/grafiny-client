@@ -30,7 +30,6 @@ const SemesterPage = () => {
         `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${state.departmentId}`
       );
       const { data } = response;
-      console.log(data);
       if (data.status !== 200) {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
@@ -39,18 +38,18 @@ const SemesterPage = () => {
       setLoading(() => false);
       return null;
     } catch (error) {
-      // console.error(error);
       setLoading(() => false);
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
-
+  const { departmentName } = state;
   const handleCourse = async (data) => {
     try {
       navigate(`/courses`, {
         state: {
           semId: data.id,
           semNumber: data.semNumber,
+          departmentName,
         },
       });
       return null;

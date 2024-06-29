@@ -1,4 +1,3 @@
-import CSE from "../../../public/assets/departments/CSEdept.png";
 import style from "./Departments.module.scss";
 
 const DepartmentCard = ({ data }) => {
@@ -7,7 +6,11 @@ const DepartmentCard = ({ data }) => {
       <div className={style["dcard-link"]}>
         <div className={style.dcard}>
           <p className={style.dname}>{data?.name}</p>
-          <img src={CSE} alt="department" className={style["dcard-img"]} />
+          <img
+            src="https://img.icons8.com/ios/452/department.png"
+            alt="department"
+            className={style["dcard-img"]}
+          />
         </div>
       </div>
     </div>
