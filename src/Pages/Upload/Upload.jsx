@@ -1,6 +1,5 @@
-/* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Upload.module.scss";
 import Dropdown from "../../Components/Dropdowns/Dropdowns";
@@ -41,9 +40,10 @@ const UploadingPage = ({ department, semester, course, topic, topics }) => {
     { name: "Computer Architecture and Organization", id: 3 },
   ];
   const Years = [
-    { name: "2024", id: 1 },
-    { name: "2025", id: 2 },
-    { name: "2026", id: 3 },
+    { name: "2025", id: 1 },
+    { name: "2026", id: 2 },
+    { name: "2027", id: 3 },
+    { name: "2028", id: 4 },
   ];
 
   const handleAdviceChange = (e) => {
@@ -89,7 +89,6 @@ const UploadingPage = ({ department, semester, course, topic, topics }) => {
   const handleUpload = () => {
     const newFiles = [...files];
     newFiles.forEach((file, index) => {
-      // Temporary: XML HTTP Request
       const xhr = new XMLHttpRequest();
       xhr.open("POST", "/iuuji");
       const formData = new FormData();
@@ -154,7 +153,6 @@ const UploadingPage = ({ department, semester, course, topic, topics }) => {
               setDragBox(true);
             }}
             options={topics}
-            // Remove the disabled prop for Topic dropdown
           />
         </div>
         <div className={styles["right-upload"]}>

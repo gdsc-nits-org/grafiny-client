@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Dropdowns.module.scss";
 
 const Dropdown = ({ label, value, onChange, disabled, options }) => {
