@@ -36,16 +36,19 @@ const Courses = () => {
       setLoading(() => false);
       return null;
     } catch (error) {
-      console.error(error);
       setLoading(() => false);
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
+  const { departmentName, semNumber } = state;
   const handleTopic = async (data) => {
     try {
       navigate(`/topics`, {
         state: {
           courseId: data.id,
+          courseName: data.name,
+          semNumber,
+          departmentName,
         },
       });
       return null;

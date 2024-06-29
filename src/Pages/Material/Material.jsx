@@ -4,8 +4,8 @@ import axios from "axios";
 import { Icon } from "@iconify/react";
 import { toast } from "react-toastify";
 import UserContext from "../../Global/Auth/authContext";
-import { Materials, Popup } from "../../Components";
-import Loading from "../../Components/Loading/Loading";
+import { Materials, Popup, Loading } from "../../Components";
+import Upload from "../Upload/Upload";
 import style from "./Material.module.scss";
 
 const Material = () => {
@@ -16,9 +16,14 @@ const Material = () => {
   const { loading, setLoading, user } = context;
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   const navigateTo = () => {
     navigate(-1);
+  };
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
   };
 
   const handleItems = async () => {
@@ -34,6 +39,7 @@ const Material = () => {
         }
       );
       const { data } = response;
+
       if (data.status !== 200) {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
@@ -74,18 +80,40 @@ const Material = () => {
             <h2 className={style.dhead}>Materials</h2>
           </div>
 
-          <div className={style.itemsContainer}>
-            {items?.map((item) => (
-              <div key={item.id}>
-                <button
-                  onClick={() => handleItemClick(item)}
-                  aria-label="test"
-                  style={{ background: "none", border: "none" }}
-                >
-                  <Materials name={item.name} />
-                </button>
-              </div>
-            ))}
+          <button
+            className={style["add-items"]}
+            onClick={togglePopup}
+            aria-label="Add Items"
+          >
+            {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
+          </button>
+
+          <div>
+            <div>
+              {showPopup && (
+                <Upload
+                  onClose={togglePopup}
+                  department={state.departmentName}
+                  semester={state.semNumber}
+                  course={state.courseName}
+                  topic={state.topiName}
+                  topics={state.topics}
+                />
+              )}
+            </div>
+            <div className={style.itemsContainer}>
+              {items?.map((item) => (
+                <div key={item.id}>
+                  <button
+                    onClick={() => handleItemClick(item)}
+                    aria-label="test"
+                    style={{ background: "none", border: "none" }}
+                  >
+                    <Materials name={item.name} />
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
           {selectedItem && <Popup files={selectedItem.file} onClose={handleClosePopup} />}
         </div>

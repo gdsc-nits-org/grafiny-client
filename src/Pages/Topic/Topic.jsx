@@ -9,15 +9,9 @@ import { Loading } from "../../Components";
 
 const Topic = () => {
   const [topic, setTopic] = useState([]);
-  // const [showPopup, setShowPopup] = useState(false);
   const context = useContext(UserContext);
   const { loading, setLoading, user } = context;
-
   const { state } = useLocation();
-
-  // const togglePopup = () => {
-  //   setShowPopup(!showPopup);
-  // };
 
   const navigate = useNavigate();
 
@@ -36,17 +30,22 @@ const Topic = () => {
       setLoading(() => false);
       return null;
     } catch (error) {
-      console.error(error);
       setLoading(() => false);
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
-
+  const { departmentName, semNumber, courseName, courseId } = state;
   const handleItems = async (data) => {
     try {
       navigate(`/material`, {
         state: {
           topicId: data.id,
+          topicName: data.name,
+          semNumber,
+          departmentName,
+          courseName,
+          courseId,
+          topics: topic,
         },
       });
       return null;

@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./Materials.module.scss";
 
 const Materials = ({ name }) => {
@@ -8,6 +7,7 @@ const Materials = ({ name }) => {
         <img src="./images/folder.png" alt="" className="" />
         <div>
           {" "}
+          <br />
           <p className={style.materialtitle}> {name}</p>
         </div>
       </div>
