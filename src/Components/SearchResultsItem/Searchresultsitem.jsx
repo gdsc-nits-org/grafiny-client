@@ -1,15 +1,24 @@
-import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import style from "./searchresultsitem.module.scss";
 import UserContext from "../../Global/Auth/authContext";
+import { Icon } from "@iconify/react";
+import Popup from "../Popup/popup";
 
 const SearchResultsItem = ({ item }) => {
   const context = useContext(UserContext);
   const { user } = context;
-  console.log(item);
+  const [showPopup, setShowPopup] = useState(false);
+  
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
+ 
   return (
     <div className={style.itemcontainer}>
+    
       <div className={style.leftpart}>
+      {showPopup && <Popup files={item.file} onClose={togglePopup} />}
         <div className={style.bookiconcontainer}>
           <img className={style.bookicon} src="/assets/bookicon.png" alt="bookicon" />
         </div>
@@ -24,14 +33,14 @@ const SearchResultsItem = ({ item }) => {
       <div className={style.rightpart}>
         <div className={style.leftitem}>{item.createdAt.split("T")[0]}</div>
         <div className={style.rightitem}>
-          <div className={style.heartcontainer}>
+          <div className={style.heartcontainer} onClick={togglePopup}>
             {(!user.profile || !item.likedByIds.includes(user.profile.id)) === true ? (
-              <FaRegHeart />
+              <Icon icon="uiw:arrow-down" />
             ) : (
-              <FaHeart />
+              <Icon icon="uiw:arrow-down" />
             )}
           </div>
-          <div className={style.likenumber}>{item.likedByIds.length}</div>
+          {/*<div className={style.likenumber}>{item.likedByIds.length}</div> */}
         </div>
       </div>
     </div>
