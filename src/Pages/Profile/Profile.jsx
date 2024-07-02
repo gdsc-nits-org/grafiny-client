@@ -59,12 +59,12 @@ const Profile = () => {
             <div className={style.heading2}>Date</div>
           </div>
           <div className={style.uploadeditems}>
-            <UploadedItem item={1} />
-            <UploadedItem item={1} />
-            <UploadedItem item={1} />
-            <UploadedItem item={1} />
-            <UploadedItem item={1} />
-            <UploadedItem item={1} />
+          
+
+            {user?.profile?.uploadedItems?.map((item) => (
+              <UploadedItem key={item.id} item={item} />
+            ))}
+          
           </div>
         </div>
       </div>

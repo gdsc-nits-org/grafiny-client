@@ -32,7 +32,7 @@ const Popup = ({ onClose, files }) => {
             return (
               <div key={file.id} className={style.file}>
                 {file.key}
-                <a href={file.url} target="_blank">
+                <a href={file.url} download = {file.key}>
                   Download
                 </a>
               </div>
