@@ -110,6 +110,7 @@ const Profile = () => {
             {user?.profile?.uploadedItems?.map((item) => (
               <UploadedItem key={item.id} item={item} deleteItem={deleteItem} />
             ))}
+
           </div>
         </div>
       </div>
