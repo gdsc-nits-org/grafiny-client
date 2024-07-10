@@ -28,6 +28,7 @@ const Material = () => {
 
   const handleItems = async () => {
     try {
+      console.log("yyyyyy")
       setLoading(() => true);
       const token = await auth.currentUser.getIdToken(true);
       const response = await axios.get(
@@ -39,7 +40,6 @@ const Material = () => {
         }
       );
       const { data } = response;
-
       if (data.status !== 200) {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
@@ -58,6 +58,7 @@ const Material = () => {
       toast.error("Please Log In", { autoClose: 1200 });
     } else if (!state) {
       navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
     } else {
       handleItems();
     }

@@ -1,6 +1,6 @@
 import style from "./UploadedItems.module.scss";
 
-const UploadedItem = ({ item }) => {
+const UploadedItem = ({ item,deleteItem }) => {
   return (
     <div className={style.itemcontainer}>
       <div className={style.leftpart}>
