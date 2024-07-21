@@ -8,16 +8,15 @@ const UploadBox = ({
   handleDelete,
   selectedCourse,
   selectedTopic,
-  selectedYear,
   selectedSem,
   selectedDept,
 }) => {
   const [isDropdownsSelected, setDropdownSelcted] = useState(false);
   useEffect(() => {
-    if (selectedCourse && selectedTopic && selectedSem && selectedYear && selectedDept) {
+    if (selectedCourse && selectedTopic && selectedSem && selectedDept) {
       setDropdownSelcted(true);
     }
-  }, [selectedCourse, selectedTopic, selectedDept, selectedSem, selectedYear]);
+  }, [selectedCourse, selectedTopic, selectedDept, selectedSem]);
   return (
     <div
       className={`${styles["upload-box"]} ${
@@ -39,13 +38,7 @@ const UploadBox = ({
           type="file"
           multiple
           onChange={handleBrowse}
-          disabled={
-            !selectedCourse ||
-            !selectedTopic ||
-            !selectedDept ||
-            !selectedSem ||
-            !selectedYear
-          }
+          disabled={!selectedCourse || !selectedTopic || !selectedDept || !selectedSem}
         />
         <label htmlFor="file-upload-input" className={styles["browse-button"]}>
           Browse

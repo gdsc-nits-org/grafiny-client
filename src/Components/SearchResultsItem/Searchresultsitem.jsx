@@ -1,24 +1,22 @@
 import { useContext, useState } from "react";
+import { Icon } from "@iconify/react";
 import style from "./searchresultsitem.module.scss";
 import UserContext from "../../Global/Auth/authContext";
-import { Icon } from "@iconify/react";
 import Popup from "../Popup/popup";
 
 const SearchResultsItem = ({ item }) => {
   const context = useContext(UserContext);
   const { user } = context;
   const [showPopup, setShowPopup] = useState(false);
-  
+
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
 
- 
   return (
     <div className={style.itemcontainer}>
-    
       <div className={style.leftpart}>
-      {showPopup && <Popup files={item.file} onClose={togglePopup} />}
+        {showPopup && <Popup files={item.file} onClose={togglePopup} />}
         <div className={style.bookiconcontainer}>
           <img className={style.bookicon} src="/assets/bookicon.png" alt="bookicon" />
         </div>
@@ -33,14 +31,17 @@ const SearchResultsItem = ({ item }) => {
       <div className={style.rightpart}>
         <div className={style.leftitem}>{item.createdAt.split("T")[0]}</div>
         <div className={style.rightitem}>
-          <div className={style.heartcontainer} onClick={togglePopup}>
+          <div
+            className={style.heartcontainer}
+            onClick={togglePopup}
+            onKeyDown={togglePopup}
+          >
             {(!user.profile || !item.likedByIds.includes(user.profile.id)) === true ? (
               <Icon icon="uiw:arrow-down" />
             ) : (
               <Icon icon="uiw:arrow-down" />
             )}
           </div>
-          {/*<div className={style.likenumber}>{item.likedByIds.length}</div> */}
         </div>
       </div>
     </div>
