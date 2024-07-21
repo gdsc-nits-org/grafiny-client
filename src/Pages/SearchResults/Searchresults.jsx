@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { SearchResultsItem, Loading } from "../../Components";
+import { SearchResultsItem, Loading} from "../../Components";
 import style from "./searchresults.module.scss";
 import UserContext from "../../Global/Auth/authContext";
 
@@ -36,6 +36,7 @@ const SearchResults = () => {
       );
 
       const { data } = response;
+      console.log(data)
 
       if (data.status !== 200) {
         setLoading(() => false);
@@ -101,7 +102,7 @@ const SearchResults = () => {
             <div className={style.leftcolumn}>Name &uarr;</div>
             <div className={style.rightcolumn}>
               <div className={style.leftitem}>Uploaded At</div>
-              <div className={style.rightitem}>Likes</div>
+              <div className={style.rightitem}>Download</div>
             </div>
           </div>
           <div className={style.searchitemscontainer}>

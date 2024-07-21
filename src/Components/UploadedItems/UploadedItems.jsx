@@ -1,6 +1,6 @@
 import style from "./UploadedItems.module.scss";
 
-const UploadedItem = ({ item }) => {
+const UploadedItem = ({ item,deleteItem }) => {
   return (
     <div className={style.itemcontainer}>
       <div className={style.leftpart}>
@@ -8,11 +8,11 @@ const UploadedItem = ({ item }) => {
           <img className={style.bookicon} src="/assets/bookicon.png" alt="bookicon" />
         </div>
         <div className={style.booktitlecontainer}>
-          <div className={style.title}>{item.name || "Data Structures"}</div>
+          <div className={style.title}>{item.name}</div>
         </div>
       </div>
       <div className={style.rightpart}>
-        <div className={style.item}>{item.lastModified || "00/00/0000"}</div>
+        <div className={style.item}>{item.createdAt.split("T")[0]}</div>
       </div>
     </div>
   );
