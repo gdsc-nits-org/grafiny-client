@@ -28,7 +28,6 @@ const Material = () => {
 
   const handleItems = async () => {
     try {
-      console.log("yyyyyy")
       setLoading(() => true);
       const token = await auth.currentUser.getIdToken(true);
       const response = await axios.get(
@@ -40,6 +39,7 @@ const Material = () => {
         }
       );
       const { data } = response;
+
       if (data.status !== 200) {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
@@ -62,6 +62,7 @@ const Material = () => {
     } else {
       handleItems();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleItemClick = (item) => {
@@ -97,8 +98,8 @@ const Material = () => {
                   department={state.departmentName}
                   semester={state.semNumber}
                   course={state.courseName}
-                  topic={state.topiName}
-                  topics={state.topics}
+                  topic={state.topicName}
+                  topicOptions={state.topics}
                 />
               )}
             </div>

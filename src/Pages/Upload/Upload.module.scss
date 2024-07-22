@@ -25,6 +25,13 @@
       font-weight: 500;
       color: var(--gdsc-grayish-2-100);
     }
+
+    .input-container input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
   }
 }
 
