@@ -23,11 +23,20 @@ const UploadingPage = ({ department, semester, course, topic, topicOptions }) =>
   const [courses, setCourses] = useState([]);
   const [topics, setTopics] = useState([]);
 
-  const { auth } = useContext(UserContext);
+  const { user,auth, loading, setLoading,setUser } = useContext(UserContext);
   const navigate = useNavigate();
-  const instituteId = "648751920c066ada58576375";
-
+  const instituteId = user?.profile?.institution?.id;
   useEffect(() => {
+    if (!user) {
+      navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
+    } else if (user.name === "") {
+      navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
+    } else if (!user.profile) {
+      navigate("/profilecreate");
+      toast.error("Please Create A Profile", { autoClose: 1200 });
+    }
     const fetchDepartments = async () => {
       if (selectedDept) {
         return;
@@ -124,6 +133,7 @@ const UploadingPage = ({ department, semester, course, topic, topicOptions }) =>
       !selectedDept ||
       files.length === 0
     ) {
+      toast.error("Please Provide All the Details:", { autoClose: 1200 });
       return;
     }
 
@@ -135,6 +145,7 @@ const UploadingPage = ({ department, semester, course, topic, topicOptions }) =>
     formData.append("itemName", materialName);
 
     try {
+      setLoading(() => true)
       const token = await auth.currentUser.getIdToken(true);
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/items/upload`,
@@ -169,11 +180,33 @@ const UploadingPage = ({ department, semester, course, topic, topicOptions }) =>
             progress: 100,
           }))
         );
-        navigate("/profile");
+        const response2 = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/profile/get?email=${user.email}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const { data: data2 } = response2;
+        if (data2.status !== 200) {
+        setLoading(false);
+        return toast.error(data2.msg, { autoClose: 1200 });
+      }
+
+      const { profile } = data2.msg;
+      user.profile = profile;
+      window.localStorage.setItem("user", JSON.stringify(user));
+      setUser(() => user);
+      setLoading(() => false);
+      navigate("/profile");
       } else {
+        setLoading(() => false)
         toast.error("Upload failed with status:", response.status, { autoClose: 1200 });
       }
     } catch (error) {
+      setLoading(() => false)
       toast.error("Error uploading file", { autoClose: 1200 });
     }
   };

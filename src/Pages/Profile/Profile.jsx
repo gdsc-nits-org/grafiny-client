@@ -27,9 +27,10 @@ const Profile = () => {
 
   const deleteItem = async (id) => {
     try {
+      console.log(id)
       setLoading(true);
       const token = await auth.currentUser.getIdToken(true);
-      const response = await axios.get(
+      const response = await axios.delete(
         `${import.meta.env.VITE_BASE_URL}/items/deleteFolder?id=${id}`,
         {
           headers: {
@@ -115,7 +116,7 @@ const Profile = () => {
           </div>
           <div className={style.uploadeditems}>
             {user?.profile?.uploadedItems?.map((item) => (
-              <UploadedItem key={item.id} item={item} deleteItem={deleteItem} />
+              <UploadedItem key={item?.id} item={item} deleteItem={deleteItem} />
             ))}
           </div>
         </div>

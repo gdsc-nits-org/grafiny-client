@@ -29,9 +29,21 @@
     width: 35%;
     display: flex;
     .item {
-      width: 100%;
+      width: 70%;
       display: flex;
       align-items: center;
+    }
+    .download {
+      width: 25%;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .delete{
+      width: 25%;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
     }
   }
 }
@@ -40,7 +52,13 @@
   .itemcontainer {
     .rightpart {
       .item {
-        width: 100%;
+        width: 70%;
+      }
+      .download{
+        width: 25%;
+      }
+      .delete{
+        width: 25%;
       }
     }
   }
