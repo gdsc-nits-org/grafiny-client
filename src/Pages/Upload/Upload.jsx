@@ -1,53 +1,85 @@
 /* eslint-disable no-param-reassign */
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import styles from "./Upload.module.scss";
+import UserContext from "../../Global/Auth/authContext";
 import Dropdown from "../../Components/Dropdowns/Dropdowns";
-import AdviceBox from "../../Components/AdviceBox/AdviceBox";
 import UploadBox from "../../Components/UploadBox/UploadBox";
 
-const UploadingPage = ({ department, semester, course, topic, topics }) => {
+const UploadingPage = ({ department, semester, course, topic, topicOptions }) => {
   const [selectedCourse, setSelectedCourse] = useState(course || "");
   const [selectedTopic, setSelectedTopic] = useState(topic || "");
-  const [selectedYear, setSelectedYear] = useState("");
   const [selectedSem, setSelectedSem] = useState(semester || "");
+  const [selectedSemId, setSelectedSemId] = useState("");
   const [selectedDept, setSelectedDept] = useState(department || "");
-  const [advice, setAdvice] = useState("");
+  const [selectedDeptId, setSelectedDeptId] = useState("");
   const [files, setFiles] = useState([]);
   const [dragBox, setDragBox] = useState(false);
+  const [materialName, setMaterialName] = useState("");
+  const [semesters, setSemesters] = useState([]);
+  const [departments, setDepartments] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [topics, setTopics] = useState([]);
 
+  const { auth } = useContext(UserContext);
   const navigate = useNavigate();
-  const Semesters = [
-    { name: "1st", id: 1 },
-    { name: "2nd", id: 2 },
-    { name: "3rd", id: 3 },
-    { name: "4th", id: 4 },
-    { name: "5th", id: 5 },
-    { name: "6th", id: 6 },
-  ];
-  const Departments = [
-    { name: "CSE", id: 1 },
-    { name: "ECE", id: 2 },
-    { name: "EE", id: 3 },
-    { name: "EIE", id: 4 },
-    { name: "ME", id: 5 },
-    { name: "CE", id: 6 },
-  ];
+  const instituteId = "648751920c066ada58576375";
 
-  const Courses = [
-    { name: "Mathematics", id: 1 },
-    { name: "Theory of Computation", id: 2 },
-    { name: "Computer Architecture and Organization", id: 3 },
-  ];
-  const Years = [
-    { name: "2025", id: 1 },
-    { name: "2026", id: 2 },
-    { name: "2027", id: 3 },
-    { name: "2028", id: 4 },
-  ];
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      if (selectedDept) {
+        return;
+      }
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/department/getAll?id=${instituteId}`
+        );
+        setDepartments(response.data.msg.departments);
+      } catch (error) {
+        toast.error("Error fetching departments", { autoClose: 1200 });
+      }
+    };
+    fetchDepartments();
+  }, [selectedDept]);
 
-  const handleAdviceChange = (e) => {
-    setAdvice(e.target.value);
+  const handleDeptChange = async (selectedOption) => {
+    setSelectedDeptId(selectedOption.id);
+    setSelectedDept(selectedOption.name);
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${selectedOption.id}`
+      );
+      setSemesters(response.data.msg.semesters);
+    } catch (error) {
+      toast.error("Error fetching semesters", { autoClose: 1200 });
+    }
+  };
+
+  const handleSemesterChange = async (selectedOption) => {
+    setSelectedSem(selectedOption.semNumber);
+    setSelectedSemId(selectedOption.id);
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/course/getAll?id=${selectedOption.id}`
+      );
+      setCourses(response.data.msg.courses);
+    } catch (error) {
+      toast.error("Error fetching courses", { autoClose: 1200 });
+    }
+  };
+
+  const handleCourseChange = async (selectedOption) => {
+    setSelectedCourse(selectedOption.id);
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/topic/getAll?id=${selectedOption.id}`
+      );
+      setTopics(response.data.msg.topics);
+    } catch (error) {
+      toast.error("Error fetching topics:", { autoClose: 1200 });
+    }
   };
 
   const handleDrop = (e) => {
@@ -76,7 +108,6 @@ const UploadingPage = ({ department, semester, course, topic, topics }) => {
         newFiles.push(file);
       }
     });
-
     setFiles(newFiles);
   };
 
@@ -85,32 +116,66 @@ const UploadingPage = ({ department, semester, course, topic, topics }) => {
     setFiles(updatedFiles);
   };
 
-  let uploadedFileCount = 0;
-  const handleUpload = () => {
-    const newFiles = [...files];
-    newFiles.forEach((file, index) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open("POST", "/iuuji");
-      const formData = new FormData();
-      formData.append("file", file);
-      xhr.upload.addEventListener("progress", (e) => {
-        if (e.lengthComputable) {
-          file.progress = Math.round((e.loaded / e.total) * 100);
-          setFiles([...newFiles]);
+  const handleUpload = async () => {
+    if (
+      !selectedCourse ||
+      !selectedTopic ||
+      !selectedSem ||
+      !selectedDept ||
+      files.length === 0
+    ) {
+      return;
+    }
+
+    const formData = new FormData();
+    files.forEach((file) => formData.append("file", file));
+    formData.append("topicId", selectedTopic);
+    formData.append("courseId", selectedCourse);
+    formData.append("topicName", selectedTopic);
+    formData.append("itemName", materialName);
+
+    try {
+      const token = await auth.currentUser.getIdToken(true);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/items/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+          onUploadProgress: (progressEvent) => {
+            if (progressEvent.lengthComputable) {
+              const progress = Math.round(
+                (progressEvent.loaded / progressEvent.total) * 100
+              );
+              setFiles((prevFiles) =>
+                prevFiles.map((file) => ({
+                  ...file,
+                  progress:
+                    file.name === progressEvent.target.response.name
+                      ? progress
+                      : file.progress,
+                }))
+              );
+            }
+          },
         }
-      });
-      xhr.onload = () => {
-        file.progress = 100;
-        newFiles[index] = file;
-        uploadedFileCount += 1;
-        if (uploadedFileCount === newFiles.length) {
-          setFiles([]);
-          navigate("/profile");
-        }
-      };
-      xhr.onerror = () => {};
-      xhr.send(formData);
-    });
+      );
+      if (response.status === 200) {
+        setFiles((prevFiles) =>
+          prevFiles.map((file) => ({
+            ...file,
+            progress: 100,
+          }))
+        );
+        navigate("/profile");
+      } else {
+        toast.error("Upload failed with status:", response.status, { autoClose: 1200 });
+      }
+    } catch (error) {
+      toast.error("Error uploading file", { autoClose: 1200 });
+    }
   };
 
   return (
@@ -120,47 +185,48 @@ const UploadingPage = ({ department, semester, course, topic, topics }) => {
         <div className={styles["dropdown-containers"]}>
           <Dropdown
             label="Department"
-            value={selectedDept}
-            onChange={(e) => setSelectedDept(e.target.value)}
-            options={Departments}
-            disabled={!!selectedDept}
+            value={selectedDeptId}
+            onChangeHandler={handleDeptChange}
+            options={departments}
+            displayFunction={(option) => option.name}
+            disabled={department}
           />
           <Dropdown
             label="Semester"
-            value={selectedSem}
-            onChange={(e) => setSelectedSem(e.target.value)}
-            options={Semesters}
-            disabled={!!selectedSem}
-          />
-          <Dropdown
-            label="Year"
-            value={selectedYear}
-            onChange={(e) => setSelectedYear(e.target.value)}
-            options={Years}
+            value={selectedSemId}
+            onChangeHandler={handleSemesterChange}
+            options={semesters}
+            displayFunction={(option) => option.semNumber}
+            disabled={semester}
           />
           <Dropdown
             label="Course"
             value={selectedCourse}
-            onChange={(e) => setSelectedCourse(e.target.value)}
-            options={Courses}
-            disabled={!!selectedCourse}
+            onChangeHandler={handleCourseChange}
+            options={courses}
+            displayFunction={(option) => option.name}
+            disabled={course}
           />
           <Dropdown
             label="Topic"
             value={selectedTopic}
-            onChange={(e) => {
-              setSelectedTopic(e.target.value);
+            onChangeHandler={(selectedOption) => {
+              setSelectedTopic(selectedOption.id);
               setDragBox(true);
             }}
-            options={topics}
+            options={topicOptions === undefined ? topics : topicOptions}
+            displayFunction={(option) => option.name}
           />
         </div>
-        <div className={styles["right-upload"]}>
-          <AdviceBox
-            advice={advice}
-            onChange={handleAdviceChange}
-            className={styles["advice-box-main"]}
-          />
+        <div>
+          <div className={styles["input-container"]}>
+            <input
+              type="text"
+              placeholder="Enter Name for the Material"
+              value={materialName}
+              onChange={(e) => setMaterialName(e.target.value)}
+            />
+          </div>
           <UploadBox
             files={files}
             handleDrop={handleDrop}
@@ -169,7 +235,6 @@ const UploadingPage = ({ department, semester, course, topic, topics }) => {
             selectedCourse={selectedCourse}
             selectedTopic={selectedTopic}
             selectedSem={selectedSem}
-            selectedYear={selectedYear}
             selectedDept={selectedDept}
           />
         </div>
@@ -180,4 +245,5 @@ const UploadingPage = ({ department, semester, course, topic, topics }) => {
     </div>
   );
 };
+
 export default UploadingPage;
