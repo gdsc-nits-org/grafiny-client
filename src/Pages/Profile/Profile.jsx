@@ -65,7 +65,7 @@ const Profile = () => {
       window.localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
       setLoading(false);
-      navigate("/");
+      navigate("/profile");
       return toast.success("Successfully Deleted", { autoClose: 1200 });
     } catch (err) {
       setLoading(false);
