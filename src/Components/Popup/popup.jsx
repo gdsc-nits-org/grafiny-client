@@ -27,12 +27,12 @@ const Popup = ({ onClose, files }) => {
         </button>
       </div>
       <div className={style.filecontainer}>
-        {files.length > 0 ? (
-          files.map((file) => {
+        {files?.length > 0 ? (
+          files?.map((file) => {
             return (
-              <div key={file.id} className={style.file}>
-                {file.key}
-                <a href={file.url} download = {file.key}>
+              <div key={file?.id} className={style.file}>
+                {file?.key}
+                <a href={file?.url} download = {file?.key}>
                   Download
                 </a>
               </div>

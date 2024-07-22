@@ -1,16 +1,17 @@
 import { BiPencil } from "react-icons/bi";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect} from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import style from "./Profile.module.scss";
-import { UploadedItem, Loading } from "../../Components";
+import { UploadedItem, Loading, Popup } from "../../Components";
 import UserContext from "../../Global/Auth/authContext";
 
 const Profile = () => {
   const context = useContext(UserContext);
   const { user, loading, setLoading, auth, setUser } = context;
   const navigate = useNavigate();
+
 
   useEffect(() => {
     if (!user) {
