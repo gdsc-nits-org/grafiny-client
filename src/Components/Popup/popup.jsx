@@ -29,10 +29,13 @@ const Popup = ({ onClose, files }) => {
           files?.map((file) => {
             return (
               <div key={file?.id} className={style.file}>
+              <div className={style.fileleft}>
                 {file?.key}
-                <a href={file?.url} download = {file?.key}>
+                </div>
+                <div className={style.fileright}><a href={file?.url} download = {file?.key}>
                   Download
                 </a>
+                </div>
               </div>
             );
           })

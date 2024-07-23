@@ -25,9 +25,14 @@ const Profile = () => {
       toast.error("Please Create A Profile", { autoClose: 1200 });
     }
   }, [user, navigate]);
-
+  
   const deleteItem = async (id) => {
     try {
+      const flag = confirm("Are You Sure You Want To Delete This Item")
+      
+      if(flag === false){
+        return toast.info("Item deletion Cancelled", { autoClose: 1200 });
+      }
       console.log(id)
       setLoading(true);
       const token = await auth.currentUser.getIdToken(true);

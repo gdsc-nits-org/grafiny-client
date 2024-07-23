@@ -10,7 +10,7 @@ const UploadedItem = ({item, deleteItem }) => {
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
-  
+  console.log(item)
   return (
     <div className={style.itemcontainer}>
       {showPopup && <Popup files={item.file} onClose={togglePopup} />}

@@ -42,7 +42,7 @@ const SemesterPage = () => {
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
-  const { departmentName } = state;
+  const departmentName  = state?.departmentName;
   const handleCourse = async (data) => {
     try {
       navigate(`/courses`, {
@@ -88,8 +88,8 @@ const SemesterPage = () => {
           {showPopup && (
             <CreateSemester
               onClose={togglePopup}
-              departmentId={state.departmentId}
-              departmentName={state.departmentName}
+              departmentId={state?.departmentId}
+              departmentName={state?.departmentName}
               semesters={semesters}
               setSemester={setSemesters}
               setLoading={setLoading}
