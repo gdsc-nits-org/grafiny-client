@@ -7,17 +7,15 @@ import style from "./Popup.module.scss";
 
 const Popup = ({ onClose, files }) => {
   const context = useContext(UserContext);
-  const { state } = useLocation();
+  //const { state } = useLocation();
   const { user } = context;
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) {
       toast.error("Please Log In", { autoClose: 1200 });
-    } else if (!state) {
-      navigate("/");
-    }
-  }, [user, state, navigate]);
+    } 
+  }, [user, navigate]);
 
   return (
     <div className={style.container}>

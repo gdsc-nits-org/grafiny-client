@@ -10,6 +10,7 @@ const UploadedItem = ({item, deleteItem }) => {
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
+  
   return (
     <div className={style.itemcontainer}>
       {showPopup && <Popup files={item.file} onClose={togglePopup} />}
@@ -23,7 +24,7 @@ const UploadedItem = ({item, deleteItem }) => {
       </div>
       <div className={style.rightpart}>
         <div className={style.item}>{item?.createdAt?.split("T")[0]}</div>
-        <div className={style.download} onClick={togglePopup} onKeyDown={togglePopup}> <Icon icon="uiw:arrow-down" /></div>
+        <div className={style.download} onClick={togglePopup}> <Icon icon="uiw:arrow-down" /></div>
         <div className={style.delete}  onClick={() => deleteItem(item?.id)}>  <FaTrashAlt /></div>
       </div>
     </div> 

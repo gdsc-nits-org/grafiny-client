@@ -42,6 +42,7 @@ const SearchResultsItem = ({ item }) => {
               <Icon icon="uiw:arrow-down" />
             )}
           </div>
+
         </div>
       </div>
     </div>
