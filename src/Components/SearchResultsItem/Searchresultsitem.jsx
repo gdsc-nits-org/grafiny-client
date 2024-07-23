@@ -12,7 +12,6 @@ const SearchResultsItem = ({ item }) => {
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
-
   return (
     <div className={style.itemcontainer}>
       <div className={style.leftpart}>
@@ -42,6 +41,7 @@ const SearchResultsItem = ({ item }) => {
               <Icon icon="uiw:arrow-down" />
             )}
           </div>
+
         </div>
       </div>
     </div>

@@ -40,7 +40,7 @@
         flex-direction: column;
         justify-content: center;
         .file{
-            height: 4rem;
+            min-height: 4rem;
             padding: 0.5rem;
             margin: 1em;
             border-radius: 1em;
@@ -48,17 +48,25 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0.1rem 0.1rem 0 white;
-            a{  font-weight: 900;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-                text-decoration: none;
-                background-color: black;
-                color: white;
-                height: 3rem;
-                border-radius: 0.5em;
-                display: flex;
-                align-items: center;
+            .fileleft{
+                max-width: 70%;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
+            .fileright{
+                a{  font-weight: 900;
+                    padding-left: 0.5rem;
+                    padding-right: 0.5rem;
+                    text-decoration: none;
+                    background-color: black;
+                    color: white;
+                    height: 3rem;
+                    border-radius: 0.5em;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+            
         }
        
     }

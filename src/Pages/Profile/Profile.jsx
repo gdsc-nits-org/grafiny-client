@@ -1,16 +1,17 @@
 import { BiPencil } from "react-icons/bi";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect} from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import style from "./Profile.module.scss";
-import { UploadedItem, Loading } from "../../Components";
+import { UploadedItem, Loading, Popup } from "../../Components";
 import UserContext from "../../Global/Auth/authContext";
 
 const Profile = () => {
   const context = useContext(UserContext);
   const { user, loading, setLoading, auth, setUser } = context;
   const navigate = useNavigate();
+
 
   useEffect(() => {
     if (!user) {
@@ -24,12 +25,18 @@ const Profile = () => {
       toast.error("Please Create A Profile", { autoClose: 1200 });
     }
   }, [user, navigate]);
-
+  
   const deleteItem = async (id) => {
     try {
+      const flag = confirm("Are You Sure You Want To Delete This Item")
+      
+      if(flag === false){
+        return toast.info("Item deletion Cancelled", { autoClose: 1200 });
+      }
+      console.log(id)
       setLoading(true);
       const token = await auth.currentUser.getIdToken(true);
-      const response = await axios.get(
+      const response = await axios.delete(
         `${import.meta.env.VITE_BASE_URL}/items/deleteFolder?id=${id}`,
         {
           headers: {
@@ -64,7 +71,7 @@ const Profile = () => {
       window.localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
       setLoading(false);
-      navigate("/");
+      navigate("/profile");
       return toast.success("Successfully Deleted", { autoClose: 1200 });
     } catch (err) {
       setLoading(false);
@@ -115,7 +122,7 @@ const Profile = () => {
           </div>
           <div className={style.uploadeditems}>
             {user?.profile?.uploadedItems?.map((item) => (
-              <UploadedItem key={item.id} item={item} deleteItem={deleteItem} />
+              <UploadedItem key={item?.id} item={item} deleteItem={deleteItem} />
             ))}
           </div>
         </div>

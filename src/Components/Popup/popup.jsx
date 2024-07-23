@@ -7,17 +7,15 @@ import style from "./Popup.module.scss";
 
 const Popup = ({ onClose, files }) => {
   const context = useContext(UserContext);
-  const { state } = useLocation();
+  //const { state } = useLocation();
   const { user } = context;
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) {
       toast.error("Please Log In", { autoClose: 1200 });
-    } else if (!state) {
-      navigate("/");
-    }
-  }, [user, state, navigate]);
+    } 
+  }, [user, navigate]);
 
   return (
     <div className={style.container}>
@@ -27,14 +25,17 @@ const Popup = ({ onClose, files }) => {
         </button>
       </div>
       <div className={style.filecontainer}>
-        {files.length > 0 ? (
-          files.map((file) => {
+        {files?.length > 0 ? (
+          files?.map((file) => {
             return (
-              <div key={file.id} className={style.file}>
-                {file.key}
-                <a href={file.url} download = {file.key}>
+              <div key={file?.id} className={style.file}>
+              <div className={style.fileleft}>
+                {file?.key}
+                </div>
+                <div className={style.fileright}><a href={file?.url} download = {file?.key}>
                   Download
                 </a>
+                </div>
               </div>
             );
           })

@@ -34,7 +34,11 @@ const Topic = () => {
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
-  const { departmentName, semNumber, courseName, courseId } = state;
+  const departmentName = state?.departmentName
+  const semNumber = state?.semNumber
+  const courseName = state?.courseName
+  const courseId = state?.courseId
+
   const handleItems = async (data) => {
     try {
       navigate(`/material`, {
@@ -57,6 +61,7 @@ const Topic = () => {
     if (!user) {
       toast.error("Please Log In", { autoClose: 1200 });
     } else if (!state) {
+      toast.error("Please Log In", { autoClose: 1200 });
       navigate("/");
     } else {
       handleTopic();

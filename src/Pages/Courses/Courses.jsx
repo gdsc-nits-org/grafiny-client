@@ -40,7 +40,9 @@ const Courses = () => {
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
-  const { departmentName, semNumber } = state;
+  const departmentName = state?.departmentName
+  const semNumber = state?.semNumber
+
   const handleTopic = async (data) => {
     try {
       navigate(`/topics`, {
@@ -90,9 +92,9 @@ const Courses = () => {
             </div>
             {showPopup && (
               <CreateCourse
-                onClose={togglePopup}
-                semNumber={state.semNumber}
-                semId={state.semId}
+                onClose={togglePopup} 
+                semNumber={state?.semNumber}
+                semId={state?.semId}
                 coursesData={coursesData}
                 setCoursesData={setCoursesData}
                 setLoading={setLoading}

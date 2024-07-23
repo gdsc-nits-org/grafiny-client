@@ -48,6 +48,7 @@
         height: 1em;
         margin-right: 5%;
         font-weight: 800;
+        cursor: pointer;
         .heartimg {
           height: 100%;
         }
@@ -60,10 +61,10 @@
   .itemcontainer {
     .rightpart {
       .leftitem {
-        width: 100%;
+        width: 70%;
       }
       .rightitem {
-        display: none;
+        width: 30%;;
       }
     }
   }
