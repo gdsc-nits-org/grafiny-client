@@ -16,7 +16,7 @@ const Departments = () => {
   const navigate = useNavigate();
 
   const context = useContext(UserContext);
-  const { loading, setLoading, user } = context;
+  const { loading, setLoading, user, auth} = context;
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
@@ -24,7 +24,7 @@ const Departments = () => {
 
   const getDepartments = async () => {
     try {
-      setLoading(() => true);
+      setLoading(() => true);; 
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/department/getAll?id=${state.instituteId}`
       );
@@ -38,7 +38,7 @@ const Departments = () => {
       return null;
     } catch (error) {
       setLoading(() => false);
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
+      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });
     }
   };
 

@@ -36,7 +36,6 @@ const SearchResults = () => {
       );
 
       const { data } = response;
-      console.log(data)
 
       if (data.status !== 200) {
         setLoading(() => false);

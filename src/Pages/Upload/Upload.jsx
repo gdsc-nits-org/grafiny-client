@@ -207,7 +207,7 @@ const UploadingPage = ({ department, semester, course, topic, topicOptions }) =>
       }
     } catch (error) {
       setLoading(() => false)
-      toast.error("Error uploading file", { autoClose: 1200 });
+      toast.error("Error uploading file. Please Log In If You Haven'nt", { autoClose: 1200 });
     }
   };
 

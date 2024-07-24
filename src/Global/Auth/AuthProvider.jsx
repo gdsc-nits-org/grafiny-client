@@ -15,7 +15,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(
     localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : ""
   );
-
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const auth = getAuth();

@@ -10,7 +10,7 @@ import { Loading } from "../../Components";
 const Topic = () => {
   const [topic, setTopic] = useState([]);
   const context = useContext(UserContext);
-  const { loading, setLoading, user } = context;
+  const { loading, setLoading, user} = context;
   const { state } = useLocation();
 
   const navigate = useNavigate();

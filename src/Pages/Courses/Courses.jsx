@@ -12,7 +12,7 @@ const Courses = () => {
   const [coursesData, setCoursesData] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const context = useContext(UserContext);
-  const { loading, setLoading, user } = context;
+  const { loading, setLoading, user} = context;
 
   const { state } = useLocation();
 
