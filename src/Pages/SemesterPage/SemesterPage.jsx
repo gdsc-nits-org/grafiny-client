@@ -11,7 +11,7 @@ const SemesterPage = () => {
   const { state } = useLocation();
   const context = useContext(UserContext);
   const [semesters, setSemesters] = useState([]);
-  const { loading, setLoading, user } = context;
+  const { loading, setLoading, user} = context;
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
 
@@ -34,6 +34,7 @@ const SemesterPage = () => {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
       }
+      
       setSemesters(() => data.msg.semesters);
       setLoading(() => false);
       return null;

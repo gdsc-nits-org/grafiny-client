@@ -9,7 +9,6 @@ import Upload from "../Upload/Upload";
 import style from "./Material.module.scss";
 
 const Material = () => {
-  const { auth } = useContext(UserContext);
   const { state } = useLocation();
   const context = useContext(UserContext);
   const [items, setItems] = useState([]);
@@ -29,14 +28,8 @@ const Material = () => {
   const handleItems = async () => {
     try {
       setLoading(() => true);
-      const token = await auth.currentUser.getIdToken(true);
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/items/allitems?id=${state.topicId}`,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
+        `${import.meta.env.VITE_BASE_URL}/items/allitems?id=${state?.topicId}`
       );
       const { data } = response;
 
@@ -48,6 +41,7 @@ const Material = () => {
       setLoading(() => false);
       return null;
     } catch (error) {
+      console.log(error)
       setLoading(() => false);
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
@@ -95,11 +89,11 @@ const Material = () => {
               {showPopup && (
                 <Upload
                   onClose={togglePopup}
-                  department={state.departmentName}
-                  semester={state.semNumber}
-                  course={state.courseName}
-                  topic={state.topicName}
-                  topicOptions={state.topics}
+                  department={state?.departmentName}
+                  semester={state?.semNumber}
+                  course={state?.courseName}
+                  topic={state?.topicName}
+                  topicOptions={state?.topics}
                 />
               )}
             </div>
