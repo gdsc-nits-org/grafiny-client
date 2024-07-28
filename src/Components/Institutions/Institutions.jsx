@@ -44,7 +44,6 @@ const Institutions = () => {
       return null;
     } catch (err) {
       setLoading(() => false)
-      console.log(err)
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };

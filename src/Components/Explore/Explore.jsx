@@ -12,6 +12,7 @@ const Explore = () => {
   const { user, loading, setLoading, auth } = context;
   const navigate = useNavigate();
   const searchItems = async () => {
+    try{
     if (!user) {
       return toast.error("Please Log In First", { autoClose: 1200 });
     }
@@ -23,7 +24,7 @@ const Explore = () => {
     }
     setLoading(() => true);
 
-    const token = await auth.currentUser.getIdToken(true);
+    const token = await auth?.currentUser?.getIdToken(true);
     const response = await axios.get(
       `${import.meta.env.VITE_BASE_URL}/items/search?name=${value}`,
       {
@@ -48,6 +49,11 @@ const Explore = () => {
     });
 
     return null;
+  }
+  catch(err){
+    setLoading(() => false)
+    return toast.error("Something Went Wrong. Please Log In If You Haven't", { autoClose: 1200 });
+  }
   };
   return (
     <div>

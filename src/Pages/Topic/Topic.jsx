@@ -58,10 +58,11 @@ const Topic = () => {
   };
   useEffect(() => {
     if (!user) {
+      navigate("/")
       toast.error("Please Log In", { autoClose: 1200 });
     } else if (!state) {
-      toast.error("Please Log In", { autoClose: 1200 });
       navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
     } else {
       setTopic(() => state?.topics)
     }

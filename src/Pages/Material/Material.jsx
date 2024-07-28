@@ -22,6 +22,7 @@ const Material = () => {
 
   useEffect(() => {
     if (!user) {
+      navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else if (!state) {
       navigate("/");
