@@ -12,7 +12,7 @@ const Courses = () => {
   const [coursesData, setCoursesData] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const context = useContext(UserContext);
-  const { loading, setLoading, user} = context;
+  const { loading, setLoading, user,auth} = context;
 
   const { state } = useLocation();
 
@@ -26,9 +26,15 @@ const Courses = () => {
 
   const handleTopic = async (item) => {
     try {
-      setLoading(() => true);
+      setLoading(() => true);  
+      const token = await auth?.currentUser?.getIdToken(true);
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/topic/getAll?id=${item.id}`
+        `${import.meta.env.VITE_BASE_URL}/topic/getAll?id=${item.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const { data } = response;
       if (data.status !== 200) {
@@ -68,11 +74,6 @@ const Courses = () => {
         <div>
           <div className={styles.coursesTitle}>
             <div className={styles.arrowContainer}>
-              <Icon
-                icon="mdi:arrow-left"
-                onClick={() => navigate(-1)}
-                className={styles.arrow}
-              />
               <h2 className={styles.dhead}>Courses</h2>
               <button
                 className={styles["add-courses"]}

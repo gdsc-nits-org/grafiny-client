@@ -11,13 +11,9 @@ const SemesterPage = () => {
   const { state } = useLocation();
   const context = useContext(UserContext);
   const [semesters, setSemesters] = useState([]);
-  const { loading, setLoading, user} = context;
+  const { loading, setLoading, user,auth} = context;
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
-
-  const navigateTo = () => {
-    navigate(-1);
-  };
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
@@ -27,8 +23,14 @@ const SemesterPage = () => {
   const handleCourse = async (item) => {
     try {
       setLoading(() => true);
+      const token = await auth?.currentUser?.getIdToken(true);
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/course/getAll?id=${item.id}`
+        `${import.meta.env.VITE_BASE_URL}/course/getAll?id=${item.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const { data } = response;
       if (data.status !== 200) {
@@ -46,6 +48,7 @@ const SemesterPage = () => {
       });
       return null;
     } catch (error) {
+      setLoading(() => false)
       return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });  
     }
   };
@@ -67,7 +70,6 @@ const SemesterPage = () => {
       {loading === false ? (
         <div>
           <div className={style.arrowContainer}>
-            <Icon icon="mdi:arrow-left" onClick={navigateTo} className={style.arrow} />
             <h2 className={style.dhead}>Semesters</h2>
             <button
               className={style["add-sem"]}

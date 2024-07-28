@@ -22,31 +22,17 @@ const Departments = () => {
     setShowPopup(!showPopup);
   };
 
-  /*const getDepartments = async () => {
-    try {
-      setLoading(() => true);; 
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/department/getAll?id=${state.instituteId}`
-      );
-      const { data } = response;
-      if (data.status !== 200) {
-        setLoading(() => false);
-        return toast.error(data.msg, { autoClose: 1200 });
-      }
-      setDepartments(() => data.msg.departments);
-      setLoading(() => false);
-      return null;
-    } catch (error) {
-      setLoading(() => false);
-      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });
-    }
-  };
-*/
   const handleSem = async (item) => {
     try {
       setLoading(() => true);
+      const token = await auth?.currentUser?.getIdToken(true);
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${item.id}`
+        `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${item.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const { data } = response;
       if (data.status !== 200) {
@@ -84,9 +70,6 @@ const Departments = () => {
       {loading === false ? (
         <div>
           <div className={style.dcontainer}>
-            <Link to="/" className={style.dleftarrow}>
-              <Icon icon="mdi:arrow-left" />
-            </Link>
             <h2 className={style.dhead}>Departments</h2>
             <button
               className={style["add-dept"]}

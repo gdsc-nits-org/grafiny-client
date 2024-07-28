@@ -10,7 +10,7 @@ import { Loading } from "../../Components";
 const Topic = () => {
   const [topic, setTopic] = useState([]);
   const context = useContext(UserContext);
-  const { loading, setLoading, user} = context;
+  const { loading, setLoading, user,auth} = context;
   const { state } = useLocation();
 
   const navigate = useNavigate();
@@ -23,8 +23,14 @@ const Topic = () => {
   const handleItems = async (item) => {
     try {
       setLoading(() => true);
+      const token = await auth?.currentUser?.getIdToken(true);
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/items/allitems?id=${item.id}`
+        `${import.meta.env.VITE_BASE_URL}/items/allitems?id=${item.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const { data } = response;
 

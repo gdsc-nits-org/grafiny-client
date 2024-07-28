@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { Icon } from "@iconify/react";
 import { toast } from "react-toastify";
 import UserContext from "../../Global/Auth/authContext";
@@ -16,10 +15,6 @@ const Material = () => {
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-
-  const navigateTo = () => {
-    navigate(-1);
-  };
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
