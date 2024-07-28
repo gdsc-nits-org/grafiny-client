@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./Dropdowns.module.scss";
 
 const Dropdown = ({
@@ -7,7 +8,21 @@ const Dropdown = ({
   disabled,
   options,
   displayFunction,
+  allowAddNewTopic = false,
 }) => {
+  const [isAddingNewTopic, setIsAddingNewTopic] = useState(false);
+  const [newTopic, setNewTopic] = useState("");
+
+  const handleAddNewTopic = async (e) => {
+    e.preventDefault();
+    if (newTopic.trim()) {
+      const newOption = { id: newTopic, name: newTopic, isNew: true };
+      onChangeHandler(newOption);
+      setNewTopic("");
+      setIsAddingNewTopic(false);
+    }
+  };
+
   return (
     <div className={styles["dropdown-container"]}>
       <label htmlFor={label}>
@@ -17,8 +32,14 @@ const Dropdown = ({
         id={label}
         value={value}
         onChange={(e) => {
-          const selectedOption = options.find((option) => option.id === e.target.value);
-          onChangeHandler(selectedOption);
+          if (e.target.value === "add-new") {
+            setIsAddingNewTopic(true);
+          } else {
+            const selectedOption = options.find(
+              (option) => option.id === e.target.value
+            );
+            onChangeHandler(selectedOption);
+          }
         }}
         disabled={disabled}
         className={styles["dropdown-content"]}
@@ -29,7 +50,19 @@ const Dropdown = ({
             {displayFunction(option)}
           </option>
         ))}
+        {allowAddNewTopic && <option value="add-new">Add New Topic</option>}
       </select>
+      {isAddingNewTopic && (
+        <form onSubmit={handleAddNewTopic} className={styles["add-new-topic-form"]}>
+          <input
+            type="text"
+            value={newTopic}
+            onChange={(e) => setNewTopic(e.target.value)}
+            placeholder="Enter new topic name"
+          />
+          <button type="submit">Add</button>
+        </form>
+      )}
     </div>
   );
 };
