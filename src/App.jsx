@@ -9,7 +9,7 @@ import {
   Home,
   Courses,
   Error,
-  // SearchResults,
+  SearchResults,
   Departments,
   Profile,
   AboutUs,
@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/topics" element={<Topic />} />
         <Route path="/semesters" element={<SemesterPage />} />
         <Route path="/courses" element={<Courses />} />
-        {/* <Route path="/searchresults" element={<SearchResults />} /> */}
+        <Route path="/searchresults" element={<SearchResults />} />
         <Route path="/departments" element={<Departments />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/aboutus" element={<AboutUs />} />
