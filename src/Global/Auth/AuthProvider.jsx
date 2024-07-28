@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import { toast } from "react-toastify";
 import UserContext from "./authContext";
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(
     localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : ""
@@ -72,7 +73,7 @@ const AuthProvider = ({ children }) => {
 
   const getAllInstitutes = async () => {
     try {
-      const token = auth.currentUser.getIdToken(true);
+      const token = await auth.currentUser.getIdToken(true);
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/institute/getAll`,
         {
@@ -84,6 +85,7 @@ const AuthProvider = ({ children }) => {
       const data = response.data.msg.institutes;
       return data;
     } catch (err) {
+      console.log(err)
       return toast.error("Something Went Wrong...", { autoClose: 1200 });
     }
   };

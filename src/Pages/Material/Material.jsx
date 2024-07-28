@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { Icon } from "@iconify/react";
 import { toast } from "react-toastify";
 import UserContext from "../../Global/Auth/authContext";
@@ -17,44 +16,19 @@ const Material = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
 
-  const navigateTo = () => {
-    navigate(-1);
-  };
-
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
 
-  const handleItems = async () => {
-    try {
-      setLoading(() => true);
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/items/allitems?id=${state?.topicId}`
-      );
-      const { data } = response;
-
-      if (data.status !== 200) {
-        setLoading(() => false);
-        return toast.error(data.msg, { autoClose: 1200 });
-      }
-      setItems(() => data.msg.items);
-      setLoading(() => false);
-      return null;
-    } catch (error) {
-      console.log(error)
-      setLoading(() => false);
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
-    }
-  };
-
   useEffect(() => {
     if (!user) {
+      navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else if (!state) {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      handleItems();
+      setItems(() => state?.items)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -72,7 +46,6 @@ const Material = () => {
       {loading === false ? (
         <div>
           <div className={style.arrowContainer}>
-            <Icon icon="mdi:arrow-left" onClick={navigateTo} className={style.arrow} />
             <h2 className={style.dhead}>Materials</h2>
           </div>
 

@@ -22,38 +22,35 @@ const Departments = () => {
     setShowPopup(!showPopup);
   };
 
-  const getDepartments = async () => {
+  const handleSem = async (item) => {
     try {
-      setLoading(() => true);; 
+      setLoading(() => true);
+      const token = await auth?.currentUser?.getIdToken(true);
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/department/getAll?id=${state.instituteId}`
+        `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${item.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const { data } = response;
       if (data.status !== 200) {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
       }
-      setDepartments(() => data.msg.departments);
-      setLoading(() => false);
-      return null;
-    } catch (error) {
-      setLoading(() => false);
-      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });
-    }
-  };
-
-  const handleSem = async (data) => {
-    try {
+      setLoading(() => false)
       navigate(`/semesters`, {
         state: {
-          departmentId: data.id,
-          departmentName: data.name,
+          departmentId: item.id,
+          departmentName: item.name,
+          semesters: data.msg.semesters
         },
       });
       return null;
     } catch (error) {
-      // console.error(error);
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
+      setLoading(() => false);
+      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });
     }
   };
 
@@ -65,7 +62,7 @@ const Departments = () => {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      getDepartments();
+      setDepartments(() => state?.departments);
     }
   }, []);
   return (
@@ -73,9 +70,6 @@ const Departments = () => {
       {loading === false ? (
         <div>
           <div className={style.dcontainer}>
-            <Link to="/" className={style.dleftarrow}>
-              <Icon icon="mdi:arrow-left" />
-            </Link>
             <h2 className={style.dhead}>Departments</h2>
             <button
               className={style["add-dept"]}

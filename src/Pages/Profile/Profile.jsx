@@ -17,10 +17,10 @@ const Profile = () => {
     if (!user) {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
-    } else if (user.name === "") {
+    } else if (user?.name === "") {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
-    } else if (!user.profile) {
+    } else if (!user?.profile) {
       navigate("/profilecreate");
       toast.error("Please Create A Profile", { autoClose: 1200 });
     }
@@ -32,8 +32,8 @@ const Profile = () => {
       
       if(flag === false){
         return toast.info("Item deletion Cancelled", { autoClose: 1200 });
-      }
-      console.log(id)
+      } 
+        
       setLoading(true);
       const token = await auth.currentUser.getIdToken(true);
       const response = await axios.delete(
@@ -75,7 +75,7 @@ const Profile = () => {
       return toast.success("Successfully Deleted", { autoClose: 1200 });
     } catch (err) {
       setLoading(false);
-      return toast.error("Error deleting item", { autoClose: 1200 });
+      return toast.error("Error deleting item. Please Log In If You Haven't", { autoClose: 1200 });
     }
   };
 

@@ -50,7 +50,7 @@ const SearchResults = () => {
       return null;
     } catch (err) {
       setLoading(() => false);
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
+      return toast.error("Something Went Wrong. Plese Log In If You Haven't", { autoClose: 1200 });
     }
   };
 
@@ -60,8 +60,13 @@ const SearchResults = () => {
     }
   };
   useEffect(() => {
-    if (!items) {
+    if(!user){
+      navigate("/")
+      toast.error("Please Log In", { autoClose: 1200 });
+    }
+    else if (!items) {
       navigate("/");
+      toast.error("No Items Found", { autoClose: 1200 });
     }
   }, []);
   return (

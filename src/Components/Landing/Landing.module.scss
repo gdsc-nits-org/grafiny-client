@@ -5,10 +5,8 @@
   justify-content: $position;
 }
 
-//Main style file starts here
-
 .main {
-  height: calc(100vh - 4rem);
+  min-height: 100vh;
   margin-top: 0;
   margin-bottom: 5rem;
 }

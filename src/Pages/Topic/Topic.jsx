@@ -10,61 +10,61 @@ import { Loading } from "../../Components";
 const Topic = () => {
   const [topic, setTopic] = useState([]);
   const context = useContext(UserContext);
-  const { loading, setLoading, user} = context;
+  const { loading, setLoading, user,auth} = context;
   const { state } = useLocation();
 
   const navigate = useNavigate();
 
-  const handleTopic = async () => {
-    try {
-      setLoading(() => true);
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/topic/getAll?id=${state.courseId}`
-      );
-      const { data } = response;
-      if (data.status !== 200) {
-        setLoading(() => false);
-        return toast.error(data.msg, { autoClose: 1200 });
-      }
-      setTopic(() => data.msg.topics);
-      setLoading(() => false);
-      return null;
-    } catch (error) {
-      setLoading(() => false);
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
-    }
-  };
   const departmentName = state?.departmentName
   const semNumber = state?.semNumber
   const courseName = state?.courseName
   const courseId = state?.courseId
 
-  const handleItems = async (data) => {
+  const handleItems = async (item) => {
     try {
+      setLoading(() => true);
+      const token = await auth?.currentUser?.getIdToken(true);
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/items/allitems?id=${item.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data } = response;
+
+      if (data.status !== 200) {
+        setLoading(() => false);
+        return toast.error(data.msg, { autoClose: 1200 });
+      }
+      setLoading(() => false)
       navigate(`/material`, {
         state: {
-          topicId: data.id,
-          topicName: data.name,
+          topicId: item.id,
+          topicName: item.name,
           semNumber,
           departmentName,
           courseName,
-          courseId,
+          courseId, 
           topics: topic,
+          items: data.msg.items
         },
       });
       return null;
     } catch (error) {
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
+      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });
     }
   };
   useEffect(() => {
     if (!user) {
+      navigate("/")
       toast.error("Please Log In", { autoClose: 1200 });
     } else if (!state) {
-      toast.error("Please Log In", { autoClose: 1200 });
       navigate("/");
+      toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      handleTopic();
+      setTopic(() => state?.topics)
     }
   }, []);
 
