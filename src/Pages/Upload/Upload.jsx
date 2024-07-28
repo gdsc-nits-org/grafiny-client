@@ -8,8 +8,8 @@ import UserContext from "../../Global/Auth/authContext";
 import Dropdown from "../../Components/Dropdowns/Dropdowns";
 import UploadBox from "../../Components/UploadBox/UploadBox";
 
-const UploadingPage = ({ department, semester, course, topic, topicOptions }) => {
-  const [selectedCourse, setSelectedCourse] = useState(course || "");
+const UploadingPage = ({ department, semester, courseId, topic, topicOptions }) => {
+  const [selectedCourseId, setSelectedCourseId] = useState(courseId || "");
   const [selectedTopic, setSelectedTopic] = useState(topic || "");
   const [selectedSem, setSelectedSem] = useState(semester || "");
   const [selectedSemId, setSelectedSemId] = useState("");
@@ -23,9 +23,10 @@ const UploadingPage = ({ department, semester, course, topic, topicOptions }) =>
   const [courses, setCourses] = useState([]);
   const [topics, setTopics] = useState([]);
 
-  const { user,auth, loading, setLoading,setUser } = useContext(UserContext);
+  const { user, auth, setLoading, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const instituteId = user?.profile?.institution?.id;
+
   useEffect(() => {
     if (!user) {
       navigate("/");
@@ -80,7 +81,7 @@ const UploadingPage = ({ department, semester, course, topic, topicOptions }) =>
   };
 
   const handleCourseChange = async (selectedOption) => {
-    setSelectedCourse(selectedOption.id);
+    setSelectedCourseId(selectedOption.id);
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/topic/getAll?id=${selectedOption.id}`
@@ -127,25 +128,26 @@ const UploadingPage = ({ department, semester, course, topic, topicOptions }) =>
 
   const handleUpload = async () => {
     if (
-      !selectedCourse ||
+      !selectedCourseId ||
       !selectedTopic ||
       !selectedSem ||
       !selectedDept ||
+      !materialName ||
       files.length === 0
     ) {
-      toast.error("Please Provide All the Details:", { autoClose: 1200 });
+      toast.error("Please Provide All the Details", { autoClose: 1200 });
       return;
     }
 
     const formData = new FormData();
     files.forEach((file) => formData.append("file", file));
     formData.append("topicId", selectedTopic);
-    formData.append("courseId", selectedCourse);
+    formData.append("courseId", selectedCourseId);
     formData.append("topicName", selectedTopic);
     formData.append("itemName", materialName);
 
     try {
-      setLoading(() => true)
+      setLoading(() => true);
       const token = await auth.currentUser.getIdToken(true);
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/items/upload`,
@@ -191,23 +193,55 @@ const UploadingPage = ({ department, semester, course, topic, topicOptions }) =>
 
         const { data: data2 } = response2;
         if (data2.status !== 200) {
-        setLoading(false);
-        return toast.error(data2.msg, { autoClose: 1200 });
-      }
+          setLoading(false);
+          toast.error(data2.msg, { autoClose: 1200 });
+        }
 
-      const { profile } = data2.msg;
-      user.profile = profile;
-      window.localStorage.setItem("user", JSON.stringify(user));
-      setUser(() => user);
-      setLoading(() => false);
-      navigate("/profile");
+        const { profile } = data2.msg;
+        user.profile = profile;
+        window.localStorage.setItem("user", JSON.stringify(user));
+        setUser(() => user);
+        setLoading(() => false);
+        navigate("/profile");
       } else {
-        setLoading(() => false)
+        setLoading(() => false);
         toast.error("Upload failed with status:", response.status, { autoClose: 1200 });
       }
     } catch (error) {
-      setLoading(() => false)
-      toast.error("Error uploading file. Please Log In If You Haven'nt", { autoClose: 1200 });
+      setLoading(() => false);
+      toast.error("Error uploading file. Please Log In If You Haven'nt", {
+        autoClose: 1200,
+      });
+    }
+  };
+
+  const handleTopicChange = async (selectedOption) => {
+    setDragBox(true);
+    const token = await auth.currentUser.getIdToken(true);
+    if (selectedOption.isNew) {
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}/topic/create`,
+          { name: selectedOption.name, id: selectedCourseId },
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (response.status === 200) {
+          const newTopic = response.data.topic;
+          setTopics((prevTopics) => [...prevTopics, newTopic]);
+          setSelectedTopic(newTopic.id);
+          toast.success("New topic added successfully!");
+        } else {
+          toast.error("Failed to add new topic");
+        }
+      } catch (error) {
+        console.error("Error adding new topic");
+      }
+    } else {
+      setSelectedTopic(selectedOption.id);
     }
   };
 
@@ -234,21 +268,19 @@ const UploadingPage = ({ department, semester, course, topic, topicOptions }) =>
           />
           <Dropdown
             label="Course"
-            value={selectedCourse}
+            value={selectedCourseId}
             onChangeHandler={handleCourseChange}
             options={courses}
             displayFunction={(option) => option.name}
-            disabled={course}
+            disabled={courseId}
           />
           <Dropdown
             label="Topic"
             value={selectedTopic}
-            onChangeHandler={(selectedOption) => {
-              setSelectedTopic(selectedOption.id);
-              setDragBox(true);
-            }}
+            onChangeHandler={handleTopicChange}
             options={topicOptions === undefined ? topics : topicOptions}
             displayFunction={(option) => option.name}
+            allowAddNewTopic
           />
         </div>
         <div>
@@ -265,7 +297,7 @@ const UploadingPage = ({ department, semester, course, topic, topicOptions }) =>
             handleDrop={handleDrop}
             handleBrowse={handleBrowse}
             handleDelete={handleDelete}
-            selectedCourse={selectedCourse}
+            selectedCourse={selectedCourseId}
             selectedTopic={selectedTopic}
             selectedSem={selectedSem}
             selectedDept={selectedDept}

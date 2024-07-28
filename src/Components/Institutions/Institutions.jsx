@@ -21,13 +21,13 @@ const Institutions = () => {
           `${import.meta.env.VITE_BASE_URL}/institute/getAll`
         );
         const { data } = response;
-        setInstitutes(() => data.msg.institutes);
+        setInstitutes(() => data?.msg?.institutes);
       } else {
         const response = await axios.get(
           `${import.meta.env.VITE_BASE_URL}/institute/search?instituteName=${value}`
         );
         const { data } = response;
-        setInstitutes(() => data.msg.institutes);
+        setInstitutes(() => data?.msg?.institutes);
       }
       setLoading(() => false);
       return null;

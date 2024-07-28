@@ -91,7 +91,7 @@ const Material = () => {
                   onClose={togglePopup}
                   department={state?.departmentName}
                   semester={state?.semNumber}
-                  course={state?.courseName}
+                  courseId={state?.courseId}
                   topic={state?.topicName}
                   topicOptions={state?.topics}
                 />
