@@ -7,7 +7,6 @@ import style from "./Popup.module.scss";
 
 const Popup = ({ onClose, files }) => {
   const context = useContext(UserContext);
-  //const { state } = useLocation();
   const { user } = context;
   const navigate = useNavigate();
 

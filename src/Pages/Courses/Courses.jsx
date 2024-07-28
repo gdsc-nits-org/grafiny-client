@@ -21,41 +21,33 @@ const Courses = () => {
   };
   const navigate = useNavigate();
 
-  const handleCourse = async () => {
+  const departmentName = state?.departmentName
+  const semNumber = state?.semNumber
+
+  const handleTopic = async (item) => {
     try {
       setLoading(() => true);
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/course/getAll?id=${state.semId}`
+        `${import.meta.env.VITE_BASE_URL}/topic/getAll?id=${item.id}`
       );
       const { data } = response;
       if (data.status !== 200) {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
       }
-      setCoursesData(() => data.msg.courses);
-      setLoading(() => false);
-      return null;
-    } catch (error) {
-      setLoading(() => false);
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
-    }
-  };
-  const departmentName = state?.departmentName
-  const semNumber = state?.semNumber
-
-  const handleTopic = async (data) => {
-    try {
+      setLoading(() => false)
       navigate(`/topics`, {
         state: {
-          courseId: data.id,
-          courseName: data.name,
+          courseId: item.id,
+          courseName: item.name,
           semNumber,
           departmentName,
+          topics: data.msg.topics
         },
       });
       return null;
     } catch (error) {
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
+      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });
     }
   };
   useEffect(() => {
@@ -66,7 +58,7 @@ const Courses = () => {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      handleCourse();
+      setCoursesData(() => state?.courses)
     }
   }, []);
 

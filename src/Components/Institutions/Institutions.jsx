@@ -36,7 +36,8 @@ const Institutions = () => {
     }
   };
 
-  const handleDepartmentRoute = (data) => {
+  const handleDepartmentRoute = async(item) => {
+    try{
     if (!user) {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
@@ -44,13 +45,30 @@ const Institutions = () => {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
+      setLoading(() => true); 
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/department/getAll?id=${item.id}`
+      );
+      const { data } = response;
+      if (data.status !== 200) {
+        setLoading(() => false);
+        return toast.error(data.msg, { autoClose: 1200 });
+      }
+      setLoading(() => false)
       navigate(`/departments`, {
         state: {
-          instituteId: data.id,
-          instituteName: data.name,
+          instituteId: item.id,
+          instituteName: item.name,
+          departments: data.msg.departments
         },
       });
     }
+  }
+  catch(err){
+    setLoading(() => false);
+    return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });
+  }
+
   };
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {

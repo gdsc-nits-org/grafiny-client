@@ -23,39 +23,30 @@ const SemesterPage = () => {
     setShowPopup(!showPopup);
   };
 
-  const handleSem = async () => {
+  const departmentName  = state?.departmentName;
+  const handleCourse = async (item) => {
     try {
       setLoading(() => true);
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${state.departmentId}`
+        `${import.meta.env.VITE_BASE_URL}/course/getAll?id=${item.id}`
       );
       const { data } = response;
       if (data.status !== 200) {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
       }
-      
-      setSemesters(() => data.msg.semesters);
-      setLoading(() => false);
-      return null;
-    } catch (error) {
-      setLoading(() => false);
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
-    }
-  };
-  const departmentName  = state?.departmentName;
-  const handleCourse = async (data) => {
-    try {
+      setLoading(() => false)
       navigate(`/courses`, {
         state: {
-          semId: data.id,
-          semNumber: data.semNumber,
+          semId: item.id,
+          semNumber: item.semNumber,
           departmentName,
+          courses: data.msg.courses
         },
       });
       return null;
     } catch (error) {
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
+      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });  
     }
   };
 
@@ -67,7 +58,7 @@ const SemesterPage = () => {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      handleSem();
+      setSemesters(() => state?.semesters)
     }
   }, []);
 

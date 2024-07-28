@@ -32,8 +32,8 @@ const Profile = () => {
       
       if(flag === false){
         return toast.info("Item deletion Cancelled", { autoClose: 1200 });
-      }
-      console.log(id)
+      } 
+        
       setLoading(true);
       const token = await auth.currentUser.getIdToken(true);
       const response = await axios.delete(
