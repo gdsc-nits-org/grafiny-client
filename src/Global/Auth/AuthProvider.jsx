@@ -27,6 +27,7 @@ const AuthProvider = ({ children }) => {
       },
     });
     const { data } = response;
+    console.log("section 1", data)
     if (data.status === 200) {
       const userData = {
         name: data.msg.msg.name,
@@ -42,6 +43,7 @@ const AuthProvider = ({ children }) => {
     } else {
       localStorage.clear();
       setUser("");
+      console.log("section 2", data)
       toast.error("Something Went Wrong...", { autoClose: 1200 });
     }
   };
@@ -55,6 +57,7 @@ const AuthProvider = ({ children }) => {
       setLoading(() => false);
     } catch (err) {
       setLoading(() => false);
+      console.log("section 3", err)
       toast.error("Something Went Wrong...", { autoClose: 1200 });
     }
   };
@@ -83,6 +86,7 @@ const AuthProvider = ({ children }) => {
         }
       );
       const data = response.data.msg.institutes;
+      console.log("Data", data)
       return data;
     } catch (err) {
       console.log(err)
