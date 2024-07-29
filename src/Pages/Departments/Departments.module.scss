@@ -1,0 +1,49 @@
+.departments {
+  min-height: calc(100vh - 4rem);
+  padding-top: 3rem;
+
+  .dcontainer {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+
+    .dhead {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 2.7em;
+      color: var(--gdsc-grayish-1-100);
+      margin: 1vh auto;
+      text-align: center;
+    }
+
+    .dleftarrow {
+      position: relative;
+      cursor: pointer;
+      font-size: 2.7em;
+      left: 2rem;
+      top: 1rem;
+      color: #111;
+    }
+
+    .add-dept {
+      color: #fff;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
+  }
+
+  .dcard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 80%;
+    margin: auto;
+  }
+}

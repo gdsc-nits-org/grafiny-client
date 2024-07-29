@@ -1,0 +1,197 @@
+@mixin flexDisplay($position, $direction) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: $position;
+}
+
+.navbar {
+  background-color: #fff;
+  @include flexDisplay(space-between, row);
+  height: 4rem;
+  box-shadow: 0 0.25rem 0.75rem 0 var(--gdsc-grayish-2-100);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: all 0.3s ease-out;
+  z-index: 1000;
+  padding: 0rem 3rem 0rem 1rem;
+  position: sticky;
+}
+
+.large {
+  background-color: #fff;
+  box-shadow: 0 0.25rem 0.75rem 0 var(--gdsc-grayish-2-100);
+  position: fixed;
+}
+.leftSection {
+  @include flexDisplay(center, row);
+  transition: all 0.3s ease-in-out;
+  img {
+    width: 4rem;
+    height: auto;
+  }
+}
+.logopart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .logo1 {
+    height: 2rem;
+    width: 4.5rem;
+    margin-left: 0.5rem;
+  }
+  .logo2 {
+    height: 2rem;
+    width: 6rem;
+    margin-left: 0.5rem;
+  }
+}
+
+.right {
+  @include flexDisplay(space-around, row);
+  // width: 30%;
+  margin-right: 3%;
+}
+.links {
+  @include flexDisplay(center, row);
+  .login {
+    width: fit-content;
+    display: flex;
+    color: var(--gdsc-bg-2-100);
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-right: 20%;
+    position: relative;
+    border: none;
+    .img {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+  .logout {
+    width: fit-content;
+    display: flex;
+    color: var(--gdsc-bg-2-100);
+    background-color: var((--gdsc-red-1-100));
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-right: 20%;
+    position: relative;
+    border: none;
+  }
+}
+.navlinks {
+  color: rgb(116, 114, 114);
+  font-weight: 500;
+  font-size: 1.05rem;
+  margin-right: 20%;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.15s ease-in-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0.25rem;
+    bottom: -0.25rem;
+    left: 0;
+    background-color: var(--gdsc-blue-3-100);
+    border-radius: 20%;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+  }
+}
+
+.active {
+  color: black;
+
+  &::before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+.switchIcon {
+  display: none;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.navProfile2 {
+  display: none;
+  background: none;
+}
+@media (max-width: 900px) {
+  .navbar {
+    transition: 0.5s all ease-in-out;
+    position: relative;
+  }
+
+  .navbar.large {
+    height: 60vh;
+  }
+
+  .navbar.large .links {
+    @include flexDisplay(center, column);
+    position: absolute;
+    top: 4.5rem;
+    left: 0;
+    width: 100%;
+    opacity: 1;
+  }
+
+  .navbar.large .links a {
+    margin: 0.95rem 0;
+    font-size: 1.25rem;
+  }
+
+  .links {
+    .login {
+      margin: auto;
+    }
+    .logout {
+      margin: auto;
+    }
+  }
+  .switchIcon {
+    display: flex;
+  }
+
+  .leftSection {
+    // display: flex;
+    position: absolute;
+    top: 0.9rem;
+  }
+
+  .links {
+    @include flexDisplay(center, column);
+    position: absolute;
+    top: -18.75rem;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .links a {
+    margin: 0.9rem 0;
+    font-size: 1.5rem;
+  }
+
+  .navProfile2 {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    top: 0.9rem;
+    right: 1rem;
+  }
+}

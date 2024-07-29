@@ -1,0 +1,52 @@
+.coursesCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3%;
+  box-shadow: 0px 0px 0.5em 0px rgb(161, 161, 161);
+  transition: 0.75s;
+  height: 13rem;
+  position: relative;
+  width: 16rem;
+  gap: 1rem;
+  text-align: center;
+  &:hover {
+    box-shadow: 0px 0px 1.1em 0px rgb(181, 181, 181);
+
+    .coursesCardImg {
+      scale: 1.15;
+    }
+  }
+
+  .coursesCardBm {
+    position: absolute;
+    top: 1%;
+    right: 5%;
+    scale: 0.7;
+    cursor: pointer;
+  }
+
+  .coursesCardImg {
+    transition: 0.75s;
+  }
+
+  .coursesCardContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(20, 20, 20);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .coursesCard {
+    .coursesCardSubject {
+      font-size: 1em !important;
+    }
+
+    .coursesCardBm {
+      scale: 0.6;
+    }
+  }
+}

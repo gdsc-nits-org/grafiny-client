@@ -1,0 +1,32 @@
+.folders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0;
+  height: auto;
+}
+
+.foldersbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5%;
+  margin-bottom: -2%;
+}
+
+.foldersbox img {
+  width: 10rem;
+  height: 8rem;
+}
+
+.foldersbox :hover {
+  transform: scale(1.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.materialtitle {
+  color: var(--gdsc-content-1-100);
+  font-size: 1rem;
+}

@@ -1,0 +1,79 @@
+.dcard-container {
+  width: 70%;
+  margin: 1vh auto 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  height: fit-content;
+
+  .dcard {
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    border-radius: 2em;
+    cursor: pointer;
+
+    .dname {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-self: center;
+      width: 38vh;
+      font-family: "Poppins";
+      font-weight: 550;
+      text-align: center;
+      letter-spacing: 0.02em;
+      color: var(--gdsc-dark-1-100);
+      font-size: 1.8em;
+      background-color: var(--dept-bg-color);
+      backdrop-filter: blur(2px);
+      border-radius: 0 0 20px 20px;
+      height: 20vh;
+      display: none;
+      margin-bottom: 1vh;
+      user-select: none;
+    }
+
+    .dcard-img {
+      z-index: -2;
+      height: 43vh;
+      width: 40vh;
+      user-select: none;
+    }
+  }
+
+  .dcard:hover {
+    .dname {
+      display: flex;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .dcontainer {
+    .dleftarrow {
+      position: relative;
+      left: 0.1em;
+      top: 0.23em;
+      cursor: pointer;
+      font-size: 60px;
+    }
+
+    .dhead {
+      font-size: 1.8em;
+      position: relative;
+      right: 1em;
+    }
+  }
+  .dcard-container {
+    .dcard {
+      .dname {
+        display: flex;
+      }
+    }
+  }
+}

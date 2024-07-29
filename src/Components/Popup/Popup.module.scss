@@ -1,0 +1,73 @@
+::-webkit-scrollbar {
+    display: none;
+}
+.container {
+    background-color: black;
+    color: white;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    opacity: 0.8;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+    .buttoncont{
+        margin-top: 1rem;
+        height: 3rem;
+        display: flex;
+        justify-content: flex-end;
+        .button{
+            background-color: red;
+            width: 6rem;
+            height: 3rem;
+            margin-right: 0.4rem;
+            font-weight: 500;
+            border-radius: 0.4rem;
+        }
+    }
+    .name{
+        text-align: center;
+        padding: 1em;
+        margin-top: 1em;
+        font-size: 2rem;
+        font-weight: bolder;
+    }
+    .filecontainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .file{
+            min-height: 4rem;
+            padding: 0.5rem;
+            margin: 1em;
+            border-radius: 1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0.1rem 0.1rem 0 white;
+            .fileleft{
+                max-width: 70%;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            .fileright{
+                a{  font-weight: 900;
+                    padding-left: 0.5rem;
+                    padding-right: 0.5rem;
+                    text-decoration: none;
+                    background-color: black;
+                    color: white;
+                    height: 3rem;
+                    border-radius: 0.5em;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+            
+        }
+       
+    }
+}
