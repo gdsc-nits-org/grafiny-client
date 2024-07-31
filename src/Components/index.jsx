@@ -13,8 +13,8 @@ import Loading from "./Loading/Loading";
 import CreateDepartment from "./CreateDepartment/CreateDepartment";
 import CreateCourse from "./CreateCourse/CreateCourse";
 import Semester from "./Semester/Semester";
+import Popup from "./Popupp/Popup";
 import CreateSemester from "./CreateSemester/CreateSemester";
-import Popup from "./Popup/popup";
 
 export {
   Button,
@@ -33,5 +33,5 @@ export {
   CreateCourse,
   Semester,
   CreateSemester,
-  Popup
+  Popup,
 };

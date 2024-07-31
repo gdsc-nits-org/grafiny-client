@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -16,7 +16,7 @@ const Departments = () => {
   const navigate = useNavigate();
 
   const context = useContext(UserContext);
-  const { loading, setLoading, user, auth} = context;
+  const { loading, setLoading, user, auth } = context;
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
@@ -39,18 +39,20 @@ const Departments = () => {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
       }
-      setLoading(() => false)
+      setLoading(() => false);
       navigate(`/semesters`, {
         state: {
           departmentId: item.id,
           departmentName: item.name,
-          semesters: data.msg.semesters
+          semesters: data.msg.semesters,
         },
       });
       return null;
     } catch (error) {
       setLoading(() => false);
-      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });
+      return toast.error("Something Went Wrong. Please Log In If You Have'nt", {
+        autoClose: 1200,
+      });
     }
   };
 

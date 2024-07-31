@@ -12,48 +12,49 @@ const Explore = () => {
   const { user, loading, setLoading, auth } = context;
   const navigate = useNavigate();
   const searchItems = async () => {
-    try{
-    if (!user) {
-      return toast.error("Please Log In First", { autoClose: 1200 });
-    }
-    if (user.name === "") {
-      return toast.error("Please Log In First", { autoClose: 1200 });
-    }
-    if (!value) {
-      return toast.error("Search Field is Empty", { autoClose: 1200 });
-    }
-    setLoading(() => true);
-
-    const token = await auth?.currentUser?.getIdToken(true);
-    const response = await axios.get(
-      `${import.meta.env.VITE_BASE_URL}/items/search?name=${value}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    try {
+      if (!user) {
+        return toast.error("Please Log In First", { autoClose: 1200 });
       }
-    );
+      if (user.name === "") {
+        return toast.error("Please Log In First", { autoClose: 1200 });
+      }
+      if (!value) {
+        return toast.error("Search Field is Empty", { autoClose: 1200 });
+      }
+      setLoading(() => true);
 
-    const { data } = response;
-    setLoading(() => false);
-    if (data.status !== 200) {
-      return toast.error(data.msg, { autoClose: 1200 });
-    }
-    if (data.msg.items.length === 0) {
-      return toast.info("No Results Found", { autoClose: 1200 });
-    }
-    navigate("/searchresults", {
-      state: {
-        items: data.msg.items,
-      },
-    });
+      const token = await auth?.currentUser?.getIdToken(true);
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/items/search?name=${value}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    return null;
-  }
-  catch(err){
-    setLoading(() => false)
-    return toast.error("Something Went Wrong. Please Log In If You Haven't", { autoClose: 1200 });
-  }
+      const { data } = response;
+      setLoading(() => false);
+      if (data.status !== 200) {
+        return toast.error(data.msg, { autoClose: 1200 });
+      }
+      if (data.msg.items.length === 0) {
+        return toast.info("No Results Found", { autoClose: 1200 });
+      }
+      navigate("/searchresults", {
+        state: {
+          items: data.msg.items,
+        },
+      });
+
+      return null;
+    } catch (err) {
+      setLoading(() => false);
+      return toast.error("Something Went Wrong. Please Log In If You Haven't", {
+        autoClose: 1200,
+      });
+    }
   };
   return (
     <div>

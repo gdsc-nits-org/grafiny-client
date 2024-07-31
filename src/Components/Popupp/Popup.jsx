@@ -1,5 +1,4 @@
-// eslint-disable-next-line check-file/filename-naming-convention
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import UserContext from "../../Global/Auth/authContext";
@@ -13,7 +12,7 @@ const Popup = ({ onClose, files }) => {
   useEffect(() => {
     if (!user) {
       toast.error("Please Log In", { autoClose: 1200 });
-    } 
+    }
   }, [user, navigate]);
 
   return (
@@ -28,12 +27,11 @@ const Popup = ({ onClose, files }) => {
           files?.map((file) => {
             return (
               <div key={file?.id} className={style.file}>
-              <div className={style.fileleft}>
-                {file?.key}
-                </div>
-                <div className={style.fileright}><a href={file?.url} download = {file?.key}>
-                  Download
-                </a>
+                <div className={style.fileleft}>{file?.key}</div>
+                <div className={style.fileright}>
+                  <a href={file?.url} download={file?.key}>
+                    Download
+                  </a>
                 </div>
               </div>
             );
