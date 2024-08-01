@@ -1,17 +1,18 @@
-import { BiPencil } from "react-icons/bi";
-import { useContext, useEffect} from "react";
 import axios from "axios";
+import { BiPencil } from "react-icons/bi";
+import { useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { UploadedItem, Loading } from "../../Components";
 import style from "./Profile.module.scss";
-import { UploadedItem, Loading, Popup } from "../../Components";
 import UserContext from "../../Global/Auth/authContext";
 
 const Profile = () => {
   const context = useContext(UserContext);
   const { user, loading, setLoading, auth, setUser } = context;
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (!user) {
@@ -25,58 +26,68 @@ const Profile = () => {
       toast.error("Please Create A Profile", { autoClose: 1200 });
     }
   }, [user, navigate]);
-  
+
   const deleteItem = async (id) => {
-    try {
-      const flag = confirm("Are You Sure You Want To Delete This Item")
-      
-      if(flag === false){
-        return toast.info("Item deletion Cancelled", { autoClose: 1200 });
-      } 
-        
-      setLoading(true);
-      const token = await auth.currentUser.getIdToken(true);
-      const response = await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/items/deleteFolder?id=${id}`,
+    confirmAlert({
+      message: "Are you sure you want to delete this item?",
+      buttons: [
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
+          label: "Yes",
+          onClick: async () => {
+            try {
+              setLoading(true);
+              const token = await auth.currentUser.getIdToken(true);
+              const response = await axios.delete(
+                `${import.meta.env.VITE_BASE_URL}/items/deleteFolder?id=${id}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              );
+
+              const { data } = response;
+              if (data.status !== 200) {
+                setLoading(false);
+                return toast.error(data.msg, { autoClose: 1200 });
+              }
+
+              const response2 = await axios.get(
+                `${import.meta.env.VITE_BASE_URL}/profile/get?email=${user.email}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
+              );
+
+              const { data: data2 } = response2;
+              if (data2.status !== 200) {
+                setLoading(false);
+                return toast.error(data2.msg, { autoClose: 1200 });
+              }
+
+              const { profile } = data2.msg;
+              user.profile = profile;
+              window.localStorage.setItem("user", JSON.stringify(user));
+              setUser(user);
+              setLoading(false);
+              navigate("/profile");
+              return toast.success("Successfully Deleted", { autoClose: 1200 });
+            } catch (err) {
+              setLoading(false);
+              return toast.error("Error deleting item. Please Log In If You Haven't", {
+                autoClose: 1200,
+              });
+            }
           },
-        }
-      );
-
-      const { data } = response;
-      if (data.status !== 200) {
-        setLoading(false);
-        return toast.error(data.msg, { autoClose: 1200 });
-      }
-
-      const response2 = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/profile/get?email=${user.email}`,
+        },
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const { data: data2 } = response2;
-      if (data2.status !== 200) {
-        setLoading(false);
-        return toast.error(data2.msg, { autoClose: 1200 });
-      }
-
-      const { profile } = data2.msg;
-      user.profile = profile;
-      window.localStorage.setItem("user", JSON.stringify(user));
-      setUser(user);
-      setLoading(false);
-      navigate("/profile");
-      return toast.success("Successfully Deleted", { autoClose: 1200 });
-    } catch (err) {
-      setLoading(false);
-      return toast.error("Error deleting item. Please Log In If You Haven't", { autoClose: 1200 });
-    }
+          label: "No",
+          onClick: () => toast.info("Item not deleted", { autoClose: 1200 }),
+        },
+      ],
+    });
   };
 
   return loading === false ? (

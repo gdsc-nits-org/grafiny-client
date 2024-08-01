@@ -1,4 +1,3 @@
-import React from "react";
 import { FaInstagram, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.scss";
@@ -80,7 +79,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={styles["footer-end"]}>
-        <img src="../assets/gdsc.png" alt="" />
+        <img src="/assets/gdsc.png" alt="gdsc-logo" />
         <h5>Google Developer Students Club</h5>
         <p>National Institute of Technology Silchar</p>
       </div>

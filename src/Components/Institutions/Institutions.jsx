@@ -11,7 +11,7 @@ const Institutions = () => {
   const [value, setValue] = useState("");
   const navigate = useNavigate();
   const context = useContext(UserContext);
-  const { user, loading, setLoading,auth } = context;
+  const { user, loading, setLoading, auth } = context;
 
   const searchInstitute = async () => {
     try {
@@ -43,21 +43,21 @@ const Institutions = () => {
       setLoading(() => false);
       return null;
     } catch (err) {
-      setLoading(() => false)
+      setLoading(() => false);
       return toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
 
-  const handleDepartmentRoute = async(item) => {
-    try{
-    if (!user) {
-      navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
-    } else if (!user.name) {
-      navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
-    } else {
-      setLoading(() => true); 
+  const handleDepartmentRoute = async (item) => {
+    try {
+      if (!user || !user.name) {
+        navigate("/");
+        toast.error("Please Log In", { autoClose: 1200 });
+        return;
+      }
+
+      setLoading(true);
+
       const token = await auth?.currentUser?.getIdToken(true);
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/department/getAll?id=${item.id}`,
@@ -67,27 +67,31 @@ const Institutions = () => {
           },
         }
       );
+
       const { data } = response;
+
       if (data.status !== 200) {
-        setLoading(() => false);
-        return toast.error(data.msg, { autoClose: 1200 });
+        setLoading(false);
+        toast.error(data.msg, { autoClose: 1200 });
+        return;
       }
-      setLoading(() => false)
+
+      setLoading(false);
       navigate(`/departments`, {
         state: {
           instituteId: item.id,
           instituteName: item.name,
-          departments: data.msg.departments
+          departments: data.msg.departments,
         },
       });
+    } catch (err) {
+      setLoading(false);
+      toast.error("Something Went Wrong. Please Log In If You Haven't", {
+        autoClose: 1200,
+      });
     }
-  }
-  catch(err){
-    setLoading(() => false);
-    return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });
-  }
-
   };
+
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       searchInstitute();

@@ -27,6 +27,7 @@ const AuthProvider = ({ children }) => {
       },
     });
     const { data } = response;
+    console.log("debug data:", data);
     if (data.status === 200) {
       const userData = {
         name: data.msg.msg.name,
@@ -85,7 +86,6 @@ const AuthProvider = ({ children }) => {
       const data = response.data.msg.institutes;
       return data;
     } catch (err) {
-      console.log(err)
       return toast.error("Something Went Wrong...", { autoClose: 1200 });
     }
   };

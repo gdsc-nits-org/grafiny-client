@@ -11,7 +11,7 @@ const Material = () => {
   const { state } = useLocation();
   const context = useContext(UserContext);
   const [items, setItems] = useState([]);
-  const { loading, setLoading, user } = context;
+  const { loading, user } = context;
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -28,7 +28,7 @@ const Material = () => {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      setItems(() => state?.items)
+      setItems(() => state?.items);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Icon } from "@iconify/react";
 import style from "./searchresultsitem.module.scss";
 import UserContext from "../../Global/Auth/authContext";
-import Popup from "../Popup/popup";
+import Popup from "../Popupp/Popup";
 
 const SearchResultsItem = ({ item }) => {
   const context = useContext(UserContext);
@@ -41,7 +41,6 @@ const SearchResultsItem = ({ item }) => {
               <Icon icon="uiw:arrow-down" />
             )}
           </div>
-
         </div>
       </div>
     </div>
