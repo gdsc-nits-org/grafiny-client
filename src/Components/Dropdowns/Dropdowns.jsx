@@ -35,9 +35,7 @@ const Dropdown = ({
           if (e.target.value === "add-new") {
             setIsAddingNewTopic(true);
           } else {
-            const selectedOption = options.find(
-              (option) => option.id === e.target.value
-            );
+            const selectedOption = options.find((option) => option.id === e.target.value);
             onChangeHandler(selectedOption);
           }
         }}

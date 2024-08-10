@@ -11,7 +11,7 @@ const SemesterPage = () => {
   const { state } = useLocation();
   const context = useContext(UserContext);
   const [semesters, setSemesters] = useState([]);
-  const { loading, setLoading, user,auth} = context;
+  const { loading, setLoading, user, auth } = context;
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
 
@@ -19,7 +19,7 @@ const SemesterPage = () => {
     setShowPopup(!showPopup);
   };
 
-  const departmentName  = state?.departmentName;
+  const departmentName = state?.departmentName;
   const handleCourse = async (item) => {
     try {
       setLoading(() => true);
@@ -37,19 +37,21 @@ const SemesterPage = () => {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
       }
-      setLoading(() => false)
+      setLoading(() => false);
       navigate(`/courses`, {
         state: {
           semId: item.id,
           semNumber: item.semNumber,
           departmentName,
-          courses: data.msg.courses
+          courses: data.msg.courses,
         },
       });
       return null;
     } catch (error) {
-      setLoading(() => false)
-      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });  
+      setLoading(() => false);
+      return toast.error("Something Went Wrong. Please Log In If You Have'nt", {
+        autoClose: 1200,
+      });
     }
   };
 
@@ -61,7 +63,7 @@ const SemesterPage = () => {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      setSemesters(() => state?.semesters)
+      setSemesters(() => state?.semesters);
     }
   }, []);
 

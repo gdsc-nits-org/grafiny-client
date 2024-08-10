@@ -7,6 +7,7 @@ import styles from "./Upload.module.scss";
 import UserContext from "../../Global/Auth/authContext";
 import Dropdown from "../../Components/Dropdowns/Dropdowns";
 import UploadBox from "../../Components/UploadBox/UploadBox";
+import Loading from "../../Components/Loading/Loading";
 
 const UploadingPage = ({ department, semester, courseId, topic, topicOptions }) => {
   const [selectedCourseId, setSelectedCourseId] = useState(courseId || "");
@@ -23,56 +24,94 @@ const UploadingPage = ({ department, semester, courseId, topic, topicOptions }) 
   const [courses, setCourses] = useState([]);
   const [topics, setTopics] = useState([]);
 
-  const { user, auth, setLoading, setUser } = useContext(UserContext);
+  const { user, auth, setLoading, setUser, loading } = useContext(UserContext);
   const navigate = useNavigate();
   const instituteId = user?.profile?.institution?.id;
+  const [authInitialized, setAuthInitialized] = useState(false);
 
   useEffect(() => {
-    if (!user) {
-      navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
-    } else if (user.name === "") {
-      navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
-    } else if (!user.profile) {
-      navigate("/profilecreate");
-      toast.error("Please Create A Profile", { autoClose: 1200 });
-    }
+    setLoading(true);
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        setUser((prevUser) => ({ ...prevUser, currentUser }));
+      } else {
+        setUser(null);
+        navigate("/");
+        toast.error("Please Log In", { autoClose: 1200 });
+      }
+      setAuthInitialized(true);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, [auth, setUser, setLoading, navigate]);
+
+  useEffect(() => {
     const fetchDepartments = async () => {
-      if (selectedDept) {
+      if (!authInitialized || !user || selectedDept) {
         return;
       }
       try {
+        setLoading(true);
+        const token = await auth.currentUser.getIdToken(true);
         const response = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/department/getAll?id=${instituteId}`
+          `${import.meta.env.VITE_BASE_URL}/department/getAll?id=${instituteId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
-        setDepartments(response.data.msg.departments);
+        const { data } = response;
+        if (data.status !== 200) {
+          toast.error(data.msg, { autoClose: 1200 });
+        } else {
+          setDepartments(data.msg.departments);
+        }
       } catch (error) {
         toast.error("Error fetching departments", { autoClose: 1200 });
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchDepartments();
-  }, [selectedDept]);
+  }, [authInitialized, user, selectedDept, instituteId, setLoading, auth.currentUser]);
 
   const handleDeptChange = async (selectedOption) => {
     setSelectedDeptId(selectedOption.id);
     setSelectedDept(selectedOption.name);
+    setLoading(true);
+    const token = await auth.currentUser.getIdToken(true);
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${selectedOption.id}`
+        `${import.meta.env.VITE_BASE_URL}/semester/getAll?id=${selectedOption.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setSemesters(response.data.msg.semesters);
     } catch (error) {
       toast.error("Error fetching semesters", { autoClose: 1200 });
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleSemesterChange = async (selectedOption) => {
     setSelectedSem(selectedOption.semNumber);
     setSelectedSemId(selectedOption.id);
+    const token = await auth.currentUser.getIdToken(true);
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/course/getAll?id=${selectedOption.id}`
+        `${import.meta.env.VITE_BASE_URL}/course/getAll?id=${selectedOption.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setCourses(response.data.msg.courses);
     } catch (error) {
@@ -82,9 +121,15 @@ const UploadingPage = ({ department, semester, courseId, topic, topicOptions }) 
 
   const handleCourseChange = async (selectedOption) => {
     setSelectedCourseId(selectedOption.id);
+    const token = await auth.currentUser.getIdToken(true);
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/topic/getAll?id=${selectedOption.id}`
+        `${import.meta.env.VITE_BASE_URL}/topic/getAll?id=${selectedOption.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setTopics(response.data.msg.topics);
     } catch (error) {
@@ -238,12 +283,16 @@ const UploadingPage = ({ department, semester, courseId, topic, topicOptions }) 
           toast.error("Failed to add new topic");
         }
       } catch (error) {
-        console.error("Error adding new topic");
+        toast.error("Error adding new topic");
       }
     } else {
       setSelectedTopic(selectedOption.id);
     }
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className={styles["main-upload-page"]}>

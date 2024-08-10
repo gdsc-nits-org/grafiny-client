@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { SearchResultsItem, Loading} from "../../Components";
+import { SearchResultsItem, Loading } from "../../Components";
 import style from "./searchresults.module.scss";
 import UserContext from "../../Global/Auth/authContext";
 
@@ -50,7 +50,9 @@ const SearchResults = () => {
       return null;
     } catch (err) {
       setLoading(() => false);
-      return toast.error("Something Went Wrong. Plese Log In If You Haven't", { autoClose: 1200 });
+      return toast.error("Something Went Wrong. Plese Log In If You Haven't", {
+        autoClose: 1200,
+      });
     }
   };
 
@@ -60,11 +62,10 @@ const SearchResults = () => {
     }
   };
   useEffect(() => {
-    if(!user){
-      navigate("/")
+    if (!user) {
+      navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
-    }
-    else if (!items) {
+    } else if (!items) {
       navigate("/");
       toast.error("No Items Found", { autoClose: 1200 });
     }

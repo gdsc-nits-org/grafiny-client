@@ -10,15 +10,15 @@ import { Loading } from "../../Components";
 const Topic = () => {
   const [topic, setTopic] = useState([]);
   const context = useContext(UserContext);
-  const { loading, setLoading, user,auth} = context;
+  const { loading, setLoading, user, auth } = context;
   const { state } = useLocation();
 
   const navigate = useNavigate();
 
-  const departmentName = state?.departmentName
-  const semNumber = state?.semNumber
-  const courseName = state?.courseName
-  const courseId = state?.courseId
+  const departmentName = state?.departmentName;
+  const semNumber = state?.semNumber;
+  const courseName = state?.courseName;
+  const courseId = state?.courseId;
 
   const handleItems = async (item) => {
     try {
@@ -38,7 +38,7 @@ const Topic = () => {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
       }
-      setLoading(() => false)
+      setLoading(() => false);
       navigate(`/material`, {
         state: {
           topicId: item.id,
@@ -46,25 +46,27 @@ const Topic = () => {
           semNumber,
           departmentName,
           courseName,
-          courseId, 
+          courseId,
           topics: topic,
-          items: data.msg.items
+          items: data.msg.items,
         },
       });
       return null;
     } catch (error) {
-      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });
+      return toast.error("Something Went Wrong. Please Log In If You Have'nt", {
+        autoClose: 1200,
+      });
     }
   };
   useEffect(() => {
     if (!user) {
-      navigate("/")
+      navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else if (!state) {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      setTopic(() => state?.topics)
+      setTopic(() => state?.topics);
     }
   }, []);
 

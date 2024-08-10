@@ -47,8 +47,8 @@ const UploadBox = ({
       </div>
 
       <div className={styles["uploaded-files"]}>
-        {files.map((file) => (
-          <div>
+        {files.map((file, index) => (
+          <div key={`${file.name}-${index}`}>
             <div className={styles["uploaded-file"]}>
               <div className={styles["file-name"]}>{file.name}</div>
               <Icon
