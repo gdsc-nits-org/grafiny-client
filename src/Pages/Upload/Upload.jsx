@@ -9,9 +9,9 @@ import Dropdown from "../../Components/Dropdowns/Dropdowns";
 import UploadBox from "../../Components/UploadBox/UploadBox";
 import Loading from "../../Components/Loading/Loading";
 
-const UploadingPage = ({ department, semester, courseId, topic, topicOptions }) => {
+const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
   const [selectedCourseId, setSelectedCourseId] = useState(courseId || "");
-  const [selectedTopic, setSelectedTopic] = useState(topic || "");
+  const [selectedTopic, setSelectedTopic] = useState("");
   const [selectedSem, setSelectedSem] = useState(semester || "");
   const [selectedSemId, setSelectedSemId] = useState("");
   const [selectedDept, setSelectedDept] = useState(department || "");

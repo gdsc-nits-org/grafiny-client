@@ -5,7 +5,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { DepartmentCard, CreateDepartment, Loading } from "../../Components";
 import style from "./Departments.module.scss";
-
 import UserContext from "../../Global/Auth/authContext";
 
 const Departments = () => {
@@ -14,7 +13,6 @@ const Departments = () => {
   const [departments, setDepartments] = useState([]);
 
   const navigate = useNavigate();
-
   const context = useContext(UserContext);
   const { loading, setLoading, user, auth } = context;
 
@@ -50,23 +48,21 @@ const Departments = () => {
       return null;
     } catch (error) {
       setLoading(() => false);
-      return toast.error("Something Went Wrong. Please Log In If You Have'nt", {
+      return toast.error("Something went wrong. Please log in", {
         autoClose: 1200,
       });
     }
   };
 
   useEffect(() => {
-    if (!user) {
+    if (!user || !state) {
       navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
-    } else if (!state) {
-      navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
+      toast.error("Please log in", { autoClose: 1200 });
     } else {
-      setDepartments(() => state?.departments);
+      setDepartments(state?.departments);
     }
-  }, []);
+  }, [user, state, navigate]);
+
   return (
     <div className={style.departments}>
       {loading === false ? (
