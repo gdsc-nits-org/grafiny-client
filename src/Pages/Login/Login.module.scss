@@ -9,14 +9,6 @@
   box-shadow: 0rem 0rem 1.25rem #26262626;
 }
 
-h2 {
-  font-size: 1.5rem;
-  color: #7a7a7a;
-  font-weight: 600;
-  letter-spacing: 0.1rem;
-  margin-bottom: 1.4rem;
-}
-
 .form input {
   width: 92%;
   outline: none;
@@ -40,9 +32,11 @@ button {
   border-radius: 0.9375rem;
   color: #fff;
 }
+
 .gap {
   height: 0.7rem;
 }
+
 .login {
   font-size: 0.9rem;
   margin-top: 1.3rem;
@@ -90,6 +84,7 @@ hr {
 input[type="password"] {
   padding-right: 2.5rem;
 }
+
 .passwordToggle {
   color: #7a7a7a;
   position: absolute;
@@ -103,6 +98,7 @@ input[type="password"] {
   width: 1.875rem;
   height: 1.875rem;
 }
+
 .forgotpw {
   width: 100%;
   top: 75%;
@@ -112,32 +108,4 @@ input[type="password"] {
   font-size: 0.8rem;
   text-decoration: none;
   color: #466eb6;
-}
-
-@media (max-width: 500px) {
-  #wrapper {
-    border-radius: none;
-    box-shadow: none;
-    width: 330px;
-  }
-
-  input[type="password"],
-  input[type="email"] {
-    font-size: 0.75rem;
-  }
-
-  button[type="submit"] {
-    font-size: 0.75rem;
-  }
-  .Login,
-  .Options {
-    font-size: 0.75rem;
-  }
-  button,
-  form input {
-    padding: 0.625rem 1.5625rem 0.625rem;
-  }
-  h2 {
-    font-size: 1.25rem;
-  }
 }

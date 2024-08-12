@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -27,13 +28,12 @@ const AuthProvider = ({ children }) => {
       },
     });
     const { data } = response;
-    console.log("debug data:", data);
     if (data.status === 200) {
       const userData = {
         name: data.msg.msg.name,
         email: data.msg.msg.email,
         profilePic: data.msg.msg.profilePic,
-        authorisationLevel: data.msg.msg.authorisationLeveL,
+        authorisationLevel: data.msg.msg.authorisationLevel,
         profile: data.msg.msg.profile,
       };
       window.localStorage.setItem("user", JSON.stringify(userData));
@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
 
   const handleGoogleLogin = async () => {
     try {
-      setLoading(() => true);
+      setLoading(true);
       await setPersistence(auth, browserLocalPersistence);
       const result = await signInWithPopup(auth, new GoogleAuthProvider());
       await handleGoogleAdmin(result.user.accessToken);
@@ -74,6 +74,10 @@ const AuthProvider = ({ children }) => {
 
   const getAllInstitutes = async () => {
     try {
+      const cachedInstitutes = localStorage.getItem("institutes");
+      if (cachedInstitutes) {
+        return JSON.parse(cachedInstitutes);
+      }
       const token = await auth.currentUser.getIdToken(true);
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/institute/getAll`,

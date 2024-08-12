@@ -63,7 +63,7 @@ const Explore = () => {
           <div className={style.upperhalf}>
             <span className={style.exploretext}>Explore |</span>
             <span className={style.collegetext}>
-              &nbsp;<span>Subjects</span>
+              &nbsp;<span>Materials</span>
             </span>
           </div>
           <div className={style.bottomhalf}>

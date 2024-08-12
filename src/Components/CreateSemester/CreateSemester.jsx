@@ -5,20 +5,24 @@ import UserContext from "../../Global/Auth/authContext";
 import styles from "../CreateDepartment/CreateDepartment.module.scss";
 
 const CreateSemester = ({
+  onClose,
   departmentId,
   setLoading,
   setSemester,
-  semesters,
   departmentName,
 }) => {
-  const [semNumber, setSemNumber] = useState("");
+  const [semNumber, setSemNumber] = useState("FIRST");
   const { auth } = useContext(UserContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!semNumber) {
+      toast.error("Please Fill Out The Required Fields", { autoClose: 1200 });
+      return;
+    }
     try {
-      setLoading(() => true);
-      const token = await auth.currentUser.getIdToken(true);
+      setLoading(true);
+      const token = await auth?.currentUser?.getIdToken(true);
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/semester/create`,
         {
@@ -32,16 +36,18 @@ const CreateSemester = ({
         }
       );
       const { data } = response;
+      setLoading(false);
       if (data.status !== 200) {
-        setLoading(() => false);
         toast.error(data.msg, { autoClose: 1200 });
       } else {
-        setSemester(() => [...semesters, data.msg.semester]);
-        setLoading(() => false);
-        toast.success("Semester Created Successfulyy", { autoClose: 1200 });
+        setSemester((prevSemesters) => {
+          return [...prevSemesters, data.msg.semester];
+        });
+        toast.success("Semester Created Successfully", { autoClose: 1200 });
+        onClose();
       }
     } catch (err) {
-      setLoading(() => false);
+      setLoading(false);
       toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };
@@ -58,10 +64,10 @@ const CreateSemester = ({
           <div className={styles.inputGroup}>
             <label htmlFor="instituteName">
               Department:
-              <span> {departmentName}</span>
+              <select id="instituteName" disabled>
+                <option defaultValue={departmentName}>{departmentName}</option>
+              </select>
             </label>
-          </div>
-          <div className={styles.inputGroup}>
             <label htmlFor="name">Semester:</label>
             <select value={semNumber} onChange={handleSemesterChange}>
               <option>FIRST</option>
@@ -72,10 +78,9 @@ const CreateSemester = ({
               <option>SIXTH</option>
               <option>SEVENTH</option>
               <option>EIGHTH</option>
-              setSemNumber()
             </select>
           </div>
-          <button type="submit" className={styles.submitBtn} onClick={handleSubmit}>
+          <button type="submit" className={styles.submitBtn}>
             Create
           </button>
         </form>

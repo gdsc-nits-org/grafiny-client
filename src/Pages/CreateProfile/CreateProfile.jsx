@@ -33,42 +33,43 @@ const CreateProfile = () => {
     return 0;
   };
   const handleProfileCreation = async () => {
-    try{
-    if (!scholarId || !selectedInst || !selectedYear) {
-      return toast.error("Please Fill Up All The Details", { autoClose: 1200 });
-    }
-    const profileData = {
-      scholarId: parseInt(scholarId, 10),
-      instituteId: selectedInst,
-      year: selectedYear,
-    };
-
-    const token = await auth.currentUser.getIdToken(true);
-    const response = await axios.post(
-      `${import.meta.env.VITE_BASE_URL}/profile/create`,
-      profileData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    try {
+      if (!scholarId || !selectedInst || !selectedYear) {
+        return toast.error("Please Fill Up All The Details", { autoClose: 1200 });
       }
-    );
+      const profileData = {
+        scholarId: parseInt(scholarId, 10),
+        instituteId: selectedInst,
+        year: selectedYear,
+      };
 
-    const { data } = response;
-    if (data.status === 200) {
-      setLoading(() => true);
-      const user = { ...context.user };
-      user.profile = data.msg.profile;
-      window.localStorage.setItem("user", JSON.stringify(user));
-      context.setUser(() => user);
-      navigate("/profile");
-      return toast.success("Profile Created Succesfully", { autoClose: 1200 });
+      const token = await auth.currentUser.getIdToken(true);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/profile/create`,
+        profileData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const { data } = response;
+      if (data.status === 200) {
+        setLoading(() => true);
+        const user = { ...context.user };
+        user.profile = data.msg.profile;
+        window.localStorage.setItem("user", JSON.stringify(user));
+        context.setUser(() => user);
+        navigate("/profile");
+        return toast.success("Profile Created Succesfully", { autoClose: 1200 });
+      }
+      return toast.error("Something Went Wrong...", { autoClose: 1200 });
+    } catch (err) {
+      return toast.error("Something Went Wrong. Please Log In If You Haven't", {
+        autoClose: 1200,
+      });
     }
-    return toast.error("Something Went Wrong...", { autoClose: 1200 });
-  }
-  catch(err){
-    return toast.error("Something Went Wrong. Please Log In If You Haven't", { autoClose: 1200 });
-  }
   };
   useEffect(() => {
     if (context?.user?.profile) {

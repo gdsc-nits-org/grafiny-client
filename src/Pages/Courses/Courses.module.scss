@@ -5,29 +5,21 @@
   .coursesTitle {
     position: relative;
     margin: 0 auto;
-    width: 98.1%;
-    text-align: center;
 
     .arrowContainer {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      font-size: 3rem;
-      margin: auto;
-      max-width: 96vw;
-
-      .arrow {
-        cursor: pointer;
-      }
+      justify-content: center;
+      position: relative;
+      height: 3rem;
 
       .dhead {
         font-family: "Poppins";
         font-style: normal;
         font-weight: 400;
         color: var(--gdsc-grayish-1-100);
-        font-size: 3rem;
-        margin: auto;
-        text-align: center;
+        font-size: 2.8rem;
+        margin: 0;
       }
 
       .add-courses {
@@ -38,17 +30,22 @@
         justify-content: center;
         align-items: center;
         border-radius: 50%;
+        margin-left: auto;
+        margin-right: 1rem;
+        position: absolute;
+        right: 0;
       }
     }
   }
 
   .coursesCardContainer {
     width: 85%;
-    margin: 7% auto;
+    margin: 2rem auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
 
     .coursesCard {
       cursor: pointer;
@@ -61,15 +58,9 @@
     padding-top: 5vh;
 
     .coursesTitle {
-      .coursesTitleHeading {
-        font-size: 2em;
-
-        .coursesFa {
-          top: 60%;
-        }
-
-        .coursesTitleText {
-          font-size: 1em;
+      .arrowContainer {
+        .dhead {
+          font-size: 2.5rem;
         }
       }
     }

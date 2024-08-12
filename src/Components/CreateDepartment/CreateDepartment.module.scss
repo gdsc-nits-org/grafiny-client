@@ -1,20 +1,19 @@
 .main-container {
-  width: 40vw;
+  width: 60%;
   background-color: white;
-  padding: 2rem;
-  margin: 8vh auto;
+  padding: 5rem;
+  margin: auto;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
   border-radius: 1rem;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .container {
-  max-width: 400px;
+  width: 90%;
   padding: 2rem;
-  margin: auto;
   border: 1px solid var(--gdsc-bg-1-100);
   border-radius: 1rem;
   background-color: var(--gdsc-bg-2-100);
@@ -23,6 +22,7 @@
 .form {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .inputGroup {
@@ -30,12 +30,33 @@
 }
 
 label {
-  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
-input[type="text"] {
+input[type="text"],
+select {
+  width: 100%;
+  padding: 0.5rem;
   border: 1px solid var(--gdsc-bg-1-100);
   border-radius: 0.5rem;
+  background-color: var(--gdsc-bg-2-100);
+  color: var(--gdsc-text-color);
+}
+
+select:disabled {
+  background-color: var(--gdsc-bg-1-100);
+  color: var(--gdsc-grayish-1-50);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.submitBtn {
+  padding: 0.75rem;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .error {
@@ -43,15 +64,18 @@ input[type="text"] {
   margin-bottom: 1rem;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .main-container {
-    width: 90vw;
-    .container {
-      max-width: 84vw;
-      padding: 0.2rem;
-      .submitBtn {
-        width: 100%;
-      }
+    width: 80%;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 1rem;
+
+    h2 {
+      font-size: 1.2rem;
     }
   }
 }

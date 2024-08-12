@@ -6,13 +6,6 @@
   border-radius: 1.875rem;
   text-align: center;
   box-shadow: 0rem 0rem 1.25rem #26262626;
-  h2 {
-    font-size: 1.5rem;
-    color: #7a7a7a;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-    margin-bottom: 3rem;
-  }
 }
 
 form input {
@@ -55,29 +48,4 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-@media (max-width: 500px) {
-  #wrapper {
-    border-radius: 0%;
-    box-shadow: none;
-    width: 330px;
-  }
-
-  input[type="number"] {
-    font-size: 0.75rem;
-  }
-
-  button[type="submit"] {
-    font-size: 0.75rem;
-  }
-  .otp {
-    font-size: 0.75rem;
-  }
-  button {
-    padding: 0.625rem 1.5625rem 0.625rem;
-  }
-  h2 {
-    font-size: 1.25rem;
-  }
 }

@@ -10,16 +10,15 @@ import UserContext from "../../Global/Auth/authContext";
 const SemesterPage = () => {
   const { state } = useLocation();
   const context = useContext(UserContext);
+  const { loading, setLoading, user, auth } = context;
   const [semesters, setSemesters] = useState([]);
-  const { loading, setLoading, user,auth} = context;
-  const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
 
-  const departmentName  = state?.departmentName;
   const handleCourse = async (item) => {
     try {
       setLoading(() => true);
@@ -37,33 +36,32 @@ const SemesterPage = () => {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
       }
-      setLoading(() => false)
+      setLoading(() => false);
       navigate(`/courses`, {
         state: {
           semId: item.id,
           semNumber: item.semNumber,
-          departmentName,
-          courses: data.msg.courses
+          departmentName: state?.departmentName,
+          courses: data.msg.courses,
         },
       });
       return null;
     } catch (error) {
-      setLoading(() => false)
-      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });  
+      setLoading(() => false);
+      return toast.error("Something Went Wrong. Please Log In If You Haven't", {
+        autoClose: 1200,
+      });
     }
   };
 
   useEffect(() => {
-    if (!user) {
-      navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
-    } else if (!state) {
+    if (!user || !state) {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      setSemesters(() => state?.semesters)
+      setSemesters(() => state?.semesters);
     }
-  }, []);
+  }, [navigate, state, user]);
 
   return (
     <main className={style.semesterPage}>
@@ -71,20 +69,21 @@ const SemesterPage = () => {
         <div>
           <div className={style.arrowContainer}>
             <h2 className={style.dhead}>Semesters</h2>
-            <button
-              className={style["add-sem"]}
-              onClick={togglePopup}
-              aria-label="Add Department"
-            >
-              {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
-            </button>
+            {user.authorisationLevel === "ADMIN" && (
+              <button
+                className={style["add-sem"]}
+                onClick={togglePopup}
+                aria-label="Add Department"
+              >
+                {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
+              </button>
+            )}
           </div>
           {showPopup && (
             <CreateSemester
               onClose={togglePopup}
               departmentId={state?.departmentId}
               departmentName={state?.departmentName}
-              semesters={semesters}
               setSemester={setSemesters}
               setLoading={setLoading}
             />

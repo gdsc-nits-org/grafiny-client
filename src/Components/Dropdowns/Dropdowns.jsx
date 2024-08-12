@@ -35,9 +35,7 @@ const Dropdown = ({
           if (e.target.value === "add-new") {
             setIsAddingNewTopic(true);
           } else {
-            const selectedOption = options.find(
-              (option) => option.id === e.target.value
-            );
+            const selectedOption = options.find((option) => option.id === e.target.value);
             onChangeHandler(selectedOption);
           }
         }}
@@ -45,7 +43,7 @@ const Dropdown = ({
         className={styles["dropdown-content"]}
       >
         <option value="">--Select {label}--</option>
-        {options.map((option) => (
+        {options?.map((option) => (
           <option key={option.id} value={option.id}>
             {displayFunction(option)}
           </option>
