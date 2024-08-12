@@ -4,7 +4,14 @@ import { toast } from "react-toastify";
 import UserContext from "../../Global/Auth/authContext";
 import styles from "../CreateDepartment/CreateDepartment.module.scss";
 
-const CreateCourse = ({ semId, semNumber, coursesData, setCoursesData, setLoading }) => {
+const CreateCourse = ({
+  onClose,
+  semId,
+  semNumber,
+  coursesData,
+  setCoursesData,
+  setLoading,
+}) => {
   const { auth } = useContext(UserContext);
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
@@ -34,7 +41,8 @@ const CreateCourse = ({ semId, semNumber, coursesData, setCoursesData, setLoadin
       } else {
         setCoursesData(() => [...coursesData, data.msg.course]);
         setLoading(() => false);
-        toast.success("Semester Created Successfulyy", { autoClose: 1200 });
+        toast.success("Semester Created Successfully", { autoClose: 1200 });
+        onClose();
       }
     } catch (err) {
       setLoading(() => false);
@@ -48,10 +56,10 @@ const CreateCourse = ({ semId, semNumber, coursesData, setCoursesData, setLoadin
         <h2>Create Course</h2>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
-            <label htmlFor="name">
-              Semester:
-              <span> {semNumber}</span>
-            </label>
+            <label htmlFor="name">Semester:</label>
+            <select id="instituteName" disabled>
+              <option defaultValue={semNumber}>{semNumber}</option>
+            </select>
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="name">Course Name:</label>
@@ -60,6 +68,7 @@ const CreateCourse = ({ semId, semNumber, coursesData, setCoursesData, setLoadin
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              placeholder="e.g. Computer Networks"
               required
             />
           </div>
@@ -70,6 +79,7 @@ const CreateCourse = ({ semId, semNumber, coursesData, setCoursesData, setLoadin
               id="code"
               value={code}
               onChange={(e) => setCode(e.target.value)}
+              placeholder="e.g. CS-101"
               required
             />
           </div>

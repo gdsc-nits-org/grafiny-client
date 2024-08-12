@@ -65,7 +65,6 @@ const Material = () => {
                   department={state?.departmentName}
                   semester={state?.semNumber}
                   courseId={state?.courseId}
-                  topic={state?.topicName}
                   topicOptions={state?.topics}
                 />
               )}

@@ -66,22 +66,3 @@
     margin-top: 2%;
   }
 }
-@media (max-width: 500px) {
-  #wrapper {
-    border-radius: 0%;
-    box-shadow: none;
-    width: 330px;
-    input[type="password"],
-    input[type="email"] {
-      font-size: 0.75rem;
-    }
-
-    button[type="submit"] {
-      font-size: 0.75rem;
-      padding: 0.625rem 1.5625rem 0.625rem;
-    }
-    h3 {
-      font-size: 1rem;
-    }
-  }
-}

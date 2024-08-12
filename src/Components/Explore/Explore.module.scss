@@ -1,27 +1,27 @@
 .explorecontainer {
   background-color: var(--gdsc-bg-3-100);
-  height: 100vh;
+  height: 95vh;
   box-sizing: border-box;
   .upperhalf {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50%;
+    height: 30%;
     .exploretext {
       font-size: 4em;
       font-weight: 400;
       color: var(--gdsc-content-1-100);
-      line-height: 6em;
+      line-height: 4em;
     }
     .collegetext {
       font-size: 4em;
       font-weight: 400;
-      line-height: 6em;
+      line-height: 4em;
       position: relative;
       visibility: hidden;
     }
     .collegetext::before {
-      content: "";
+      content: "Materials";
       animation-name: animate;
       animation-duration: 6s;
       animation-iteration-count: infinite;
@@ -33,19 +33,19 @@
     }
     @keyframes animate {
       0% {
-        content: "Colleges";
+        content: "Materials";
         color: var(--gdsc-red-1-100);
       }
       40% {
-        content: "Courses";
+        content: "Materials";
         color: var(--gdsc-yellow-1-100);
       }
       75% {
-        content: "Subjects";
+        content: "Materials";
         color: var(--gdsc-green-1-100);
       }
       100% {
-        content: "Colleges";
+        content: "Materials";
         color: var(--gdsc-red-1-100);
       }
     }
@@ -62,6 +62,7 @@
       margin: auto;
       position: relative;
       display: flex;
+      padding: 5rem;
       flex-direction: column;
       .search {
         width: 100%;
@@ -93,7 +94,6 @@
         }
         .img {
           transform: translateX(50%);
-          height: 100%;
           width: 20%;
         }
       }
@@ -107,7 +107,7 @@
       position: relative;
       .button {
         position: absolute;
-        top: 25%;
+        top: 15%;
         transform: translateY(-50%);
         left: 50%;
         transform: translateX(-50%);

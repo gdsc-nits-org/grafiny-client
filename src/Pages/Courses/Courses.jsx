@@ -12,21 +12,17 @@ const Courses = () => {
   const [coursesData, setCoursesData] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const context = useContext(UserContext);
-  const { loading, setLoading, user,auth} = context;
-
+  const { loading, setLoading, user, auth } = context;
   const { state } = useLocation();
+  const navigate = useNavigate();
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
-  const navigate = useNavigate();
-
-  const departmentName = state?.departmentName
-  const semNumber = state?.semNumber
 
   const handleTopic = async (item) => {
     try {
-      setLoading(() => true);  
+      setLoading(true);
       const token = await auth?.currentUser?.getIdToken(true);
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/topic/getAll?id=${item.id}`,
@@ -41,32 +37,31 @@ const Courses = () => {
         setLoading(() => false);
         return toast.error(data.msg, { autoClose: 1200 });
       }
-      setLoading(() => false)
+      setLoading(() => false);
       navigate(`/topics`, {
         state: {
           courseId: item.id,
           courseName: item.name,
-          semNumber,
-          departmentName,
-          topics: data.msg.topics
+          semNumber: state?.semNumber,
+          departmentName: state?.departmentName,
+          topics: data.msg.topics,
         },
       });
       return null;
     } catch (error) {
-      return toast.error("Something Went Wrong. Please Log In If You Have'nt", { autoClose: 1200 });
+      return toast.error("Something Went Wrong. Please Log In If You Haven't", {
+        autoClose: 1200,
+      });
     }
   };
   useEffect(() => {
-    if (!user) {
-      navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
-    } else if (!state) {
+    if (!user || !state) {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      setCoursesData(() => state?.courses)
+      setCoursesData(() => state?.courses);
     }
-  }, []);
+  }, [navigate, state, user]);
 
   return (
     <div className={styles.coursesHero}>
@@ -75,17 +70,19 @@ const Courses = () => {
           <div className={styles.coursesTitle}>
             <div className={styles.arrowContainer}>
               <h2 className={styles.dhead}>Courses</h2>
-              <button
-                className={styles["add-courses"]}
-                onClick={togglePopup}
-                aria-label="Add Department"
-              >
-                {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
-              </button>
+              {user?.authorisationLevel === "ADMIN" && (
+                <button
+                  className={styles["add-courses"]}
+                  onClick={togglePopup}
+                  aria-label="Add Department"
+                >
+                  {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
+                </button>
+              )}
             </div>
             {showPopup && (
               <CreateCourse
-                onClose={togglePopup} 
+                onClose={togglePopup}
                 semNumber={state?.semNumber}
                 semId={state?.semId}
                 coursesData={coursesData}
