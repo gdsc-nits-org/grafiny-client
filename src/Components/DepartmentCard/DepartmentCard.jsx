@@ -4,7 +4,7 @@ const iconMappping = {
   CSE: "/assets/departments/CSEdept.png",
   ECE: "/assets/departments/ECEdept.png",
   EE: "/assets/departments/EEdept.png",
-  MECH: "/assets/departments/Mechdept.png",
+  MECH: "/assets/departments/MECHdept.png",
   CIVIL: "/assets/departments/CIVILdept.png",
   EIE: "/assets/departments/EIEdept.png",
 };

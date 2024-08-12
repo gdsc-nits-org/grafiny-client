@@ -137,7 +137,7 @@ const Institutions = () => {
                     onKeyDown={handleKeyPress}
                   >
                     <img
-                      src="../src/Assets/Images/nitsLogo.png"
+                      src="/images/nitsLogo.png"
                       alt="institute logo"
                       className={styles.instiCardImg}
                     />

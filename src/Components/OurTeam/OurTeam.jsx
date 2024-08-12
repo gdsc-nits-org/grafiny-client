@@ -22,7 +22,7 @@ const OurTeam = () => {
             key={member.name}
             style={{ backgroundImage: `url(${member.photo})` }}
           >
-            <img src="../../../public/assets/membercard-bottom.png" alt="" />
+            <img src="/assets/membercard-bottom.png" alt="" />
             <div className={styles["member-info"]}>
               <h2>{member.name}</h2>
               <h3>{member.position}</h3>
