@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-
 import { ToastContainer } from "react-toastify";
 import { Footer, Navbar } from "./Components";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +12,6 @@ import {
   Departments,
   Profile,
   AboutUs,
-  OurTeamPage,
   UploadingPage,
   Material,
   CreateProfile,
@@ -34,7 +32,6 @@ const App = () => {
         <Route path="/departments" element={<Departments />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/team" element={<OurTeamPage />} />
         <Route path="/upload" element={<UploadingPage />} />
         <Route path="/material" element={<Material />} />
         <Route path="/profilecreate" element={<CreateProfile />} />

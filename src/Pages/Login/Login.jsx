@@ -80,7 +80,7 @@ const Login = () => {
         </div>
         <div>
           <a href="/">
-            <img src="/assets/Facebook.png" alt="logo" className={styles.img} />
+            <img src="/assets/Google.png" alt="logo" className={styles.img} />
           </a>
         </div>
       </div>

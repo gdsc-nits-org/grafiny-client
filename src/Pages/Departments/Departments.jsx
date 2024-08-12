@@ -69,13 +69,15 @@ const Departments = () => {
         <div>
           <div className={style.dcontainer}>
             <h2 className={style.dhead}>Departments</h2>
-            <button
-              className={style["add-dept"]}
-              onClick={togglePopup}
-              aria-label="Add Department"
-            >
-              {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
-            </button>
+            {user.authorisationLevel === "ADMIN" && (
+              <button
+                className={style["add-dept"]}
+                onClick={togglePopup}
+                aria-label="Add Department"
+              >
+                {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
+              </button>
+            )}
           </div>
           {showPopup && (
             <CreateDepartment
@@ -92,6 +94,9 @@ const Departments = () => {
                 onClick={() => handleSem(dept)}
                 onKeyDown={() => handleSem(dept)}
                 key={dept.id}
+                role="button"
+                tabIndex={0}
+                aria-label="Department"
               >
                 <DepartmentCard data={dept} />
               </div>

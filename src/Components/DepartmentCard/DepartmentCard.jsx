@@ -1,5 +1,14 @@
 import style from "./Departments.module.scss";
 
+const iconMappping = {
+  CSE: "/assets/departments/CSEdept.png",
+  ECE: "/assets/departments/ECEdept.png",
+  EE: "/assets/departments/EEdept.png",
+  MECH: "/assets/departments/Mechdept.png",
+  CIVIL: "/assets/departments/CIVILdept.png",
+  EIE: "/assets/departments/EIEdept.png",
+};
+
 const DepartmentCard = ({ data }) => {
   return (
     <div className={style["dcard-container"]}>
@@ -7,8 +16,8 @@ const DepartmentCard = ({ data }) => {
         <div className={style.dcard}>
           <p className={style.dname}>{data?.name}</p>
           <img
-            src="https://img.icons8.com/ios/452/department.png"
-            alt="department"
+            src={iconMappping[data?.name]}
+            alt={data?.name}
             className={style["dcard-img"]}
           />
         </div>

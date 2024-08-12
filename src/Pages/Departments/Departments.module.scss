@@ -5,25 +5,17 @@
   .dcontainer {
     display: flex;
     align-items: center;
+    justify-content: center;
+    position: relative;
     height: 3rem;
 
     .dhead {
       font-family: "Poppins";
       font-style: normal;
       font-weight: 400;
-      font-size: 2.7em;
+      font-size: 2.8rem;
       color: var(--gdsc-grayish-1-100);
-      margin: 1vh auto;
-      text-align: center;
-    }
-
-    .dleftarrow {
-      position: relative;
-      cursor: pointer;
-      font-size: 2.7em;
-      left: 2rem;
-      top: 1rem;
-      color: #111;
+      margin: 0;
     }
 
     .add-dept {
@@ -34,6 +26,10 @@
       justify-content: center;
       align-items: center;
       border-radius: 50%;
+      margin-left: auto;
+      margin-right: 1rem;
+      position: absolute;
+      right: 0;
     }
   }
 
@@ -45,5 +41,16 @@
     gap: 2rem;
     max-width: 80%;
     margin: auto;
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .departments {
+    .dcontainer {
+      .dhead {
+        font-size: 2rem;
+      }
+    }
   }
 }
