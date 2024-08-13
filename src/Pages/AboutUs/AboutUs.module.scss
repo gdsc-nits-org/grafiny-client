@@ -12,7 +12,6 @@
     font-size: 7vmin;
     z-index: 1;
     font-family: "Poppins";
-    letter-spacing: 20px;
     font-weight: 600;
     color: var(--gdsc-grayish-1-100);
     margin: 1vh auto 0 auto;
@@ -23,33 +22,15 @@
     }
   }
 
-  .ImgContainer {
-    height: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .LeftBox {
     background-color: #f6f5f5;
     width: 50%;
     height: 100vh;
-    padding: 4% 9% 4% 4%;
+    padding: 2rem 6rem 2rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    .LeftImg {
-      width: 300px;
-      height: 130px;
-      background-image: url("/assets/gdscNits.png");
-      background-size: 100%;
-    }
-
-    .LeftContent {
-      text-align: justify;
-    }
   }
 
   .middleBox {
@@ -78,19 +59,59 @@
     padding: 4% 4% 4% 9%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
 
-    .RightImg {
-      width: 220px;
-      height: 85px;
-      background-image: url("../assets/grafinyLogoLight.png");
-      background-size: 100%;
+    h2 {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 3rem;
+      text-align: center;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      color: var(--gdsc-bg-3-100);
+      margin-bottom: 2rem;
     }
 
-    .RightContent {
-      color: white;
-      text-align: justify;
+    .developer {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      &.developerLeft {
+        flex-direction: row;
+      }
+
+      &.developerRight {
+        flex-direction: row-reverse;
+      }
+
+      .developerImg {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 1rem;
+
+        &:last-child {
+          margin-right: 0;
+          margin-left: 20px;
+        }
+      }
+
+      .developerInfo {
+        h3 {
+          margin: 0;
+          font-size: 1.2rem;
+          font-weight: 500;
+          color: var(--gdsc-dark-1-100);
+        }
+
+        p {
+          margin: 0;
+          color: var(--gdsc-grayish-1-100);
+        }
+      }
     }
   }
 }
@@ -106,9 +127,9 @@
 
     .header {
       width: 100%;
-      top: 5%;
+      top: 0;
       text-align: center;
-      font-size: 9vmin;
+      font-size: 2rem;
       z-index: 1;
       font-family: "Poppins";
       letter-spacing: 10px;
@@ -124,12 +145,16 @@
 
     .LeftBox {
       width: 100%;
-      padding: 10%;
+      padding: 1.2rem;
     }
 
     .RightBox {
+      margin-top: 5rem;
       width: 100%;
-      padding: 10%;
+
+      h2 {
+        font-size: 2rem;
+      }
     }
 
     .middleBox {
