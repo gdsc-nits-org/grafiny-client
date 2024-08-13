@@ -12,7 +12,9 @@ const UploadedItem = ({ item, deleteItem }) => {
   };
   return (
     <div className={style.itemcontainer}>
-      {showPopup && <Popup files={item.file} onClose={togglePopup} />}
+      {showPopup && (
+        <Popup files={item.file} onClose={togglePopup} materialName={item?.name} />
+      )}
       <div className={style.leftpart}>
         <div className={style.bookiconcontainer}>
           <img className={style.bookicon} src="/assets/bookicon.png" alt="bookicon" />

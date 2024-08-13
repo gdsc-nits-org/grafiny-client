@@ -83,7 +83,13 @@ const Material = () => {
               ))}
             </div>
           </div>
-          {selectedItem && <Popup files={selectedItem.file} onClose={handleClosePopup} />}
+          {selectedItem && (
+            <Popup
+              files={selectedItem.file}
+              onClose={handleClosePopup}
+              materialName={selectedItem?.name}
+            />
+          )}
         </div>
       ) : (
         <Loading />
