@@ -15,7 +15,9 @@ const SearchResultsItem = ({ item }) => {
   return (
     <div className={style.itemcontainer}>
       <div className={style.leftpart}>
-        {showPopup && <Popup files={item.file} onClose={togglePopup} />}
+        {showPopup && (
+          <Popup files={item.file} onClose={togglePopup} materialName={item?.name} />
+        )}
         <div className={style.bookiconcontainer}>
           <img className={style.bookicon} src="/assets/bookicon.png" alt="bookicon" />
         </div>

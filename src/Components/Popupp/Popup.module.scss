@@ -1,70 +1,99 @@
-::-webkit-scrollbar {
-  display: none;
-}
-.container {
-  background-color: black;
-  color: white;
+.popupContainer {
   position: fixed;
   top: 0;
-  bottom: 0;
-  right: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  flex-direction: column-reverse;
+  margin: auto;
   z-index: 1000;
-  opacity: 0.8;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  .buttoncont {
-    margin-top: 1rem;
-    height: 3rem;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.popupContent {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 90%;
+
+  @media (max-width: 600px) {
+    width: 95%;
+    padding: 0.75rem;
+    max-height: 80%;
+  }
+
+  .booktitlecontainer {
     display: flex;
-    justify-content: flex-end;
-    .button {
-      background-color: red;
-      width: 6rem;
-      height: 3rem;
-      margin-right: 0.4rem;
+    justify-content: space-between;
+
+    .title {
       font-weight: 500;
-      border-radius: 0.4rem;
+      font-size: 1.5rem;
+
+      @media (max-width: 600px) {
+        font-size: 1.2rem;
+      }
+    }
+
+    .buttoncont {
+      width: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 50%;
     }
   }
-  .name {
-    text-align: center;
-    padding: 1em;
-    margin-top: 1em;
-    font-size: 2rem;
-    font-weight: bolder;
-  }
-  .filecontainer {
+
+  .itemcontainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 1rem;
+
     .file {
-      min-height: 4rem;
-      padding: 0.5rem;
-      margin: 1em;
-      border-radius: 1em;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0.1rem 0.1rem 0 white;
-      .fileleft {
-        max-width: 70%;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
+      flex: 3;
+      gap: 5rem;
+
+      @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
       }
-      .fileright {
-        a {
-          font-weight: 900;
-          padding-left: 0.5rem;
-          padding-right: 0.5rem;
-          text-decoration: none;
-          background-color: black;
-          color: white;
-          height: 3rem;
-          border-radius: 0.5em;
-          display: flex;
-          align-items: center;
+
+      .bookiconcontainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .buttoncont {
+        width: auto;
+
+        @media (max-width: 600px) {
+          width: 100%;
+        }
+
+        button {
+          width: 100%;
+
+          @media (max-width: 600px) {
+            width: 100%;
+            font-size: 1rem;
+            padding: 0.5rem;
+          }
         }
       }
     }
