@@ -15,6 +15,7 @@ import CreateCourse from "./CreateCourse/CreateCourse";
 import Semester from "./Semester/Semester";
 import Popup from "./Popupp/Popup";
 import CreateSemester from "./CreateSemester/CreateSemester";
+import ScrollToTop from "./ScrollToTop/ScrollToTop";
 
 export {
   Button,
@@ -34,4 +35,5 @@ export {
   Semester,
   CreateSemester,
   Popup,
+  ScrollToTop,
 };

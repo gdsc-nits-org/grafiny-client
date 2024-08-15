@@ -12,17 +12,11 @@ const Topic = () => {
   const context = useContext(UserContext);
   const { loading, setLoading, user, auth } = context;
   const { state } = useLocation();
-
   const navigate = useNavigate();
-
-  const departmentName = state?.departmentName;
-  const semNumber = state?.semNumber;
-  const courseName = state?.courseName;
-  const courseId = state?.courseId;
 
   const handleItems = async (item) => {
     try {
-      setLoading(() => true);
+      setLoading(true);
       const token = await auth?.currentUser?.getIdToken(true);
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/items/allitems?id=${item.id}`,
@@ -43,10 +37,10 @@ const Topic = () => {
         state: {
           topicId: item.id,
           topicName: item.name,
-          semNumber,
-          departmentName,
-          courseName,
-          courseId,
+          semNumber: state?.semNumber,
+          departmentName: state?.departmentName,
+          courseName: state?.courseName,
+          courseId: state?.courseId,
           topics: topic,
           items: data.msg.items,
         },

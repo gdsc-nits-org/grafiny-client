@@ -32,6 +32,21 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+
+    .input-container {
+      margin-bottom: 1rem;
+
+      .input-label {
+        font-weight: 500;
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--gdsc-grayish-2-100);
+      }
+    }
+
+    .compulsory-field {
+      color: var(--gdsc-red-1-100);
+    }
   }
 }
 
@@ -64,10 +79,12 @@
       }
     }
   }
+
   .upload-button {
     width: 15rem;
   }
 }
+
 @media screen and (max-width: 700px) {
   .main-upload-page {
     .uploading-page {
@@ -80,6 +97,7 @@
       }
     }
   }
+
   .upload-button {
     width: 10rem;
     font-size: 1em;
