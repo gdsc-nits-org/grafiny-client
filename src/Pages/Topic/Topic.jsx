@@ -2,10 +2,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import styles from "./Topics.module.scss";
+import { Icon } from "@iconify/react";
+import Upload from "../Upload/Upload";
 import UserContext from "../../Global/Auth/authContext";
-import Topics from "../../Components/Topics/Topics";
-import { Loading } from "../../Components";
+import { Loading, Topics } from "../../Components";
+import styles from "./Topics.module.scss";
 
 const Topic = () => {
   const [topic, setTopic] = useState([]);
@@ -13,6 +14,11 @@ const Topic = () => {
   const { loading, setLoading, user, auth } = context;
   const { state } = useLocation();
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
 
   const handleItems = async (item) => {
     try {
@@ -53,22 +59,37 @@ const Topic = () => {
     }
   };
   useEffect(() => {
-    if (!user) {
-      navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
-    } else if (!state) {
+    if (!user || !state) {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
       setTopic(() => state?.topics);
     }
-  }, []);
+  }, [navigate, state, user]);
 
   return (
     <main className={styles.topic}>
       {loading === false ? (
-        <>
-          <div className={styles.title}>Topics</div>
+        <div>
+          <div className={styles.dcontainer}>
+            <h2 className={styles.dhead}>Topics</h2>
+            <button
+              className={styles["add-dept"]}
+              onClick={togglePopup}
+              aria-label="Add Topics"
+            >
+              {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
+            </button>
+          </div>
+          {showPopup && (
+            <Upload
+              onClose={togglePopup}
+              department={state?.departmentName}
+              semester={state?.semNumber}
+              courseId={state?.courseId}
+              topicOptions={state?.topics}
+            />
+          )}
           <div className={styles.topicBoxContainer}>
             {topic?.map((data) => (
               <div
@@ -81,7 +102,7 @@ const Topic = () => {
               </div>
             ))}
           </div>
-        </>
+        </div>
       ) : (
         <Loading />
       )}

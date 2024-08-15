@@ -2,26 +2,34 @@
   min-height: calc(100vh - 4rem);
   padding-top: 3rem;
 
-  .arrowContainer {
+  .dcontainer {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-size: 3rem;
-    margin: auto;
-    max-width: 96vw;
-
-    .arrow {
-      cursor: pointer;
-    }
+    justify-content: center;
+    position: relative;
+    height: 3rem;
 
     .dhead {
       font-family: "Poppins";
       font-style: normal;
       font-weight: 400;
+      font-size: 2.8rem;
       color: var(--gdsc-grayish-1-100);
-      font-size: 3rem;
-      margin: auto;
-      text-align: center;
+      margin: 0;
+    }
+
+    .add-dept {
+      color: #fff;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: 1rem;
+      position: absolute;
+      right: 0;
     }
   }
 

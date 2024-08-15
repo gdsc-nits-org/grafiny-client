@@ -45,43 +45,38 @@ const Material = () => {
     <section className={style.material}>
       {loading === false ? (
         <div>
-          <div className={style.arrowContainer}>
+          <div className={style.dcontainer}>
             <h2 className={style.dhead}>Materials</h2>
+            <button
+              className={style["add-dept"]}
+              onClick={togglePopup}
+              aria-label="Add Materials"
+            >
+              {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
+            </button>
           </div>
+          {showPopup && (
+            <Upload
+              onClose={togglePopup}
+              department={state?.departmentName}
+              semester={state?.semNumber}
+              courseId={state?.courseId}
+              topicOptions={state?.topics}
+            />
+          )}
 
-          <button
-            className={style["add-items"]}
-            onClick={togglePopup}
-            aria-label="Add Items"
-          >
-            {showPopup ? <Icon icon="mdi:close" /> : <Icon icon="mdi:plus" />}
-          </button>
-
-          <div>
-            <div>
-              {showPopup && (
-                <Upload
-                  onClose={togglePopup}
-                  department={state?.departmentName}
-                  semester={state?.semNumber}
-                  courseId={state?.courseId}
-                  topicOptions={state?.topics}
-                />
-              )}
-            </div>
-            <div className={style.itemsContainer}>
-              {items?.map((item) => (
-                <div key={item.id}>
-                  <button
-                    onClick={() => handleItemClick(item)}
-                    aria-label="test"
-                    style={{ background: "none", border: "none" }}
-                  >
-                    <Materials name={item.name} />
-                  </button>
-                </div>
-              ))}
-            </div>
+          <div className={style.itemsContainer}>
+            {items?.map((item) => (
+              <div key={item.id}>
+                <button
+                  onClick={() => handleItemClick(item)}
+                  aria-label="test"
+                  style={{ background: "none", border: "none" }}
+                >
+                  <Materials name={item.name} />
+                </button>
+              </div>
+            ))}
           </div>
           {selectedItem && (
             <Popup

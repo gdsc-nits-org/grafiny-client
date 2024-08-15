@@ -2,6 +2,37 @@
   min-height: calc(100vh - 4rem);
   padding-top: 3rem;
 
+  .dcontainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 3rem;
+
+    .dhead {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 2.8rem;
+      color: var(--gdsc-grayish-1-100);
+      margin: 0;
+    }
+
+    .add-dept {
+      color: #fff;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: 1rem;
+      position: absolute;
+      right: 0;
+    }
+  }
+
   .topicBoxContainer {
     display: flex;
     justify-content: space-between;
@@ -31,6 +62,7 @@
     .topicBoxContainer {
       justify-content: center;
     }
+
     .title {
       font-size: 2rem;
     }
