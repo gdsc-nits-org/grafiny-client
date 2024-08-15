@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Footer, Navbar } from "./Components";
+import { Footer, Navbar, ScrollToTop } from "./Components";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Topic,
@@ -22,6 +22,7 @@ const App = () => {
     <>
       <Navbar />
       <ToastContainer className="toaststyle" />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />

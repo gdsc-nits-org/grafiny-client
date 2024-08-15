@@ -47,14 +47,21 @@ const Footer = () => {
             <ul className={styles["f-listitem"]}>
               <li>
                 {" "}
-                <Link to="/">Vision</Link>
+                <Link to="/aboutus">About</Link>
               </li>
               <li>
-                {" "}
-                <Link to="/">Mission</Link>
+                <a
+                  href="https://blog.gdscnits.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Blogs
+                </a>
               </li>
               <li>
-                <Link to="/"> Google Technologies</Link>
+                <a href="https://gdscnits.in" target="_blank" rel="noopener noreferrer">
+                  Website
+                </a>
               </li>
             </ul>
           </div>
@@ -65,15 +72,16 @@ const Footer = () => {
           <ul className={styles["f-listitem"]}>
             <li>
               {" "}
-              <Link to="/">Executive Board</Link>
+              <Link to="/aboutus">Know Our Team</Link>
             </li>
             <li>
-              {" "}
-              <Link to="/departments">Departments</Link>
-            </li>
-            <li>
-              {" "}
-              <Link to="/">Join Us</Link>
+              <a
+                href="https://github.com/gdsc-nits-org/grafiny-client"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Contribute
+              </a>
             </li>
           </ul>
         </div>

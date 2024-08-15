@@ -334,9 +334,13 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
         </div>
         <div>
           <div className={styles["input-container"]}>
+            <label htmlFor="materialName" className={styles["input-label"]}>
+              Enter Name for the Material{" "}
+              <span className={styles["compulsory-field"]}>*</span>
+            </label>
             <input
               type="text"
-              placeholder="Enter Name for the Material"
+              placeholder="Material name"
               value={materialName}
               onChange={(e) => setMaterialName(e.target.value)}
             />

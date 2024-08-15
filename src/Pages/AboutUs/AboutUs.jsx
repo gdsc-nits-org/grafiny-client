@@ -1,5 +1,5 @@
 import style from "./AboutUs.module.scss";
-import developers from "../../../public/db/ourteam.json";
+import developers from "../../db/ourteam.json";
 
 const AboutUs = () => {
   return (
@@ -35,11 +35,13 @@ const AboutUs = () => {
               index % 2 === 0 ? style.developerLeft : style.developerRight
             }`}
           >
-            <img
-              src={developer.photo}
-              alt={developer.name}
-              className={style.developerImg}
-            />
+            <a href={developer.linkedin} target="_blank" rel="noreferrer">
+              <img
+                src={developer.photo}
+                alt={developer.name}
+                className={style.developerImg}
+              />
+            </a>
             <div className={style.developerInfo}>
               <h3>{developer.name}</h3>
               <p>{developer.designation}</p>
