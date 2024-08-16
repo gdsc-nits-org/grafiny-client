@@ -43,10 +43,10 @@ const Popup = ({ onClose, files, materialName }) => {
                       src="/assets/bookicon.png"
                       alt="bookicon"
                     />
-                    <p> {file?.key}</p>
+                    <p className={style.filekey}> {file?.key}</p>
                   </div>
                   <div className={style.buttoncont}>
-                    <a href={file?.url} download={file?.key}>
+                    <a href={file?.url} download={file?.key} target="_blank">
                       <button>Download</button>
                     </a>
                   </div>

@@ -96,7 +96,6 @@ const Topic = () => {
                 onClick={() => handleItems(data)}
                 onKeyDown={() => handleItems(data)}
                 key={data.id}
-                className={styles.topicBox}
               >
                 <Topics tname={data.name} />
               </div>

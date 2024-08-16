@@ -65,6 +65,7 @@
       align-items: center;
       flex: 3;
       gap: 5rem;
+      box-shadow: 0 1px 0 gray;
 
       @media (max-width: 600px) {
         flex-direction: column;

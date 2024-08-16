@@ -19,13 +19,11 @@
     display: flex;
     align-items: center;
     margin: auto;
-    padding-top: 3.8rem;
     height: auto;
 
     .boxes {
       background: #fff;
-      width: fit-content;
-      width: 30rem;
+      width: 25rem;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
       border-radius: 10px;
       border-radius: 1em;
@@ -37,6 +35,9 @@
       color: var(--gdsc-grayish-2-100);
       transition: all 0.4s ease-in-out;
       border: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .boxes:hover {

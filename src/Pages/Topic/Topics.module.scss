@@ -35,11 +35,13 @@
 
   .topicBoxContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    max-width: 80%;
+    max-width: 90%;
     flex-wrap: wrap;
     margin: auto;
+    gap: 2rem;
+    margin: 2rem auto;
   }
 
   .title {
@@ -60,7 +62,7 @@
 @media screen and (max-width: 900px) {
   .topic {
     .topicBoxContainer {
-      justify-content: center;
+      gap: none;
     }
 
     .title {

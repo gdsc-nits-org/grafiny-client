@@ -24,7 +24,7 @@ const UploadedItem = ({ item, deleteItem }) => {
         </div>
       </div>
       <div className={style.rightpart}>
-        <div className={style.item}>{item?.createdAt?.split("T")[0]}</div>
+        <div className={style.item}>{item?.uploadedAt?.split("T")[0]}</div>
         <div
           className={style.download}
           onClick={togglePopup}
