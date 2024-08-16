@@ -1,5 +1,4 @@
 import axios from "axios";
-import { BiPencil } from "react-icons/bi";
 import { useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -100,9 +99,6 @@ const Profile = () => {
             </div>
             <div className={style.namebox}>
               <div className={style.name}>{user?.name || "Name"}</div>
-              <div className={style.icon}>
-                <BiPencil />
-              </div>
             </div>
           </div>
         </div>
@@ -127,15 +123,21 @@ const Profile = () => {
           </Link>
         </div>
         <div className={style.lowerright}>
-          <div className={style.columnheading}>
-            <div className={style.headingone}>Files Uploaded</div>
-            <div className={style.heading2}>Date</div>
-          </div>
-          <div className={style.uploadeditems}>
-            {user?.profile?.uploadedItems?.map((item) => (
-              <UploadedItem key={item?.id} item={item} deleteItem={deleteItem} />
-            ))}
-          </div>
+          {user?.profile?.uploadedItems?.length > 0 ? (
+            <>
+              <div className={style.columnheading}>
+                <div className={style.headingone}>Files Uploaded</div>
+                <div className={style.heading2}>Date</div>
+              </div>
+              <div className={style.uploadeditems}>
+                {user?.profile?.uploadedItems?.map((item) => (
+                  <UploadedItem key={item?.id} item={item} deleteItem={deleteItem} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className={style["no-files-text"]}>No files uploaded yet</div>
+          )}
         </div>
       </div>
     </div>

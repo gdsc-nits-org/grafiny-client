@@ -2,9 +2,11 @@
   min-height: 100vh;
   width: 90%;
   margin: auto;
+
   .header {
     height: 20vh;
     display: flex;
+
     .heading {
       width: 50%;
       color: var(--gdsc-grayish-3-100);
@@ -13,22 +15,26 @@
       font-size: 2.5em;
       font-weight: 400;
     }
+
     .searchcontainer {
       width: 50%;
       display: flex;
       justify-content: flex-end;
       align-items: center;
+
       .searchbar {
         width: 70%;
         height: 2.7em;
         display: flex;
         align-items: center;
         border-radius: 10px;
+
         .inputbox {
           height: 100%;
           width: 80%;
           border-radius: 10px;
           border-right: none;
+
           input {
             height: 100%;
             width: 100%;
@@ -40,10 +46,12 @@
             color: var(--gdsc-content-1-100);
             font-weight: 400;
           }
+
           input:focus {
             outline: none;
           }
         }
+
         .iconcontainer {
           height: 100%;
           width: 20%;
@@ -54,6 +62,7 @@
           border-top-right-radius: 10px;
           border-bottom-right-radius: 10px;
           border-left: none;
+
           .iconimg {
             width: 2em;
             height: 65%;
@@ -63,6 +72,7 @@
       }
     }
   }
+
   .columnheadingcontainer {
     width: 100%;
     display: flex;
@@ -70,24 +80,29 @@
     font-weight: 400;
     color: var(--gdsc-grayish-1-100);
     margin-bottom: 2em;
+
     .leftcolumn {
       width: 65%;
     }
+
     .rightcolumn {
       display: flex;
-      justify-content: space-around;
-      width: 35%;
+      justify-content: center;
+      width: 48%;
+      gap: 5rem;
+
       .leftitem {
-        width: 65%;
+        width: 35%;
         text-align: start;
       }
+
       .rightitem {
-        width: 35%;
+        width: 0%;
         text-align: center;
-        padding-right: 5%;
       }
     }
   }
+
   .searchitemscontainer {
     margin-bottom: 2em;
   }
@@ -99,6 +114,7 @@
       .heading {
         font-size: 3em;
       }
+
       .searchcontainer {
         .searchbar {
           height: 3.2em;
@@ -114,6 +130,7 @@
       .heading {
         font-size: 3em;
       }
+
       .searchcontainer {
         .searchbar {
           height: 3.5em;
@@ -129,6 +146,7 @@
       .heading {
         font-size: 2.5em;
       }
+
       .searchcontainer {
         .searchbar {
           height: 2.7em;
@@ -137,16 +155,18 @@
     }
   }
 }
+
 @media (max-width: 912px) and (max-height: 1368px) {
   .searchresultscontainer {
     .header {
       .heading {
         font-size: 3em;
       }
+
       .searchcontainer {
         .searchbar {
           height: 3em;
-          width: 70%;
+          width: 100%;
         }
       }
     }
@@ -159,6 +179,7 @@
       .heading {
         font-size: 2.7em;
       }
+
       .searchcontainer {
         .searchbar {
           height: 2.7em;
@@ -174,6 +195,7 @@
       .heading {
         font-size: 2em;
       }
+
       .searchcontainer {
         .searchbar {
           height: 2.5em;
@@ -186,20 +208,35 @@
 
 @media (max-width: 500px) {
   .searchresultscontainer {
+    .columnheadingcontainer {
+      .rightcolumn {
+        .leftitem {
+          width: 72%;
+          text-align: start;
+        }
+      }
+    }
+  }
+
+  .searchresultscontainer {
     width: 92%;
+
     .header {
       flex-direction: column-reverse;
       justify-content: flex-start;
       align-items: center;
       height: auto;
       margin: 1em 0em;
+
       .heading {
         width: 100%;
         font-size: 1.5em;
       }
+
       .searchcontainer {
         width: 100%;
         margin: 1.5em 0;
+
         .searchbar {
           width: 95%;
           margin: auto;
@@ -207,18 +244,22 @@
       }
     }
   }
+
   .columnheadingcontainer {
     .leftcolumn {
       max-width: 50%;
     }
+
     .rightcolumn {
       min-width: 50%;
       justify-content: flex-end;
+
       .leftitem {
-        width: 100%;
+        width: 72%;
         text-align: start;
         margin-left: auto;
       }
+
       .rightitem {
         display: none;
       }
@@ -226,12 +267,13 @@
   }
 }
 
-@media (max-width: 350px) {
+@media screen and (max-width: 350px) {
   .searchresultscontainer {
     .columnheadingcontainer {
       .leftcolumn {
         font-size: 0.9em;
       }
+
       .rightcolumn {
         .leftitem {
           font-size: 0.9em;
