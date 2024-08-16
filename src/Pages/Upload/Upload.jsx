@@ -275,7 +275,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
           }
         );
         if (response.status === 200) {
-          const newTopic = response.data.topic;
+          const newTopic = response.data.msg.topic;
           setTopics((prevTopics) => [...prevTopics, newTopic]);
           setSelectedTopic(newTopic.id);
           toast.success("New topic added successfully!");
