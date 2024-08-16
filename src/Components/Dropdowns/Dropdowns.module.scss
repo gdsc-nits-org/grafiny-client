@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 0.2rem;
   width: 30rem;
+
   .compulsory-field {
     color: var(--gdsc-red-1-100);
   }
@@ -32,7 +33,37 @@
     background: transparent;
     cursor: pointer;
   }
+
+  .add-new-topic-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+
+    input {
+      border-radius: 1em;
+      border: 1px solid var(--gdsc-line-1-100);
+      outline: none;
+    }
+
+    button {
+      border-radius: 1em;
+      border: none;
+      background-color: var(--gdsc-blue-1-100);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: var(--gdsc-blue-3-100);
+      }
+      &:disabled {
+        background-color: var(--gdsc-grayish-2-100);
+        cursor: not-allowed;
+      }
+    }
+  }
 }
+
 @media screen and (max-width: 1100px) {
   .dropdown-container {
     width: 18rem;

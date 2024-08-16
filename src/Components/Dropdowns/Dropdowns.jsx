@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import styles from "./Dropdowns.module.scss";
 
 const Dropdown = ({
@@ -16,8 +17,17 @@ const Dropdown = ({
   const handleAddNewTopic = async (e) => {
     e.preventDefault();
     if (newTopic.trim()) {
-      const newOption = { id: newTopic, name: newTopic, isNew: true };
-      onChangeHandler(newOption);
+      const existingOption = options.find(
+        (option) => displayFunction(option) === newTopic.trim()
+      );
+
+      if (existingOption) {
+        toast.warning("Topic already exists");
+        onChangeHandler(existingOption);
+      } else {
+        const newOption = { id: newTopic, name: newTopic, isNew: true };
+        onChangeHandler(newOption);
+      }
       setNewTopic("");
       setIsAddingNewTopic(false);
     }
@@ -56,7 +66,7 @@ const Dropdown = ({
             type="text"
             value={newTopic}
             onChange={(e) => setNewTopic(e.target.value)}
-            placeholder="Enter new topic name"
+            placeholder="Enter a new topic name"
           />
           <button type="submit">Add</button>
         </form>

@@ -22,7 +22,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
   const [semesters, setSemesters] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [courses, setCourses] = useState([]);
-  const [topics, setTopics] = useState([]);
+  const [topics, setTopics] = useState(topicOptions || []);
 
   const { user, auth, setLoading, setUser, loading } = useContext(UserContext);
   const navigate = useNavigate();
@@ -103,7 +103,8 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
   const handleSemesterChange = async (selectedOption) => {
     setSelectedSem(selectedOption.semNumber);
     setSelectedSemId(selectedOption.id);
-    const token = await auth.currentUser.getIdToken(true);
+    setLoading(true);
+    const token = await auth?.currentUser?.getIdToken(true);
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/course/getAll?id=${selectedOption.id}`,
@@ -116,12 +117,15 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
       setCourses(response.data.msg.courses);
     } catch (error) {
       toast.error("Error fetching courses", { autoClose: 1200 });
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleCourseChange = async (selectedOption) => {
     setSelectedCourseId(selectedOption.id);
-    const token = await auth.currentUser.getIdToken(true);
+    setLoading(true);
+    const token = await auth?.currentUser?.getIdToken(true);
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/topic/getAll?id=${selectedOption.id}`,
@@ -133,7 +137,9 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
       );
       setTopics(response.data.msg.topics);
     } catch (error) {
-      toast.error("Error fetching topics:", { autoClose: 1200 });
+      toast.error("Error fetching topics", { autoClose: 1200 });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -180,7 +186,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
       !materialName ||
       files.length === 0
     ) {
-      toast.error("Please Provide All the Details", { autoClose: 1200 });
+      toast.error("Please provide all the details.", { autoClose: 1200 });
       return;
     }
 
@@ -192,7 +198,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
     formData.append("itemName", materialName);
 
     try {
-      setLoading(() => true);
+      setLoading(true);
       const token = await auth.currentUser.getIdToken(true);
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/items/upload`,
@@ -235,26 +241,24 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
             },
           }
         );
-
         const { data: data2 } = response2;
         if (data2.status !== 200) {
-          setLoading(false);
           toast.error(data2.msg, { autoClose: 1200 });
+          setLoading(false);
+          return;
         }
 
         const { profile } = data2.msg;
         user.profile = profile;
         window.localStorage.setItem("user", JSON.stringify(user));
-        setUser(() => user);
-        setLoading(() => false);
+        setUser(user);
+        setLoading(false);
         navigate("/profile");
       } else {
-        setLoading(() => false);
-        toast.error("Upload failed with status:", response.status, { autoClose: 1200 });
+        toast.error(`Upload failed with status: ${response.status}`, { autoClose: 1200 });
       }
     } catch (error) {
-      setLoading(() => false);
-      toast.error("Error uploading file. Please Log In If You Haven'nt", {
+      toast.error("Error uploading file. Please log in if you haven't.", {
         autoClose: 1200,
       });
     }
@@ -262,7 +266,8 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
 
   const handleTopicChange = async (selectedOption) => {
     setDragBox(true);
-    const token = await auth.currentUser.getIdToken(true);
+    const token = await auth?.currentUser?.getIdToken(true);
+
     if (selectedOption.isNew) {
       try {
         const response = await axios.post(
@@ -276,7 +281,9 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
         );
         if (response.status === 200) {
           const newTopic = response.data.msg.topic;
-          setTopics((prevTopics) => [...prevTopics, newTopic]);
+
+          const updatedTopics = [...topics, newTopic];
+          setTopics(updatedTopics);
           setSelectedTopic(newTopic.id);
           toast.success("New topic added successfully!");
         } else {
@@ -327,11 +334,12 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
             label="Topic"
             value={selectedTopic}
             onChangeHandler={handleTopicChange}
-            options={topicOptions === undefined ? topics : topicOptions}
+            options={topics}
             displayFunction={(option) => option.name}
             allowAddNewTopic
           />
         </div>
+
         <div>
           <div className={styles["input-container"]}>
             <label htmlFor="materialName" className={styles["input-label"]}>
