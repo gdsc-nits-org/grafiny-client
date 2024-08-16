@@ -65,7 +65,6 @@
       align-items: center;
       flex: 3;
       gap: 5rem;
-      padding-bottom: 0.2rem;
       box-shadow: 0 1px 0 gray;
 
       @media (max-width: 600px) {
@@ -79,9 +78,6 @@
         justify-content: center;
         align-items: center;
         gap: 1rem;
-        .filekey {
-          word-break: break-all;
-        }
       }
 
       .buttoncont {
