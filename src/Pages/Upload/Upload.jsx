@@ -253,7 +253,9 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
         window.localStorage.setItem("user", JSON.stringify(user));
         setUser(user);
         setLoading(false);
-        navigate("/profile");
+        navigate("/profile", { replace: true });
+        toast.success("Item uploaded successfully.", { autoClose: 1200 });
+        window.history.replaceState(null, "", "/profile");
       } else {
         toast.error(`Upload failed with status: ${response.status}`, { autoClose: 1200 });
       }
