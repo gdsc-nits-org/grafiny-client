@@ -15,7 +15,7 @@ const AboutUs = () => {
           innovation by the Google Developer Student Clubs (GDSC) at NIT Silchar. Our
           mission is to create a centralized hub where students can easily access and
           share study materials, including notes, codes and past exam papers, all
-          contributed by students . It empowers students to not only access valuable
+          contributed by students. It empowers students to not only access valuable
           resources but also contribute to the learning community by uploading their own
           materials and providing feedback through upvotes and comments. It reflects our
           commitment to leveraging technology to support education and foster
@@ -27,7 +27,11 @@ const AboutUs = () => {
         <div className={style.middleBoxRight}></div>
       </div>
       <div className={style.RightBox}>
-        <h2>OUR TEAM</h2>
+        <h2>CONTACT US</h2>
+        <p className={style.contactInfo}>
+          Our team is here to help you with any questions or feedback you have about
+          Grafiny. Feel free to reach out to us directly!
+        </p>
         {developers.map((developer, index) => (
           <div
             key={index}
