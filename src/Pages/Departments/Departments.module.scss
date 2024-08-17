@@ -1,5 +1,5 @@
 .departments {
-  min-height: calc(100vh - 4rem);
+  min-height: 100vh;
   padding-top: 3rem;
 
   .dcontainer {
@@ -39,7 +39,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
-    max-width: 80%;
+    width: 80%;
     margin: auto;
     margin-top: 2rem;
   }
