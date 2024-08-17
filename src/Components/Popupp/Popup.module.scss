@@ -78,6 +78,19 @@
         justify-content: center;
         align-items: center;
         gap: 1rem;
+
+        @media screen and (max-width: 600px) {
+          width: 75%;
+          margin: auto;
+        }
+
+        .filekey {
+          @media screen and (max-width: 600px) {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
+          }
+        }
       }
 
       .buttoncont {

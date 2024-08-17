@@ -33,7 +33,7 @@
         .namebox {
           display: flex;
           margin-top: 0.8em;
-          width: 13em;
+          width: 12em;
           min-height: 2em;
           justify-content: center;
           align-items: flex-end;
@@ -41,15 +41,8 @@
           position: relative;
           .name {
             font-size: 1.05em;
-            padding: 0em 0.5em 0 0.5em;
+            padding: 0 0.5em 0 0.5em;
             text-align: center;
-          }
-          .icon {
-            position: absolute;
-            right: -10%;
-            bottom: -20%;
-            font-size: 1.5em;
-            color: var(--gdsc-grayish-2-100);
           }
         }
       }
@@ -141,6 +134,16 @@
       }
     }
   }
+}
+
+.no-files-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.2em;
+  color: var(--gdsc-grayish-1-100);
 }
 
 @media (max-width: 800px) {
@@ -251,7 +254,7 @@
         }
       }
       .lowerright {
-        width: 90%;
+        width: 100%;
         height: 70%;
         .columnheading {
           width: 95%;
