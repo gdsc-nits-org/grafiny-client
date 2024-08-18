@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext} from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Icon } from "@iconify/react";
@@ -10,8 +10,7 @@ import UserContext from "../../Global/Auth/authContext";
 const SemesterPage = () => {
   const { state } = useLocation();
   const context = useContext(UserContext);
-  const { loading, setLoading, user, auth } = context;
-  const [semesters, setSemesters] = useState([]);
+  const { loading, setLoading, user, auth, semesters, setSemesters } = context;
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
 
@@ -61,7 +60,9 @@ const SemesterPage = () => {
     } else {
       setSemesters(() => state?.semesters);
     }
+
   }, [navigate, state, user]);
+
 
   return (
     <main className={style.semesterPage}>

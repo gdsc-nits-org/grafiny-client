@@ -10,8 +10,7 @@ import style from "./Material.module.scss";
 const Material = () => {
   const { state } = useLocation();
   const context = useContext(UserContext);
-  const [items, setItems] = useState([]);
-  const { loading, user } = context;
+  const { loading, user, items, setItems } = context;
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -62,6 +61,7 @@ const Material = () => {
               semester={state?.semNumber}
               courseId={state?.courseId}
               topicOptions={state?.topics}
+              setTopic = {state?.setTopic}
             />
           )}
 

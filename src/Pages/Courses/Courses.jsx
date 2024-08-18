@@ -9,10 +9,9 @@ import CoursesCard from "./CoursesCard";
 import styles from "./Courses.module.scss";
 
 const Courses = () => {
-  const [coursesData, setCoursesData] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const context = useContext(UserContext);
-  const { loading, setLoading, user, auth } = context;
+  const { loading, setLoading, user, auth, coursesData, setCoursesData,setTopic } = context;
   const { state } = useLocation();
   const navigate = useNavigate();
 
@@ -38,6 +37,7 @@ const Courses = () => {
         return toast.error(data.msg, { autoClose: 1200 });
       }
       setLoading(() => false);
+      window.localStorage.setItem("topics", JSON.stringify(data.msg.topics));
       navigate(`/topics`, {
         state: {
           courseId: item.id,
@@ -61,6 +61,7 @@ const Courses = () => {
     } else {
       setCoursesData(() => state?.courses);
     }
+
   }, [navigate, state, user]);
 
   return (

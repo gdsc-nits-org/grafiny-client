@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 import { Icon } from "@iconify/react";
 import styles from "./Navbar.module.scss";
 import UserContext from "../../Global/Auth/authContext";
@@ -8,8 +9,52 @@ import Loading from "../Loading/Loading";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const context = useContext(UserContext);
-  const { user, handleGoogleLogin, logout, loading } = context;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user, handleGoogleLogin, logout, loading,auth, setLoading, setUser } = context;
+  
+  const getProfile = async(user) => {
+    try{
+      if (!user) {
+        toast.error("Please Log In", { autoClose: 1200 });
+      } else if (user?.name === "") {
+        toast.error("Please Log In", { autoClose: 1200 });
+      } else if (!user?.profile) {
+        navigate("/profilecreate");
+        toast.error("Please Create A Profile", { autoClose: 1200 });
+      }
+      else{
+      setLoading(true)
+      const token = await auth.currentUser.getIdToken(true);
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/profile/get?email=${user.email}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const { data: data2} = response;
+      if (data2.status !== 200) {
+        toast.error(data2.msg, { autoClose: 1200 });
+        setLoading(false);
+        return;
+      }
 
+      const { profile } = data2.msg;
+      user.profile = profile;
+      window.localStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
+      setLoading(false);
+      navigate("/profile")
+    }
+    }
+    catch(err){
+      setLoading(false)
+      console.log(err)
+      toast.error(`Something Went Wrong. Please Log In If You Haven't`, { autoClose: 1200 });
+    }
+  }
   const handleSwitch = () => {
     setToggle((prevToggleValue) => !prevToggleValue);
   };
@@ -82,17 +127,17 @@ const Navbar = () => {
                   isActive ? `${styles.navlinks} ${styles.active}` : styles.navlinks
                 }
                 to="/profile"
+                onClick={(e) => {
+                  if (location.pathname === '/profile') {
+                    e.preventDefault();
+                    return;
+                  }
+                  e.preventDefault()
+                  getProfile(user)
+                }}
               >
                 Profile
               </NavLink>
-              {/* <NavLink
-                className={({ isActive }) =>
-                  isActive ? `${styles.navlinks} ${styles.active}` : styles.navlinks
-                }
-                to="/team"
-              >
-                Team
-              </NavLink> */}
               {user !== "" ? (
                 <button className={styles.logout} onClick={() => logout()}>
                   Logout{" "}

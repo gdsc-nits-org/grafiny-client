@@ -9,9 +9,8 @@ import { Loading, Topics } from "../../Components";
 import styles from "./Topics.module.scss";
 
 const Topic = () => {
-  const [topic, setTopic] = useState([]);
   const context = useContext(UserContext);
-  const { loading, setLoading, user, auth } = context;
+  const { loading, setLoading, user, auth,topic, setTopic } = context;
   const { state } = useLocation();
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
@@ -19,6 +18,7 @@ const Topic = () => {
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
+  
 
   const handleItems = async (item) => {
     try {
@@ -63,8 +63,10 @@ const Topic = () => {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      setTopic(() => state?.topics);
+      setTopic(() => JSON.parse(localStorage.getItem("topics")));
+      
     }
+
   }, [navigate, state, user]);
 
   return (
