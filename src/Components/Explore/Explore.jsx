@@ -13,10 +13,7 @@ const Explore = () => {
   const navigate = useNavigate();
   const searchItems = async () => {
     try {
-      if (!user) {
-        return toast.error("Please Log In First", { autoClose: 1200 });
-      }
-      if (user.name === "") {
+      if (!user || user.name === "") {
         return toast.error("Please Log In First", { autoClose: 1200 });
       }
       if (!value) {
@@ -78,7 +75,7 @@ const Explore = () => {
                   type="text"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
-                  placeholder="What are you looking for ?"
+                  placeholder="What are you looking for?"
                 />
               </div>
             </div>

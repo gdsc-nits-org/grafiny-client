@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
 import { Footer, Navbar, ScrollToTop } from "./Components";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -18,6 +19,13 @@ import {
 } from "./Pages";
 
 const App = () => {
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <>
       <Navbar />

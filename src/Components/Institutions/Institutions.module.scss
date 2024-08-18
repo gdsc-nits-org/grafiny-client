@@ -25,6 +25,13 @@
         width: 100%;
         padding: 0.5em;
         border-radius: 0.3em;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          border-color: var(--gdsc-blue-2-100);
+        }
       }
 
       .titleSearchBoxButton {
@@ -33,10 +40,12 @@
         background-color: var(--gdsc-blue-2-100);
         border: none;
         border-radius: 0.2em;
-        top: 0.45em;
+        top: 0.4em;
         right: 0.45em;
-        height: 2.5em;
-        width: 3em;
+        height: 2.6em;
+        width: 2.6em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
       }
     }
   }
@@ -48,19 +57,22 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    overflow-x: scroll !important;
+    gap: 2rem;
 
     .text {
       font-weight: bold;
       font-size: larger;
       color: var(--gdsc-content-1-100);
+      margin-left: 1%;
+      margin-top: 2%;
     }
 
     .instiCard {
       min-width: 40vh;
       height: 85%;
       aspect-ratio: 1;
-      margin: 2%;
+      margin-left: 1%;
+      margin-top: 2%;
       cursor: pointer;
       display: flex;
       justify-content: center;
@@ -79,6 +91,7 @@
 @media only screen and (max-width: 768px) {
   .instiMain {
     margin-bottom: 0 !important;
+    padding-bottom: 3rem;
 
     .instiTitleContainer {
       width: 100%;

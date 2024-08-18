@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -10,100 +10,97 @@ const Institutions = () => {
   const [institutes, setInstitutes] = useState([]);
   const [value, setValue] = useState("");
   const navigate = useNavigate();
-  const context = useContext(UserContext);
-  const { user, loading, setLoading, auth } = context;
+  const { user, loading, setLoading, auth } = useContext(UserContext);
 
-  const searchInstitute = async () => {
-    try {
-      setLoading(() => true);
-      const token = await auth?.currentUser?.getIdToken(true);
-      if (value === "") {
-        const response = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/institute/getAll`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+  const fetchInstitutes = useCallback(
+    async (searchTerm = "") => {
+      setLoading(true);
+      try {
+        const token = await auth?.currentUser?.getIdToken(true);
+        const url = searchTerm
+          ? `${
+              import.meta.env.VITE_BASE_URL
+            }/institute/search?instituteName=${searchTerm}`
+          : `${import.meta.env.VITE_BASE_URL}/institute/getAll`;
+
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         const { data } = response;
-        setInstitutes(() => data?.msg?.institutes);
-      } else {
-        const response = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/institute/search?instituteName=${value}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const { data } = response;
-        setInstitutes(() => data?.msg?.institutes);
+        setInstitutes(data?.msg?.institutes || []);
+      } catch (err) {
+        toast.error("Something Went Wrong", { autoClose: 1200 });
+      } finally {
+        setLoading(false);
       }
-      setLoading(() => false);
-      return null;
-    } catch (err) {
-      setLoading(() => false);
-      return toast.error("Something Went Wrong", { autoClose: 1200 });
-    }
-  };
+    },
+    [auth, setLoading]
+  );
 
-  const handleDepartmentRoute = async (item) => {
-    try {
+  const handleDepartmentRoute = useCallback(
+    async (item) => {
       if (!user || !user.name) {
-        navigate("/");
         toast.error("Please Log In", { autoClose: 1200 });
+        navigate("/");
         return;
       }
 
       setLoading(true);
+      try {
+        const token = await auth?.currentUser?.getIdToken(true);
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/department/getAll?id=${item.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-      const token = await auth?.currentUser?.getIdToken(true);
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/department/getAll?id=${item.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+        const { data } = response;
+        if (data.status !== 200) {
+          toast.error(data.msg, { autoClose: 1200 });
+          return;
         }
-      );
 
-      const { data } = response;
-
-      if (data.status !== 200) {
+        navigate(`/departments`, {
+          state: {
+            instituteId: item.id,
+            instituteName: item.name,
+            departments: data.msg.departments,
+          },
+        });
+      } catch (err) {
+        toast.error("Something Went Wrong. Please Log In If You Haven't", {
+          autoClose: 1200,
+        });
+      } finally {
         setLoading(false);
-        toast.error(data.msg, { autoClose: 1200 });
-        return;
       }
+    },
+    [auth, navigate, setLoading, user]
+  );
 
-      setLoading(false);
-      navigate(`/departments`, {
-        state: {
-          instituteId: item.id,
-          instituteName: item.name,
-          departments: data.msg.departments,
-        },
-      });
-    } catch (err) {
-      setLoading(false);
-      toast.error("Something Went Wrong. Please Log In If You Haven't", {
-        autoClose: 1200,
-      });
-    }
+  const handleSearch = () => {
+    fetchInstitutes(value);
   };
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      searchInstitute();
+      handleSearch();
     }
   };
+
   useEffect(() => {
-    searchInstitute();
-  }, []);
+    fetchInstitutes();
+  }, [fetchInstitutes]);
 
   return (
     <div>
-      {loading === false ? (
+      {!loading ? (
         <div className={styles.instiMain}>
           <div className={styles.instiTitleContainer}>
             <div className={styles.instiTitle}>Institutions</div>
@@ -114,11 +111,13 @@ const Institutions = () => {
                   placeholder="Search Institutions"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
+                  onKeyPress={handleKeyPress}
                   className={styles.titleSearchBoxSearch}
+                  aria-label="Search Institutions"
                 />
                 <button
                   type="button"
-                  onClick={searchInstitute}
+                  onClick={handleSearch}
                   className={styles.titleSearchBoxButton}
                   aria-label="search"
                 >
@@ -128,24 +127,24 @@ const Institutions = () => {
             </div>
           </div>
           <div className={styles.instiCardContainer}>
-            {institutes?.map((data) => {
-              return (
-                <div key={data.id}>
-                  <div
-                    className={styles.instiCard}
-                    onClick={() => handleDepartmentRoute(data)}
-                    onKeyDown={handleKeyPress}
-                  >
-                    <img
-                      src="/images/nitsLogo.png"
-                      alt="institute logo"
-                      className={styles.instiCardImg}
-                    />
-                  </div>
-                  <div className={styles.text}>{data.name}</div>
+            {institutes?.map((data) => (
+              <div key={data.id} className={styles.instiCardWrapper}>
+                <div
+                  className={styles.instiCard}
+                  onClick={() => handleDepartmentRoute(data)}
+                  onKeyPress={handleKeyPress}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <img
+                    src="/images/nitsLogo.png"
+                    alt={`${data.name} logo`}
+                    className={styles.instiCardImg}
+                  />
                 </div>
-              );
-            })}
+                <p className={styles.text}>{data.name}</p>
+              </div>
+            ))}
           </div>
         </div>
       ) : (

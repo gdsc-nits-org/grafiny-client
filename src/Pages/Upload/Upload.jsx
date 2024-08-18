@@ -287,12 +287,12 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
           const updatedTopics = [...topics, newTopic];
           setTopics(updatedTopics);
           setSelectedTopic(newTopic.id);
-          toast.success("New topic added successfully!");
+          toast.success("New topic added successfully!", { autoClose: 1200 });
         } else {
-          toast.error("Failed to add new topic");
+          toast.error("Failed to add new topic", { autoClose: 1200 });
         }
       } catch (error) {
-        toast.error("Error adding new topic");
+        toast.error("Error adding new topic", { autoClose: 1200 });
       }
     } else {
       setSelectedTopic(selectedOption.id);

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Landingstyle from "./Landing.module.scss";
 import UserContext from "../../Global/Auth/authContext";
 
-const Landing = () => {
+const Landing = ({ scrollToExplore }) => {
   const context = useContext(UserContext);
   const { user } = context;
 
@@ -44,7 +44,9 @@ const Landing = () => {
       </div>
 
       <div className={Landingstyle.buttonLand}>
-        <button className={Landingstyle.btn}>Get started</button>
+        <button className={Landingstyle.btn} onClick={scrollToExplore}>
+          Get started
+        </button>
       </div>
     </section>
   );

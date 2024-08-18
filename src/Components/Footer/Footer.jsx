@@ -1,6 +1,7 @@
 import { FaInstagram, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.scss";
+
 const Footer = () => {
   return (
     <footer className={styles.footer}>
@@ -8,7 +9,7 @@ const Footer = () => {
         <h3>Questions?</h3>
         <p>Contact us through our social media accounts</p>
         <a
-          href="https://www.facebok.com/gdscnits/"
+          href="https://www.facebook.com/gdscnits/"
           aria-label="fb"
           className={styles["social-media-icons"]}
         >
@@ -39,6 +40,7 @@ const Footer = () => {
         <span>or email us at </span>
         <a href="mailto:gdsc@nits.ac.in">gdsc@nits.ac.in</a>
       </div>
+
       <div className={styles["footer-content"]}>
         <div className={styles["footer-left"]}>
           <h3>About</h3>
@@ -46,33 +48,47 @@ const Footer = () => {
           <div className={styles["fleft-content"]}>
             <ul className={styles["f-listitem"]}>
               <li>
-                {" "}
-                <Link to="/aboutus">About</Link>
-              </li>
-              <li>
                 <a
                   href="https://blog.gdscnits.in"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Blogs
+                  Blog
                 </a>
               </li>
               <li>
-                <a href="https://gdscnits.in" target="_blank" rel="noopener noreferrer">
-                  Website
+                <a
+                  href="https://gdscnits.in/projects"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Projects
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://gdscnits.in/events"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Events
                 </a>
               </li>
             </ul>
           </div>
         </div>
+
         <div className={styles["footer-right"]}>
           <h3>Team</h3>
           <div className={styles["divider-right"]}></div>
           <ul className={styles["f-listitem"]}>
             <li>
-              {" "}
-              <Link to="/aboutus">Know Our Team</Link>
+              <Link to="/aboutus">Contact Us</Link>
+            </li>
+            <li>
+              <a href="https://gdscnits.in" target="_blank" rel="noopener noreferrer">
+                Website
+              </a>
             </li>
             <li>
               <a
@@ -86,10 +102,14 @@ const Footer = () => {
           </ul>
         </div>
       </div>
+
       <div className={styles["footer-end"]}>
-        <img src="/assets/gdsc.png" alt="gdsc-logo" />
-        <h5>Google Developer Students Club</h5>
-        <p>National Institute of Technology Silchar</p>
+        <img src="/assets/gdscNits.png" alt="gdsc-nits" />
+        <p>
+          <small>
+            © {new Date().getFullYear()} GDSC NIT Silchar. All rights reserved.
+          </small>
+        </p>
       </div>
     </footer>
   );
