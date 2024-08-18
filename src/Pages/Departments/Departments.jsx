@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext} from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import axios from "axios";
@@ -10,11 +10,10 @@ import UserContext from "../../Global/Auth/authContext";
 const Departments = () => {
   const [showPopup, setShowPopup] = useState(false);
   const { state } = useLocation();
-  const [departments, setDepartments] = useState([]);
 
   const navigate = useNavigate();
   const context = useContext(UserContext);
-  const { loading, setLoading, user, auth } = context;
+  const { loading, setLoading, user, auth, departments,setDepartments } = context;
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
@@ -61,7 +60,10 @@ const Departments = () => {
     } else {
       setDepartments(state?.departments);
     }
+
   }, [user, state, navigate]);
+
+  
 
   return (
     <div className={style.departments}>

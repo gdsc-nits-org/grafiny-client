@@ -9,7 +9,7 @@ import Dropdown from "../../Components/Dropdowns/Dropdowns";
 import UploadBox from "../../Components/UploadBox/UploadBox";
 import Loading from "../../Components/Loading/Loading";
 
-const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
+const UploadingPage = ({ department, semester, courseId, topicOptions}) => {
   const [selectedCourseId, setSelectedCourseId] = useState(courseId || "");
   const [selectedTopic, setSelectedTopic] = useState("");
   const [selectedSem, setSelectedSem] = useState(semester || "");
@@ -24,7 +24,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
   const [courses, setCourses] = useState([]);
   const [topics, setTopics] = useState(topicOptions || []);
 
-  const { user, auth, setLoading, setUser, loading } = useContext(UserContext);
+  const { user, auth, setLoading, setUser, loading, topic, setTopic } = useContext(UserContext);
   const navigate = useNavigate();
   const instituteId = user?.profile?.institution?.id;
   const [authInitialized, setAuthInitialized] = useState(false);
@@ -285,8 +285,10 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
           const newTopic = response.data.msg.topic;
 
           const updatedTopics = [...topics, newTopic];
+          window.localStorage.setItem("topics", JSON.stringify(updatedTopics));
           setTopics(updatedTopics);
           setSelectedTopic(newTopic.id);
+          setTopic(updatedTopics)
           toast.success("New topic added successfully!", { autoClose: 1200 });
         } else {
           toast.error("Failed to add new topic", { autoClose: 1200 });

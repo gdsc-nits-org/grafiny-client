@@ -18,6 +18,13 @@ const AuthProvider = ({ children }) => {
     localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : ""
   );
   const [loading, setLoading] = useState(false);
+  const [institutes, setInstitutes] = useState([]);
+  const [departments, setDepartments] = useState([]);
+  const [semesters, setSemesters] = useState([]);
+  const [coursesData, setCoursesData] = useState([]);
+  const [topic, setTopic] = useState([]);
+  const [items, setItems] = useState([]);
+
   const navigate = useNavigate();
   const auth = getAuth();
 
@@ -101,10 +108,22 @@ const AuthProvider = ({ children }) => {
       auth,
       getAllInstitutes,
       logout,
-      loading,
+      institutes, 
+      setInstitutes,
+      departments,
+      setDepartments,
+      semesters,
+      setSemesters,
+      coursesData,
+      setCoursesData,
+      topic,
+      setTopic,
+      items,
+      setItems,
+      loading, 
       setLoading,
     };
-  }, [user, auth, loading]);
+  }, [user, auth, loading, institutes,semesters,departments,coursesData,topic,items]);
 
   return <UserContext.Provider value={userHandler}>{children}</UserContext.Provider>;
 };

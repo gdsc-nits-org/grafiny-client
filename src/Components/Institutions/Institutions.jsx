@@ -7,10 +7,9 @@ import UserContext from "../../Global/Auth/authContext";
 import Loading from "../Loading/Loading";
 
 const Institutions = () => {
-  const [institutes, setInstitutes] = useState([]);
   const [value, setValue] = useState("");
   const navigate = useNavigate();
-  const { user, loading, setLoading, auth } = useContext(UserContext);
+  const { user, loading, setLoading, auth,institutes, setInstitutes } = useContext(UserContext);
 
   const fetchInstitutes = useCallback(
     async (searchTerm = "") => {
@@ -66,7 +65,7 @@ const Institutions = () => {
           return;
         }
 
-        navigate(`/departments`, {
+        navigate(`/departments`,{
           state: {
             instituteId: item.id,
             instituteName: item.name,
