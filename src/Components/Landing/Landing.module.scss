@@ -6,7 +6,6 @@
 }
 
 .main {
-  min-height: 100vh;
   margin-top: 0;
   margin-bottom: 5rem;
 }
@@ -95,15 +94,16 @@
   border: 2px solid #00ced1;
 }
 
-// Responsiveness designing starts here
-
 @media only screen and (max-width: 1190px) {
   .header {
     @include flexDisplay(center, column);
 
+    .title {
+      width: 80%;
+    }
+
     .title h1 {
       margin-top: 3rem;
-
       width: 70%;
       height: 7%;
       font-weight: 400;
@@ -114,7 +114,6 @@
 
     .title h3 {
       margin-left: 1em;
-
       width: 85%;
       height: 3.2%;
       font-size: 0.6rem;
@@ -123,12 +122,9 @@
     }
 
     .title p {
-      width: 95%;
-      margin-left: 0em;
-
-      height: 13%;
+      width: 100%;
       font-weight: 300;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       line-height: 14px;
       text-align: center;
       letter-spacing: 0.03em;

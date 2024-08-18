@@ -22,7 +22,7 @@ const Dropdown = ({
       );
 
       if (existingOption) {
-        toast.warning("Topic already exists");
+        toast.warning("Topic already exists", { autoClose: 1200 });
         onChangeHandler(existingOption);
       } else {
         const newOption = { id: newTopic, name: newTopic, isNew: true };
