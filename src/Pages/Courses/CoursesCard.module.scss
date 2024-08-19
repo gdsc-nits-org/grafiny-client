@@ -11,6 +11,9 @@
   width: 16rem;
   gap: 1rem;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 0.5rem 0 0.5rem;
   &:hover {
     box-shadow: 0px 0px 1.1em 0px rgb(181, 181, 181);
 

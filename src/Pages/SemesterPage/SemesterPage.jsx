@@ -36,6 +36,7 @@ const SemesterPage = () => {
         return toast.error(data.msg, { autoClose: 1200 });
       }
       setLoading(() => false);
+      window.localStorage.setItem("courses", JSON.stringify(data.msg.courses));
       navigate(`/courses`, {
         state: {
           semId: item.id,
@@ -58,7 +59,7 @@ const SemesterPage = () => {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      setSemesters(() => state?.semesters);
+      setSemesters(() => JSON.parse(localStorage.getItem("semesters")));
     }
 
   }, [navigate, state, user]);
@@ -70,7 +71,7 @@ const SemesterPage = () => {
         <div>
           <div className={style.arrowContainer}>
             <h2 className={style.dhead}>Semesters</h2>
-            {user.authorisationLevel === "ADMIN" && (
+            {(user.authorisationLevel === "ADMIN" || user.authorisationLevel === "SUPERADMIN") && (
               <button
                 className={style["add-sem"]}
                 onClick={togglePopup}
@@ -85,6 +86,7 @@ const SemesterPage = () => {
               onClose={togglePopup}
               departmentId={state?.departmentId}
               departmentName={state?.departmentName}
+              semesters = {semesters}
               setSemester={setSemesters}
               setLoading={setLoading}
             />

@@ -39,7 +39,10 @@ const CreateDepartment = ({
         setLoading(false);
         toast.error(data.msg, { autoClose: 1200 });
       }
-      setDepartments([...departments, data.msg.department]);
+      const updatedDepartments = [...departments, data.msg.department];
+      window.localStorage.setItem("departments", JSON.stringify(updatedDepartments));
+      setDepartments(() => updatedDepartments);
+
       setName(() => "");
       setLoading(() => false);
       toast.success("Department Created Successfully", { autoClose: 1200 });

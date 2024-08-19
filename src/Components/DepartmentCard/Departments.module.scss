@@ -28,7 +28,7 @@
       text-align: center;
       letter-spacing: 0.02em;
       color: var(--gdsc-dark-1-100);
-      font-size: 1.8em;
+      font-size: 1.6em;
       background-color: var(--dept-bg-color);
       backdrop-filter: blur(2px);
       border-radius: 0 0 20px 20px;
@@ -36,6 +36,9 @@
       display: none;
       margin-bottom: 1vh;
       user-select: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0 0.5rem 0 0.5rem
     }
 
     .dcard-img {

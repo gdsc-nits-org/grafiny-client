@@ -59,7 +59,7 @@ const Courses = () => {
       navigate("/");
       toast.error("Please Log In", { autoClose: 1200 });
     } else {
-      setCoursesData(() => state?.courses);
+      setCoursesData(() => JSON.parse(localStorage.getItem("courses")));
     }
 
   }, [navigate, state, user]);
@@ -71,7 +71,7 @@ const Courses = () => {
           <div className={styles.coursesTitle}>
             <div className={styles.arrowContainer}>
               <h2 className={styles.dhead}>Courses</h2>
-              {user?.authorisationLevel === "ADMIN" && (
+              {(user?.authorisationLevel === "ADMIN" || user.authorisationLevel === "SUPERADMIN") && (
                 <button
                   className={styles["add-courses"]}
                   onClick={togglePopup}
