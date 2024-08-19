@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext} from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
+
 import { Icon } from "@iconify/react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -37,6 +38,7 @@ const Departments = () => {
         return toast.error(data.msg, { autoClose: 1200 });
       }
       setLoading(() => false);
+      window.localStorage.setItem("semesters", JSON.stringify(data.msg.semesters));
       navigate(`/semesters`, {
         state: {
           departmentId: item.id,
@@ -58,7 +60,7 @@ const Departments = () => {
       navigate("/");
       toast.error("Please log in", { autoClose: 1200 });
     } else {
-      setDepartments(state?.departments);
+      setDepartments(() => JSON.parse(localStorage.getItem("departments")));
     }
 
   }, [user, state, navigate]);
@@ -71,7 +73,7 @@ const Departments = () => {
         <div>
           <div className={style.dcontainer}>
             <h2 className={style.dhead}>Departments</h2>
-            {user.authorisationLevel === "ADMIN" && (
+            {(user.authorisationLevel === "ADMIN" || user.authorisationLevel === "SUPERADMIN") && (
               <button
                 className={style["add-dept"]}
                 onClick={togglePopup}

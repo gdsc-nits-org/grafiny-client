@@ -64,6 +64,8 @@ const Institutions = () => {
           toast.error(data.msg, { autoClose: 1200 });
           return;
         }
+        
+        window.localStorage.setItem("departments", JSON.stringify(data.msg.departments));
 
         navigate(`/departments`,{
           state: {

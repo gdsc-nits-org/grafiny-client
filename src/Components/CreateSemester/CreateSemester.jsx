@@ -9,6 +9,7 @@ const CreateSemester = ({
   departmentId,
   setLoading,
   setSemester,
+  semesters,
   departmentName,
 }) => {
   const [semNumber, setSemNumber] = useState("FIRST");
@@ -40,14 +41,14 @@ const CreateSemester = ({
       if (data.status !== 200) {
         toast.error(data.msg, { autoClose: 1200 });
       } else {
-        setSemester((prevSemesters) => {
-          return [...prevSemesters, data.msg.semester];
-        });
+        const updatedSemesters = [...semesters, data.msg.semester]
+        window.localStorage.setItem("semesters", JSON.stringify(updatedSemesters));
+        setSemester(() => updatedSemesters)
         toast.success("Semester Created Successfully", { autoClose: 1200 });
         onClose();
       }
     } catch (err) {
-      setLoading(false);
+      setLoading(false);  
       toast.error("Something Went Wrong", { autoClose: 1200 });
     }
   };

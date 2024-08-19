@@ -69,7 +69,7 @@
       flex: 3;
       gap: 5rem;
       padding-bottom: 0.3rem;
-      box-shadow: 0 1px 0 gray;
+      border-bottom: 1px solid var(--gdsc-grayish-1-100);
 
       @media (max-width: 600px) {
         flex-direction: column;

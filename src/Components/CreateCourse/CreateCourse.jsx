@@ -39,7 +39,9 @@ const CreateCourse = ({
         setLoading(() => false);
         toast.error(data.msg, { autoClose: 1200 });
       } else {
-        setCoursesData(() => [...coursesData, data.msg.course]);
+        const updatedCourses =  [...coursesData, data.msg.course]
+        window.localStorage.setItem("courses", JSON.stringify(updatedCourses));
+        setCoursesData(() => updatedCourses);
         setLoading(() => false);
         toast.success("Semester Created Successfully", { autoClose: 1200 });
         onClose();
