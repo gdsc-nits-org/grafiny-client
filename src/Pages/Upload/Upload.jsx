@@ -9,7 +9,7 @@ import Dropdown from "../../Components/Dropdowns/Dropdowns";
 import UploadBox from "../../Components/UploadBox/UploadBox";
 import Loading from "../../Components/Loading/Loading";
 
-const UploadingPage = ({ department, semester, courseId, topicOptions}) => {
+const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
   const [selectedCourseId, setSelectedCourseId] = useState(courseId || "");
   const [selectedTopic, setSelectedTopic] = useState("");
   const [selectedSem, setSelectedSem] = useState(semester || "");
@@ -24,7 +24,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions}) => {
   const [courses, setCourses] = useState([]);
   const [topics, setTopics] = useState(topicOptions || []);
 
-  const { user, auth, setLoading, setUser, loading, topic, setTopic } = useContext(UserContext);
+  const { user, auth, setLoading, setUser, loading, setTopic } = useContext(UserContext);
   const navigate = useNavigate();
   const instituteId = user?.profile?.institution?.id;
   const [authInitialized, setAuthInitialized] = useState(false);
@@ -37,7 +37,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions}) => {
       } else {
         setUser(null);
         navigate("/");
-        toast.error("Please Log In", { autoClose: 1200 });
+        toast.error("Please log in to continue", { autoClose: 1200 });
       }
       setAuthInitialized(true);
       setLoading(false);
@@ -186,7 +186,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions}) => {
       !materialName ||
       files.length === 0
     ) {
-      toast.error("Please provide all the details.", { autoClose: 1200 });
+      toast.error("Required fields cannot be empty", { autoClose: 1200 });
       return;
     }
 
@@ -257,12 +257,10 @@ const UploadingPage = ({ department, semester, courseId, topicOptions}) => {
         toast.success("Item uploaded successfully.", { autoClose: 1200 });
         window.history.replaceState(null, "", "/profile");
       } else {
-        toast.error(`Upload failed with status: ${response.status}`, { autoClose: 1200 });
+        toast.error(`Upload failed with status ${response.status}`, { autoClose: 1200 });
       }
-    } catch (error) {
-      toast.error("Error uploading file. Please log in if you haven't.", {
-        autoClose: 1200,
-      });
+    } catch (err) {
+      toast.error(err, { autoClose: 1200 });
     }
   };
 
@@ -288,13 +286,13 @@ const UploadingPage = ({ department, semester, courseId, topicOptions}) => {
           window.localStorage.setItem("topics", JSON.stringify(updatedTopics));
           setTopics(updatedTopics);
           setSelectedTopic(newTopic.id);
-          setTopic(updatedTopics)
+          setTopic(updatedTopics);
           toast.success("New topic added successfully!", { autoClose: 1200 });
         } else {
           toast.error("Failed to add new topic", { autoClose: 1200 });
         }
-      } catch (error) {
-        toast.error("Error adding new topic", { autoClose: 1200 });
+      } catch (err) {
+        toast.error(err, { autoClose: 1200 });
       }
     } else {
       setSelectedTopic(selectedOption.id);

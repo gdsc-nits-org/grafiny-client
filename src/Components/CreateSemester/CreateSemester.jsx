@@ -18,7 +18,7 @@ const CreateSemester = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!semNumber) {
-      toast.error("Please Fill Out The Required Fields", { autoClose: 1200 });
+      toast.error("Required fields cannot be empty", { autoClose: 1200 });
       return;
     }
     try {
@@ -41,15 +41,15 @@ const CreateSemester = ({
       if (data.status !== 200) {
         toast.error(data.msg, { autoClose: 1200 });
       } else {
-        const updatedSemesters = [...semesters, data.msg.semester]
+        const updatedSemesters = [...semesters, data.msg.semester];
         window.localStorage.setItem("semesters", JSON.stringify(updatedSemesters));
-        setSemester(() => updatedSemesters)
+        setSemester(() => updatedSemesters);
         toast.success("Semester Created Successfully", { autoClose: 1200 });
         onClose();
       }
     } catch (err) {
-      setLoading(false);  
-      toast.error("Something Went Wrong", { autoClose: 1200 });
+      setLoading(false);
+      toast.error(err, { autoClose: 1200 });
     }
   };
 

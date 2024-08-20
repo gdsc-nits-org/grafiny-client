@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
     } else {
       localStorage.clear();
       setUser("");
-      toast.error("Something Went Wrong...", { autoClose: 1200 });
+      toast.error("Something went wrong", { autoClose: 1200 });
     }
   };
 
@@ -60,10 +60,10 @@ const AuthProvider = ({ children }) => {
       await setPersistence(auth, browserLocalPersistence);
       const result = await signInWithPopup(auth, new GoogleAuthProvider());
       await handleGoogleAdmin(result.user.accessToken);
-      setLoading(() => false);
+      setLoading(false);
     } catch (err) {
-      setLoading(() => false);
-      toast.error("Something Went Wrong...", { autoClose: 1200 });
+      setLoading(false);
+      toast.error("Something went wrong", { autoClose: 1200 });
     }
   };
 
@@ -73,9 +73,9 @@ const AuthProvider = ({ children }) => {
       localStorage.clear();
       setUser("");
       navigate("/");
-      return toast.success("Successfully Logged Out", { autoClose: 1200 });
+      return toast.success("Logged out successfully", { autoClose: 1200 });
     } catch (err) {
-      return toast.error("Something Went Wrong...", { autoClose: 1200 });
+      return toast.error(err, { autoClose: 1200 });
     }
   };
 
@@ -108,7 +108,7 @@ const AuthProvider = ({ children }) => {
       auth,
       getAllInstitutes,
       logout,
-      institutes, 
+      institutes,
       setInstitutes,
       departments,
       setDepartments,
@@ -120,10 +120,20 @@ const AuthProvider = ({ children }) => {
       setTopic,
       items,
       setItems,
-      loading, 
+      loading,
       setLoading,
     };
-  }, [user, auth, loading, institutes,semesters,departments,coursesData,topic,items]);
+  }, [
+    user,
+    auth,
+    loading,
+    institutes,
+    semesters,
+    departments,
+    coursesData,
+    topic,
+    items,
+  ]);
 
   return <UserContext.Provider value={userHandler}>{children}</UserContext.Provider>;
 };

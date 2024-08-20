@@ -39,7 +39,7 @@ const CreateCourse = ({
         setLoading(() => false);
         toast.error(data.msg, { autoClose: 1200 });
       } else {
-        const updatedCourses =  [...coursesData, data.msg.course]
+        const updatedCourses = [...coursesData, data.msg.course];
         window.localStorage.setItem("courses", JSON.stringify(updatedCourses));
         setCoursesData(() => updatedCourses);
         setLoading(() => false);
@@ -48,7 +48,7 @@ const CreateCourse = ({
       }
     } catch (err) {
       setLoading(() => false);
-      toast.error("Something Went Wrong", { autoClose: 1200 });
+      toast.error(err, { autoClose: 1200 });
     }
   };
 

@@ -14,15 +14,12 @@ const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (!user || user?.name === "") {
       navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
-    } else if (user?.name === "") {
-      navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
+      toast.error("Please log in to continue", { autoClose: 1200 });
     } else if (!user?.profile) {
       navigate("/profilecreate");
-      toast.error("Please Create A Profile", { autoClose: 1200 });
+      toast.error("Please create your profile", { autoClose: 1200 });
     }
   }, [user, navigate]);
 
@@ -72,12 +69,10 @@ const Profile = () => {
               setUser(user);
               setLoading(false);
               navigate("/profile");
-              return toast.success("Successfully Deleted", { autoClose: 1200 });
+              return toast.success("Item deleted successfully", { autoClose: 1200 });
             } catch (err) {
               setLoading(false);
-              return toast.error("Error deleting item. Please Log In If You Haven't", {
-                autoClose: 1200,
-              });
+              return toast.error("Failed to delete item", { autoClose: 1200 });
             }
           },
         },

@@ -17,7 +17,7 @@ const CreateDepartment = ({
     event.preventDefault();
     try {
       if (!name || !instituteName) {
-        toast.error("Please Fill Out The Required Fields", { autoClose: 1200 });
+        toast.error("Required fields cannot be empty", { autoClose: 1200 });
       }
       setLoading(true);
       const token = await auth?.currentUser?.getIdToken(true);
@@ -49,7 +49,7 @@ const CreateDepartment = ({
       onClose();
     } catch (err) {
       setLoading(() => false);
-      toast.error("Something Went Wrong", { autoClose: 1200 });
+      toast.error(err, { autoClose: 1200 });
     }
   };
 

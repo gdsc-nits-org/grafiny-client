@@ -1,25 +1,31 @@
 import style from "./Departments.module.scss";
 
 const iconMappping = {
-  CSE: "/assets/departments/CSEdept.png",
-  ECE: "/assets/departments/ECEdept.png",
-  EE: "/assets/departments/EEdept.png",
-  MECH: "/assets/departments/MechDept.png",
-  CIVIL: "/assets/departments/CivilDept.png",
-  EIE: "/assets/departments/EIEdept.png",
+  "COMPUTER SCIENCE & ENGINEERING": "/assets/departments/CSEdept.png",
+  "ELECTRONICS & COMMUNICATION ENGINEERING": "/assets/departments/ECEdept.png",
+  "ELECTRICAL ENGINEERING": "/assets/departments/EEdept.png",
+  "MECHANICAL ENGINEERING": "/assets/departments/MechDept.png",
+  "CIVIL ENGINEERING": "/assets/departments/CivilDept.png",
+  "ELECTRONICS & INSTRUMENTATION ENGINEERING": "/assets/departments/EIEdept.png",
 };
 
 const DepartmentCard = ({ data }) => {
+  const departmentName = data?.name;
+
+  const assignedImage =
+    iconMappping[departmentName] ||
+    iconMappping[
+      Object.keys(iconMappping)[
+        Math.floor(Math.random() * Object.keys(iconMappping).length)
+      ]
+    ];
+
   return (
     <div className={style["dcard-container"]}>
       <div className={style["dcard-link"]}>
         <div className={style.dcard}>
           <p className={style.dname}>{data?.name}</p>
-          <img
-            src={iconMappping[data?.name]}
-            alt={data?.name}
-            className={style["dcard-img"]}
-          />
+          <img src={assignedImage} alt={data?.name} className={style["dcard-img"]} />
         </div>
       </div>
     </div>
