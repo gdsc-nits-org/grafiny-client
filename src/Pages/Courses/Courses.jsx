@@ -11,7 +11,7 @@ import styles from "./Courses.module.scss";
 const Courses = () => {
   const [showPopup, setShowPopup] = useState(false);
   const context = useContext(UserContext);
-  const { loading, setLoading, user, auth, coursesData, setCoursesData,setTopic } = context;
+  const { loading, setLoading, user, auth, coursesData, setCoursesData } = context;
   const { state } = useLocation();
   const navigate = useNavigate();
 
@@ -48,21 +48,18 @@ const Courses = () => {
         },
       });
       return null;
-    } catch (error) {
-      return toast.error("Something Went Wrong. Please Log In If You Haven't", {
-        autoClose: 1200,
-      });
+    } catch (err) {
+      return toast.error(err, { autoClose: 1200 });
     }
   };
   useEffect(() => {
     if (!user || !state) {
       navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
+      toast.error("Please log in to continue", { autoClose: 1200 });
     } else {
       setCoursesData(() => JSON.parse(localStorage.getItem("courses")));
     }
-
-  }, [navigate, state, user]);
+  }, [navigate, setCoursesData, state, user]);
 
   return (
     <div className={styles.coursesHero}>
@@ -71,7 +68,8 @@ const Courses = () => {
           <div className={styles.coursesTitle}>
             <div className={styles.arrowContainer}>
               <h2 className={styles.dhead}>Courses</h2>
-              {(user?.authorisationLevel === "ADMIN" || user.authorisationLevel === "SUPERADMIN") && (
+              {(user?.authorisationLevel === "ADMIN" ||
+                user.authorisationLevel === "SUPERADMIN") && (
                 <button
                   className={styles["add-courses"]}
                   onClick={togglePopup}

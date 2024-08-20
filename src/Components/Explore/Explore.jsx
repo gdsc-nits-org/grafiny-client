@@ -14,10 +14,10 @@ const Explore = () => {
   const searchItems = async () => {
     try {
       if (!user || user.name === "") {
-        return toast.error("Please Log In First", { autoClose: 1200 });
+        return toast.error("Please log in to continue", { autoClose: 1200 });
       }
       if (!value) {
-        return toast.error("Search Field is Empty", { autoClose: 1200 });
+        return toast.error("Search field cannot be empty", { autoClose: 1200 });
       }
       setLoading(() => true);
 
@@ -37,7 +37,7 @@ const Explore = () => {
         return toast.error(data.msg, { autoClose: 1200 });
       }
       if (data.msg.items.length === 0) {
-        return toast.info("No Results Found", { autoClose: 1200 });
+        return toast.info("No results found", { autoClose: 1200 });
       }
       navigate("/searchresults", {
         state: {
@@ -47,8 +47,8 @@ const Explore = () => {
 
       return null;
     } catch (err) {
-      setLoading(() => false);
-      return toast.error("Something Went Wrong. Please Log In If You Haven't", {
+      setLoading(false);
+      return toast.error(err, {
         autoClose: 1200,
       });
     }

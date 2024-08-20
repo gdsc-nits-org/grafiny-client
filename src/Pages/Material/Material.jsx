@@ -20,12 +20,9 @@ const Material = () => {
   };
 
   useEffect(() => {
-    if (!user) {
+    if (!user || !state) {
       navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
-    } else if (!state) {
-      navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
+      toast.error("Please log in to continue", { autoClose: 1200 });
     } else {
       setItems(() => state?.items);
     }
@@ -61,7 +58,7 @@ const Material = () => {
               semester={state?.semNumber}
               courseId={state?.courseId}
               topicOptions={state?.topics}
-              setTopic = {state?.setTopic}
+              setTopic={state?.setTopic}
             />
           )}
 

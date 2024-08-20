@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext} from "react";
-import { useLocation, useNavigate} from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Icon } from "@iconify/react";
 import axios from "axios";
@@ -14,7 +14,7 @@ const Departments = () => {
 
   const navigate = useNavigate();
   const context = useContext(UserContext);
-  const { loading, setLoading, user, auth, departments,setDepartments } = context;
+  const { loading, setLoading, user, auth, departments, setDepartments } = context;
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
@@ -47,25 +47,20 @@ const Departments = () => {
         },
       });
       return null;
-    } catch (error) {
-      setLoading(() => false);
-      return toast.error("Something went wrong. Please log in", {
-        autoClose: 1200,
-      });
+    } catch (err) {
+      setLoading(false);
+      return toast.error(err, { autoClose: 1200 });
     }
   };
 
   useEffect(() => {
     if (!user || !state) {
       navigate("/");
-      toast.error("Please log in", { autoClose: 1200 });
+      toast.error("Please log in to continue", { autoClose: 1200 });
     } else {
       setDepartments(() => JSON.parse(localStorage.getItem("departments")));
     }
-
-  }, [user, state, navigate]);
-
-  
+  }, [user, state, navigate, setDepartments]);
 
   return (
     <div className={style.departments}>
@@ -73,7 +68,8 @@ const Departments = () => {
         <div>
           <div className={style.dcontainer}>
             <h2 className={style.dhead}>Departments</h2>
-            {(user.authorisationLevel === "ADMIN" || user.authorisationLevel === "SUPERADMIN") && (
+            {(user.authorisationLevel === "ADMIN" ||
+              user.authorisationLevel === "SUPERADMIN") && (
               <button
                 className={style["add-dept"]}
                 onClick={togglePopup}

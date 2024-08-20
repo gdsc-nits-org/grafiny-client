@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState, useContext} from "react";
+import { useEffect, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Icon } from "@iconify/react";
@@ -46,24 +46,20 @@ const SemesterPage = () => {
         },
       });
       return null;
-    } catch (error) {
-      setLoading(() => false);
-      return toast.error("Something Went Wrong. Please Log In If You Haven't", {
-        autoClose: 1200,
-      });
+    } catch (err) {
+      setLoading(false);
+      return toast.error(err, { autoClose: 1200 });
     }
   };
 
   useEffect(() => {
     if (!user || !state) {
       navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
+      toast.error("Please log in to continue", { autoClose: 1200 });
     } else {
       setSemesters(() => JSON.parse(localStorage.getItem("semesters")));
     }
-
-  }, [navigate, state, user]);
-
+  }, [navigate, setSemesters, state, user]);
 
   return (
     <main className={style.semesterPage}>
@@ -71,7 +67,8 @@ const SemesterPage = () => {
         <div>
           <div className={style.arrowContainer}>
             <h2 className={style.dhead}>Semesters</h2>
-            {(user.authorisationLevel === "ADMIN" || user.authorisationLevel === "SUPERADMIN") && (
+            {(user.authorisationLevel === "ADMIN" ||
+              user.authorisationLevel === "SUPERADMIN") && (
               <button
                 className={style["add-sem"]}
                 onClick={togglePopup}
@@ -86,7 +83,7 @@ const SemesterPage = () => {
               onClose={togglePopup}
               departmentId={state?.departmentId}
               departmentName={state?.departmentName}
-              semesters = {semesters}
+              semesters={semesters}
               setSemester={setSemesters}
               setLoading={setLoading}
             />
