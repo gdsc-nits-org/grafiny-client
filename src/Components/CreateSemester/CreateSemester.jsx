@@ -44,7 +44,7 @@ const CreateSemester = ({
         const updatedSemesters = [...semesters, data.msg.semester];
         window.localStorage.setItem("semesters", JSON.stringify(updatedSemesters));
         setSemester(() => updatedSemesters);
-        toast.success("Semester Created Successfully", { autoClose: 1200 });
+        toast.success("Semester created successfully", { autoClose: 1200 });
         onClose();
       }
     } catch (err) {

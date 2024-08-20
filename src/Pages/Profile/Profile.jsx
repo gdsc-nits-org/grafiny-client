@@ -69,10 +69,10 @@ const Profile = () => {
               setUser(user);
               setLoading(false);
               navigate("/profile");
-              return toast.success("Item deleted successfully", { autoClose: 1200 });
+              return toast.success("Deleted successfully", { autoClose: 1200 });
             } catch (err) {
               setLoading(false);
-              return toast.error("Failed to delete item", { autoClose: 1200 });
+              return toast.error("Failed to delete", { autoClose: 1200 });
             }
           },
         },

@@ -62,7 +62,7 @@ const CreateProfile = () => {
         window.localStorage.setItem("user", JSON.stringify(user));
         context.setUser(() => user);
         navigate("/profile");
-        return toast.success("Profile Created Succesfully", { autoClose: 1200 });
+        return toast.success("Profile created succesfully", { autoClose: 1200 });
       }
       return toast.error("Something went wrong", { autoClose: 1200 });
     } catch (err) {

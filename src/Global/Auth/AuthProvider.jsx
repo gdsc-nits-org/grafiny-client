@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
       window.localStorage.setItem("user", JSON.stringify(userData));
       setUser(userData);
       navigate("/");
-      toast.success("Successfully Logged In", { autoClose: 1200 });
+      toast.success("Logged in successfully", { autoClose: 1200 });
     } else {
       localStorage.clear();
       setUser("");

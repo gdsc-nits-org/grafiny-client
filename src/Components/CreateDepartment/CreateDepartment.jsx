@@ -45,7 +45,7 @@ const CreateDepartment = ({
 
       setName(() => "");
       setLoading(() => false);
-      toast.success("Department Created Successfully", { autoClose: 1200 });
+      toast.success("Department created successfully", { autoClose: 1200 });
       onClose();
     } catch (err) {
       setLoading(() => false);

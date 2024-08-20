@@ -287,7 +287,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
           setTopics(updatedTopics);
           setSelectedTopic(newTopic.id);
           setTopic(updatedTopics);
-          toast.success("New topic added successfully!", { autoClose: 1200 });
+          toast.success("New topic added successfully", { autoClose: 1200 });
         } else {
           toast.error("Failed to add new topic", { autoClose: 1200 });
         }
