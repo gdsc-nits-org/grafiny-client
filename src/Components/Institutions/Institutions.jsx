@@ -139,7 +139,7 @@ const Institutions = () => {
                   tabIndex={0}
                 >
                   <img
-                    src="/images/nitsLogo.png"
+                    src="/assets/institute.jpg"
                     alt={`${data.name} logo`}
                     className={styles.instiCardImg}
                   />
