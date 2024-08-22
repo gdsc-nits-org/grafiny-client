@@ -162,6 +162,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
   const handleBrowse = (e) => {
     const newFiles = [...files];
     const selectedFiles = Array.from(e.target.files);
+    toast.success(`${selectedFiles},${selectedFiles.length}`, { autoClose: 1200 });
 
     selectedFiles.forEach((file) => {
       if (!newFiles.some((f) => f.name === file.name && f.size === file.size)) {
@@ -191,6 +192,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
     }
 
     const formData = new FormData();
+    toast.success(`${files},${files.length}`);
     files.forEach((file) => formData.append("file", file));
     formData.append("topicId", selectedTopic);
     formData.append("courseId", selectedCourseId);
