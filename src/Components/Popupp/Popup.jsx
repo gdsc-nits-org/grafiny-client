@@ -46,7 +46,7 @@ const Popup = ({ onClose, files, materialName }) => {
                     <p className={style.filekey}> {file?.key}</p>
                   </div>
                   <div className={style.buttoncont}>
-                    <a href={file?.url} download={file?.key} target="_blank">
+                    <a href={file?.url} target="_blank">
                       <button>Download</button>
                     </a>
                   </div>

@@ -29,7 +29,7 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <ToastContainer className="toaststyle" />
+      <ToastContainer />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
