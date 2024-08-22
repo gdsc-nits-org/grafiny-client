@@ -162,7 +162,6 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
   const handleBrowse = (e) => {
     const newFiles = [...files];
     const selectedFiles = Array.from(e.target.files);
-    toast.success(`${selectedFiles},${selectedFiles.length}`, { autoClose: 1200 });
 
     selectedFiles.forEach((file) => {
       if (!newFiles.some((f) => f.name === file.name && f.size === file.size)) {
@@ -192,7 +191,6 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
     }
 
     const formData = new FormData();
-    toast.success(`${files},${files.length}`);
     files.forEach((file) => formData.append("file", file));
     formData.append("topicId", selectedTopic);
     formData.append("courseId", selectedCourseId);
@@ -201,7 +199,9 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
 
     try {
       setLoading(true);
+      toast.success(`${files},${files.length} 1`, { autoClose: 1200 });
       const token = await auth.currentUser.getIdToken(true);
+      toast.success(`${files},${files.length} 2`, { autoClose: 1200 });
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/items/upload`,
         formData,
@@ -228,6 +228,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
           },
         }
       );
+      toast.success(`3`, { autoClose: 1200 });
       if (response.status === 200) {
         toast.success("respone 1 ", { autoClose: 1200 });
         setFiles((prevFiles) =>
@@ -236,6 +237,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
             progress: 100,
           }))
         );
+        toast.success(`3`, { autoClose: 1200 });
         const response2 = await axios.get(
           `${import.meta.env.VITE_BASE_URL}/profile/get?email=${user.email}`,
           {
@@ -244,7 +246,6 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
             },
           }
         );
-        toast.success("respone 2 ", { autoClose: 1200 });
         const { data: data2 } = response2;
         if (data2.status !== 200) {
           toast.error(data2.msg, { autoClose: 1200 });
