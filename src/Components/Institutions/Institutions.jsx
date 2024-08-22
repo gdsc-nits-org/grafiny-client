@@ -9,7 +9,8 @@ import Loading from "../Loading/Loading";
 const Institutions = () => {
   const [value, setValue] = useState("");
   const navigate = useNavigate();
-  const { user, loading, setLoading, auth,institutes, setInstitutes } = useContext(UserContext);
+  const { user, loading, setLoading, auth, institutes, setInstitutes } =
+    useContext(UserContext);
 
   const fetchInstitutes = useCallback(
     async (searchTerm = "") => {
@@ -31,18 +32,18 @@ const Institutions = () => {
         const { data } = response;
         setInstitutes(data?.msg?.institutes || []);
       } catch (err) {
-        toast.error("Something Went Wrong", { autoClose: 1200 });
+        toast.error(err, { autoClose: 1200 });
       } finally {
         setLoading(false);
       }
     },
-    [auth, setLoading]
+    [auth?.currentUser, setInstitutes, setLoading]
   );
 
   const handleDepartmentRoute = useCallback(
     async (item) => {
       if (!user || !user.name) {
-        toast.error("Please Log In", { autoClose: 1200 });
+        toast.error("Please log in to continue", { autoClose: 1200 });
         navigate("/");
         return;
       }
@@ -64,8 +65,10 @@ const Institutions = () => {
           toast.error(data.msg, { autoClose: 1200 });
           return;
         }
+
         window.localStorage.setItem("departments", JSON.stringify(data.msg.departments));
-        navigate(`/departments`,{
+
+        navigate(`/departments`, {
           state: {
             instituteId: item.id,
             instituteName: item.name,
@@ -73,7 +76,7 @@ const Institutions = () => {
           },
         });
       } catch (err) {
-        toast.error("Something Went Wrong. Please Log In If You Haven't", {
+        toast.error(err, {
           autoClose: 1200,
         });
       } finally {
@@ -136,7 +139,7 @@ const Institutions = () => {
                   tabIndex={0}
                 >
                   <img
-                    src="/images/nitsLogo.png"
+                    src="/assets/institute.jpg"
                     alt={`${data.name} logo`}
                     className={styles.instiCardImg}
                   />

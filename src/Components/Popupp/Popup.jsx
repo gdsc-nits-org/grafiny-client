@@ -12,7 +12,7 @@ const Popup = ({ onClose, files, materialName }) => {
 
   useEffect(() => {
     if (!user) {
-      toast.error("Please Log In", { autoClose: 1200 });
+      toast.error("Please log in to continue", { autoClose: 1200 });
     }
     document.body.style.overflow = "hidden";
     return () => {

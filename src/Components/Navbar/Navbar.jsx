@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { toast } from "react-toastify";
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Icon } from "@iconify/react";
@@ -11,50 +12,45 @@ const Navbar = () => {
   const context = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, handleGoogleLogin, logout, loading,auth, setLoading, setUser } = context;
-  
-  const getProfile = async(user) => {
-    try{
-      if (!user) {
-        toast.error("Please Log In", { autoClose: 1200 });
-      } else if (user?.name === "") {
-        toast.error("Please Log In", { autoClose: 1200 });
+  const { user, handleGoogleLogin, logout, loading, auth, setLoading, setUser } = context;
+
+  const getProfile = async () => {
+    try {
+      if (!user || user?.name === "") {
+        toast.error("Please log in to continue", { autoClose: 1200 });
       } else if (!user?.profile) {
         navigate("/profilecreate");
-        toast.error("Please Create A Profile", { autoClose: 1200 });
-      }
-      else{
-      setLoading(true)
-      const token = await auth.currentUser.getIdToken(true);
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/profile/get?email=${user.email}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+        toast.error("Please create your profile", { autoClose: 1200 });
+      } else {
+        setLoading(true);
+        const token = await auth.currentUser.getIdToken(true);
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/profile/get?email=${user.email}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const { data: data2 } = response;
+        if (data2.status !== 200) {
+          toast.error(data2.msg, { autoClose: 1200 });
+          setLoading(false);
+          return;
         }
-      );
-      const { data: data2} = response;
-      if (data2.status !== 200) {
-        toast.error(data2.msg, { autoClose: 1200 });
-        setLoading(false);
-        return;
-      }
 
-      const { profile } = data2.msg;
-      user.profile = profile;
-      window.localStorage.setItem("user", JSON.stringify(user));
-      setUser(user);
+        const { profile } = data2.msg;
+        user.profile = profile;
+        window.localStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
+        setLoading(false);
+        navigate("/profile");
+      }
+    } catch (err) {
       setLoading(false);
-      navigate("/profile")
+      toast.error(err, { autoClose: 1200 });
     }
-    }
-    catch(err){
-      setLoading(false)
-      console.log(err)
-      toast.error(`Something Went Wrong. Please Log In If You Haven't`, { autoClose: 1200 });
-    }
-  }
+  };
   const handleSwitch = () => {
     setToggle((prevToggleValue) => !prevToggleValue);
   };
@@ -128,12 +124,12 @@ const Navbar = () => {
                 }
                 to="/profile"
                 onClick={(e) => {
-                  if (location.pathname === '/profile') {
+                  if (location.pathname === "/profile") {
                     e.preventDefault();
                     return;
                   }
-                  e.preventDefault()
-                  getProfile(user)
+                  e.preventDefault();
+                  getProfile(user);
                 }}
               >
                 Profile

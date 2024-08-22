@@ -15,14 +15,11 @@ const SearchResults = () => {
 
   const searchItems = async () => {
     try {
-      if (!user) {
-        return toast.error("Please Log In First", { autoClose: 1200 });
-      }
-      if (user.name === "") {
-        return toast.error("Please Log In First", { autoClose: 1200 });
+      if (!user || user.name === "") {
+        return toast.error("Please log in to continue", { autoClose: 1200 });
       }
       if (!value) {
-        return toast.error("Search Field is Empty", { autoClose: 1200 });
+        return toast.error("Search field cannot be empty", { autoClose: 1200 });
       }
       setLoading(() => true);
       const token = await auth.currentUser.getIdToken(true);
@@ -50,9 +47,7 @@ const SearchResults = () => {
       return null;
     } catch (err) {
       setLoading(() => false);
-      return toast.error("Something Went Wrong. Plese Log In If You Haven't", {
-        autoClose: 1200,
-      });
+      return toast.error(err, { autoClose: 1200 });
     }
   };
 
@@ -64,10 +59,10 @@ const SearchResults = () => {
   useEffect(() => {
     if (!user) {
       navigate("/");
-      toast.error("Please Log In", { autoClose: 1200 });
+      toast.error("Please log in to continue", { autoClose: 1200 });
     } else if (!items) {
       navigate("/");
-      toast.error("No Items Found", { autoClose: 1200 });
+      toast.error("No results found", { autoClose: 1200 });
     }
   }, []);
   return (
