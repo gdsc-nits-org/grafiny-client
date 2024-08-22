@@ -69,7 +69,7 @@ const Courses = () => {
             <div className={styles.arrowContainer}>
               <h2 className={styles.dhead}>Courses</h2>
               {(user?.authorisationLevel === "ADMIN" ||
-                user.authorisationLevel === "SUPERADMIN") && (
+                user?.authorisationLevel === "SUPERADMIN") && (
                 <button
                   className={styles["add-courses"]}
                   onClick={togglePopup}

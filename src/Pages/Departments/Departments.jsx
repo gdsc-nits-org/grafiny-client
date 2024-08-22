@@ -68,8 +68,8 @@ const Departments = () => {
         <div>
           <div className={style.dcontainer}>
             <h2 className={style.dhead}>Departments</h2>
-            {(user.authorisationLevel === "ADMIN" ||
-              user.authorisationLevel === "SUPERADMIN") && (
+            {(user?.authorisationLevel === "ADMIN" ||
+              user?.authorisationLevel === "SUPERADMIN") && (
               <button
                 className={style["add-dept"]}
                 onClick={togglePopup}

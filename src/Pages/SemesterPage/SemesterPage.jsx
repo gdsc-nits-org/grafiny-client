@@ -67,8 +67,8 @@ const SemesterPage = () => {
         <div>
           <div className={style.arrowContainer}>
             <h2 className={style.dhead}>Semesters</h2>
-            {(user.authorisationLevel === "ADMIN" ||
-              user.authorisationLevel === "SUPERADMIN") && (
+            {(user?.authorisationLevel === "ADMIN" ||
+              user?.authorisationLevel === "SUPERADMIN") && (
               <button
                 className={style["add-sem"]}
                 onClick={togglePopup}
