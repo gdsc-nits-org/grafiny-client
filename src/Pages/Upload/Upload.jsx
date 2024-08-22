@@ -201,7 +201,9 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
 
     try {
       setLoading(true);
+      toast.success(`${files},${files.length} 1`, { autoClose: 1200 });
       const token = await auth.currentUser.getIdToken(true);
+      toast.success(`${files},${files.length} 2`, { autoClose: 1200 });
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/items/upload`,
         formData,
@@ -228,6 +230,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
           },
         }
       );
+      toast.success(`3`, { autoClose: 1200 });
       if (response.status === 200) {
         toast.success("respone 1 ", { autoClose: 1200 });
         setFiles((prevFiles) =>
@@ -236,6 +239,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
             progress: 100,
           }))
         );
+        toast.success(`3`, { autoClose: 1200 });
         const response2 = await axios.get(
           `${import.meta.env.VITE_BASE_URL}/profile/get?email=${user.email}`,
           {
