@@ -198,7 +198,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
     formData.append("courseId", selectedCourseId);
     formData.append("topicName", selectedTopic);
     formData.append("itemName", materialName);
-
+    toast.success(`before try`, { autoClose: 1200 });
     try {
       setLoading(true);
       toast.success(`${files},${files.length} 1`, { autoClose: 1200 });
