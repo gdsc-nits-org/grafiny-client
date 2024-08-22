@@ -44,6 +44,18 @@
   font-family: var(--gdsc-font-1);
 }
 
-.toaststyle {
-  white-space: nowrap;
+.Toastify__toast {
+  width: 100%;
+  white-space: normal;
+  font-size: medium;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.Toastify__close-button {
+  width: 20%;
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
 }

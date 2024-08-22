@@ -189,20 +189,34 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
       toast.error("Required fields cannot be empty", { autoClose: 1200 });
       return;
     }
+    const maxTotalFileSize = 10 * 1024 * 1024;
+    const maxNumberOfFiles = 5;
+
+    const totalFileSize = files.reduce((acc, file) => acc + file.size, 0);
+
+    if (totalFileSize > maxTotalFileSize) {
+      toast.error("Total file size exceeds 10 MB. Please select smaller files.", {
+        autoClose: 1200,
+      });
+      return;
+    }
+
+    if (files.length > maxNumberOfFiles) {
+      toast.error("You can only upload up to 5 files. Please select fewer files.", {
+        autoClose: 1200,
+      });
+      return;
+    }
 
     const formData = new FormData();
-    toast.success(`${files},${files.length}`);
     files.forEach((file) => formData.append("file", file));
     formData.append("topicId", selectedTopic);
     formData.append("courseId", selectedCourseId);
     formData.append("topicName", selectedTopic);
     formData.append("itemName", materialName);
-    toast.success(`before try`, { autoClose: 1200 });
     try {
       setLoading(true);
-      toast.success(`${files},${files.length} 1`, { autoClose: 1200 });
       const token = await auth.currentUser.getIdToken(true);
-      toast.success(`${files},${files.length} 2`, { autoClose: 1200 });
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/items/upload`,
         formData,
@@ -228,16 +242,14 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
           },
         }
       );
-      toast.success(`3`, { autoClose: 1200 });
-      if (response.status === 200) {
-        toast.success("respone 1 ", { autoClose: 1200 });
+
+      if (response.data.status === 200) {
         setFiles((prevFiles) =>
           prevFiles.map((file) => ({
             ...file,
             progress: 100,
           }))
         );
-        toast.success(`3`, { autoClose: 1200 });
         const response2 = await axios.get(
           `${import.meta.env.VITE_BASE_URL}/profile/get?email=${user.email}`,
           {
@@ -246,7 +258,6 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
             },
           }
         );
-        toast.success("respone 2 ", { autoClose: 1200 });
         const { data: data2 } = response2;
         if (data2.status !== 200) {
           toast.error(data2.msg, { autoClose: 1200 });
@@ -264,7 +275,7 @@ const UploadingPage = ({ department, semester, courseId, topicOptions }) => {
         window.history.replaceState(null, "", "/profile");
       } else {
         setLoading(false);
-        toast.error(`Upload failed with status ${response.status}`, { autoClose: 1200 });
+        toast.error(`${response.data.msg}`, { autoClose: 1200 });
       }
     } catch (err) {
       setLoading(false);
