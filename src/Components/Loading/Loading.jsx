@@ -1,5 +1,6 @@
-import { PacmanLoader } from "react-spinners";
+import Lottie from "lottie-react";
 import { useEffect } from "react";
+import customLoader from "./grafiny-loader.json";
 import style from "./Loading.module.scss";
 
 const Loading = () => {
@@ -11,7 +12,7 @@ const Loading = () => {
   }, []);
   return (
     <div className={style.loadingcontainer}>
-      <PacmanLoader color="red" size={50} margin={8} />
+      <Lottie animationData={customLoader} loop />
     </div>
   );
 };
